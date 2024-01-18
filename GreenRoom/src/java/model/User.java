@@ -7,27 +7,23 @@ package model;
 public class User {
     private int userId;
     private String userName;
-    private String userMail;
-    private String userPassword;
     private String userGender;
     private String userBirth;
     private String userAddress;
     private String userPhone;
-    private int userRole;
+    private String userAvatar;
 
     public User() {
     }
 
-    public User(int userId, String userName, String userMail, String userPassword, String userGender, String userBirth, String userAddress, String userPhone, int userRole) {
+    public User(int userId, String userName, String userGender, String userBirth, String userAddress, String userPhone, String userAvatar) {
         this.userId = userId;
         this.userName = userName;
-        this.userMail = userMail;
-        this.userPassword = userPassword;
         this.userGender = userGender;
         this.userBirth = userBirth;
         this.userAddress = userAddress;
         this.userPhone = userPhone;
-        this.userRole = userRole;
+        this.userAvatar = userAvatar;
     }
 
     public int getUserId() {
@@ -44,22 +40,6 @@ public class User {
 
     public void setUserName(String userName) {
         this.userName = userName;
-    }
-
-    public String getUserMail() {
-        return userMail;
-    }
-
-    public void setUserMail(String userMail) {
-        this.userMail = userMail;
-    }
-
-    public String getUserPassword() {
-        return userPassword;
-    }
-
-    public void setUserPassword(String userPassword) {
-        this.userPassword = userPassword;
     }
 
     public String getUserGender() {
@@ -94,14 +74,16 @@ public class User {
         this.userPhone = userPhone;
     }
 
-    public int getUserRole() {
-        return userRole;
+    public String getUserAvatar() {
+        return userAvatar;
     }
 
-    public void setUserRole(int userRole) {
-        this.userRole = userRole;
+    public void setUserAvatar(String userAvatar) {
+        this.userAvatar = userAvatar;
     }
     
+    
+
     
    
     
