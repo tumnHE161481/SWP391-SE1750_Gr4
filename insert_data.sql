@@ -1,33 +1,19 @@
-USE master
+USE [GreenRoom]
 GO
 -- Insert data into [dbo].[User]
-INSERT INTO [GreenRoom].[dbo].[User] ([userName], [userGender], [userBirth], [userAddress], [userPhone], [userAvatar])
+INSERT INTO [GreenRoom].[dbo].[User] ([userName], [userMail], [userPassword], [userRole], [userGender], [userBirth], [userAddress], [userPhone], [userAvatar])
 VALUES
-('Hung Dog', 'Female', '1992-08-22', '69 Tran Duy Hung, Ha Noi', '12345678902', '/Image/avatar1.jpg'),
-('Hung Bat Luc', 'Male', '1988-03-10', '156 Pho Co, Ha Noi', '98765432110', '/Image/avatar2.jpg'),
-('Eva Smith', 'Female', '1993-12-05', '123 Pine St, Townsville', '87654321099', '/Image/avatar3.jpg'),
-('David Miller', 'Male', '1997-05-18', '789 Oak St, Cityville', '23456789012', '/Image/avatar4.jpg'),
-('Grace Davis', 'Female', '1990-11-30', '456 Cedar St, Villagetown', '34567890123', '/Image/avatar5.jpg'),
-('Frank White', 'Male', '1985-09-14', '123 Elm St, Townsville', '45678901234', '/Image/avatar6.jpg'),
-('Helen Wilson', 'Female', '1995-02-25', '789 Walnut St, Citytown', '56789012345', '/Image/avatar7.jpg'),
-('George Adams', 'Male', '1989-07-07', '456 Oak St, Villagetown', '67890123456', '/Image/avatar8.jpg'),
-('Ivy Turner', 'Female', '1994-04-12', '123 Pine St, Cityville', '78901234567', '/Image/avatar9.jpg'),
-('John Smith', 'Male', '1987-01-03', '789 Maple St, Townsville', '89012345678', '/Image/avatar10.jpg');
+('Hung Dog', 'hungdog@gmail.com', '12345678', 1, 'Female', '1992-08-22', '69 Tran Duy Hung, Ha Noi', '12345678902', '/Image/avatar1.jpg'),
+('Hung Bat Luc', 'hungtoiloi@gmail.com', '12345678', 1, 'Male', '1988-03-10', '156 Pho Co, Ha Noi', '98765432110', '/Image/avatar2.jpg'),
+('Eva Smith', 'phamthang@gmail.com', '12345678', 1, 'Female', '1993-12-05', '123 Pine St, Townsville', '87654321099', '/Image/avatar3.jpg'),
+('David Miller', 'quocviet@gmail.com', '12345678', 1, 'Male', '1997-05-18', '789 Oak St, Cityville', '23456789012', '/Image/avatar4.jpg'),
+('Grace Davis', 'maitu@gmail.com', '12345678', 1, 'Female', '1990-11-30', '456 Cedar St, Villagetown', '34567890123', '/Image/avatar5.jpg'),
+('Frank White', 'hung@gmail.com', '12345678', 1, 'Male', '1985-09-14', '123 Elm St, Townsville', '45678901234', '/Image/avatar6.jpg'),
+('Helen Wilson', 'Baove@gmail.com', '12345678', 2, 'Female', '1995-02-25', '789 Walnut St, Citytown', '56789012345', '/Image/avatar7.jpg'),
+('George Adams', 'maitu2@gmail.com', '12345678', 2, 'Male', '1989-07-07', '456 Oak St, Villagetown', '67890123456', '/Image/avatar8.jpg'),
+('Ivy Turner', 'jhungdog@gmail.com', '12345678', 3, 'Female', '1994-04-12', '123 Pine St, Cityville', '78901234567', '/Image/avatar9.jpg'),
+('John Smith', 'admingreenroom@gmail.com', 'admin123', 4, 'Male', '1987-01-03', '789 Maple St, Townsville', '89012345678', '/Image/avatar10.jpg');
 
-
--- Insert data into [dbo].[Account]
-INSERT INTO [GreenRoom].[dbo].[Account] ([userMail], [userPassword], [userRole])
-VALUES
-('hungdog@gmail.com', '12345678', 1),
-('hungtoiloi@gmail.com', '12345678', 1),
-('phamthang@gmail.com', '12345678', 1),
-('quocviet@gmail.com', '12345678', 1),
-('maitu@gmail.com', '12345678', 1),
-('hung@gmail.com', '12345678', 1),
-('Baove@gmail.com', '12345678', 2),
-('maitu2@gmail.com', '12345678', 2),
-('jhungdog@gmail.com', '12345678', 3),
-('admingreenroom@gmail.com', 'admin123', 4);
 
 -- Insert data into [dbo].[Room_Item]
 INSERT INTO [GreenRoom].[dbo].[Room_Item] ([singleBed], [bunk], [chair], [ceilingFans], [airConditional])
