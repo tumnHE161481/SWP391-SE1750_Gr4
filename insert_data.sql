@@ -24,8 +24,8 @@ VALUES
 ('quocviet@gmail.com', '12345678', 1),
 ('maitu@gmail.com', '12345678', 1),
 ('hung@gmail.com', '12345678', 1),
-('hungdog@gmail.com', '12345678', 2),
-('hungdog@gmail.com', '12345678', 2),
+('Baove@gmail.com', '12345678', 2),
+('maitu2@gmail.com', '12345678', 2),
 ('jhungdog@gmail.com', '12345678', 3),
 ('admingreenroom@gmail.com', 'admin123', 4);
 
