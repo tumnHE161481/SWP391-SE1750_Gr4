@@ -29,113 +29,111 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     </head>
     <body>
-        <div class="container">
-            <div class="row">
-                <div class="col-2">
-                    <div class="sidebar">
-                        <div class="logo-details">
-                            <i class="bx bxl-c-plus-plus icon"></i>
-                            <div class="logo_name">GreenHouse</div>
-                            <i class="bx bx-menu" id="btn"></i>
+        <div class="sidebar">
+            <div class="logo-details">
+                <i class="fa-brands fa-gofore"></i>
+                <div class="logo_name">GreenRoom</div>
+                <i class="fa-solid fa-bars" id="btn"></i>
+            </div>
+            <ul class="nav-list">
+                <li>
+                    <a href="">
+                        <i class="fa-regular fa-address-book"></i>
+                        <span class="links_name">Renter</span>
+                    </a>
+                    <span class="tooltip">Renter</span>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fa-solid fa-house-user"></i>
+                        <span class="links_name">Room</span>
+                    </a>
+                    <span class="tooltip">Room</span>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fa-solid fa-shield-halved"></i>
+                        <span class="links_name">Security</span>
+                    </a>
+                    <span class="tooltip">Security</span>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fa-solid fa-right-from-bracket"></i>
+                        <span class="links_name">Log out</span>
+                    </a>
+                    <span class="tooltip">Log out</span>
+                </li>
+            </ul>
+        </div>
+        <section class="home-section">
+            <div class="main--content">
+                <div class="header--wrapper">
+                    <div class="header--title">
+                        <div>
+                            <span>Admin Home</span>
+                            <h2>Welcome !</h2>
                         </div>
-                        <ul class="nav-list">
-                            <li>
-                                <a href="#" style="background-color: #fff;">
-                                    <i class="fa-regular fa-user" style="color: #11101d"></i>
-                                    <span class="links_name" style="color: #11101d">Manage Renter</span>
-                                </a>
-                                <span class="tooltip">Manage Renter</span>
-                            </li>
-                            <li>
-                                <a href="./manageroom.html">
-                                    <i class="fa-solid fa-person-shelter"></i>
-                                    <span class="links_name">Manage Room</span>
-                                </a>
-                                <span class="tooltip">Manage Room</span>
-                            </li>
-                            <li>
-                                <a href="./managesecurity.html">
-                                    <i class="fa-solid fa-person-rifle"></i>
-                                    <span class="links_name">Manage Security</span>
-                                </a>
-                                <span class="tooltip">Manage Security</span>
-                            </li>
-                            <li class="profile">
-                                <div class="profile-details">
-                                    <img src="profile.jpg" alt="profileImg" />
-                                    <div class="name_job">
-                                        <div class="name">Log Out</div>
-                                    </div>
-                                </div>
-                                <i class="bx bx-log-out" id="log_out"></i>
-                            </li>
-                        </ul>
+                        <img src="###" alt="" />
                     </div>
                 </div>
-                <div class="col-10 feature-screen">
-                    <section class="home-section">
-                        <div class="row">
-                            <div class="col-12">
-                                <h1>Manage Renter</h1>
-                            </div>
-                            <div class="row">
-                                <div class="col-12 d-flex align-items-end">
-                                    <button>Search</button>
-                                    <input type="text" placeholder="Search by name" />
-                                </div>
-                            </div>
-                        </div>
-                        <div class="room-list">
-                            <table class="table-bordered">
-                                <thead>
+                <!--Table Content-->
+                <div class="tabular--wrapper">
+                    <h3 class="main--title">Renter List</h3>
+                    <div class="search--box">
+                        <input type="text" placeholder="Search" />
+                        <button><i class="fa-solid fa-magnifying-glass"></i></button>
+                    </div>
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Image</th>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Have Room</th>
+                                    <th>Account status</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <c:forEach var="renter" items="${manageRenter}" varStatus="loop" >
                                     <tr>
-                                        <th>Id</th>
-                                        <th>Image</th>
-                                        <th>Name</th>
-                                        <th>Email</th>
-                                        <th>Room available</th>
-                                        <th>Account status</th>
-                                        <th>Action</th>
+                                        <td>${loop.index + 1}</td>
+                                        <td><img style="height: 100px; width: 100%;" src=${renter.userAvatar}></td>
+                                        <td>${renter.userName}</td>
+                                        <td>${renter.userMail}</td>
+                                        <td><c:choose>
+                                                <c:when test="${renter.renterHaveRoom}">
+                                                    <span style="color: green;">Yes</span>
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <span style="color: red;">No</span>
+                                                </c:otherwise>
+                                            </c:choose></td>
+                                        <td><c:choose>
+                                                <c:when test="${renter.renterStatus}">
+                                                    <span style="color: green;">Active</span>
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <span style="color: red;">Inactive</span>
+                                                </c:otherwise>
+                                            </c:choose></td>
+                                        <td>
+                                            <div class="d-flex justify-content-center gap-1">
+                                                <button>Ban</button>
+                                                <button>Edit</button>
+                                            </div>
+                                        </td>
                                     </tr>
-                                </thead>
-                                <tbody>
-                                    <c:forEach var="renter" items="${manageRenter}" varStatus="loop" >
-                                        <tr>
-                                            <td>${loop.index + 1}</td>
-                                            <td><img style="height: 100px; width: 100%;" src=${renter.userAvatar}></td>
-                                            <td>${renter.userName}</td>
-                                            <td>${renter.userMail}</td>
-                                            <td><c:choose>
-                                                    <c:when test="${renter.renterHaveRoom}">
-                                                        <span style="color: green;">Active</span>
-                                                    </c:when>
-                                                    <c:otherwise>
-                                                        <span style="color: red;">Inactive</span>
-                                                    </c:otherwise>
-                                                </c:choose></td>
-                                            <td><c:choose>
-                                                    <c:when test="${renter.renterStatus}">
-                                                        <span style="color: green;">Active</span>
-                                                    </c:when>
-                                                    <c:otherwise>
-                                                        <span style="color: red;">Inactive</span>
-                                                    </c:otherwise>
-                                                </c:choose></td>
-                                            <td>
-                                                <div class="d-flex justify-content-center gap-1">
-                                                    <button>Ban thi</button>
-                                                    <button>Edit</button>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    </c:forEach>
-                                </tbody>
-                            </table>
-                        </div>
-                    </section>
+                                </c:forEach>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
-        </div>
+        </section>
         <script>
             let sidebar = document.querySelector(".sidebar");
             let closeBtn = document.querySelector("#btn");
@@ -155,9 +153,9 @@
             // following are the code to change sidebar button(optional)
             function menuBtnChange() {
                 if (sidebar.classList.contains("open")) {
-                    closeBtn.classList.replace("fa-solid fa-bars", "fa-arrow-up-wide-short"); //replacing the iocns class
+                    closeBtn.classList.replace("fa-bars", "fa-times");
                 } else {
-                    closeBtn.classList.replace("fa-arrow-up-wide-short", "fa-solid fa-bars"); //replacing the iocns class
+                    closeBtn.classList.replace("fa-times", "fa-bars");
                 }
             }
         </script>
