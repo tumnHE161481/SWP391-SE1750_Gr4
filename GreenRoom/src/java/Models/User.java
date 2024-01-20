@@ -2,17 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package model;
+package Models;
 
-/**
- *
- * @author yetvv.piacom
- */
-public class Register {
+public class User {
     private int userId;
-    private String email;
-    private String password;
-    private int role;
     private String userName;
     private String userGender;
     private String userBirth;
@@ -20,14 +13,11 @@ public class Register {
     private String userPhone;
     private String userAvatar;
 
-    public Register() {
+    public User() {
     }
 
-    public Register(int userId, String email, String password, int role, String userName, String userGender, String userBirth, String userAddress, String userPhone, String userAvatar) {
+    public User(int userId, String userName, String userGender, String userBirth, String userAddress, String userPhone, String userAvatar) {
         this.userId = userId;
-        this.email = email;
-        this.password = password;
-        this.role = role;
         this.userName = userName;
         this.userGender = userGender;
         this.userBirth = userBirth;
@@ -42,30 +32,6 @@ public class Register {
 
     public void setUserId(int userId) {
         this.userId = userId;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public int getRole() {
-        return role;
-    }
-
-    public void setRole(int role) {
-        this.role = role;
     }
 
     public String getUserName() {
@@ -117,5 +83,8 @@ public class Register {
     }
     
     
+
+    
+   
     
 }

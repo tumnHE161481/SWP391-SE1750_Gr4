@@ -1,6 +1,6 @@
-package controller;
+package Controller;
 
-import dal.AccountDAO;
+import DAL.AccountDAO;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
