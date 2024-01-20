@@ -70,7 +70,7 @@ public class AccountDAO extends DBContext{
         try {
             PreparedStatement ps;
             ResultSet rs;
-            String sql = "update [Account] set password = ? where email = ?";
+            String sql = "update [Account] set userPassword = ? where userMail = ?";
             ps = connection.prepareStatement(sql);
             ps.setString(2, email);
             ps.setString(1, password);
