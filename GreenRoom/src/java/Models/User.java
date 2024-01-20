@@ -8,6 +8,7 @@ package Models;
  *
  * @author ASUS
  */
+
 public class User{
     private int userID;
     private String userName;
@@ -54,6 +55,7 @@ public class User{
     
 
     public User(int userID, String userName, String userGender, String userBirth, String userAddress, String userPhone, String userAvatar) {
+        
         this.userID = userID;
         this.userName = userName;
         this.userGender = userGender;
@@ -87,6 +89,7 @@ public class User{
         this.userGender = userGender;
     }
 
+
     public String getUserBirth() {
         return userBirth;
     }
@@ -118,7 +121,4 @@ public class User{
     public void setUserAvatar(String userAvatar) {
         this.userAvatar = userAvatar;
     }
-
-    
-    
 }
