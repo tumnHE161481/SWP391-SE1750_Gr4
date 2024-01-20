@@ -30,12 +30,12 @@
         <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 
-        <link rel="stylesheet" href="<%=request.getContextPath()%>fonts/icomoon/style.css">
-        <link rel="stylesheet" href="<%=request.getContextPath()%>fonts/flaticon/font/flaticon.css">
+        <link rel="stylesheet" href="<%=request.getContextPath()%>/fonts/icomoon/style.css">
+        <link rel="stylesheet" href="<%=request.getContextPath()%>/fonts/flaticon/font/flaticon.css">
 
-        <link rel="stylesheet" href="<%=request.getContextPath()%>css/tiny-slider.css">
-        <link rel="stylesheet" href="<%=request.getContextPath()%>css/aos.css">
-        <link rel="stylesheet" href="<%=request.getContextPath()%>css/style.css">
+        <link rel="stylesheet" href="<%=request.getContextPath()%>/css/tiny-slider.css">
+        <link rel="stylesheet" href="<%=request.getContextPath()%>/css/aos.css">
+        <link rel="stylesheet" href="<%=request.getContextPath()%>/css/style.css">
 
         <title>Room Detail</title>
     </head>
@@ -76,12 +76,12 @@
         </nav>
 
 
-        <div class="hero page-inner overlay" style="background-image: url('images/hero_bg_3.jpg');">
+        <div class="hero page-inner overlay" style="background-image: url('<%=request.getContextPath()%>/images/hero_bg_3.jpg');">
 
             <div class="container">
                 <div class="row justify-content-center align-items-center">
                     <div class="col-lg-9 text-center mt-5">
-                        <h1 class="heading" data-aos="fade-up">5232 California AVE. 21BC</h1>
+                        <h1 class="heading" data-aos="fade-up">${detail.roomNumber}</h1>
 
                         <nav aria-label="breadcrumb" data-aos="fade-up" data-aos-delay="200">
                             <ol class="breadcrumb text-center justify-content-center">
@@ -130,13 +130,13 @@
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td>1</td>
-                                            <td>100 sq ft</td>
-                                            <td>2</td>
-                                            <td>1</td>
-                                            <td>4</td>
-                                            <td>1</td>
-                                            <td>Yes</td>
+                                            <td>${detail.roomFloor}</td>
+                                            <td>${detail.roomSize}</td>
+                                            <td>${detail.singleBed}</td>
+                                            <td>${detail.bunk}</td>
+                                            <td>${detail.chair}</td>
+                                            <td>${detail.ceilingFans}</td>
+                                            <td>${detail.airConditional}</td>
                                         </tr>
                                         <!-- Add more rows as needed -->
                                     </tbody>
@@ -236,12 +236,12 @@
         </div>
 
 
-        <script src="<%=request.getContextPath()%>js/bootstrap.bundle.min.js"></script>
-        <script src="<%=request.getContextPath()%>js/tiny-slider.js"></script>
-        <script src="<%=request.getContextPath()%>js/aos.js"></script>
-        <script src="<%=request.getContextPath()%>js/navbar.js"></script>
-        <script src="<%=request.getContextPath()%>js/counter.js"></script>
-        <script src="<%=request.getContextPath()%>js/custom.js"></script>
+        <script src="<%=request.getContextPath()%>/js/bootstrap.bundle.min.js"></script>
+        <script src="<%=request.getContextPath()%>/js/tiny-slider.js"></script>
+        <script src="<%=request.getContextPath()%>/js/aos.js"></script>
+        <script src="<%=request.getContextPath()%>/js/navbar.js"></script>
+        <script src="<%=request.getContextPath()%>/js/counter.js"></script>
+        <script src="<%=request.getContextPath()%>/js/custom.js"></script>
     </body>
 
 </html>

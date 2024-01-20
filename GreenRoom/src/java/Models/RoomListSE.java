@@ -9,8 +9,8 @@ package Models;
  * @author ASUS
  */
 public class RoomListSE {
-    private int roomID;
 
+    private int roomID;
     private int roomFloor;
     private String roomNumber;
     private String roomSize;
@@ -82,6 +82,4 @@ public class RoomListSE {
         return "RoomListSE{" + "roomID=" + roomID + ", roomFloor=" + roomFloor + ", roomNumber=" + roomNumber + ", roomSize=" + roomSize + ", roomImg=" + roomImg + ", sigleBed=" + sigleBed + '}';
     }
 
-
-    
 }

@@ -14,7 +14,7 @@ public class User {
     private int userID;
     private String userName;
     private String userGender;
-    private Date userBirth;
+    private String userBirth;
     private String userAddress;
     private String userPhone;
     private String userAvatar;
@@ -22,7 +22,7 @@ public class User {
     public User() {
     }
 
-    public User(int userID, String userName, String userGender, Date userBirth, String userAddress, String userPhone, String userAvatar) {
+    public User(int userID, String userName, String userGender, String userBirth, String userAddress, String userPhone, String userAvatar) {
         this.userID = userID;
         this.userName = userName;
         this.userGender = userGender;
@@ -56,11 +56,11 @@ public class User {
         this.userGender = userGender;
     }
 
-    public Date getUserBirth() {
+    public String getUserBirth() {
         return userBirth;
     }
 
-    public void setUserBirth(Date userBirth) {
+    public void setUserBirth(String userBirth) {
         this.userBirth = userBirth;
     }
 
@@ -87,6 +87,7 @@ public class User {
     public void setUserAvatar(String userAvatar) {
         this.userAvatar = userAvatar;
     }
+
 
     
     

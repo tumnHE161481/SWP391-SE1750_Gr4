@@ -30,10 +30,10 @@ public class SeDetailRoomControl extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-               String id = request.getParameter("pid");
+        String id = request.getParameter("pid");
         DAO dao = new DAO();
-        RoomDetailSe rds = dao.getRoomById(id);
-        request.setAttribute("detail", rds);
+        RoomDetailSe p = dao.getRoomById(id);
+        request.setAttribute("detail", p);
         request.getRequestDispatcher("JSP/SeRoomDetail.jsp").forward(request, response);
     } 
 
