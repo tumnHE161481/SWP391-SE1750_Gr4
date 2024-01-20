@@ -2,13 +2,13 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package Model;
+package Models;
 
 /**
  *
  * @author ASUS
  */
-public class User {
+public class User{
     private int userID;
     private String userName;
     private String userGender;
@@ -17,8 +17,41 @@ public class User {
     private String userPhone;
     private String userAvatar;
 
+    public Account getAccount() {
+        return account;
+    }
+
+    public void setAccount(Account account) {
+        this.account = account;
+    }
+
+    public Renter getRenter() {
+        return renter;
+    }
+
+    public void setRenter(Renter renter) {
+        this.renter = renter;
+    }
+    
+    private Account account;
+    private Renter renter;
+
     public User() {
     }
+
+    public User(int userID, String userName, String userGender, String userBirth, String userAddress, String userPhone, String userAvatar, Account account, Renter renter) {
+        this.userID = userID;
+        this.userName = userName;
+        this.userGender = userGender;
+        this.userBirth = userBirth;
+        this.userAddress = userAddress;
+        this.userPhone = userPhone;
+        this.userAvatar = userAvatar;
+        this.account = account;
+        this.renter = renter;
+    }
+    
+    
 
     public User(int userID, String userName, String userGender, String userBirth, String userAddress, String userPhone, String userAvatar) {
         this.userID = userID;

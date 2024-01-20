@@ -1,4 +1,4 @@
-package Dal;
+package DAL;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

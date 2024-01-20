@@ -16,7 +16,7 @@
             type="text/css"
             href="./bootstrap-5.0.2-dist/css/bootstrap.min.css"
             />
-        <link rel="stylesheet" href="./CSS/Admin/Admin.css" />
+        <link rel="stylesheet" href="./CSS/Admin.css" />
         <script
             type="text/javascript"
             src="./bootstrap-5.0.2-dist/js/bootstrap.min.js"
@@ -37,9 +37,9 @@
             </div>
             <ul class="nav-list">
                 <li>
-                    <a href="">
-                        <i class="fa-regular fa-address-book"></i>
-                        <span class="links_name">Renter</span>
+                    <a href="managerenter" style="background-color: white">
+                        <i class="fa-regular fa-address-book" style=" color: black"></i>
+                        <span class="links_name" style=" color: black">Renter</span>
                     </a>
                     <span class="tooltip">Renter</span>
                 </li>
@@ -81,10 +81,14 @@
                 <div class="tabular--wrapper">
                     <div class="d-flex align-items-center gap-5" style="margin-bottom: 30px">
                         <h3 class="main--title" style="padding-bottom: 0px; margin-bottom: 0px">Renter List</h3>
-                        <div class="search--box">
-                            <button><i class="fa-solid fa-magnifying-glass"></i></button>
-                            <input type="text" placeholder="Search by name or mail" />
-                        </div>
+                        <form method="post" action="managerenter">
+                            <div class="search-box">
+                                <button class="btn-search"><i class="fa-solid fa-magnifying-glass"></i></button>
+                                <input type="text" class="input-search" name="txtSearch" placeholder="Enter name or mail" value="${param.txtSearch}">
+                            </div>
+                                <span class="d-flex d-none" color: #000; position: relative; left: 700px"><p>Found:</p><p>&nbsp;${searchCount}</p></span>
+                        </form>
+
                     </div>
                     <div class="table-container">
                         <table>
@@ -103,7 +107,7 @@
                                 <c:forEach var="renter" items="${manageRenter}" varStatus="loop" >
                                     <c:set var="id" value="${renter.userID}"/>
                                     <tr>
-                                        <td>${loop.index + 1}</td>
+                                        <td style="text-align: center">${loop.index + 1}</td>
                                         <td><img style="height: 100px; width: 75px;" src=${renter.userAvatar}></td>
                                         <td>${renter.userName}</td>
                                         <td>${renter.userMail}</td>
