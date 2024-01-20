@@ -111,4 +111,32 @@ public class DAO {
         return list;
     }
 
+    public RoomDetailSe getRoomById(String id) {
+
+        String query = "SELECT r.[roomNumber], r.[roomImg], r.[roomSize], r.[roomFloor], ri.[singleBed],ri.[bunk],ri.[chair], ri.ceilingFans,ri.airConditional\n"
+                + "FROM [dbo].[Room] AS r\n"
+                + "JOIN [dbo].[Room_Item] AS ri ON r.roomItemID = ri.itemID\n"
+                + "where r.roomID = ?";
+        try {
+            conn = new DBContext().getConnection();
+            ps = conn.prepareStatement(query);
+            ps.setString(1, id);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                return new RoomDetailSe(rs.getInt(1),
+                        rs.getInt(2),
+                        rs.getString(3),
+                        rs.getString(4),
+                        rs.getString(5),
+                        rs.getInt(6),
+                        rs.getInt(7),
+                        rs.getInt(8),
+                        rs.getBoolean(9),
+                        rs.getBoolean(10));
+            }
+        } catch (Exception e) {
+        }
+        return null;
+
+    }
 }

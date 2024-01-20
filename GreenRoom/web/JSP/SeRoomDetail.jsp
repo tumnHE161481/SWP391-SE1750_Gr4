@@ -87,7 +87,7 @@
                             <ol class="breadcrumb text-center justify-content-center">
                                 <li class="breadcrumb-item "><a href="index.html">Home</a></li>
                                 <li class="breadcrumb-item "><a href="properties.html">Properties</a></li>
-                                <li class="breadcrumb-item active text-white-50" aria-current="page">5232 California AVE. 21BC</li>
+                                <li class="breadcrumb-item active text-white-50" aria-current="page">${detail.roomNumber}</li>
                             </ol>
                         </nav>
 
@@ -106,9 +106,8 @@
                     <div class="col-lg-7">
                         <div class="img-property-slide-wrap">
                             <div class="img-property-slide">
-                                <img src="<%=request.getContextPath()%>images/img_1.jpg" alt="Image" class="img-fluid">
-                                <img src="<%=request.getContextPath()%>images/img_2.jpg" alt="Image" class="img-fluid">
-                                <img src="<%=request.getContextPath()%>images/img_3.jpg" alt="Image" class="img-fluid">
+                                <img src="${detail.roomImg}" alt="Image" class="img-fluid">
+                                
                             </div>
                         </div>
                     </div>

@@ -115,7 +115,7 @@
                                                     </span>
                                                 </div>
 
-                                                <a href="RoomDetail.html" class="btn btn-primary py-2 px-3">See details</a>
+                                                <a href="seroomdetail" class="btn btn-primary py-2 px-3">See details</a>
                                             </div>
                                         </div>
                                     </div>

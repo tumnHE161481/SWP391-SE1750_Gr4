@@ -34,7 +34,7 @@ public class ListRoomControl extends HttpServlet {
         DAO dao = new DAO();
         List<RoomListSE> listR = dao.getAllRoom();
         request.setAttribute("ListR", listR);
-        System.out.println(listR);
+
         request.getRequestDispatcher("JSP/SeRoomList.jsp").forward(request, response);
     } 
 
