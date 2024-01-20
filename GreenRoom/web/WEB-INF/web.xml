@@ -4,7 +4,6 @@
         <servlet-name>SeProfileControl</servlet-name>
         <servlet-class>Controller.SeProfileControl</servlet-class>
     </servlet>
-
     <servlet>
         <servlet-name>ListNewsControl</servlet-name>
         <servlet-class>Controller.ListNewsControl</servlet-class>
@@ -33,11 +32,14 @@
         <servlet-name>SeEditProfile</servlet-name>
         <servlet-class>Controller.SeEditProfile</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SeRoomDetail</servlet-name>
+        <servlet-class>Controller.SeRoomDetail</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>SeProfileControl</servlet-name>
         <url-pattern>/seprofile</url-pattern>
     </servlet-mapping>
-
     <servlet-mapping>
         <servlet-name>ListNewsControl</servlet-name>
         <url-pattern>/listnews</url-pattern>
@@ -65,6 +67,10 @@
     <servlet-mapping>
         <servlet-name>SeEditProfile</servlet-name>
         <url-pattern>/seeditprofile</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SeRoomDetail</servlet-name>
+        <url-pattern>/seroomdetail</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
