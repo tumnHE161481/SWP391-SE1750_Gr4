@@ -37,7 +37,7 @@
         <link rel="stylesheet" href="<%=request.getContextPath()%>css/aos.css">
         <link rel="stylesheet" href="<%=request.getContextPath()%>css/style.css">
 
-        <title>Property &mdash; Free Bootstrap 5 Website Template by Untree.co</title>
+        <title>Room Detail</title>
     </head>
 
     <body>
