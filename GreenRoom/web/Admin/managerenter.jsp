@@ -16,7 +16,7 @@
             type="text/css"
             href="./bootstrap-5.0.2-dist/css/bootstrap.min.css"
             />
-        <link rel="stylesheet" type="text/css" href="./CSS/Admin/Admin.css" />
+        <link rel="stylesheet" href="./CSS/Admin/Admin.css" />
         <script
             type="text/javascript"
             src="./bootstrap-5.0.2-dist/js/bootstrap.min.js"
@@ -69,20 +69,22 @@
         <section class="home-section">
             <div class="main--content">
                 <div class="header--wrapper">
-                    <div class="header--title">
+                    <div class="header--title d-flex align-items-center">
+                        <img src="./Image/avatar8.jpg" alt="admin" style="height: 65px !important; width: 65px !important; margin-right: 20px"/>
                         <div>
                             <span>Admin Home</span>
                             <h2>Welcome !</h2>
                         </div>
-                        <img src="###" alt="" />
                     </div>
                 </div>
                 <!--Table Content-->
                 <div class="tabular--wrapper">
-                    <h3 class="main--title">Renter List</h3>
-                    <div class="search--box">
-                        <input type="text" placeholder="Search" />
-                        <button><i class="fa-solid fa-magnifying-glass"></i></button>
+                    <div class="d-flex align-items-center gap-5" style="margin-bottom: 30px">
+                        <h3 class="main--title" style="padding-bottom: 0px; margin-bottom: 0px">Renter List</h3>
+                        <div class="search--box">
+                            <button><i class="fa-solid fa-magnifying-glass"></i></button>
+                            <input type="text" placeholder="Search by name or mail" />
+                        </div>
                     </div>
                     <div class="table-container">
                         <table>
@@ -99,9 +101,10 @@
                             </thead>
                             <tbody>
                                 <c:forEach var="renter" items="${manageRenter}" varStatus="loop" >
+                                    <c:set var="id" value="${renter.userID}"/>
                                     <tr>
                                         <td>${loop.index + 1}</td>
-                                        <td><img style="height: 100px; width: 100%;" src=${renter.userAvatar}></td>
+                                        <td><img style="height: 100px; width: 75px;" src=${renter.userAvatar}></td>
                                         <td>${renter.userName}</td>
                                         <td>${renter.userMail}</td>
                                         <td><c:choose>
@@ -112,19 +115,18 @@
                                                     <span style="color: red;">No</span>
                                                 </c:otherwise>
                                             </c:choose></td>
-                                        <td><c:choose>
+                                        <td>
+                                            <c:choose>
                                                 <c:when test="${renter.renterStatus}">
                                                     <span style="color: green;">Active</span>
                                                 </c:when>
                                                 <c:otherwise>
                                                     <span style="color: red;">Inactive</span>
                                                 </c:otherwise>
-                                            </c:choose></td>
+                                            </c:choose>
+                                        </td>
                                         <td>
-                                            <div class="d-flex justify-content-center gap-1">
-                                                <button>Ban</button>
-                                                <button>Edit</button>
-                                            </div>
+                                            <a class="renter-detail" href="renterdetail?id=${id}">Detail</a>
                                         </td>
                                     </tr>
                                 </c:forEach>
