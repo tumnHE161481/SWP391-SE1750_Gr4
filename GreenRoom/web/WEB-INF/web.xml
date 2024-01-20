@@ -33,8 +33,8 @@
         <servlet-class>Controller.SeEditProfile</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>SeRoomDetail</servlet-name>
-        <servlet-class>Controller.SeRoomDetail</servlet-class>
+        <servlet-name>SeDetailRoomControl</servlet-name>
+        <servlet-class>Controller.SeDetailRoomControl</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>SeProfileControl</servlet-name>
@@ -69,8 +69,8 @@
         <url-pattern>/seeditprofile</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>SeRoomDetail</servlet-name>
-        <url-pattern>/seroomdetail</url-pattern>
+        <servlet-name>SeDetailRoomControl</servlet-name>
+        <url-pattern>/sedetailroom</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
