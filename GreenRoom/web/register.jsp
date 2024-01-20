@@ -10,7 +10,8 @@
 
 <head>
 	<meta charset="UTF-8">
-	<title>Register page</title>
+	<title>Register</title>
+        <link rel="icon" href="home-guest/favicon.png">
 	<link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.2.0/css/all.css'>
 	<link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.2.0/css/fontawesome.css'>
         <link rel="stylesheet" href="register/register.css">

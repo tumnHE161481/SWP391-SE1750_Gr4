@@ -5,13 +5,14 @@
 
 package controller;
 
-import dao.AccountDAO;
+import dal.AccountDAO;
 import java.io.IOException;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -43,13 +44,11 @@ public class LoginController extends HttpServlet {
                 request.getRequestDispatcher("login.jsp").forward(request, response);
             }
             else {
-                request.getSession().setAttribute("user", account);
+                HttpSession session = request.getSession();
+                session.setAttribute("user", account);
                 request.setAttribute("message", "Login successfully");
                 request.getRequestDispatcher("login.jsp").forward(request, response);
-
-//                request.getRequestDispatcher("login.jsp").forward(request, response);
             }
-//            request.getRequestDispatcher("home.jsp").forward(request, response);
         } catch ( ServletException | IOException e ) {
                 Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, e);
         }

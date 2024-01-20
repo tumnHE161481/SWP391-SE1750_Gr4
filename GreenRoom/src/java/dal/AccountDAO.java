@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package dao;
+package dal;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -66,9 +66,21 @@ public class AccountDAO extends DBContext{
         return null;
     }
     
-    
-    
-    
+    public boolean updateUserPassword(String email, String password) {
+        try {
+            PreparedStatement ps;
+            ResultSet rs;
+            String sql = "update [Account] set password = ? where email = ?";
+            ps = connection.prepareStatement(sql);
+            ps.setString(2, email);
+            ps.setString(1, password);
+            ps.execute();
+            return true;
+        } catch (SQLException ex) {
+            Logger.getLogger(AccountDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
+    }
     
     
 }
