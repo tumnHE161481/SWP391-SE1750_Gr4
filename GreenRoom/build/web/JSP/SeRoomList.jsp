@@ -115,7 +115,7 @@
                                                     </span>
                                                 </div>
 
-                                                <a href="" class="btn btn-primary py-2 px-3">See details</a>
+                                                <a href="sedetailroom?pid=${r.getRoomID()}" class="btn btn-primary py-2 px-3">See details</a>
                                             </div>
                                         </div>
                                     </div>
