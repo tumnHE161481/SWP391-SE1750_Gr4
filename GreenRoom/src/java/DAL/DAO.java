@@ -15,7 +15,7 @@ import java.util.List;
  *
  * @author ASUS
  */
-public class DAO {
+public class DAO extends DBContext{
 
     Connection conn = null;
     PreparedStatement ps = null;
@@ -28,7 +28,7 @@ public class DAO {
                 + "JOIN [dbo].[Renter] AS r ON u.userID = r.userID\n"
                 + "JOIN [dbo].[Room] AS rm ON r.roomID = rm.roomID";
         try {
-            conn = new DBContext().getConnection();
+            conn = connection;
             ps = conn.prepareStatement(query);
             rs = ps.executeQuery();
             while (rs.next()) {
@@ -48,7 +48,7 @@ public class DAO {
         List<Task> list = new ArrayList<>();
         String query = "select * from dbo.Task";
         try {
-            conn = new DBContext().getConnection();
+             conn = connection;
             ps = conn.prepareStatement(query);
             rs = ps.executeQuery();
             while (rs.next()) {
@@ -72,7 +72,7 @@ public class DAO {
                 + "JOIN [dbo].[Room] AS rm ON r.roomID = rm.roomID\n"
                 + "WHERE rm.[roomNumber] LIKE ?;";
         try {
-            conn = new DBContext().getConnection();
+             conn = connection;
             ps = conn.prepareStatement(query);
             ps.setString(1, "%" + txtSearch + "%");
             rs = ps.executeQuery();
@@ -95,7 +95,7 @@ public class DAO {
                 + "from [dbo].[Room] as r, [dbo].[Room_Item] as ri\n"
                 + "where r.roomItemID = ri.itemID";
         try {
-            conn = new DBContext().getConnection();
+           conn = connection;
             ps = conn.prepareStatement(query);
             rs = ps.executeQuery();
             while (rs.next()) {
@@ -118,7 +118,7 @@ public class DAO {
                 + "JOIN [dbo].[Room_Item] AS ri ON r.roomItemID = ri.itemID\n"
                 + "where r.roomID = ?";
         try {
-            conn = new DBContext().getConnection();
+            conn = connection;
             ps = conn.prepareStatement(query);
             ps.setString(1, id);
             rs = ps.executeQuery();
