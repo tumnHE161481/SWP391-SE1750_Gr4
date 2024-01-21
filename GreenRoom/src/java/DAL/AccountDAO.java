@@ -28,7 +28,7 @@ public class AccountDAO extends MyDAO {
      */
 
     //List Account by userId
-    public Account getUserByUserId(int id) {
+    public Account getAccount(int id) {
         Account account = new Account();
         String statement = "select * from [Account]";
         try {

@@ -122,10 +122,10 @@
                                         <td>
                                             <c:choose>
                                                 <c:when test="${renter.renterStatus}">
-                                                    <span style="color: green;">Active</span>
+                                                    <span style="color: green;">Active &nbsp;</span><i style="color: rgb(44, 223, 44)" class="fa-solid fa-user-check"></i>
                                                 </c:when>
                                                 <c:otherwise>
-                                                    <span style="color: red;">Inactive</span>
+                                                    <span style="color: red;">Deactive &nbsp;</span><i style="color: rgb(172, 14, 14)" class="fa-solid fa-user-slash"></i>
                                                 </c:otherwise>
                                             </c:choose>
                                         </td>

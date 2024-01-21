@@ -16,30 +16,14 @@ public class User{
     private String userAddress;
     private String userPhone;
     private String userAvatar;
-
-    public Account getAccount() {
-        return account;
-    }
-
-    public void setAccount(Account account) {
-        this.account = account;
-    }
-
-    public Renter getRenter() {
-        return renter;
-    }
-
-    public void setRenter(Renter renter) {
-        this.renter = renter;
-    }
-    
     private Account account;
     private Renter renter;
-
+    private Room room;
+    
     public User() {
     }
 
-    public User(int userID, String userName, String userGender, String userBirth, String userAddress, String userPhone, String userAvatar, Account account, Renter renter) {
+    public User(int userID, String userName, String userGender, String userBirth, String userAddress, String userPhone, String userAvatar, Account account, Renter renter, Room room) {
         this.userID = userID;
         this.userName = userName;
         this.userGender = userGender;
@@ -49,9 +33,9 @@ public class User{
         this.userAvatar = userAvatar;
         this.account = account;
         this.renter = renter;
+        this.room = room;
     }
-    
-    
+
 
     public User(int userID, String userName, String userGender, String userBirth, String userAddress, String userPhone, String userAvatar) {
         this.userID = userID;
@@ -119,6 +103,28 @@ public class User{
         this.userAvatar = userAvatar;
     }
 
+     public Account getAccount() {
+        return account;
+    }
+
+    public void setAccount(Account account) {
+        this.account = account;
+    }
+
+    public Renter getRenter() {
+        return renter;
+    }
+
+    public void setRenter(Renter renter) {
+        this.renter = renter;
+    }
     
+    public Room getRoom() {
+        return room;
+    }
+
+    public void setRoom(Room room) {
+        this.room = room;
+    }
     
 }

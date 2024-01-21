@@ -70,7 +70,7 @@ public class ManageRenterDetail extends HttpServlet {
             request.getRequestDispatcher("/Admin/renterdetail.jsp").forward(request, response);
         }
         catch(NumberFormatException e){
-            
+             
         }
     }
 
