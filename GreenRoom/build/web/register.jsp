@@ -6,69 +6,108 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="en">
+<!-- Designined by CodingLab - youtube.com/codinglabyt -->
+<html lang="en" dir="ltr">
 
-<head>
-	<meta charset="UTF-8">
-	<title>Register</title>
+    <head>
+        <meta charset="UTF-8">
+        <title> Register </title>
         <link rel="icon" href="home-guest/favicon.png">
-	<link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.2.0/css/all.css'>
-	<link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.2.0/css/fontawesome.css'>
-        <link rel="stylesheet" href="register/register.css">
+        <link rel="stylesheet" href="login-register/style.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            
+            var passwordInput = document.querySelector('input[name="password"]');
+            var repasswordInput = document.querySelector('input[name="repassword"]');
+            var messageElement = document.querySelector('#message');
 
-</head>
+            
+            passwordInput.addEventListener("input", validatePassword);
+            repasswordInput.addEventListener("input", validatePassword);
 
-<body>
-	<!-- partial:index.partial.html -->
-	<div class="container">
-		<div class="screen">
-			<div class="screen__content">
+            
+            function validatePassword() {
+                var password = passwordInput.value;
+                var repassword = repasswordInput.value;
 
-                            <form class="login" method="post" action="register">
+                if (password !== repassword) {
+                    messageElement.textContent = "Mật khẩu và xác nhận mật khẩu không khớp.";
+                    messageElement.style.color = "#FF0E0E";
+                } else {
+                    messageElement.textContent = "";
+                }
+            }
+        });
+    </script>
+    </head>
 
-					<i class="login__icon fas fa-home fa-xl" style="font-size: xx-large; margin-top: 20px;"><span
-							class="button__text">Register</span></i>
+    <body>
+        <div class="container">
+            <div class="title">Register</div>
+            <h3 id="message" style="color: #FF0E0E; margin-top: 20px;">${message}</h3>
+            <div class="content">
+                <form action="register" method="post">
+                    <div class="user-details">
+                        <div class="input-box">
+                            <span class="details">Username</span>
+                            <input type="text" placeholder="Enter your username" name="username" required>
+                        </div>
+                        <div class="input-box">
+                            <span class="details">Email</span>
+                            <input type="text" placeholder="Enter your email" name="usermail" required>
+                        </div>
+                        <div class="input-box">
+                            <span class="details">Phone Number</span>
+                            <input type="text" placeholder="Enter your number" name="userphone" required>
+                        </div>
+                        <div class="input-box">
+                            <span class="details">Password</span>
+                            <input type="password" placeholder="Enter your password" name="password" required>
+                        </div>
+                        <div class="input-box">
+                            <span class="details">Address</span>
+                            <input type="text" placeholder="Confirm your Address" name="address" required>
+                        </div>
+                        <div class="input-box">
+                            <span class="details">Confirm Password</span>
+                            <input type="password" placeholder="Confirm your password" name="repassword" required>
+                        </div>
+                        <div class="input-box">
+                            <span class="details">Birth Day</span>
+                            <input type="date" name="dob">
+                        </div>
 
-					<div class="login__field">
-						<i class="login__icon fas fa-user"></i>
-						<input type="text" class="login__input" placeholder="Name" name="name" required>
-					</div>
-					<div class="login__field">
-						<i class="login__icon fas fa-user"></i>
-						<input type="email" class="login__input" placeholder="Email" name="email" required>
-					</div>
-					<div class="login__field">
-						<i class="login__icon fas fa-lock"></i>
-						<input type="password" class="login__input" placeholder="Password" name="password" required>
-					</div>
-					<div class="login__field">
-						<i class="login__icon fas fa-lock"></i>
-						<input type="password" class="login__input" placeholder="Re-Password" name="repassword" required>
-					</div>
-                                    
-                                    
-                                        <button class="button login__submit" type="submit">
-						<span class="button__text">Register</span>
-						<i class="button__icon fas fa-chevron-right" style="color: white;"></i>
-					</button>
-                                    
-                                    
-                                        <a class="button login__submit" href="login.jsp" style="text-decoration: none;">
-						<span class="button__text">Log-In</span>
-						<i class="button__icon fas fa-chevron-right" style="color: white;"></i>
-					</a>
-				</form>
-			</div>
-			<div class="screen__background">
-				<span class="screen__background__shape screen__background__shape4"></span>
-				<span class="screen__background__shape screen__background__shape3"></span>
-				<span class="screen__background__shape screen__background__shape2"></span>
-				<span class="screen__background__shape screen__background__shape1"></span>
-			</div>
-		</div>
-	</div>
-	<!-- partial -->
+                        <div class="input-box">
+                            <span class="details">Gender</span>
+                            <select id="gender" name="gender"
+                                style="width: 300px;height: 40px;border-radius: 5px; padding-left: 15px;font-size: 16px;">
+                                <option value="Male" selected="selected">Male</option>
+                                <option value="Female">Female</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+                    </div>
 
-</body>
+
+
+
+                    <div class="button" ">
+                        <input type="submit" value="Register" style="width: 650px;">
+                    </div>
+                    ${message}
+                </form>
+
+                <div class="form1">
+                    <div class="button">
+                        <a href="login.jsp"><input type="submit" value="Back to Login" style="width: 650px;"></a>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+
+    </body>
 
 </html>

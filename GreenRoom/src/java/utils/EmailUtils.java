@@ -47,4 +47,8 @@ public class EmailUtils {
             throw new RuntimeException(e);
         }
     }
+    
+    public static void send(){
+        
+    }
 }

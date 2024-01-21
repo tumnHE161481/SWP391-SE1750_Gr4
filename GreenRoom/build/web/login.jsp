@@ -6,66 +6,57 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr">
 
-    <head>
-        <meta charset="UTF-8">
-        <title>Login</title>
-        <link rel="icon" href="home-guest/favicon.png">
-        <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.2.0/css/all.css'>
-        <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.2.0/css/fontawesome.css'>
-        <link rel="stylesheet" href="login/login.css">
+<head>
+  <meta charset="UTF-8">
+  <title> Login </title>
+  <link rel="icon" href="home-guest/favicon.png">
+  <link rel="stylesheet" href="login-register/style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
 
-    </head>
+<body>
+  <div class="container1">
+    <div class="title">Login</div>
+    <h3 style="color: #FF0E0E;  margin-top: 20px;">${message}</h3>
+    <div class="content">
+        <form action="login" method="post">
+        <div class="user-details1">
+          <div class="input-box">
+            <span class="details">Email</span>
+            <input type="text" name="email" placeholder="Enter your Email" required>
+          </div>
+          <div class="input-box">
+            <span class="details">Password</span>
+            <input type="password" name="password" placeholder="Enter your Password" required>
+          </div>
 
-    <body>
-        <!-- partial:index.partial.html -->
-        <div class="container">
-            <div class="screen">
-                <div class="screen__content">
 
-                    <form class="login" method="post" action="login">
-
-
-                        <i class="login__icon fas fa-home fa-xl" style="font-size: xx-large; margin-top: 20px;"><span
-                                class="button__text">Login</span></i>
-                        <h3 style="color: #FF0E0E">${message}</h3>                
-
-                        <div class="login__field">
-                            <i class="login__icon fas fa-user"></i>
-                            <input type="text" class="login__input" placeholder="Email" name="email" required>
-                        </div>
-                        <div class="login__field">
-                            <i class="login__icon fas fa-lock"></i>
-                            <input type="password" class="login__input" placeholder="Password" name="password" required>
-                        </div>
-                        <button class="button login__submit" type="submit">
-                            <span class="button__text">Log-In</span>
-                            <i class="button__icon fas fa-chevron-right" style="color: white;"></i>
-                        </button>
-
-                        <a class="button login__submit" href="register.jsp" style="text-decoration: none">
-                            <span class="button__text">Register</span>
-                            <i class="button__icon fas fa-chevron-right" style="color: white;"></i>
-                        </a>
-
-                        <a class="button login__submit"href="forgotPassword.jsp" style="text-decoration: none">
-                            <span class="button__text">Forgot password</span>
-                            <i class="button__icon fas fa-chevron-right" style="color: white;"></i>
-                        </a>
-
-                    </form>
-                </div>
-                <div class="screen__background">
-                    <span class="screen__background__shape screen__background__shape4"></span>
-                    <span class="screen__background__shape screen__background__shape3"></span>
-                    <span class="screen__background__shape screen__background__shape2"></span>
-                    <span class="screen__background__shape screen__background__shape1"></span>
-                </div>
-            </div>
+          <span class="details">
+            Don't have account ?
+            <a href="register.jsp" style="text-decoration: none; font-weight: 600;">Register now</a>
+          </span>
         </div>
-        <!-- partial -->
+        <div class="button">
+            <button type="submit">
+                <input type="submit" value="Login" style="width: 400px; height: 45px">
+            </button>
+        </div>
+      </form>
 
-    </body>
+
+
+
+
+      <div class="form1">
+        <div class="button">
+            <a href="forgotPassword.jsp"><input type="submit" value="Forgot password"></a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
 
 </html>

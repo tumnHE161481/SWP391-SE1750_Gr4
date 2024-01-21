@@ -11,6 +11,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import Models.Account;
 import Models.User;
+import utils.EmailUtils;
 
 /**
  *
@@ -47,7 +48,7 @@ public class AccountDAO extends DBContext{
         try {
             PreparedStatement ps;
             ResultSet rs;
-            String sql = "SELECT * FROM [GreenRoom].[dbo].[Account] WHERE email = ?";
+            String sql = "SELECT * FROM [GreenRoom].[dbo].[Account] WHERE userMail = ?";
             ps = connection.prepareStatement(sql);
             ps.setString(1, email);
             rs = ps.executeQuery();
@@ -75,6 +76,44 @@ public class AccountDAO extends DBContext{
             ps.setString(2, email);
             ps.setString(1, password);
             ps.execute();
+            return true;
+        } catch (SQLException ex) {
+            Logger.getLogger(AccountDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
+    }
+    
+    public boolean registerUSer(Account a, boolean isSendLink) {
+        try {
+            PreparedStatement ps;
+            ResultSet rs;
+            String sql = "INSERT INTO [dbo].[Account] ([userMail] ,[userPassword] ,[userRole]) VALUES (?,?,?)";
+
+            ps = connection.prepareStatement(sql);
+            ps.setString(1, a.getEmail());
+            ps.setString(2, a.getPassword());
+            ps.setInt(3, a.getRole());
+            ps.execute();
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            String subject = "Please verify your account to Online Learning System ❤";
+            String verificationLink = "http://localhost:9999/MANH-MEO/verify?email=" + a.getEmail();
+            String body = "Click this link to verify your account: " + verificationLink + "";
+            if (!isSendLink) {
+                subject = "";
+                body = "Your password in Online Learning System is: " + a.getPassword();
+            }
+            EmailUtils.sendVerifyEmail(a.getEmail(), subject, body);
+
             return true;
         } catch (SQLException ex) {
             Logger.getLogger(AccountDAO.class.getName()).log(Level.SEVERE, null, ex);

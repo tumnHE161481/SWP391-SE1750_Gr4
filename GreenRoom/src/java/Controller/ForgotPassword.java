@@ -1,5 +1,7 @@
 package Controller;
 
+import DAL.AccountDAO;
+import Models.Account;
 import java.io.IOException;
 import java.util.Properties;
 import java.util.Random;
@@ -38,6 +40,8 @@ public class ForgotPassword extends HttpServlet {
         String randomOtp = "";
         
         HttpSession mySession = request.getSession();
+        
+        
         
         if (email != null || !email.equals("")) {
             for (int i = 0; i < otpvalueLength; i++) {
@@ -86,7 +90,7 @@ public class ForgotPassword extends HttpServlet {
             mySession.setAttribute("otp", randomOtp);
             mySession.setAttribute("email", email);
             dispatcher.forward(request, response);
-        }
+        } 
 
     }
 

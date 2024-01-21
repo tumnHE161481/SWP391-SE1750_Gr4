@@ -37,8 +37,8 @@ public class LoginController extends HttpServlet {
         try {
             String email = request.getParameter("email");
             String password = request.getParameter("password");
-            AccountDAO aDBContext = new AccountDAO();
-            Account account = aDBContext.LoginAccount(email, password);
+            AccountDAO a = new AccountDAO();
+            Account account = a.LoginAccount(email, password);
             if (account == null) {
                 request.setAttribute("message", "Login failed");
                 request.getRequestDispatcher("login.jsp").forward(request, response);

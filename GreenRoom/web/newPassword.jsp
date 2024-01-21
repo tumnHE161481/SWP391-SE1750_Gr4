@@ -7,7 +7,7 @@
     <title>New Password</title>
     <style>
         body {
-            background-color: #343a40;
+            background: linear-gradient(135deg, #30BD36, #5A84E6);
             font-family: sans-serif;
             margin: 0;
             display: flex;
@@ -20,7 +20,6 @@
             max-width: 400px;
             margin: 10% auto;
             padding: 20px;
-            border: 2px solid gray;
             background-color: white;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
@@ -61,7 +60,7 @@
         }
 
         #submitButton {
-            background-color: #439A97;
+            background-color: #30BD36;
             color: white;
             font-weight: 600;
             border: none;
@@ -81,7 +80,7 @@
 <body>
     <div class="container"> 
         <div class="title-text">
-            Enter your new password below.
+            Enter your new password
         </div>
         <form action="newPassword" method="POST">
             <div class="form-group">
