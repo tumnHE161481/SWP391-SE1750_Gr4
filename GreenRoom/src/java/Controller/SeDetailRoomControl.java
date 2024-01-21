@@ -33,6 +33,7 @@ public class SeDetailRoomControl extends HttpServlet {
         String id = request.getParameter("pid");
         DAO dao = new DAO();
         RoomDetailSe p = dao.getRoomById(id);
+        System.out.println(p.getRoomID());
         request.setAttribute("detail", p);
         request.getRequestDispatcher("JSP/SeRoomDetail.jsp").forward(request, response);
     } 
