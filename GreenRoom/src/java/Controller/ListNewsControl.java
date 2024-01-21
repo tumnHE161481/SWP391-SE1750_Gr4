@@ -60,7 +60,7 @@ public class ListNewsControl extends HttpServlet {
         List<News> listN = dao.getAllNews();
         request.setAttribute("ListN", listN);
 
-        request.getRequestDispatcher("JSP/RenterNews.jsp").forward(request, response);
+        request.getRequestDispatcher("Renter/RenterNews.jsp").forward(request, response);
     } 
 
     /** 

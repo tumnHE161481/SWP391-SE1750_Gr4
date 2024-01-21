@@ -40,4 +40,14 @@ public class DAORenter extends DBContext {
         return list;
     }
 
+    public static void main(String[] args) {
+        DAORenter dao = new DAORenter();
+        List<News> list = dao.getAllNews();
+        for (News news : list) {
+            System.out.println("id:" + news.getNewDes());
+            System.out.println("Title:" + news.getNewsTitle());
+            System.out.println("des:" + news.getUserName());
+        }
+
+    }
 }
