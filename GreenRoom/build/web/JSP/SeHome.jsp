@@ -88,6 +88,30 @@
                 </div>
             </div>
         </div>
+        <div class="tabular--wrapper">
+            <h3 class="main--title">New</h3>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Title</th>
+
+                            <th>Author</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                    <c:forEach items="${ListN}" var="n">
+                        <tr>
+                            <td><a href="https://example.com"></a>${n.newsTitle}</td>
+
+                            <td>${n.userName}</td>
+                        </tr>
+                    </c:forEach>
+                    </tbody>
+                </table>
+            </div>
+        </div>
         <div class="site-footer">
             <div class="container">
 

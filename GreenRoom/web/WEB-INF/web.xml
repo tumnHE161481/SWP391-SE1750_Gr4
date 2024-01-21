@@ -4,10 +4,7 @@
         <servlet-name>SeProfileControl</servlet-name>
         <servlet-class>Controller.SeProfileControl</servlet-class>
     </servlet>
-    <servlet>
-        <servlet-name>ListNewsControl</servlet-name>
-        <servlet-class>Controller.ListNewsControl</servlet-class>
-    </servlet>
+
     <servlet>
         <servlet-name>ListTaskControl</servlet-name>
         <servlet-class>Controller.ListTaskControl</servlet-class>
@@ -36,14 +33,15 @@
         <servlet-name>SeDetailRoomControl</servlet-name>
         <servlet-class>Controller.SeDetailRoomControl</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SeHomeControl</servlet-name>
+        <servlet-class>Controller.SeHomeControl</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>SeProfileControl</servlet-name>
         <url-pattern>/seprofile</url-pattern>
     </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>ListNewsControl</servlet-name>
-        <url-pattern>/listnews</url-pattern>
-    </servlet-mapping>
+
     <servlet-mapping>
         <servlet-name>ListTaskControl</servlet-name>
         <url-pattern>/listtask</url-pattern>
@@ -71,6 +69,10 @@
     <servlet-mapping>
         <servlet-name>SeDetailRoomControl</servlet-name>
         <url-pattern>/sedetailroom</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SeHomeControl</servlet-name>
+        <url-pattern>/sehome</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
