@@ -32,7 +32,7 @@
                 var repassword = repasswordInput.value;
 
                 if (password !== repassword) {
-                    messageElement.textContent = "Mật khẩu và xác nhận mật khẩu không khớp.";
+                    messageElement.textContent = "Password and Confirm-Password are not match.";
                     messageElement.style.color = "#FF0E0E";
                 } else {
                     messageElement.textContent = "";
@@ -55,7 +55,7 @@
                         </div>
                         <div class="input-box">
                             <span class="details">Email</span>
-                            <input type="text" placeholder="Enter your email" name="usermail" required>
+                            <input type="mail" placeholder="Enter your email" name="usermail" required>
                         </div>
                         <div class="input-box">
                             <span class="details">Phone Number</span>
