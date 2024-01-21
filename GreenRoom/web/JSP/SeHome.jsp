@@ -5,6 +5,8 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!doctype html>
 <html lang="en">
 
@@ -30,6 +32,94 @@
         <link rel="stylesheet" href="<%=request.getContextPath()%>/css/style.css">
 
         <title>Security Home</title>
+        <style>
+            /*table*/
+            .tabular--wrapper{
+                background: #fff;
+                margin-top: 1rem;
+                border-radius: 10px;
+                padding: 2rem;
+            }
+
+            .table-container{
+                width: 100%;
+            }
+
+            table{
+                width: 100%;
+                border-collapse: collapse;
+            }
+
+            /*Chinh mau chu o hang dau*/
+            thead{
+                background: rgb(138, 110, 60, 000);
+                color: black;
+            }
+
+            th{
+                padding: 15px;
+                text-align: left;
+            }
+
+            tbody{
+                background: #f2f2f2;
+            }
+
+            td{
+                padding: 15px;
+                font-size: 14px;
+                color: #333;
+            }
+
+            tr:nth-child(even){
+                background: white;
+            }
+
+
+            tfoot{
+                background: rgba(113, 99, 186, 255);
+                font-weight: bold;
+                color: rgb(255, 255, 255);
+            }
+
+            tfoot td{
+                padding: 15px;
+            }
+
+            .table-container button{
+                color: green;
+                background: none;
+                cursor: pointer;
+
+            }
+
+            th{
+                padding: 15px;
+                background: none;
+                cursor: pointer;
+            }
+
+            .table-container table {
+                table-layout: fixed;
+            }
+
+            .table-container td {
+                word-wrap: break-word;
+                max-width: 200px; /* Adjust the max-width value as needed */
+            }
+
+            .table-container th:nth-child(1),
+            .table-container td:nth-child(1) {
+                width: 60%; /* Adjust the width value as needed */
+            }
+
+            .table-container th:nth-child(2),
+            .table-container td:nth-child(2),
+            .table-container th:nth-child(3),
+            .table-container td:nth-child(3) {
+                width: 10%; /* Adjust the width value as needed */
+            }
+        </style>
     </head>
 
     <body>
@@ -47,13 +137,13 @@
             <div class="container">
                 <div class="menu-bg-wrap">
                     <div class="site-navigation">
-                        <a href="SeHome.jsp" class="logo m-0 float-start">GreenRoom</a>
+                        <a href="sehome" class="logo m-0 float-start">Green Room</a>
 
                         <ul class="js-clone-nav d-none d-lg-inline-block text-start site-menu float-end">
-                            <li class="active"><a href="Homepage.html">Home</a></li>
+                            <li class="active"><a href="sehome">Home</a></li>
                             <li class="active"><a href="listroom">Room</a></li>
                             <li><a href="Payment.html">Payment</a></li>
-                            <li><a href="selistcustomer">Customer</a></li>
+                            <li><a href="selistcustomer">Renter</a></li>
                             <li><a href="Guide.html">Guide</a></li>
                             <li><a href="News.html">News</a></li>
                         </ul>
@@ -95,19 +185,19 @@
                     <thead>
                         <tr>
                             <th>Title</th>
-
+                            <th>Description</th>
                             <th>Author</th>
                         </tr>
                     </thead>
 
                     <tbody>
-                    <c:forEach items="${ListN}" var="n">
-                        <tr>
-                            <td><a href="https://example.com"></a>${n.newsTitle}</td>
-
-                            <td>${n.userName}</td>
-                        </tr>
-                    </c:forEach>
+                        <c:forEach items="${ListN}" var="n">
+                            <tr>
+                                <td>${n.newsTitle}</td>
+                                <td>${n.newDes}</td>
+                                <td>${n.userName}</td>
+                            </tr>
+                        </c:forEach>
                     </tbody>
                 </table>
             </div>
