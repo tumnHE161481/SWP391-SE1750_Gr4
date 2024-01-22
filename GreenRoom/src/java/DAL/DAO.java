@@ -125,10 +125,10 @@ public class DAO extends DBContext{
             while (rs.next()) {
                 System.out.println("true");
                 return new RoomDetailSe(rs.getInt(1),
-                        rs.getInt(2),
+                        rs.getString(2),
                         rs.getString(3),
                         rs.getString(4),
-                        rs.getString(5),
+                        rs.getInt(5),
                         rs.getInt(6),
                         rs.getInt(7),
                         rs.getInt(8),

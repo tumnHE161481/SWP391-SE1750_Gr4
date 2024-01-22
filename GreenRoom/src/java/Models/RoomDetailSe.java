@@ -11,10 +11,11 @@ package Models;
 public class RoomDetailSe {
 
     private int roomID;
-    private int roomFloor;
     private String roomNumber;
-    private String roomSize;
     private String roomImg;
+    private String roomSize;
+    private int roomFloor;
+
     private int singleBed;
     private int bunk;
     private int chair;
@@ -24,12 +25,12 @@ public class RoomDetailSe {
     public RoomDetailSe() {
     }
 
-    public RoomDetailSe(int roomID, int roomFloor, String roomNumber, String roomSize, String roomImg, int singleBed, int bunk, int chair, boolean ceilingFans, boolean airConditional) {
+    public RoomDetailSe(int roomID, String roomNumber, String roomImg, String roomSize, int roomFloor, int singleBed, int bunk, int chair, boolean ceilingFans, boolean airConditional) {
         this.roomID = roomID;
-        this.roomFloor = roomFloor;
         this.roomNumber = roomNumber;
-        this.roomSize = roomSize;
         this.roomImg = roomImg;
+        this.roomSize = roomSize;
+        this.roomFloor = roomFloor;
         this.singleBed = singleBed;
         this.bunk = bunk;
         this.chair = chair;
@@ -45,20 +46,20 @@ public class RoomDetailSe {
         this.roomID = roomID;
     }
 
-    public int getRoomFloor() {
-        return roomFloor;
-    }
-
-    public void setRoomFloor(int roomFloor) {
-        this.roomFloor = roomFloor;
-    }
-
     public String getRoomNumber() {
         return roomNumber;
     }
 
     public void setRoomNumber(String roomNumber) {
         this.roomNumber = roomNumber;
+    }
+
+    public String getRoomImg() {
+        return roomImg;
+    }
+
+    public void setRoomImg(String roomImg) {
+        this.roomImg = roomImg;
     }
 
     public String getRoomSize() {
@@ -69,12 +70,12 @@ public class RoomDetailSe {
         this.roomSize = roomSize;
     }
 
-    public String getRoomImg() {
-        return roomImg;
+    public int getRoomFloor() {
+        return roomFloor;
     }
 
-    public void setRoomImg(String roomImg) {
-        this.roomImg = roomImg;
+    public void setRoomFloor(int roomFloor) {
+        this.roomFloor = roomFloor;
     }
 
     public int getSingleBed() {
