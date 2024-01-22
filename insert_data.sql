@@ -17,18 +17,18 @@ VALUES
 
 
 -- Insert data into [dbo].[User]
-INSERT INTO [GreenRoom].[dbo].[User] ([userName], [userGender], [userBirth], [userAddress], [userPhone], [userAvatar])
+INSERT INTO [GreenRoom].[dbo].[User] ( [userID], [userName], [userGender], [userBirth], [userAddress], [userPhone], [userAvatar])
 VALUES
-('Hung Dog', 'Female', '1992-08-22', '69 Tran Duy Hung, Ha Noi', '12345678902', '/Image/avatar1.jpg'),
-('Hung Bat Luc', 'Male', '1988-03-10', '156 Pho Co, Ha Noi', '98765432110', '/Image/avatar2.jpg'),
-('Eva Smith', 'Female', '1993-12-05', '123 Pine St, Townsville', '87654321099', '/Image/avatar3.jpg'),
-('David Miller', 'Male', '1997-05-18', '789 Oak St, Cityville', '23456789012', '/Image/avatar4.jpg'),
-('Grace Davis', 'Female', '1990-11-30', '456 Cedar St, Villagetown', '34567890123', '/Image/avatar5.jpg'),
-('Frank White', 'Male', '1985-09-14', '123 Elm St, Townsville', '45678901234', '/Image/avatar6.jpg'),
-('Helen Wilson', 'Female', '1995-02-25', '789 Walnut St, Citytown', '56789012345', '/Image/avatar7.jpg'),
-('George Adams', 'Male', '1989-07-07', '456 Oak St, Villagetown', '67890123456', '/Image/avatar8.jpg'),
-('Ivy Turner', 'Female', '1994-04-12', '123 Pine St, Cityville', '78901234567', '/Image/avatar9.jpg'),
-('John Smith', 'Male', '1987-01-03', '789 Maple St, Townsville', '89012345678', '/Image/avatar10.jpg');
+(1,'Hung Dog', 'Female', '1992-08-22', '69 Tran Duy Hung, Ha Noi', '12345678902', '/Image/avatar1.jpg'),
+(2,'Hung Bat Luc', 'Male', '1988-03-10', '156 Pho Co, Ha Noi', '98765432110', '/Image/avatar2.jpg'),
+(3,'Eva Smith', 'Female', '1993-12-05', '123 Pine St, Townsville', '87654321099', '/Image/avatar3.jpg'),
+(4,'David Miller', 'Male', '1997-05-18', '789 Oak St, Cityville', '23456789012', '/Image/avatar4.jpg'),
+(5,'Grace Davis', 'Female', '1990-11-30', '456 Cedar St, Villagetown', '34567890123', '/Image/avatar5.jpg'),
+(6,'Frank White', 'Male', '1985-09-14', '123 Elm St, Townsville', '45678901234', '/Image/avatar6.jpg'),
+(7,'Helen Wilson', 'Female', '1995-02-25', '789 Walnut St, Citytown', '56789012345', '/Image/avatar7.jpg'),
+(8,'George Adams', 'Male', '1989-07-07', '456 Oak St, Villagetown', '67890123456', '/Image/avatar8.jpg'),
+(9,'Ivy Turner', 'Female', '1994-04-12', '123 Pine St, Cityville', '78901234567', '/Image/avatar9.jpg'),
+(10,'John Smith', 'Male', '1987-01-03', '789 Maple St, Townsville', '89012345678', '/Image/avatar10.jpg');
 
 
 -- Insert data into [dbo].[Room_Item]
