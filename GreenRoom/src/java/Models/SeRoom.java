@@ -8,7 +8,7 @@ package Models;
  *
  * @author ASUS
  */
-public class Room {
+public class SeRoom {
     private int roomID;
     private int roomFloor;
     private String roomNumber;
@@ -16,10 +16,10 @@ public class Room {
     private String roomSize;
     private String roomImg;
 
-    public Room() {
+    public SeRoom() {
     }
 
-    public Room(int roomID, int roomFloor, String roomNumber, int roomItemID, String roomSize, String roomImg) {
+    public SeRoom(int roomID, int roomFloor, String roomNumber, int roomItemID, String roomSize, String roomImg) {
         this.roomID = roomID;
         this.roomFloor = roomFloor;
         this.roomNumber = roomNumber;

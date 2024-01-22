@@ -8,7 +8,7 @@ package Models;
  *
  * @author ASUS
  */
-public class Renter {
+public class SeRenter {
 
     private int renterID;
     private int userID;
@@ -16,10 +16,10 @@ public class Renter {
     private boolean renterStatus;
     private boolean renterHaveRoom;
 
-    public Renter() {
+    public SeRenter() {
     }
 
-    public Renter(int renterID, int userID, int roomID, boolean renterStatus, boolean renterHaveRoom) {
+    public SeRenter(int renterID, int userID, int roomID, boolean renterStatus, boolean renterHaveRoom) {
         this.renterID = renterID;
         this.userID = userID;
         this.roomID = roomID;

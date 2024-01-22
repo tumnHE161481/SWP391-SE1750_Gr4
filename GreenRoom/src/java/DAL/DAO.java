@@ -44,15 +44,15 @@ public class DAO extends DBContext{
         return list;
     }
 
-    public List<Task> getAllTask() {
-        List<Task> list = new ArrayList<>();
+    public List<SeTask> getAllTask() {
+        List<SeTask> list = new ArrayList<>();
         String query = "select * from dbo.Task";
         try {
              conn = connection;
             ps = conn.prepareStatement(query);
             rs = ps.executeQuery();
             while (rs.next()) {
-                list.add(new Task(rs.getInt(1),
+                list.add(new SeTask(rs.getInt(1),
                         rs.getInt(2),
                         rs.getInt(3),
                         rs.getString(4),

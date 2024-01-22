@@ -8,15 +8,15 @@ package Models;
  *
  * @author ASUS
  */
-public class Sercurity {
+public class SeSercurity {
     private int sID;
     private int userID;
     private int sShift;
 
-    public Sercurity() {
+    public SeSercurity() {
     }
 
-    public Sercurity(int sID, int userID, int sShift) {
+    public SeSercurity(int sID, int userID, int sShift) {
         this.sID = sID;
         this.userID = userID;
         this.sShift = sShift;

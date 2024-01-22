@@ -10,7 +10,7 @@ import java.sql.Date;
  *
  * @author ASUS
  */
-public class Task {
+public class SeTask {
     private int taskID;
     private int from;
     private int to;
@@ -18,10 +18,10 @@ public class Task {
     private String des;
     private Date date;
 
-    public Task() {
+    public SeTask() {
     }
 
-    public Task(int taskID, int from, int to, String title, String des, Date date) {
+    public SeTask(int taskID, int from, int to, String title, String des, Date date) {
         this.taskID = taskID;
         this.from = from;
         this.to = to;
