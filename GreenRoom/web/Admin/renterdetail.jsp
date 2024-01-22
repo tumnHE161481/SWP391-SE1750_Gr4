@@ -79,6 +79,7 @@
                 </div>
                 <c:set var="renterList" value="${requestScope.detail}"></c:set>
                 <c:forEach var="rdl" items="${renterList}">
+                <c:set var="id" value="${rdl.userID}"></c:set>
                     <div class="container">
                         <div class="row flex-lg-nowrap">
                             <div class="col">
@@ -179,8 +180,8 @@
                                         <div class="card">
                                             <div class="card-body">
                                                 <h6 class="card-title font-weight-bold">Support</h6>
-                                                <p class="card-text">Edit renter account status and their room.</p>
-                                                <button type="button" class="btn btn-primary">Edit</button>
+                                                <p class="card-text">Edit renter account status and add room for them.</p>
+                                                <a href="adrenteredit?id=${id}" type="button" class="btn btn-primary">Edit</a>
                                             </div>
                                         </div>
                                     </div>
@@ -190,14 +191,6 @@
                     </div>
 
                 </c:forEach>
-                <!--                <div>
-                <c:set var="renterList" value="${requestScope.adminrenterdetail}"></c:set>
-                <c:forEach var="rdl" items="${detail}">
-                   <div>id: ${rdl.userID}</div>
-                   <div>name: ${rdl.userName}</div>
-                </c:forEach>
-        </div>-->
-
         </section>
     </div>
 </body>

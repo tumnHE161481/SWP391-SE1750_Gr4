@@ -4,14 +4,15 @@
  */
 package DAL;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import Models.Account;
+import Models.User;
 
 /**
  *
@@ -82,4 +83,96 @@ public class AccountDAO extends MyDAO {
         }
         return list;
     }
+    
+    //Hung dog code
+    public Account LoginAccount(String email, String password) {
+        try {
+            PreparedStatement ps;
+            ResultSet rs;
+            String sql = "SELECT * FROM [GreenRoom].[dbo].[Account] where userMail = ? and userPassword = ?";
+            ps = connection.prepareStatement(sql);
+            ps.setString(1, email);
+            ps.setString(2, password);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                Account a = new Account();
+                a.setUserID(rs.getInt(1));
+                a.setUserMail(rs.getString(2));
+                a.setUserPassword(rs.getString(4));
+                a.setUserRole(rs.getInt(4));
+                return a;
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(AccountDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+    
+    public Account findByEmail(String email) {
+        try {
+            PreparedStatement ps;
+            ResultSet rs;
+            String sql = "SELECT * FROM [GreenRoom].[dbo].[Account] WHERE userMail = ?";
+            ps = connection.prepareStatement(sql);
+            ps.setString(1, email);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                Account a = new Account();
+                a.setUserID(rs.getInt(1));
+                a.setUserMail(rs.getString(2));
+                a.setUserPassword(rs.getString(3));
+                a.setUserRole(rs.getInt(4));
+                return a;
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(AccountDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+    
+    public boolean updateUserPassword(String email, String password) {
+        try {
+            PreparedStatement ps;
+            ResultSet rs;
+            String sql = "update [Account] set userPassword = ? where userMail = ?";
+            ps = connection.prepareStatement(sql);
+            ps.setString(2, email);
+            ps.setString(1, password);
+            ps.execute();
+            return true;
+        } catch (SQLException ex) {
+            Logger.getLogger(AccountDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
+    }
+    
+    
+    
+    
+    public Account getUserId(String email) {
+        try {
+            PreparedStatement ps;
+            ResultSet rs;
+            String sql = "SELECT [userID] FROM [GreenRoom].[dbo].[Account] where Account.userMail = ?";
+            ps = connection.prepareStatement(sql);
+            ps.setString(1, email);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                Account a = new Account();
+                a.setUserID(rs.getInt(1));
+                a.setUserMail(rs.getString(2));
+                a.setUserPassword(rs.getString(4));
+                a.setUserID(rs.getInt(4));
+                return a;
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(AccountDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+    
+    
 }

@@ -4,22 +4,16 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/ASUS/OneDrive/Desktop/Documents/GitHub/SWP391-SE1750_Gr4/GreenRoom/src/java/DAL/RenterDAO.java</file>
-            <file>file:/C:/Users/ASUS/OneDrive/Desktop/Documents/GitHub/SWP391-SE1750_Gr4/GreenRoom/web/index.html</file>
-            <file>file:/C:/Users/ASUS/OneDrive/Desktop/Documents/GitHub/SWP391-SE1750_Gr4/GreenRoom/web/Admin/renterdetail.jsp</file>
-            <file>file:/C:/Users/ASUS/OneDrive/Desktop/Documents/GitHub/SWP391-SE1750_Gr4/GreenRoom/src/java/Models/Account.java</file>
-            <file>file:/C:/Users/ASUS/OneDrive/Desktop/Documents/GitHub/SWP391-SE1750_Gr4/GreenRoom/src/java/DAL/UserDAO.java</file>
-            <file>file:/C:/Users/ASUS/OneDrive/Desktop/Documents/GitHub/SWP391-SE1750_Gr4/GreenRoom/src/java/DAL/AccountDAO.java</file>
-            <file>file:/C:/Users/ASUS/OneDrive/Desktop/Documents/GitHub/SWP391-SE1750_Gr4/GreenRoom/src/java/DAL/DBContext.java</file>
-            <file>file:/C:/Users/ASUS/OneDrive/Desktop/Documents/GitHub/SWP391-SE1750_Gr4/GreenRoom/src/java/DAL/RenterListDAO.java</file>
-            <file>file:/C:/Users/ASUS/OneDrive/Desktop/Documents/GitHub/SWP391-SE1750_Gr4/GreenRoom/src/java/Models/User.java</file>
-            <file>file:/C:/Users/ASUS/OneDrive/Desktop/Documents/GitHub/SWP391-SE1750_Gr4/GreenRoom/web/CSS/Admin.css</file>
-            <file>file:/C:/Users/ASUS/OneDrive/Desktop/Documents/GitHub/SWP391-SE1750_Gr4/GreenRoom/src/java/Controller/ManageRenterController.java</file>
+            <file>file:/C:/Users/ASUS/OneDrive/Desktop/Documents/GitHub/SWP391-SE1750_Gr4/GreenRoom/web/WEB-INF/web.xml</file>
             <file>file:/C:/Users/ASUS/OneDrive/Desktop/Documents/GitHub/SWP391-SE1750_Gr4/GreenRoom/src/java/Controller/ManageRenterDetail.java</file>
-            <file>file:/C:/Users/ASUS/OneDrive/Desktop/Documents/GitHub/SWP391-SE1750_Gr4/GreenRoom/src/java/Models/RenterList.java</file>
             <file>file:/C:/Users/ASUS/OneDrive/Desktop/Documents/GitHub/SWP391-SE1750_Gr4/GreenRoom/web/Admin/editrenter.jsp</file>
-            <file>file:/C:/Users/ASUS/OneDrive/Desktop/Documents/GitHub/SWP391-SE1750_Gr4/GreenRoom/src/java/Models/Renter.java</file>
-            <file>file:/C:/Users/ASUS/OneDrive/Desktop/Documents/GitHub/SWP391-SE1750_Gr4/GreenRoom/web/Admin/managerenter.jsp</file>
-            <file>file:/C:/Users/ASUS/OneDrive/Desktop/Documents/GitHub/SWP391-SE1750_Gr4/GreenRoom/src/java/DAL/MyDAO.java</file>
+            <file>file:/C:/Users/ASUS/OneDrive/Desktop/Documents/GitHub/SWP391-SE1750_Gr4/GreenRoom/web/Admin/renterdetail.jsp</file>
+            <file>file:/C:/Users/ASUS/OneDrive/Desktop/Documents/GitHub/SWP391-SE1750_Gr4/GreenRoom/src/java/Controller/LoginController.java</file>
+            <file>file:/C:/Users/ASUS/OneDrive/Desktop/Documents/GitHub/SWP391-SE1750_Gr4/GreenRoom/src/java/DAL/UserDAO.java</file>
+            <file>file:/C:/Users/ASUS/OneDrive/Desktop/Documents/GitHub/SWP391-SE1750_Gr4/GreenRoom/src/java/Controller/ForgotPassword.java</file>
+            <file>file:/C:/Users/ASUS/OneDrive/Desktop/Documents/GitHub/SWP391-SE1750_Gr4/GreenRoom/src/java/DAL/AccountDAO.java</file>
+            <file>file:/C:/Users/ASUS/OneDrive/Desktop/Documents/GitHub/SWP391-SE1750_Gr4/GreenRoom/src/java/Controller/ManageRenterEdit.java</file>
+            <file>file:/C:/Users/ASUS/OneDrive/Desktop/Documents/GitHub/SWP391-SE1750_Gr4/GreenRoom/web/META-INF/context.xml</file>
         </group>
     </open-files>
 </project-private>

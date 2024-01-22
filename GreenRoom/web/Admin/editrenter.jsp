@@ -77,7 +77,8 @@
                         </div>
                     </div>
                 </div>
-
+                <c:set var="renterList" value="${requestScope.detail}"></c:set>
+                <c:forEach var="erl" items="${editrenter}">
                 <div class="container">
                     <div class="row flex-lg-nowrap">
                         <div class="col">
@@ -238,15 +239,9 @@
                         </div>
                     </div>
                 </div>
-                <!--                <div>
-                <c:set var="renterList" value="${requestScope.adminrenterdetail}"></c:set>
-                <c:forEach var="rdl" items="${detail}">
-                   <div>id: ${rdl.userID}</div>
-                   <div>name: ${rdl.userName}</div>
                 </c:forEach>
-        </div>-->
-
             </div>
+                </section>
             <script>
                 let sidebar = document.querySelector(".sidebar");
                 let closeBtn = document.querySelector("#btn");
