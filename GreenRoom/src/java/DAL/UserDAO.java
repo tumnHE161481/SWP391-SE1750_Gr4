@@ -51,20 +51,20 @@ public class UserDAO extends MyDAO {
     public List<User> getRenterDetail(int id) {
         List<User> list = new ArrayList<>();
         String sql = "SELECT DISTINCT "
-        + "    u.userID, u.userName, u.userGender, u.userBirth, u.userAddress, u.userPhone, u.userAvatar, \n"
-        + "    r.renterID, r.roomID, r.renterStatus, r.renterHaveRoom,"
-        + "    a.userMail, a.userPassword,"
-        + "    rm.roomFloor, rm.roomNumber"
-        + " FROM"
-        + "    [User] u \n"
-        + " JOIN "
-        + "    Renter r ON u.userID = r.userID"
-        + " JOIN"
-        + "    Account a ON u.userID = a.userID"
-        + " LEFT JOIN"
-        + "    Room rm ON r.roomID = rm.roomID"
-        + " WHERE"
-        + "    u.userID = ?";
+                + "    u.userID, u.userName, u.userGender, u.userBirth, u.userAddress, u.userPhone, u.userAvatar, \n"
+                + "    r.renterID, r.roomID, r.renterStatus, r.renterHaveRoom,"
+                + "    a.userMail, a.userPassword,"
+                + "    rm.roomFloor, rm.roomNumber"
+                + " FROM"
+                + "    [User] u \n"
+                + " JOIN "
+                + "    Renter r ON u.userID = r.userID"
+                + " JOIN"
+                + "    Account a ON u.userID = a.userID"
+                + " LEFT JOIN"
+                + "    Room rm ON r.roomID = rm.roomID"
+                + " WHERE"
+                + "    u.userID = ?";
 
         try {
             ps = con.prepareStatement(sql);
@@ -93,7 +93,7 @@ public class UserDAO extends MyDAO {
                 list.add(user);
             }
         } catch (SQLException e) {
-            
+
             // Handle exception as needed
         }
         return list;
@@ -130,6 +130,26 @@ public class UserDAO extends MyDAO {
 
             System.out.println("--------");
         }
+    }
+
+    public List<User> getOwner() {
+        List<User> list = new ArrayList<>();
+        String sql = "  SELECT [User].userID, [User].userName, [User].userGender, [User].userBirth, [User].userAddress, [User].userPhone, [User].userAvatar\n"
+                + "     FROM [User]\n"
+                + "     INNER JOIN Account ON [User].userID = Account.userID\n"
+                + "     WHERE Account.userRole = 3";
+
+        try {
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                User user = new User(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7));
+                list.add(user);
+            }
+        } catch (SQLException e) {
+            System.out.println("Fail: " + e.getMessage());
+        }
+        return list;
     }
 
 }

@@ -10,6 +10,7 @@
 <html>
     <head>
         <meta charset="UTF-8" />
+        <link rel="icon" href="home-guest/favicon.png">
         <title>Manage Renter</title>
         <link
             rel="stylesheet"
