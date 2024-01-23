@@ -37,10 +37,22 @@ public class LoginController extends HttpServlet {
         try {
             String email = request.getParameter("email");
             String password = request.getParameter("password");
+            
+            
+            try {
+                if (password.length() < 8) {
+                    request.setAttribute("message", "Try again");
+                    request.getRequestDispatcher("login.jsp").forward(request, response);
+                }
+            } catch (IOException e) {
+                Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, e);
+            }
+            
+            
             AccountDAO a = new AccountDAO();
             Account account = a.LoginAccount(email, password);
             if (account == null) {
-                request.setAttribute("message", "Login failed");
+                request.setAttribute("message", "Login failed, account does not exsit");
                 request.getRequestDispatcher("login.jsp").forward(request, response);
             }
             else {

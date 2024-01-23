@@ -24,6 +24,13 @@ import jakarta.servlet.http.HttpSession;
 
 @WebServlet("/forgotPassword")
 public class ForgotPassword extends HttpServlet {
+    
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+    throws ServletException, IOException {
+        request.getRequestDispatcher("forgotPassword.jsp").forward(request, response);
+    } 
+    
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
@@ -50,7 +57,7 @@ public class ForgotPassword extends HttpServlet {
             }
             Cookie cookie = new Cookie("otpR", randomOtp);
             
-            cookie.setMaxAge(1*60);
+            cookie.setMaxAge(5*60);
             
             response.addCookie(cookie);
             
@@ -75,7 +82,7 @@ public class ForgotPassword extends HttpServlet {
                 message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
                 message.setSubject("Request to reset password ");
                 message.setText("Hi, for security, please verify your account with the OPT below. " 
-                        + "Your OTP is: " + randomOtp + ". " + "Click the link to enter otp: " + "http://localhost:9999/greenroom/enterotp.jsp");
+                        + "Your OTP is ==========> " + randomOtp + ". " + " <========== Click the link to enter otp: " + "http://localhost:9999/greenroom/enterotp.jsp");
                 Transport.send(message);
                 System.out.println("message sent successfully");
             } catch (MessagingException e) {
