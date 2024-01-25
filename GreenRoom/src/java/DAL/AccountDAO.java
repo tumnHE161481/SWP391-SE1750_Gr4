@@ -94,14 +94,7 @@ public class AccountDAO extends DBContext{
             ps.setString(2, a.getPassword());
             ps.setInt(3, a.getRole());
             ps.execute();
-            
-            
-            
-            
-            
-            
-            
-            
+          
             
             
             

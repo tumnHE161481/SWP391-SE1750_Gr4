@@ -41,26 +41,30 @@ public class RegisterController extends HttpServlet {
             PrintWriter out = response.getWriter();
             AccountDAO a = new AccountDAO();
             String username = request.getParameter("username");
+
             String email = request.getParameter("usermail");
             String phone = request.getParameter("userphone");
+
             String password = request.getParameter("password");
             String repassword = request.getParameter("repassword");
+
             String address = request.getParameter("address");
             String dob = request.getParameter("dob");
             String gender = request.getParameter("gender");
             int role = 1;
-            
-            
-            
+
             if (a.findByEmail(email) != null) {
                 request.setAttribute("message", "Email is existed");
                 request.getRequestDispatcher("register.jsp").forward(request, response);
+            } else if (!repassword.endsWith(password)) {
+                request.setAttribute("message", "Password not match");
+                request.getRequestDispatcher("register.jsp").forward(request, response);
             } else {
-                out.print("success");
                 Random rand = new Random();
                 int otpvalue = rand.nextInt(1255650);
                 Account ac = new Account(email, password, role);
                 a.findByEmail(email).getEmail();
+                request.getRequestDispatcher("registerSuccess.jsp").forward(request, response);
             }
 
         } catch (Exception ex) {
