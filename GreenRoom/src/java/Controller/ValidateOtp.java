@@ -35,7 +35,6 @@ public class ValidateOtp extends HttpServlet {
 
         if (value.equals(otpR)) {
             request.setAttribute("email", request.getParameter("email"));
-//            request.setAttribute("status", "success");
             dispatcher = request.getRequestDispatcher("newPassword.jsp");
             dispatcher.forward(request, response);
 

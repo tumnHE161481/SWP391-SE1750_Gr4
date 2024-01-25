@@ -17,9 +17,8 @@ import utils.EmailUtils;
  *
  * @author yetvv.piacom
  */
-public class AccountDAO extends DBContext{
-    
-    
+public class AccountDAO extends DBContext {
+
     public Account LoginAccount(String email, String password) {
         try {
             PreparedStatement ps;
@@ -43,7 +42,7 @@ public class AccountDAO extends DBContext{
         }
         return null;
     }
-    
+
     public Account findByEmail(String email) {
         try {
             PreparedStatement ps;
@@ -66,7 +65,7 @@ public class AccountDAO extends DBContext{
         }
         return null;
     }
-    
+
     public boolean updateUserPassword(String email, String password) {
         try {
             PreparedStatement ps;
@@ -75,46 +74,62 @@ public class AccountDAO extends DBContext{
             ps = connection.prepareStatement(sql);
             ps.setString(2, email);
             ps.setString(1, password);
-            ps.execute();
+            ps.executeQuery();
             return true;
         } catch (SQLException ex) {
             Logger.getLogger(AccountDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         return false;
     }
-    
-    public boolean registerUSer(Account a, boolean isSendLink) {
+
+    // dang ky account
+    public boolean registerAccount(String email, String password, int role) {
         try {
             PreparedStatement ps;
             ResultSet rs;
             String sql = "INSERT INTO [dbo].[Account] ([userMail] ,[userPassword] ,[userRole]) VALUES (?,?,?)";
 
             ps = connection.prepareStatement(sql);
-            ps.setString(1, a.getEmail());
-            ps.setString(2, a.getPassword());
-            ps.setInt(3, a.getRole());
-            ps.execute();
-          
-            
-            
-            
-            String subject = "Please verify your account to Online Learning System ❤";
-            String verificationLink = "http://localhost:9999/MANH-MEO/verify?email=" + a.getEmail();
-            String body = "Click this link to verify your account: " + verificationLink + "";
-            if (!isSendLink) {
-                subject = "";
-                body = "Your password in Online Learning System is: " + a.getPassword();
-            }
-            EmailUtils.sendVerifyEmail(a.getEmail(), subject, body);
-
+            ps.setString(1, email);
+            ps.setString(2, password);
+            ps.setInt(3, role);
+            ps.executeQuery();
             return true;
         } catch (SQLException ex) {
             Logger.getLogger(AccountDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         return false;
     }
-    
-    
+
+    // dang ky user
+    public boolean registerUser(int id, String gender, String address, String phone, String birth, String name) {
+        try {
+            PreparedStatement ps;
+            ResultSet rs;
+            String sql = "INSERT INTO [dbo].[User]\n"
+                    + "           ([userID]\n"
+                    + "           ,[userName]\n"
+                    + "           ,[userGender]\n"
+                    + "           ,[userBirth]\n"
+                    + "           ,[userAddress]\n"
+                    + "           ,[userPhone]\n"
+                    + "		   VALUES (?,?,?,?,?,?)";
+
+            ps = connection.prepareStatement(sql);
+            ps.setInt(1, id);
+            ps.setString(2, name);
+            ps.setString(3, gender);
+            ps.setString(4, birth);
+            ps.setString(5, address);
+            ps.setString(6, phone);
+            ps.executeQuery();
+            return true;
+        } catch (SQLException ex) {
+            Logger.getLogger(AccountDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
+    }
+
     public Account getUserId(String email) {
         try {
             PreparedStatement ps;
@@ -137,6 +152,5 @@ public class AccountDAO extends DBContext{
         }
         return null;
     }
-    
-    
+
 }
