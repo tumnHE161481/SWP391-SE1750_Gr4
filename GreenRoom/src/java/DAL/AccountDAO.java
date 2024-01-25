@@ -130,7 +130,24 @@ public class AccountDAO extends DBContext {
         return false;
     }
 
-    public Account getUserId(String email) {
+    public boolean deleteAccount(int id) {
+        try {
+            PreparedStatement ps;
+            ResultSet rs;
+            String sql = "DELETE FROM [dbo].[Account]\n"
+                    + "      WHERE Account.userID = ?";
+
+            ps = connection.prepareStatement(sql);
+            ps.setInt(1, id);
+            ps.executeQuery();
+            return true;
+        } catch (SQLException ex) {
+            Logger.getLogger(AccountDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
+    }
+
+    public int getUserId(String email) {
         try {
             PreparedStatement ps;
             ResultSet rs;
@@ -144,13 +161,13 @@ public class AccountDAO extends DBContext {
                 a.setEmail(rs.getString(2));
                 a.setPassword(rs.getString(4));
                 a.setRole(rs.getInt(4));
-                return a;
-            }
 
+            }
+            return rs.getInt(1);
         } catch (SQLException ex) {
             Logger.getLogger(AccountDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return null;
+        return 0;
     }
 
 }

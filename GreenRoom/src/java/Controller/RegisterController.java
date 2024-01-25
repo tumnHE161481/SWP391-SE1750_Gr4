@@ -31,6 +31,8 @@ import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 /**
  *
@@ -62,7 +64,18 @@ public class RegisterController extends HttpServlet {
             String repassword = request.getParameter("repassword");
 
             String address = request.getParameter("address");
-            String dob = request.getParameter("dob");
+            
+            
+            
+            String dobString = request.getParameter("dob");
+
+            // Chuyển đổi chuỗi ngày tháng từ trình duyệt thành LocalDate
+            LocalDate dob = LocalDate.parse(dobString);
+
+            // Bây giờ bạn có thể sử dụng dob (kiểu LocalDate) trong ứng dụng của bạn
+            // Ví dụ: Định dạng lại thành chuỗi khác
+            String formattedDob = dob.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+
             String gender = request.getParameter("gender");
             int role = 1;
 
@@ -76,9 +89,15 @@ public class RegisterController extends HttpServlet {
 
                 a.registerAccount(email, password, role);
 
-                int userID = a.getUserId(email).getUserId();
+                int userID = a.getUserId(email);
 
-                a.registerUser(userID, gender, address, phone, dob, username);
+                boolean z = a.registerUser(userID, gender, address, phone, dobString, username);
+
+                if (z == false) {
+                    a.deleteAccount(userID);
+                    request.setAttribute("message", "false");
+                    request.getRequestDispatcher("register.jsp").forward(request, response);
+                }
 
                 RequestDispatcher dispatcher = null;
 
@@ -113,6 +132,7 @@ public class RegisterController extends HttpServlet {
                     props.put("mail.smtp.auth", "true");
                     props.put("mail.smtp.port", "465");
                     Session session = Session.getDefaultInstance(props, new javax.mail.Authenticator() {
+                        @Override
                         protected PasswordAuthentication getPasswordAuthentication() {
                             return new PasswordAuthentication("bnvqm1721@gmail.com", "tgqwyawkaytmqvka");
                         }
@@ -123,11 +143,10 @@ public class RegisterController extends HttpServlet {
                         message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
                         message.setSubject("Request to confirm email");
                         message.setText("Hi, for security, please verify your account with the OPT below. "
-                                + "Your OTP is ==========> " + randomOtp + ". " + " <========== Click the link to enter otp: " + "http://localhost:9999/greenroom/enterotp.jsp");
+                                + "Your OTP is ==========> " + randomOtp + ". " + " <========== Click the link to enter otp: " + "http://localhost:9999/greenroom/enterotpRegister.jsp");
                         Transport.send(message);
                         System.out.println("message sent successfully");
                     } catch (MessagingException e) {
-                        e.printStackTrace();
                     }
                     //=======================================================
 
@@ -139,7 +158,7 @@ public class RegisterController extends HttpServlet {
                 }
             }
 
-        } catch (Exception ex) {
+        } catch (ServletException | IOException ex) {
             Logger.getLogger(RegisterController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }

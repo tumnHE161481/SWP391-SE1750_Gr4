@@ -4,7 +4,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="icon" href="home-guest/favicon.png">
-        <title>Enter OTP</title>
+        <title>Enter OTP Register</title>
         <style>
             body {
                 background: linear-gradient(135deg, #30BD36, #5A84E6);
@@ -66,7 +66,7 @@
     </head>
     <body>
         <div class="enter-otp">
-            <div class="text-notice">Enter OTP</div>
+            <div class="text-notice">Enter OTP Register</div>
             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRWxaKG6HL-_z88M5D0-zeXZjQHqN33XNtYmA&usqp=CAU" alt="Response Image">
             <div class="text-notice">Check your email for the OTP</div>
             <div class="otp-text">
@@ -74,7 +74,7 @@
                 out.print(request.getAttribute("message")+"</p>"); 
                 } %>
             </div>
-            <form id="register-form" action="ValidateOtp" class="form" method="post">
+            <form id="register-form" action="ValidateOtpregister" class="form" method="post">
                 <div class="otp-value">
                     <input id="opt" name="otp" placeholder="Enter OTP" type="text" required>
                 </div>
