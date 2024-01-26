@@ -4,11 +4,13 @@
  */
 package Models;
 
+import java.util.Date;
+
 public class User {
     private int userId;
     private String userName;
     private String userGender;
-    private String userBirth;
+    private Date userBirth;
     private String userAddress;
     private String userPhone;
     private String userAvatar;
@@ -16,7 +18,7 @@ public class User {
     public User() {
     }
 
-    public User(int userId, String userName, String userGender, String userBirth, String userAddress, String userPhone, String userAvatar) {
+    public User(int userId, String userName, String userGender, Date userBirth, String userAddress, String userPhone, String userAvatar) {
         this.userId = userId;
         this.userName = userName;
         this.userGender = userGender;
@@ -50,11 +52,11 @@ public class User {
         this.userGender = userGender;
     }
 
-    public String getUserBirth() {
+    public Date getUserBirth() {
         return userBirth;
     }
 
-    public void setUserBirth(String userBirth) {
+    public void setUserBirth(Date userBirth) {
         this.userBirth = userBirth;
     }
 
