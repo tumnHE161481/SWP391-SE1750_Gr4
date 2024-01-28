@@ -50,6 +50,24 @@ public class RoomDAO extends MyDAO {
         return list;
     }
 
+    public int findRoomIDByRoomNumber(String roomNumber) {
+    int roomID = -1; // Default value if the room is not found
+    String statement = "SELECT roomID FROM [Room] WHERE roomNumber = ?";
+    try {
+        ps = con.prepareStatement(statement);
+        ps.setString(1, roomNumber);
+        rs = ps.executeQuery();
+
+        if (rs.next()) {
+            roomID = rs.getInt(1);
+        }
+    } catch (SQLException e) {
+        System.out.println("Fail: " + e.getMessage());
+    }
+
+    return roomID;
+}
+    
     public List<Room> getRoomDetailsForRoomID(int targetRoomID) {
         List<Room> list = new ArrayList<>();
         String sql = "	 SELECT Room.roomID, Room.roomFloor, Room.roomNumber, Room.roomItemID, Room.roomSize, Room.roomImg,\n"
@@ -97,23 +115,26 @@ public class RoomDAO extends MyDAO {
 //            System.out.println("RoomSize: " + room.getRoomSize());
 //            System.out.println("RoomImg: " + room.getRoomImg());
 //        }
-        List<Room> list = dao.getRoomDetailsForRoomID(1);
-        for (Room room : list) {
-            System.out.println("Room ID: " + room.getRoomID());
-            System.out.println("Floor: " + room.getRoomFloor());
-            System.out.println("Room Number: " + room.getRoomNumber());
-            System.out.println("Room Size: " + room.getRoomSize());
-            System.out.println("Room Img: " + room.getRoomImg());
+//        List<Room> list = dao.getRoomDetailsForRoomID(1);
+//        for (Room room : list) {
+//            System.out.println("Room ID: " + room.getRoomID());
+//            System.out.println("Floor: " + room.getRoomFloor());
+//            System.out.println("Room Number: " + room.getRoomNumber());
+//            System.out.println("Room Size: " + room.getRoomSize());
+//            System.out.println("Room Img: " + room.getRoomImg());
+//
+//            RoomItem roomItem = room.getItem();
+//            System.out.println("Item ID: " + roomItem.getItemID());
+//            System.out.println("Single Bed: " + roomItem.getSingleBed());
+//            System.out.println("Bunk: " + roomItem.getBunk());
+//            System.out.println("Chair: " + roomItem.getChair());
+//            System.out.println("Ceiling Fans: " + roomItem.isCeilingFans());
+//            System.out.println("Air Conditional: " + roomItem.isAirConditional());
+//
+//            System.out.println("-------------");
+//        }
 
-            RoomItem roomItem = room.getItem();
-            System.out.println("Item ID: " + roomItem.getItemID());
-            System.out.println("Single Bed: " + roomItem.getSingleBed());
-            System.out.println("Bunk: " + roomItem.getBunk());
-            System.out.println("Chair: " + roomItem.getChair());
-            System.out.println("Ceiling Fans: " + roomItem.isCeilingFans());
-            System.out.println("Air Conditional: " + roomItem.isAirConditional());
-
-            System.out.println("-------------");
-        }
+         int roomID = dao.findRoomIDByRoomNumber("101");
+         System.out.println(roomID);
     }
 }

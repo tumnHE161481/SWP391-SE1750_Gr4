@@ -59,7 +59,7 @@
                         <li class="active"><a href="Homepage.html">Home</a></li>
                         <li class="active"><a href="RoomList.html">Room</a></li>
                         <li><a href="Payment.html">Profile</a></li>
-                        <li><a href="CustomerList.html">Customer</a></li>
+                        <li><a href="RenterList.html">Renter</a></li>
                         <li><a href="Guide.html">Guide</a></li>
                         <li><a href="News.html">News</a></li>
                         <li><a href="News.html">Log Out</a></li>

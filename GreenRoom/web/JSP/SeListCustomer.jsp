@@ -1,5 +1,5 @@
 <%-- 
-    Document   : SeListCustomer
+    Document   : SeListRenter
     Created on : Jan 16, 2024, 8:05:02 AM
     Author     : ASUS
 --%>
@@ -31,7 +31,7 @@
         <link rel="stylesheet" href="./vcss/aos.css">
         <link rel="stylesheet" href="./vcss/style.css">
 
-        <title>List Customer</title>
+        <title>List Renter</title>
         <style>
             table {
                 border-collapse: collapse;
@@ -94,12 +94,12 @@
             <div class="container">
                 <div class="row justify-content-center align-items-center">
                     <div class="col-lg-9 text-center mt-5">
-                        <h1 class="heading" data-aos="fade-up">List Customer</h1>
+                        <h1 class="heading" data-aos="fade-up">List Renter</h1>
 
                         <nav aria-label="breadcrumb" data-aos="fade-up" data-aos-delay="200">
                             <ol class="breadcrumb text-center justify-content-center">
                                 <li class="breadcrumb-item "><a href="index.html">Home</a></li>
-                                <li class="breadcrumb-item active text-white-50" aria-current="page">List Customer</li>
+                                <li class="breadcrumb-item active text-white-50" aria-current="page">List Renter</li>
                             </ol>
 
                         </nav>

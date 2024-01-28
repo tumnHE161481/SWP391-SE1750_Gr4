@@ -15,8 +15,9 @@ import Models.Renter;
  *
  * @author ASUS
  */
-public class RenterDAO extends MyDAO{
-     //Table - Renter
+public class RenterDAO extends MyDAO {
+    //Table - Renter
+
     /*
     1.renterID - int
     2.userID - int
@@ -24,11 +25,11 @@ public class RenterDAO extends MyDAO{
     4.renterStatus - boolean
     5.renterHaveRoom - boolean
      */
-    
     //List Renter Data
     public List<Renter> getRenterList(int id) {
         List<Renter> list = new ArrayList<>();
-        String sql = "SELECT * FROM [Renter]";
+        String sql = "SELECT * FROM Renter\n"
+                + "    WHERE userID = ?";
         try {
             ps = con.prepareStatement(sql);
             ps.setInt(1, id);
@@ -42,6 +43,33 @@ public class RenterDAO extends MyDAO{
         }
         return list;
     }
-    
-    //Get Renter Detail
+
+    //Get Renter Update status
+    public boolean updateRenter(int userID, int roomID, boolean newRenterStatus, boolean newRenterHaveRoom) {
+        String sql = "UPDATE [Renter] SET roomID = ?, renterStatus = ?, renterHaveRoom = ? WHERE userID = ?";
+        try {
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, roomID);
+            ps.setBoolean(2, newRenterStatus);
+            ps.setBoolean(3, newRenterHaveRoom);
+            ps.setInt(4, userID);
+
+            int rowsAffected = ps.executeUpdate();
+            return rowsAffected > 0; // If any row is affected, return true
+
+        } catch (SQLException e) {
+            System.out.println("Fail: " + e.getMessage());
+            return false;
+        }
+    }
+
+    public static void main(String[] args) {
+        RenterDAO dao = new RenterDAO();
+        dao.updateRenter(1,1, false, true);
+        List<Renter> list = dao.getRenterList(1);
+        for (Renter renter : list) {
+            System.out.println("userID:" + renter.getUserID());
+            System.out.println("ACC:" + renter.isRenterStatus());
+        }
+    }
 }

@@ -80,20 +80,20 @@
                 </div>
                 <c:set var="renterList" value="${requestScope.detail}"></c:set>
                 <c:forEach var="rdl" items="${renterList}">
-                <c:set var="id" value="${rdl.userID}"></c:set>
-                    <div class="container">
-                        <div class="row flex-lg-nowrap">
-                            <div class="col">
-                                <div class="row">
-                                    <div class="col mb-3">
-                                        <div class="card">
-                                            <div class="card-body">
-                                                <div class="e-profile">
-                                                    <div class="row">
-                                                        <div class="col-12 col-sm-auto mb-3">
-                                                            <div class="mx-auto" style="width: 140px;">
-                                                                <div class="d-flex justify-content-center align-items-center rounded" style="height: 140px; background-color: rgb(233, 236, 239);">
-                                                                    <img class="w-100 h-100" src="${rdl.userAvatar}"/>
+                    <c:set var="id" value="${rdl.userID}"></c:set>
+                        <div class="container">
+                            <div class="row flex-lg-nowrap">
+                                <div class="col">
+                                    <div class="row">
+                                        <div class="col mb-3">
+                                            <div class="card">
+                                                <div class="card-body">
+                                                    <div class="e-profile">
+                                                        <div class="row">
+                                                            <div class="col-12 col-sm-auto mb-3">
+                                                                <div class="mx-auto" style="width: 140px;">
+                                                                    <div class="d-flex justify-content-center align-items-center rounded" style="height: 140px; background-color: rgb(233, 236, 239);">
+                                                                        <img class="w-100 h-100" src="${rdl.userAvatar}"/>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -160,8 +160,8 @@
                                                                                         </c:when>
                                                                                         <c:otherwise>
                                                                                             <div class="w-100" style="background-color: #e6e9e9; padding: 6px 12px; border-radius: 5px; border: 1px solid #ced4da;"><i style="font-weight: bolder;" class="fa-solid fa-ban"></i></div>
-                                                                                        </c:otherwise>
-                                                                                    </c:choose>
+                                                                                            </c:otherwise>
+                                                                                        </c:choose>
                                                                                 </div>
                                                                             </div>
                                                                         </div> 
@@ -182,7 +182,10 @@
                                             <div class="card-body">
                                                 <h6 class="card-title font-weight-bold">Support</h6>
                                                 <p class="card-text">Edit renter account status and add room for them.</p>
-                                                <a href="adrenteredit?id=${id}" type="button" class="btn btn-primary">Edit</a>
+                                                <div class="d-flex justify-content-center gap-4">
+                                                    <a href="managerenter" type="button" class="btn btn-danger">Back</a>
+                                                    <a href="adrenteredit?id=${id}" type="button" class="btn btn-primary">Edit</a>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>

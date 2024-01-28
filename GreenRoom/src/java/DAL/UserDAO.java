@@ -95,6 +95,8 @@ public class UserDAO extends MyDAO {
         } catch (SQLException e) {
 
             // Handle exception as needed
+                        System.out.println("Fail: " + e.getMessage());
+
         }
         return list;
     }

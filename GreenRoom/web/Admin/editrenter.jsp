@@ -79,194 +79,151 @@
                     </div>
                 </div>
                 <c:set var="renterList" value="${requestScope.detail}"></c:set>
-                <c:forEach var="erl" items="${editrenter}">
-                <div class="container">
-                    <div class="row flex-lg-nowrap">
-                        <div class="col">
-                            <div class="row">
-                                <div class="col mb-3">
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <div class="e-profile">
-                                                <div class="row">
-                                                    <div class="col-12 col-sm-auto mb-3">
-                                                        <div class="mx-auto" style="width: 140px;">
-                                                            <div class="d-flex justify-content-center align-items-center rounded" style="height: 140px; background-color: rgb(233, 236, 239);">
-                                                                <span style="color: rgb(166, 168, 170); font: bold 8pt Arial;">140x140</span>
+                <c:forEach var="rdl" items="${renterList}">
+                    <c:set var="id" value="${rdl.userID}"></c:set>
+                        <div class="container">
+                            <div class="row flex-lg-nowrap">
+                                <div class="col">
+                                    <div class="row">
+                                        <div class="col mb-3">
+                                            <div class="card">
+                                                <div class="card-body">
+                                                    <div class="e-profile">
+                                                        <div class="row">
+                                                            <div class="col-12 col-sm-auto mb-3">
+                                                                <div class="mx-auto" style="width: 140px;">
+                                                                    <div class="d-flex justify-content-center align-items-center rounded" style="height: 140px; background-color: rgb(233, 236, 239);">
+                                                                        <img class="w-100 h-100" src="${rdl.userAvatar}"/>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col justify-content-between mb-3">
+                                                            <div class="text-center text-sm-left mb-2 mb-sm-0">
+                                                                <h4 class="pt-sm-2 pb-1 mb-0 text-nowrap">
+                                                                    ${rdl.userName}</h4>
+                                                                <p class="mb-0">${rdl.account.userMail}</p>
+                                                                <div class="text-muted">
+                                                                    <small>
+                                                                        RenterID: ${rdl.renter.renterID} &nbsp;
+                                                                        <c:choose>
+                                                                            <c:when test="${rdl.renter.renterStatus}">
+                                                                                <i style="color: rgb(44, 223, 44)" class="fa-solid fa-user-check"></i>
+                                                                            </c:when>
+                                                                            <c:otherwise>
+                                                                                <i style="color: rgb(172, 14, 14)" class="fa-solid fa-user-slash"></i>
+                                                                            </c:otherwise>
+                                                                        </c:choose>
+                                                                    </small>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="col d-flex flex-column flex-sm-row justify-content-between mb-3">
-                                                        <div class="text-center text-sm-left mb-2 mb-sm-0">
-                                                            <h4 class="pt-sm-2 pb-1 mb-0 text-nowrap">John Smith</h4>
-                                                            <p class="mb-0">@johnny.s</p>
-                                                            <div class="text-muted"><small>Last seen 2 hours ago</small></div>
-                                                            <div class="mt-2">
-                                                                <button class="btn btn-primary" type="button">
-                                                                    <i class="fa fa-fw fa-camera"></i>
-                                                                    <span>Change Photo</span>
-                                                                </button>
-                                                            </div>
-                                                        </div>
-                                                        <div class="text-center text-sm-right">
-                                                            <span class="badge badge-secondary">administrator</span>
-                                                            <div class="text-muted"><small>Joined 09 Dec 2017</small></div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                
-                                                <div class="tab-content pt-3">
-                                                    <div class="tab-pane active">
-                                                        <form class="form" novalidate="">
-                                                            <div class="row">
-                                                                <div class="col">
-                                                                    <div class="row">
-                                                                        <div class="col">
-                                                                            <div class="form-group">
-                                                                                <label>Full Name</label>
-                                                                                <input class="form-control" type="text" name="name" placeholder="John Smith" value="John Smith">
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="col">
-                                                                            <div class="form-group">
-                                                                                <label>Username</label>
-                                                                                <input class="form-control" type="text" name="username" placeholder="johnny.s" value="johnny.s">
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="row">
-                                                                        <div class="col">
-                                                                            <div class="form-group">
-                                                                                <label>Email</label>
-                                                                                <input class="form-control" type="text" placeholder="user@example.com">
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="row">
-                                                                        <div class="col mb-3">
-                                                                            <div class="form-group">
-                                                                                <label>About</label>
-                                                                                <textarea class="form-control" rows="5" placeholder="My Bio"></textarea>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="row">
-                                                                <div class="col-12 col-sm-6 mb-3">
-                                                                    <div class="mb-2"><b>Change Password</b></div>
-                                                                    <div class="row">
-                                                                        <div class="col">
-                                                                            <div class="form-group">
-                                                                                <label>Current Password</label>
-                                                                                <input class="form-control" type="password" placeholder="••••••">
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="row">
-                                                                        <div class="col">
-                                                                            <div class="form-group">
-                                                                                <label>New Password</label>
-                                                                                <input class="form-control" type="password" placeholder="••••••">
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="row">
-                                                                        <div class="col">
-                                                                            <div class="form-group">
-                                                                                <label>Confirm <span class="d-none d-xl-inline">Password</span></label>
-                                                                                <input class="form-control" type="password" placeholder="••••••"></div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-12 col-sm-5 offset-sm-1 mb-3">
-                                                                    <div class="mb-2"><b>Keeping in Touch</b></div>
-                                                                    <div class="row">
-                                                                        <div class="col">
-                                                                            <label>Email Notifications</label>
-                                                                            <div class="custom-controls-stacked px-2">
-                                                                                <div class="custom-control custom-checkbox">
-                                                                                    <input type="checkbox" class="custom-control-input" id="notifications-blog" checked="">
-                                                                                    <label class="custom-control-label" for="notifications-blog">Blog posts</label>
-                                                                                </div>
-                                                                                <div class="custom-control custom-checkbox">
-                                                                                    <input type="checkbox" class="custom-control-input" id="notifications-news" checked="">
-                                                                                    <label class="custom-control-label" for="notifications-news">Newsletter</label>
-                                                                                </div>
-                                                                                <div class="custom-control custom-checkbox">
-                                                                                    <input type="checkbox" class="custom-control-input" id="notifications-offers" checked="">
-                                                                                    <label class="custom-control-label" for="notifications-offers">Personal Offers</label>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="row">
-                                                                <div class="col d-flex justify-content-end">
-                                                                    <button class="btn btn-primary" type="submit">Save Changes</button>
-                                                                </div>
-                                                            </div>
-                                                        </form>
 
+                                                    <div class="tab-content pt-3">
+                                                        <div class="tab-pane active">
+                                                            <form class="form" novalidate="">
+                                                                <div class="row">
+                                                                    <div class="col">
+                                                                        <div class="row" style="margin-bottom: 40px">  
+                                                                            <div class="col-6">
+                                                                                <div class="form-group">
+                                                                                    <label>Account status: </label>
+                                                                                    <select onchange="change" id="renterStatus" name="renterStatus" class="w-100" style="background-color: #e6e9e9; padding: 6px 12px; border-radius: 5px; border: 1px solid #ced4da;">
+                                                                                        <option style="color: green" value="${rdl.renter.renterStatus}" ${rdl.renter.renterStatus ? 'selected' : ''}>Active&nbsp;&#10003;</option>
+                                                                                        <option style="color: red" value="${!rdl.renter.renterStatus}" ${!rdl.renter.renterStatus ? 'selected' : ''}>Deactive&nbsp;&#10007;</option>
+                                                                                    </select>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-6">
+                                                                                <div class="form-group">
+                                                                                    <label>Room Number: </label>
+                                                                                    <c:choose>
+                                                                                        <c:when test="${rdl.renter.renterStatus}">
+                                                                                            <select id="roomNumberSection" class="w-100" style="background-color: #e6e9e9; padding: 6px 12px; border-radius: 5px; border: 1px solid #ced4da;">
+                                                                                                <c:forEach var="room" items="${roomNumberList}">
+                                                                                                    <option  value="${room.roomNumber}">${room.roomNumber}</option>
+                                                                                                </c:forEach>
+                                                                                            </select>
+
+                                                                                        </c:when>
+                                                                                        <c:otherwise>                      
+                                                                                            <div class="w-100" style="background-color: #e6e9e9; padding: 6px 12px; border-radius: 5px; border: 1px solid #ced4da;"><i style="font-weight: bolder;" class="fa-solid fa-ban"></i></div>
+                                                                                         <small style="color: graytext">Active account to edit room for renter</small>   
+                                                                                        </c:otherwise>
+                                                                                        </c:choose>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div> 
+                                                                    </div>
+                                                                </div>
+                                                            </form>
+
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
 
-                                <div class="col-12 col-md-3 mb-3">
-                                    <div class="card mb-3">
-                                        <div class="card-body">
-                                            <div class="px-xl-3">
-                                                <button class="btn btn-block btn-secondary">
-                                                    <i class="fa fa-sign-out"></i>
-                                                    <span>Logout</span>
-                                                </button>
+                                    <div class="col-12 col-md-3 mb-3">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <h6 class="card-title font-weight-bold">Choose</h6>
+                                                <p class="card-text">Submit or Cancel edit renter account status and add room for them.</p>
+                                                <div class="d-flex justify-content-between">
+                                                    <a href="renterdetail?id=${id}" type="button" class="btn btn-danger">Cancel</a>
+                                                    <a type="button" class="btn btn-success">Submit change</a>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </div>
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <h6 class="card-title font-weight-bold">Support</h6>
-                                            <p class="card-text">Get fast, free help from our friendly assistants.</p>
-                                            <button type="button" class="btn btn-primary">Contact Us</button>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-
                         </div>
                     </div>
-                </div>
                 </c:forEach>
             </div>
-                </section>
-            <script>
-                let sidebar = document.querySelector(".sidebar");
-                let closeBtn = document.querySelector("#btn");
-                let searchBtn = document.querySelector(".bx-search");
+        </section>
+        <script>
+            let sidebar = document.querySelector(".sidebar");
+            let closeBtn = document.querySelector("#btn");
+            let searchBtn = document.querySelector(".bx-search");
 
-                closeBtn.addEventListener("click", () => {
-                    sidebar.classList.toggle("open");
-                    menuBtnChange(); //calling the function(optional)
-                });
+            closeBtn.addEventListener("click", () => {
+                sidebar.classList.toggle("open");
+                menuBtnChange(); // calling the function (optional)
+            });
 
-                searchBtn.addEventListener("click", () => {
-                    // Sidebar open when you click on the search iocn
-                    sidebar.classList.toggle("open");
-                    menuBtnChange(); //calling the function(optional)
-                });
+            searchBtn.addEventListener("click", () => {
+                // Sidebar open when you click on the search icon
+                sidebar.classList.toggle("open");
+                menuBtnChange(); // calling the function (optional)
+            });
 
-                // following are the code to change sidebar button(optional)
-                function menuBtnChange() {
-                    if (sidebar.classList.contains("open")) {
-                        closeBtn.classList.replace("fa-bars", "fa-times");
-                    } else {
-                        closeBtn.classList.replace("fa-times", "fa-bars");
-                    }
+            // Function to change sidebar button (optional)
+            function menuBtnChange() {
+                if (sidebar.classList.contains("open")) {
+                    closeBtn.classList.replace("fa-bars", "fa-times");
+                } else {
+                    closeBtn.classList.replace("fa-times", "fa-bars");
                 }
-            </script>
+            }
+
+            function toggleRoomNumberVisibility() {
+                var accountStatusSelect = document.getElementById("renterStatus");
+                var roomNumberSection = document.getElementById("roomNumberSection");
+
+                // Check if the selected value is "false" (i.e., Deactive)
+                if (accountStatusSelect.value === "true") {
+                    roomNumberSection.style.display = "block";
+                } else {
+                    roomNumberSection.style.display = "none";
+                }
+            }
+
+            document.getElementById("renterStatus").addEventListener("change", toggleRoomNumberVisibility);
+            toggleRoomNumberVisibility();
+        </script>
+
     </body>
 </html>

@@ -24,35 +24,49 @@ import Models.Account;
  */
 @WebServlet("/login")
 public class LoginController extends HttpServlet {
-   
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
-    throws ServletException, IOException {
+            throws ServletException, IOException {
         request.getRequestDispatcher("login.jsp").forward(request, response);
-    } 
+    }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-    throws ServletException, IOException {
+            throws ServletException, IOException {
         try {
             String email = request.getParameter("email");
             String password = request.getParameter("password");
             AccountDAO a = new AccountDAO();
             Account account = a.LoginAccount(email, password);
+
             if (account == null) {
                 request.setAttribute("message", "Login failed");
                 request.getRequestDispatcher("login.jsp").forward(request, response);
-            }
-            else {
+            } else {
                 HttpSession session = request.getSession();
                 session.setAttribute("user", account);
                 request.setAttribute("message", "Login successfully");
-                request.getRequestDispatcher("login.jsp").forward(request, response);
+
+                int role = a.getUserRole(email, password);
+
+                switch (role) {
+                    case 1:
+                    case 2: response.sendRedirect(request.getContextPath() + "/sehome");
+                        break;
+                    case 3: response.sendRedirect("./Owner/OwHome.jsp");
+                        break;
+                    case 4:
+                        response.sendRedirect(request.getContextPath() + "/managerenter");
+                        break;
+                    default:
+                        request.setAttribute("message", "Login failed"); // or handle other roles as needed
+                        request.getRequestDispatcher("login.jsp").forward(request, response);
+                        break;
+                }
             }
-        } catch ( ServletException | IOException e ) {
-                Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, e);
+        } catch (ServletException | IOException e) {
+            Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, e);
         }
     }
-
-
 }

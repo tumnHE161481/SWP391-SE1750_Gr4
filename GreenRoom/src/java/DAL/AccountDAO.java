@@ -27,7 +27,6 @@ public class AccountDAO extends MyDAO {
     3.userPassword - String
     4.userRole - int
      */
-
     //List Account by userId
     public Account getAccount(int id) {
         Account account = new Account();
@@ -65,8 +64,8 @@ public class AccountDAO extends MyDAO {
         }
         return list;
     }
-    
-   //List Account by userRole (Security)
+
+    //List Account by userRole (Security)
     public List<Account> getAccoutBySecurity(int id) {
         List<Account> list = new ArrayList<>();
         String sql = "SELECT * FROM Account WHERE userRole = 2";
@@ -83,8 +82,33 @@ public class AccountDAO extends MyDAO {
         }
         return list;
     }
+
+    public int getUserRole(String mail, String password) {
+    String sql = "SELECT userRole FROM [Account] \n"
+            + "WHERE userMail = ? AND userPassword = ?";
+    try {
+        ps = con.prepareStatement(sql);
+        ps.setString(1, mail);
+        ps.setString(2, password);
+        rs = ps.executeQuery();
+
+        if (rs.next()) {
+            return rs.getInt("userRole");
+        }
+    } catch (SQLException e) {
+        System.out.println("Fail: " + e.getMessage());
+    }
+    return 0;
+}
     
-    //Hung dog code
+    public static void main(String[] args) {
+        AccountDAO dao = new AccountDAO();
+        int role = dao.getUserRole("maitu@gmail.com", "12345678");
+        System.out.println("Role: " + role);
+    }
+    
+
+    /////////////////////Hung dog code
     public Account LoginAccount(String email, String password) {
         try {
             PreparedStatement ps;
@@ -108,7 +132,7 @@ public class AccountDAO extends MyDAO {
         }
         return null;
     }
-    
+
     public Account findByEmail(String email) {
         try {
             PreparedStatement ps;
@@ -131,7 +155,7 @@ public class AccountDAO extends MyDAO {
         }
         return null;
     }
-    
+
     public boolean updateUserPassword(String email, String password) {
         try {
             PreparedStatement ps;
@@ -147,10 +171,7 @@ public class AccountDAO extends MyDAO {
         }
         return false;
     }
-    
-    
-    
-    
+
     public Account getUserId(String email) {
         try {
             PreparedStatement ps;
@@ -173,6 +194,5 @@ public class AccountDAO extends MyDAO {
         }
         return null;
     }
-    
-    
+
 }
