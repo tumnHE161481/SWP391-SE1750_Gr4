@@ -1,12 +1,108 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
     <servlet>
+        <servlet-name>SeProfileControl</servlet-name>
+        <servlet-class>Controller.SeProfileControl</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ListTaskControl</servlet-name>
+        <servlet-class>Controller.ListTaskControl</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AddTaskControl</servlet-name>
+        <servlet-class>Controller.AddTaskControl</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ListRoomControl</servlet-name>
+        <servlet-class>Controller.ListRoomControl</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SeListCustomerControl</servlet-name>
+        <servlet-class>Controller.SeListCustomerControl</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SeSearchControl</servlet-name>
+        <servlet-class>Controller.SeSearchControl</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SeEditProfile</servlet-name>
+        <servlet-class>Controller.SeEditProfile</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SeDetailRoomControl</servlet-name>
+        <servlet-class>Controller.SeDetailRoomControl</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SeHomeControl</servlet-name>
+        <servlet-class>Controller.SeHomeControl</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>RenterHomeController</servlet-name>
+        <servlet-class>Controller.RenterHomeController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>RenterProfileController</servlet-name>
+        <servlet-class>Controller.RenterProfileController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>RenterChangePassController</servlet-name>
+        <servlet-class>Controller.RenterChangePassController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>SeProfileControl</servlet-name>
+        <url-pattern>/seprofile</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ListTaskControl</servlet-name>
+        <url-pattern>/listtask</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddTaskControl</servlet-name>
+        <url-pattern>/addtask</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ListRoomControl</servlet-name>
+        <url-pattern>/listroom</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SeListCustomerControl</servlet-name>
+        <url-pattern>/selistcustomer</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SeSearchControl</servlet-name>
+        <url-pattern>/sesearch</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SeEditProfile</servlet-name>
+        <url-pattern>/seeditprofile</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SeDetailRoomControl</servlet-name>
+        <url-pattern>/sedetailroom</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SeHomeControl</servlet-name>
+        <url-pattern>/sehome</url-pattern>
+    </servlet-mapping>
+    <servlet>
         <servlet-name>ListNewsControl</servlet-name>
         <servlet-class>Controller.ListNewsControl</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>ListNewsControl</servlet-name>
         <url-pattern>/listnews</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RenterHomeController</servlet-name>
+        <url-pattern>/renterhome</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RenterProfileController</servlet-name>
+        <url-pattern>/renterprofile</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RenterChangePassController</servlet-name>
+        <url-pattern>/renterchangepass</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
