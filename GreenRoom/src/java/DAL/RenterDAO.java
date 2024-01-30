@@ -49,13 +49,17 @@ public class RenterDAO extends MyDAO {
         String sql = "UPDATE [Renter] SET roomID = ?, renterStatus = ?, renterHaveRoom = ? WHERE userID = ?";
         try {
             ps = con.prepareStatement(sql);
-            ps.setInt(1, roomID);
+            if (roomID == 0) {
+                ps.setObject(1, null);
+            } else {
+                ps.setInt(1, roomID);
+            }
             ps.setBoolean(2, newRenterStatus);
             ps.setBoolean(3, newRenterHaveRoom);
             ps.setInt(4, userID);
 
             int rowsAffected = ps.executeUpdate();
-            return rowsAffected > 0; // If any row is affected, return true
+            return rowsAffected > 0; // Neu co row tra ve, return true
 
         } catch (SQLException e) {
             System.out.println("Fail: " + e.getMessage());
@@ -65,7 +69,7 @@ public class RenterDAO extends MyDAO {
 
     public static void main(String[] args) {
         RenterDAO dao = new RenterDAO();
-        dao.updateRenter(1,1, false, true);
+        dao.updateRenter(1, 1, true, true);
         List<Renter> list = dao.getRenterList(1);
         for (Renter renter : list) {
             System.out.println("userID:" + renter.getUserID());

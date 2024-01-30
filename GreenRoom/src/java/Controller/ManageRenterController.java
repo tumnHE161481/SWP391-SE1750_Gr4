@@ -54,7 +54,7 @@ public class ManageRenterController extends HttpServlet {
         RenterListDAO dao = new RenterListDAO();
         // Check if the search results are already stored in the session
         List<RenterList> list = (List<RenterList>) request.getSession().getAttribute("manageRenter");
-        // If not, fetch all records
+        // If not, list all data
         if (list == null) {
             list = dao.getManageRenterList();
         }
@@ -74,13 +74,12 @@ public class ManageRenterController extends HttpServlet {
             List<RenterList> searchResult = dao.searchResult(txtSearch);
             request.getSession().setAttribute("manageRenter", searchResult);
             int count = dao.countSearchResult(txtSearch);
-           // Set attribute based on search count
+            // Set attribute based on search count
             request.setAttribute("searchCount", count);
             request.setAttribute("manageRenter", searchResult);
         } else {
-            // If no search text provided, show all records
+            // If no search text provided, show all data
             List<RenterList> list = dao.getManageRenterList();
-            // Store all records in the session
             request.getSession().setAttribute("manageRenter", list);
             request.setAttribute("manageRenter", list);
             request.setAttribute("searchCount", "Use search to have results");

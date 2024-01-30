@@ -30,6 +30,7 @@ public class UserDAO extends MyDAO {
     6.userPhone - String
     7.userAvatar
      */
+    
     //List User Data
     public List<User> getUserList() {
         List<User> list = new ArrayList<>();
@@ -47,7 +48,7 @@ public class UserDAO extends MyDAO {
         return list;
     }
 
-    //list Renter information detail
+    //List Renter information detail
     public List<User> getRenterDetail(int id) {
         List<User> list = new ArrayList<>();
         String sql = "SELECT DISTINCT "
@@ -93,7 +94,6 @@ public class UserDAO extends MyDAO {
                 list.add(user);
             }
         } catch (SQLException e) {
-
             // Handle exception as needed
                         System.out.println("Fail: " + e.getMessage());
 
@@ -101,37 +101,93 @@ public class UserDAO extends MyDAO {
         return list;
     }
 
+    //Get Renter information detail
+    public User getRenterForEdit(int id) {
+        String sql = "SELECT DISTINCT "
+                + "    u.userID, u.userName, u.userGender, u.userBirth, u.userAddress, u.userPhone, u.userAvatar, \n"
+                + "    r.renterID, r.roomID, r.renterStatus, r.renterHaveRoom,"
+                + "    a.userMail, a.userPassword,"
+                + "    rm.roomFloor, rm.roomNumber"
+                + " FROM"
+                + "    [User] u \n"
+                + " JOIN "
+                + "    Renter r ON u.userID = r.userID"
+                + " JOIN"
+                + "    Account a ON u.userID = a.userID"
+                + " LEFT JOIN"
+                + "    Room rm ON r.roomID = rm.roomID"
+                + " WHERE"
+                + "    u.userID = ?";
+
+        try {
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, id);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                int userId = rs.getInt(1);
+                String userName = rs.getString(2);
+                String userGender = rs.getString(3);
+                String userBirth = rs.getString(4);
+                String userAddress = rs.getString(5);
+                String userPhone = rs.getString(6);
+                String userAvatar = rs.getString(7);
+                int renterID = rs.getInt(8);
+                int roomID = rs.getInt(9);
+                boolean renterStatus = rs.getBoolean(10);
+                boolean renterHaveRoom = rs.getBoolean(11);
+                String userMail = rs.getString(12);
+                String userPassword = rs.getString(13);
+                int roomFloor = rs.getInt(14);
+                String roomNumber = rs.getString(15);
+                Account account = new Account(userId, userMail, userPassword, 1);
+                Renter renter = new Renter(renterID, userId, roomID, renterStatus, renterHaveRoom);
+                Room room = new Room(roomID, roomFloor, roomNumber, roomID, roomNumber, roomNumber);
+                User user = new User(userId, userName, userGender, userBirth, userAddress, userPhone, userAvatar, account, renter, room);
+            return user;
+            }
+        } catch (SQLException e) {
+                        System.out.println("Fail: " + e.getMessage());
+
+        }
+        return null;
+    }
+
+    
     public static void main(String[] args) {
         UserDAO dao = new UserDAO();
-
-        // Uncomment the appropriate method call based on your needs
         // List<User> list = dao.getUserList();
-        List<User> list = dao.getRenterDetail(5);
-        for (User user : list) {
-            System.out.println("User ID: " + user.getUserID());
-            System.out.println("User Name: " + user.getUserName());
-            System.out.println("User Gender: " + user.getUserGender());
-            System.out.println("User Birth: " + user.getUserBirth());
-            System.out.println("User Address: " + user.getUserAddress());
-            System.out.println("User Phone: " + user.getUserPhone());
-            System.out.println("User Avatar: " + user.getUserAvatar());
-
-            // Print information from Account
-            System.out.println("User Mail: " + user.getAccount().getUserMail());
-            System.out.println("User Password: " + user.getAccount().getUserPassword());
-
-            // Print information from Renter
-            System.out.println("Renter ID: " + user.getRenter().getRenterID());
-            System.out.println("Room ID: " + user.getRenter().getRoomID());
-            System.out.println("Renter Status: " + user.getRenter().isRenterStatus());
-            System.out.println("Renter Have Room: " + user.getRenter().isRenterHaveRoom());
-
-            // Print information from Room
-            System.out.println("Room Floor: " + user.getRoom().getRoomFloor());
-            System.out.println("Room Number: " + user.getRoom().getRoomNumber());
-
-            System.out.println("--------");
-        }
+//        List<User> list = dao.getRenterDetail(5);
+//        for (User user : list) {
+//            System.out.println("User ID: " + user.getUserID());
+//            System.out.println("User Name: " + user.getUserName());
+//            System.out.println("User Gender: " + user.getUserGender());
+//            System.out.println("User Birth: " + user.getUserBirth());
+//            System.out.println("User Address: " + user.getUserAddress());
+//            System.out.println("User Phone: " + user.getUserPhone());
+//            System.out.println("User Avatar: " + user.getUserAvatar());
+//
+//            // Print information from Account
+//            System.out.println("User Mail: " + user.getAccount().getUserMail());
+//            System.out.println("User Password: " + user.getAccount().getUserPassword());
+//
+//            // Print information from Renter
+//            System.out.println("Renter ID: " + user.getRenter().getRenterID());
+//            System.out.println("Room ID: " + user.getRenter().getRoomID());
+//            System.out.println("Renter Status: " + user.getRenter().isRenterStatus());
+//            System.out.println("Renter Have Room: " + user.getRenter().isRenterHaveRoom());
+//
+//            // Print information from Room
+//            System.out.println("Room Floor: " + user.getRoom().getRoomFloor());
+//            System.out.println("Room Number: " + user.getRoom().getRoomNumber());
+//
+//            System.out.println("--------");
+//        }
+         User user = dao.getRenterForEdit(1);
+         System.out.println("ID: "+user.getUserID());
+         System.out.println("Name: "+user.getUserName());
+         System.out.println("Accout: "+user.getAccount().getUserMail());
+         System.out.println("Room Number: "+user.getRoom().getRoomNumber());
+         System.out.println("Renter Status: "+user.getRenter().isRenterHaveRoom());
     }
 
     public List<User> getOwner() {

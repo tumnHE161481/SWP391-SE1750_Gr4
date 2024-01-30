@@ -5,11 +5,8 @@
 package Controller;
 
 import DAL.RenterDAO;
-import DAL.RoomDAO;
-import DAL.UserDAO;
-import Models.Renter;
-import Models.Room;
-import Models.User;
+import DAL.*;
+import Models.*;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -70,7 +67,7 @@ public class ManageRenterEdit extends HttpServlet {
         RoomDAO dao1 = new RoomDAO();
         try {
             id = Integer.parseInt(id_raw);
-            List<User> ed = dao.getRenterDetail(id);
+            User ed = dao.getRenterForEdit(id);
             List<Room> room = dao1.getRoom();
             request.setAttribute("detail", ed);
             request.setAttribute("roomNumberList", room);
@@ -94,30 +91,36 @@ public class ManageRenterEdit extends HttpServlet {
         String id_raw = request.getParameter("id");
         int id;
         RenterDAO dao = new RenterDAO();
-
+        RoomDAO dao1 = new RoomDAO();
+        request.setCharacterEncoding("UTF-8");
         try {
             id = Integer.parseInt(id_raw);
-
-            // Get the new renter status and renter have room values from the form
-            boolean newRenterStatus = Boolean.parseBoolean(request.getParameter("renterStatus"));
-            boolean newRenterHaveRoom = Boolean.parseBoolean(request.getParameter("renterHaveRoom"));
-
-            // Assuming you have a DAO method like updateRenter in your UserDAO
-            boolean success = dao.updateRenter(id, 1, newRenterStatus, newRenterHaveRoom);
-
+            boolean renterStatus = Boolean.parseBoolean(request.getParameter("renterStatus"));
+            boolean renterHaveRoom = true;
+            boolean haveRoom = renterStatus ? renterHaveRoom : !renterHaveRoom;
+            String roomNumber = request.getParameter("roomNumber");
+            int roomID;
+            if (haveRoom) {
+                roomID = dao1.findRoomIDByRoomNumber(roomNumber);
+            } else {
+                roomID = 0;
+            }
+            //After click update
+            boolean success = dao.updateRenter(id, roomID, renterStatus, haveRoom);
+            String updateMessage = "updateMessage";
             if (success) {
                 // Update successful
-                request.setAttribute("updateMessage", "Renter details updated successfully");
+                request.setAttribute(updateMessage, "Update Successful");
+                response.sendRedirect(request.getContextPath() + "/renterdetail?id=" + id_raw);
+
             } else {
                 // Update failed
-                request.setAttribute("updateMessage", "Failed to update renter details");
-            }
+                request.setAttribute(updateMessage, "Failed");
+                response.sendRedirect(request.getContextPath() + "/adrenteredit?id=" + id_raw);
 
-            request.getRequestDispatcher("your-jsp-page.jsp").forward(request, response);
+            }
         } catch (NumberFormatException e) {
-            // Handle the case where id is not a valid integer
-            request.setAttribute("updateMessage", "Invalid ID");
-            request.getRequestDispatcher("your-jsp-page.jsp").forward(request, response);
+            response.sendRedirect(request.getContextPath() + "/adrenteredit?id=" + id_raw);
         }
     }
 

@@ -78,8 +78,9 @@
                         </div>
                     </div>
                 </div>
-                <c:set var="renterList" value="${requestScope.detail}"></c:set>
-                <c:forEach var="rdl" items="${renterList}">
+                <c:set var="rdl" value="${requestScope.detail}"></c:set>
+                    <form action="adrenteredit" method="post">
+                        <input name="id" style="display: none" value="${rdl.userID}"/>
                     <c:set var="id" value="${rdl.userID}"></c:set>
                         <div class="container">
                             <div class="row flex-lg-nowrap">
@@ -128,29 +129,21 @@
                                                                             <div class="col-6">
                                                                                 <div class="form-group">
                                                                                     <label>Account status: </label>
-                                                                                    <select onchange="change" id="renterStatus" name="renterStatus" class="w-100" style="background-color: #e6e9e9; padding: 6px 12px; border-radius: 5px; border: 1px solid #ced4da;">
-                                                                                        <option style="color: green" value="${rdl.renter.renterStatus}" ${rdl.renter.renterStatus ? 'selected' : ''}>Active&nbsp;&#10003;</option>
-                                                                                        <option style="color: red" value="${!rdl.renter.renterStatus}" ${!rdl.renter.renterStatus ? 'selected' : ''}>Deactive&nbsp;&#10007;</option>
+                                                                                    <select onchange="toggleRoomNum()" id="renterStatus" name="renterStatus" class="w-100" style="background-color: #e6e9e9; padding: 6px 12px; border-radius: 5px; border: 1px solid #ced4da;">
+                                                                                        <option style="color: green" value="true" ${rdl.renter.renterStatus ? 'selected' : ''}>Active&nbsp;&#10003;</option>
+                                                                                        <option style="color: red" value="false" ${!rdl.renter.renterStatus ? 'selected' : ''}>Deactive&nbsp;&#10007;</option>
                                                                                     </select>
+                                                                                    <small style="color: graytext; font-style: italic; ${!rdl.renter.renterStatus ? 'display: block' : 'display: none'}">Active account to edit room for renter</small>  
                                                                                 </div>
                                                                             </div>
-                                                                            <div class="col-6">
+                                                                            <div class="col-6" id="roomNumberSection" style="${rdl.renter.renterStatus ? 'display: block' : 'display: none'}">
                                                                                 <div class="form-group">
                                                                                     <label>Room Number: </label>
-                                                                                    <c:choose>
-                                                                                        <c:when test="${rdl.renter.renterStatus}">
-                                                                                            <select id="roomNumberSection" class="w-100" style="background-color: #e6e9e9; padding: 6px 12px; border-radius: 5px; border: 1px solid #ced4da;">
-                                                                                                <c:forEach var="room" items="${roomNumberList}">
-                                                                                                    <option  value="${room.roomNumber}">${room.roomNumber}</option>
-                                                                                                </c:forEach>
-                                                                                            </select>
-
-                                                                                        </c:when>
-                                                                                        <c:otherwise>                      
-                                                                                            <div class="w-100" style="background-color: #e6e9e9; padding: 6px 12px; border-radius: 5px; border: 1px solid #ced4da;"><i style="font-weight: bolder;" class="fa-solid fa-ban"></i></div>
-                                                                                         <small style="color: graytext">Active account to edit room for renter</small>   
-                                                                                        </c:otherwise>
-                                                                                        </c:choose>
+                                                                                    <select name="roomNumber" class="w-100" style="background-color: #e6e9e9; padding: 6px 12px; border-radius: 5px; border: 1px solid #ced4da;">
+                                                                                        <c:forEach var="room" items="${roomNumberList}">
+                                                                                            <option value="${room.roomNumber}" ${rdl.room.roomNumber==room.roomNumber ? 'selected' : ''} >${room.roomNumber}</option>
+                                                                                        </c:forEach>
+                                                                                    </select>
                                                                                 </div>
                                                                             </div>
                                                                         </div> 
@@ -172,7 +165,7 @@
                                                 <p class="card-text">Submit or Cancel edit renter account status and add room for them.</p>
                                                 <div class="d-flex justify-content-between">
                                                     <a href="renterdetail?id=${id}" type="button" class="btn btn-danger">Cancel</a>
-                                                    <a type="button" class="btn btn-success">Submit change</a>
+                                                    <input type="submit" value="Submit Change" class="btn btn-success" onclick="doUpdate()"/>
                                                 </div>
                                             </div>
                                         </div>
@@ -181,7 +174,8 @@
                             </div>
                         </div>
                     </div>
-                </c:forEach>
+                </form>
+
             </div>
         </section>
         <script>
@@ -191,16 +185,14 @@
 
             closeBtn.addEventListener("click", () => {
                 sidebar.classList.toggle("open");
-                menuBtnChange(); // calling the function (optional)
+                menuBtnChange();
             });
 
             searchBtn.addEventListener("click", () => {
-                // Sidebar open when you click on the search icon
                 sidebar.classList.toggle("open");
-                menuBtnChange(); // calling the function (optional)
+                menuBtnChange();
             });
 
-            // Function to change sidebar button (optional)
             function menuBtnChange() {
                 if (sidebar.classList.contains("open")) {
                     closeBtn.classList.replace("fa-bars", "fa-times");
@@ -209,20 +201,38 @@
                 }
             }
 
-            function toggleRoomNumberVisibility() {
+            function toggleRoomNum() {
                 var accountStatusSelect = document.getElementById("renterStatus");
                 var roomNumberSection = document.getElementById("roomNumberSection");
 
-                // Check if the selected value is "false" (i.e., Deactive)
-                if (accountStatusSelect.value === "true") {
-                    roomNumberSection.style.display = "block";
-                } else {
-                    roomNumberSection.style.display = "none";
+                if (accountStatusSelect && roomNumberSection) {
+                    //gan value from selected vao bien
+                    var selectedValue = accountStatusSelect.value;
+                    console.log("RenterStatus value:", selectedValue);
+                    if (selectedValue === "true") {
+                        //setAttribute thay style.display vi setAttribute se replace old style
+                        roomNumberSection.setAttribute("style", "display: block !important;");
+                    } else {
+                        roomNumberSection.setAttribute("style", "display: none !important;");
+                    }
                 }
             }
 
-            document.getElementById("renterStatus").addEventListener("change", toggleRoomNumberVisibility);
-            toggleRoomNumberVisibility();
+            var renterStatus = document.getElementById("renterStatus");
+            //catch event onChange
+            if (renterStatus) {
+                renterStatus.addEventListener(toggleRoomNum());
+            }
+
+            // Gọi function để d-none hoặc d-block ngay khi page được reload
+            toggleRoomNum();
+            
+            //hien thong bao muon sua doi ko
+            function doUpdate() {
+                if (confirm("Are you sure about that edit?")) {
+                    alert(${requestScope.updateMessage});
+                }
+            }
         </script>
 
     </body>

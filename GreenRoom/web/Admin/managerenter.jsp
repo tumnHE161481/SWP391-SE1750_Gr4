@@ -87,7 +87,7 @@
                                 <button class="btn-search"><i class="fa-solid fa-magnifying-glass"></i></button>
                                 <input type="text" class="input-search" name="txtSearch" placeholder="Enter name or mail" value="${param.txtSearch}">
                             </div>
-                                <span class="d-flex d-none" color: #000; position: relative; left: 700px"><p>Found:</p><p>&nbsp;${searchCount}</p></span>
+                                <span class="d-flex" style="color: #000; ${searchCount!=null ? 'display: block' : 'display: none'}"><p>Found:</p><p>&nbsp;${searchCount}</p></span>
                         </form>
 
                     </div>

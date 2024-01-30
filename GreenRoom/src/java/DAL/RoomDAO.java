@@ -134,7 +134,7 @@ public class RoomDAO extends MyDAO {
 //            System.out.println("-------------");
 //        }
 
-         int roomID = dao.findRoomIDByRoomNumber("101");
+         int roomID = dao.findRoomIDByRoomNumber("202");
          System.out.println(roomID);
     }
 }
