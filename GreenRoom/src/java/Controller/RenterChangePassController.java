@@ -31,7 +31,7 @@ public class RenterChangePassController extends HttpServlet {
             String renewpassword = req.getParameter("renewpassword");
             RenterDAO dao = new RenterDAO();
 
-            String oldpassCheck = dao.getPassword(id);
+            String oldpassCheck = dao.getPasswordByAccount(newpassword);
             if (oldpassCheck == null || !oldpassCheck.equals(oldpassword)) {
                 req.setAttribute("pass_mess", "Old password is wrong!");
                 req.setAttribute("id", id);

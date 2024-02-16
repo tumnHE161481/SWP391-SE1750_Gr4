@@ -112,29 +112,29 @@
 
 
 
- .user-info {
-             display: flex;
-            flex-direction: column;
-            align-items: center; /* Center items horizontally */
-            text-align: center;  /* Center text within the container */
-            background-color: #f9f9f9; /* Background color */
-            border-radius: 10px; /* Optional: Add rounded corners */
-            box-shadow: 0 0 12px rgba(0, 0, 0, 0.1); /* Optional: Add box shadow */
-            padding: 20px; /* Optional: Add padding */
-            max-width: 600px; /* Optional: Set max-width */
-            margin: 20px auto; /* Center the container */
-        }
-.user-info p {
-    font-size: 20px;  /* Increase paragraph font size */
-    color: green;     /* Change color to green */
-    margin-bottom: 12px;
-}
+            .user-info {
+                display: flex;
+                flex-direction: column;
+                align-items: center; /* Center items horizontally */
+                text-align: center;  /* Center text within the container */
+                background-color: #f9f9f9; /* Background color */
+                border-radius: 10px; /* Optional: Add rounded corners */
+                box-shadow: 0 0 12px rgba(0, 0, 0, 0.1); /* Optional: Add box shadow */
+                padding: 20px; /* Optional: Add padding */
+                max-width: 600px; /* Optional: Set max-width */
+                margin: 20px auto; /* Center the container */
+            }
+            .user-info p {
+                font-size: 20px;  /* Increase paragraph font size */
+                color: green;     /* Change color to green */
+                margin-bottom: 12px;
+            }
 
-@media (max-width: 768px) {
-    .renter-info {
-        max-width: 100%;
-    }
-}        </style>
+            @media (max-width: 768px) {
+                .renter-info {
+                    max-width: 100%;
+                }
+            }        </style>
     </head>
 
     <body>
@@ -175,22 +175,8 @@
         </nav>
 
 
-        <div class="hero page-inner overlay" style="background-image: url('images/hero_bg_3.jpg');">
-
-            <div class="container">
-                <div class="row justify-content-center align-items-center">
-                    <div class="col-lg-9 text-center mt-5">
-                        <h1 class="heading" data-aos="fade-up">News</h1>
-
-                        <nav aria-label="breadcrumb" data-aos="fade-up" data-aos-delay="200">
-                            <ol class="breadcrumb text-center justify-content-center">
-                                <li class="breadcrumb-item "><a href="index.html">Home</a></li>
-                                <li class="breadcrumb-item active text-white-50" aria-current="page">News</li>
-                            </ol>
-                        </nav>
-                    </div>
-                </div>
-            </div>
+        <div class="PaddingMenu" style="background-image: url(''); height: 100px; padding: 40px;">
+            <!-- Content of PaddingMenu -->
         </div>
         <div class="personal-info">
 

@@ -43,109 +43,113 @@
 
         <title>Property &mdash; Free Bootstrap 5 Website Template by Untree.co</title>
         <link rel="icon" href="home-guest/favicon.png">
-      <style>
-    /* Your existing styles */
-    .tabular--wrapper {
-        background: #fff;
-        margin-top: 1rem;
-        border-radius: 10px;
-        padding: 2rem;
-    }
+        <style>
+            /* Your existing styles */
+            .tabular--wrapper {
+                background: #fff;
+                margin-top: 1rem;
+                border-radius: 10px;
+                padding: 2rem;
+            }
 
-    .table-container {
-        width: 100%;
-    }
+            .table-container {
+                width: 100%;
+            }
 
-    table {
-        width: 100%;
-        border-collapse: collapse;
-    }
+            table {
+                width: 100%;
+                border-collapse: collapse;
+            }
 
-    thead {
-        background: rgb(138, 110, 60, 000);
-        color: black;
-    }
+            thead {
+                background: rgb(138, 110, 60, 000);
+                color: black;
+            }
 
-    th {
-        padding: 15px;
-        text-align: left;
-    }
+            th {
+                padding: 15px;
+                text-align: left;
+            }
 
-    tbody {
-        background: #f2f2f2;
-    }
+            tbody {
+                background: #f2f2f2;
+            }
 
-    td {
-        padding: 15px;
-        font-size: 14px;
-        color: #333;
-    }
+            td {
+                padding: 15px;
+                font-size: 14px;
+                color: #333;
+            }
 
-    tr:nth-child(even) {
-        background: white;
-    }
+            tr:nth-child(even) {
+                background: white;
+            }
 
-    tfoot {
-        background: rgba(113, 99, 186, 255);
-        font-weight: bold;
-        color: rgb(255, 255, 255);
-    }
+            tfoot {
+                background: rgba(113, 99, 186, 255);
+                font-weight: bold;
+                color: rgb(255, 255, 255);
+            }
 
-    tfoot td {
-        padding: 15px;
-    }
+            tfoot td {
+                padding: 15px;
+            }
 
-    .table-container button {
-        color: green;
-        background: none;
-        cursor: pointer;
-    }
+            .table-container button {
+                color: green;
+                background: none;
+                cursor: pointer;
+            }
 
-    th {
-        padding: 15px;
-        background: none;
-        cursor: pointer;
-    }
+            th {
+                padding: 15px;
+                background: none;
+                cursor: pointer;
+            }
 
-    /* Combined styles for info-container, user-info, and renter-info */
-    .info-container {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-wrap: wrap;
-    }
+            /* Combined styles for info-container, user-info, and renter-info */
+            .info-container {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-wrap: wrap;
+            }
 
-    .user-info,
-    .renter-info {
-        width: 50%;
-        box-sizing: border-box;
-        padding: 15px;
-        background-color: #f9f9f9;
-        border-radius: 8px;
-        box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
-        margin: 8px;
-        text-align: left;
-        max-width: 400px;
-    }
+            .user-info,
+            .renter-info {
+                width: 50%;
+                box-sizing: border-box;
+                padding: 15px;
+                background-color: #f9f9f9;
+                border-radius: 8px;
+                box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+                margin: 8px;
+                text-align: left;
+                max-width: 400px;
+            }
 
-    .info-container h3 {
-        color: #555;
-    }
+            .info-container h3 {
+                color: #555;
+            }
 
-    /* Responsive adjustments for smaller screens */
-    @media (max-width: 768px) {
-        .info-container {
-            flex-direction: column;
-        }
+            /* Responsive adjustments for smaller screens */
+            @media (max-width: 768px) {
+                .info-container {
+                    flex-direction: column;
+                }
 
-        .user-info,
-        .renter-info {
-            width: 100%;
-            text-align: center;
-            margin: 10px 0;
-        }
-    }
-</style>
+                .user-info,
+                .renter-info {
+                    width: 100%;
+                    text-align: center;
+                    margin: 10px 0;
+                }
+                .personal-info h2 {
+                    margin: 10px 0;
+                    color: #006eff;
+                }
+            }
+        </style>
 
 
     </head>
@@ -187,36 +191,20 @@
             </div>
         </nav>
 
-
-        <div class="hero page-inner overlay" style="background-image: url('images/hero_bg_3.jpg');">
-
-            <div class="container">
-                <div class="row justify-content-center align-items-center">
-                    <div class="col-lg-9 text-center mt-5">
-                        <h1 class="heading" data-aos="fade-up">News</h1>
-
-                        <nav aria-label="breadcrumb" data-aos="fade-up" data-aos-delay="200">
-                            <ol class="breadcrumb text-center justify-content-center">
-                                <li class="breadcrumb-item "><a href="index.html">Home</a></li>
-                                <li class="breadcrumb-item active text-white-50" aria-current="page">News</li>
-                            </ol>
-                        </nav>
-                    </div>
-                </div>
-            </div>
+        <div class="PaddingMenu" style="background-image: url(''); height: 120px; padding: 40px;">
+            <!-- Content of PaddingMenu -->
         </div>
-
         <!--INSERT PERSONAL INFO-->
 
 
-        <div class="personal-info">
-
+        <div class="personal-info" >
+            <h3 style=" text-align: center;">Personal Information</h3>       
             <%-- Iterate over the list of users --%>
             <c:forEach items="${ListRP}" var="user">
                 <div class="info-container">                              
                     <%-- First div with general user information on the left --%>
                     <div class="user-info">
-                         <h3>Information</h3>
+                        <h3>Basic Information</h3>
                         <p>Name: ${user.userName}</p>
                         <p>Email: ${user.account.userMail}</p>
                         <p>Gender: ${user.userGender}</p>
@@ -227,9 +215,16 @@
                     <%-- Second div with renter information on the right --%>
                     <div class="renter-info">
                         <h3>Renter Information</h3>
-                        <p>Renter ID: ${user.renter.renterID}</p>
-                        <p>Room ID: ${user.renter.roomID}</p>
-                        <p>Renter Status: ${user.renter.renterStatus}</p>
+                         <p>Room Number: ${user.room.roomNumber}</p>
+                         <p>Renter Status: 
+                    <%-- Check for renter status and display accordingly --%>
+                    <c:choose>
+                        <c:when test="${user.renter.renterStatus == false}">Missing</c:when>
+                        <c:when test="${user.renter.renterStatus == true}">UpToDate</c:when>
+                        <c:otherwise>Unknown</c:otherwise>
+                    </c:choose>
+                </p>
+                        <p>Room Have Room?: ${user.renter.renterHaveRoom}</p>
                         <p>Room Floor: ${user.room.roomFloor}</p>
                         <!-- Add other renter-related properties as needed -->
                     </div>
