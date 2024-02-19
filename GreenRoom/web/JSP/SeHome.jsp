@@ -142,7 +142,7 @@
                         <ul class="js-clone-nav d-none d-lg-inline-block text-start site-menu float-end">
                             <li class="active"><a href="sehome">Home</a></li>
                             <li class="active"><a href="listroom">Room</a></li>
-                            <li><a href="Payment.html">Profile</a></li>
+                            <li><a href="seprofile">Profile</a></li>
                             <li><a href="selistcustomer">Renter</a></li>
                             <li><a href="Guide.html">Guide</a></li>
                                <li><a href="News.html">Log Out</a></li>

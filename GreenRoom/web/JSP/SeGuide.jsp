@@ -64,7 +64,7 @@
                         <ul class="js-clone-nav d-none d-lg-inline-block text-start site-menu float-end">
                             <li class="active"><a href="Homepage.html">Home</a></li>
                             <li class="active"><a href="RoomList.html">Room</a></li>
-                            <li><a href="Payment.html">Payment</a></li>
+                            <li><a href="seprofile">Payment</a></li>
                             <li><a href="CustomerList.html">Customer</a></li>
                             <li><a href="Guide.html">Guide</a></li>
                             <li><a href="News.html">News</a></li>
