@@ -123,7 +123,7 @@ public class DAO extends DBContext{
             ps.setString(1, id);
             rs = ps.executeQuery();
             while (rs.next()) {
-                System.out.println("true");
+              
                 return new RoomDetailSe(rs.getInt(1),
                         rs.getString(2),
                         rs.getString(3),
