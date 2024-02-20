@@ -54,5 +54,10 @@ public class DBContext {
 //        AccountDAO a = new AccountDAO();
 //        boolean c = a.registerUser(23, "Male", "Hanoi", "0858122236", formattedDob, "abc");
 //        System.out.println(c);
+            
+            AccountDAO a = new AccountDAO();
+            int c = a.getUserId("hungdog@gmail.com");
+            System.out.println(c);
+            
     }
 }

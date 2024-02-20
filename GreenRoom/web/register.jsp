@@ -106,7 +106,7 @@
                 var passwordValidation = document.getElementById('match');
 
                 if (passwordInput.value === repasswordInput.value) {
-                    passwordValidation.textContent = 'rePassword match';
+                    passwordValidation.textContent = 'Confirm Password match';
                     passwordValidation.style.color = 'green';
                 } else {
                     passwordValidation.textContent = 'rePassword does not match';

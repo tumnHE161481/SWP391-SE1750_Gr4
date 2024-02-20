@@ -69,12 +69,7 @@ public class RegisterController extends HttpServlet {
             
             String dobString = request.getParameter("dob");
 
-            // Chuyển đổi chuỗi ngày tháng từ trình duyệt thành LocalDate
-            LocalDate dob = LocalDate.parse(dobString);
-
-            // Bây giờ bạn có thể sử dụng dob (kiểu LocalDate) trong ứng dụng của bạn
-            // Ví dụ: Định dạng lại thành chuỗi khác
-            String formattedDob = dob.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+            
 
             String gender = request.getParameter("gender");
             int role = 1;

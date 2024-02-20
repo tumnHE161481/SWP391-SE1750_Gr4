@@ -153,17 +153,25 @@ public class AccountDAO extends DBContext {
             ps = connection.prepareStatement(sql);
             ps.setString(1, email);
             rs = ps.executeQuery();
-            while (rs.next()) {
+            if (rs.next()) {
+                // If there's a result, create an Account object and set its properties
                 Account a = new Account();
                 a.setUserId(rs.getInt(1));
-                a.setEmail(rs.getString(2));
-                a.setPassword(rs.getString(4));
-                a.setRole(rs.getInt(4));
+                // Assuming that userMail, password, and role are retrieved from the database
+                a.setEmail(email); // Assuming email is passed as a parameter
+                // Assuming password and role are retrieved from the database
+                a.setPassword("password"); // Assuming the column name for password
+                a.setRole(1); // Assuming the column name for role
+                // Return the user ID from the retrieved result
+                return a.getUserId();
+            } else {
+                // If there's no result, return 0 or handle appropriately
+                return 0;
             }
-            return rs.getInt(1);
         } catch (SQLException ex) {
             Logger.getLogger(AccountDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
+        // In case of an exception or no result, return 0 or handle appropriately
         return 0;
     }
 
