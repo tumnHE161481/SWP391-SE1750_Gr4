@@ -56,28 +56,61 @@ public class RegisterController extends HttpServlet {
             PrintWriter out = response.getWriter();
 
             String username = request.getParameter("username");
+            // Loại bỏ các khoảng trắng dư thừa
+            username = username.trim().replaceAll("\\s{2,}", " ");
 
             String email = request.getParameter("usermail");
             String phone = request.getParameter("userphone");
+            // Loại bỏ các khoảng trắng dư thừa
+            phone = phone.trim().replaceAll("\\s{2,}", " ");
 
             String password = request.getParameter("password");
+            // Kiểm tra xem mật khẩu có chứa khoảng trắng không
+            if (password.contains(" ")) {
+                request.setAttribute("message", "Passwords are not allowed to contain spaces - invalid");
+                request.getRequestDispatcher("register.jsp").forward(request, response);
+            }
+
             String repassword = request.getParameter("repassword");
 
             String address = request.getParameter("address");
-            
-            
-            
+            // Loại bỏ các khoảng trắng dư thừa
+            address = address.trim().replaceAll("\\s{2,}", " ");
+
             String dobString = request.getParameter("dob");
 
-            
+            // Loại bỏ các khoảng trắng dư thừa
+            dobString = dobString.trim().replaceAll("\\s{2,}", " ");
+
+            // Định dạng ngày tháng năm từ chuỗi thành LocalDate
+            LocalDate dob = LocalDate.parse(dobString, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+
+            // Lấy ngày hiện tại
+            LocalDate currentDate = LocalDate.now();
+
+            // Kiểm tra xem ngày sinh có sau ngày hiện tại không
+            if (dob.isAfter(currentDate)) {
+                request.setAttribute("message", "Invalid date of birth");
+                request.getRequestDispatcher("register.jsp").forward(request, response);
+            }
+
+            // Kiểm tra xem người dùng có đủ 18 tuổi không
+            LocalDate eighteenYearsAgo = currentDate.minusYears(18);
+            if (dob.isAfter(eighteenYearsAgo)) {
+                request.setAttribute("message", "Users under 18 years old - invalid");
+                request.getRequestDispatcher("register.jsp").forward(request, response);
+            }
 
             String gender = request.getParameter("gender");
             int role = 1;
-
+            
+            //kiểm tra email có tồn tại trong database 
             if (a.findByEmail(email) != null) {
                 request.setAttribute("message", "Email is existed");
                 request.getRequestDispatcher("register.jsp").forward(request, response);
-            } else if (!repassword.endsWith(password)) {
+            } 
+            // kiểm tra repassword có khớp với password 
+            else if (!repassword.endsWith(password)) {
                 request.setAttribute("message", "Password not match");
                 request.getRequestDispatcher("register.jsp").forward(request, response);
             } else {
@@ -90,7 +123,7 @@ public class RegisterController extends HttpServlet {
 
                 if (z == false) {
                     a.deleteAccount(userID);
-                    request.setAttribute("message", "false");
+                    request.setAttribute("message", "Register false");
                     request.getRequestDispatcher("register.jsp").forward(request, response);
                 }
 

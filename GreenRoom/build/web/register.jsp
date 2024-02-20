@@ -6,7 +6,6 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<!-- Designined by CodingLab - youtube.com/codinglabyt -->
 <html lang="en" dir="ltr">
 
     <head>
