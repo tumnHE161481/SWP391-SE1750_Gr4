@@ -48,6 +48,18 @@
         <servlet-name>RenterChangePassController</servlet-name>
         <servlet-class>Controller.RenterChangePassController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>RenterPenaltyControl</servlet-name>
+        <servlet-class>Controller.RenterPenaltyControl</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>RenterUpdateProfile</servlet-name>
+        <servlet-class>Controller.RenterUpdateProfile</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>RenterUpdateProfileControl</servlet-name>
+        <servlet-class>Controller.RenterUpdateProfileControl</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>SeProfileControl</servlet-name>
         <url-pattern>/seprofile</url-pattern>
@@ -103,6 +115,14 @@
     <servlet-mapping>
         <servlet-name>RenterChangePassController</servlet-name>
         <url-pattern>/renterchangepass</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RenterPenaltyControl</servlet-name>
+        <url-pattern>/renterpenalty</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RenterUpdateProfileControl</servlet-name>
+        <url-pattern>/renterupdate</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

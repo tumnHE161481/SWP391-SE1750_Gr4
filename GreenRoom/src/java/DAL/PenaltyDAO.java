@@ -10,23 +10,26 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PenaltyDAO extends MyDAO {
-    public List<Penalty> getPenalty(String account_input, String password_input) {
-        List<Penalty> list = new ArrayList<>();
+
+    public List<Penalty> getPenalty(String email, String password) {
+        List<Penalty> penalties = new ArrayList<>();
         String sql = "SELECT DISTINCT\n"
                 + "    u.userID, u.userName, u.userGender, u.userBirth, u.userAddress, u.userPhone, u.userAvatar,\n"
                 + "    p.penID, p.title, p.description, p.penMoney, p.penStatus\n"
                 + "FROM\n"
-                + "    User u\n"
+                + "    [User] u\n" // Escape 'User' keyword
                 + "JOIN\n"
                 + "    Penalty p ON u.userID = p.userID\n"
                 + "JOIN\n"
                 + "    Account a ON u.userID = a.userID\n"
                 + "WHERE\n"
-                + "    a.userMail = ? AND a.userPassword = ?"; // Use placeholders
-        try (PreparedStatement ps = con.prepareStatement(sql)) {
-            ps.setString(1, account_input);
-            ps.setString(2, password_input);
-            try (ResultSet rs = ps.executeQuery()) {
+                + "    a.userMail = ? AND a.userPassword = ?";
+
+        try ( PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setString(1, email);
+            ps.setString(2, password);
+
+            try ( ResultSet rs = ps.executeQuery()) {
                 while (rs.next()) {
                     int userId = rs.getInt("userID");
                     String userName = rs.getString("userName");
@@ -40,17 +43,52 @@ public class PenaltyDAO extends MyDAO {
                     String penaltyDescription = rs.getString("description");
                     int penMoney = rs.getInt("penMoney");
                     int penStatus = rs.getInt("penStatus");
-                    Account account = new Account(userId, account_input, password_input, 1);
+
+                    Account account = new Account(userId, email, password, 1);
                     User user = new User(userId, userName, userGender, userBirth, userAddress, userPhone, userAvatar);
                     Penalty penalty = new Penalty(penID, penaltyTitle, penaltyDescription, penMoney, penStatus);
                     penalty.setAccount(account);
                     penalty.setUser(user);
-                    list.add(penalty);
+
+                    penalties.add(penalty);
                 }
             }
         } catch (SQLException e) {
-            e.printStackTrace(); // Handle the exception properly (log or rethrow)
+            // Handle the exception properly (log or rethrow)
+            e.printStackTrace();
         }
-        return list;
+
+        return penalties;
+    }
+
+    public static void main(String[] args) {
+        PenaltyDAO dao = new PenaltyDAO();
+
+        // Uncomment the appropriate method call based on your needs
+        // List<Penalty> list = dao.getPenalties();
+        List<Penalty> list = dao.getPenalty("hungdog@gmail.com", "12345678");
+
+        for (Penalty penalty : list) {
+            System.out.println("User ID: " + penalty.getUser().getUserID());
+            System.out.println("User Name: " + penalty.getUser().getUserName());
+            System.out.println("User Gender: " + penalty.getUser().getUserGender());
+            System.out.println("User Birth: " + penalty.getUser().getUserBirth());
+            System.out.println("User Address: " + penalty.getUser().getUserAddress());
+            System.out.println("User Phone: " + penalty.getUser().getUserPhone());
+            System.out.println("User Avatar: " + penalty.getUser().getUserAvatar());
+
+            // Print information from Account
+            System.out.println("User Mail: " + penalty.getAccount().getUserMail());
+            System.out.println("User Password: " + penalty.getAccount().getUserPassword());
+
+            // Print information from Penalty
+            System.out.println("Penalty ID: " + penalty.getPenID());
+            System.out.println("Penalty Title: " + penalty.getTitle());
+            System.out.println("Penalty Description: " + penalty.getDescription());
+            System.out.println("Penalty Money: " + penalty.getPenMoney());
+            System.out.println("Penalty Status: " + penalty.getStatus());
+
+            System.out.println("--------");
+        }
     }
 }
