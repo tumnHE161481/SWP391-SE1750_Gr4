@@ -16,85 +16,44 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import java.util.List;
 
-/**
- *
- * @author Creep
- */
 public class RenterHomeController extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try ( PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet RenterHomeController</title>");
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet RenterHomeController at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
-    }
-
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
-        String email = (String) session.getAttribute("email");
-        String pass = (String) session.getAttribute("password");
-           DAORenter dao1 = new DAORenter();
-        List<News> listN = dao1.getAllNews();
-        request.setAttribute("ListN", listN);
+        // Retrieve the account object from the session
+        Account account = (Account) session.getAttribute("user");
         
-        RenterDAO dao = new RenterDAO();
-        List<User> list = dao.getRenterDetailByAccountAndPassword("hungdog@gmail.com", "12345678");
-        request.setAttribute("ListRP", list);
-        request.getRequestDispatcher("Renter/RenterHome.jsp").forward(request, response);
-
+        // Check if the account object exists in the session
+        if(account != null) {
+            // Extract email and password from the account object
+            String email = account.getUserMail();
+            String password = account.getUserPassword();
+            
+            
+            // Now you can use the email and password to fetch data or perform any other actions
+            // Example:
+            DAORenter dao1 = new DAORenter();
+            List<News> listN = dao1.getAllNews();
+            request.setAttribute("ListN", listN);
+            
+            RenterDAO dao = new RenterDAO();
+            // List<User> list = dao.getRenterDetailByAccountAndPassword("hungdog@gmail.com", "12345678");
+            List<User> list = dao.getRenterDetailByAccountAndPassword(email, password);
+            request.setAttribute("ListRP", list);
+            request.getRequestDispatcher("Renter/RenterHome.jsp").forward(request, response);
+        } else {
+            // If account object is not found in the session, handle the situation accordingly
+            // For example, redirect the user to the login page
+            response.sendRedirect("login.jsp");
+        }
     }
-
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+    
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        // This method might be used for handling form submissions in the future
+        // For now, you can leave it empty
     }
-
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
-
 }

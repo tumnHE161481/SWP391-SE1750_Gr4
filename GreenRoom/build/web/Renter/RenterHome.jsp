@@ -178,135 +178,133 @@
         <div class="PaddingMenu" style="background-image: url(''); height: 100px; padding: 40px;">
             <!-- Content of PaddingMenu -->
         </div>
+        <!-- Content section -->
         <div class="personal-info">
-
             <%-- Iterate over the list of users --%>
             <c:forEach items="${ListRP}" var="user">
-                <div class="info-container">                              
+                <div class="info-container">
                     <%-- First div with general user information on the left --%>
                     <div class="user-info">
-                        <h3>WELLCOME TO GREENROOM!!!</h3>
+                        <h3>WELCOME TO GREENROOM!!!</h3>
                         <p>Hello! ${user.userName}</p>
                         <p>Email: ${user.account.userMail}</p>
                         <p>Room ${user.renter.roomID}</p>
-
                     </div>
-                </c:forEach>
-            </div>
+                </div>
+            </c:forEach>
+        </div>
 
-
-            <div class="tabular--wrapper">
-                <h3 class="main--title">News</h3>
-                <div class="table-container">
-                    <table>
-                        <thead>
+        <!-- News section -->
+        <div class="tabular--wrapper">
+            <h3 class="main--title">News</h3>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Description</th>
+                            <th>Author</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <c:forEach items="${ListN}" var="n">
                             <tr>
-                                <th>Title</th>
-                                <th>Descriptions</th>
-                                <th>Author</th>
+                                <td><a href="https://example.com">${n.newsTitle}</a></td>
+                                <td>${n.newDes}</td>
+                                <td>${n.userName}</td>
                             </tr>
-                        </thead>
-
-                        <tbody>
-                            <c:forEach items="${ListN}" var="n">
-                                <tr>
-                                    <td style=""><a href="https://example.com"></a>${n.newsTitle}</td>
-                                    <td>${n.newDes}</td>
-                                    <td>${n.userName}</td>
-                                </tr>
-                            </c:forEach>
-                        </tbody>
-                    </table>
-                </div>
+                        </c:forEach>
+                    </tbody>
+                </table>
             </div>
+        </div>
 
+        <div class="site-footer">
+            <div class="container">
 
-            <div class="site-footer">
-                <div class="container">
-
-                    <div class="row">
-                        <div class="col-lg-4">
-                            <div class="widget">
-                                <h3>Contact</h3>
-                                <address>43 Raymouth Rd. Baltemoer, London 3910</address>
-                                <ul class="list-unstyled links">
-                                    <li><a href="tel://11234567890">+1(123)-456-7890</a></li>
-                                    <li><a href="tel://11234567890">+1(123)-456-7890</a></li>
-                                    <li><a href="mailto:info@mydomain.com">info@mydomain.com</a></li>
-                                </ul>
-                            </div>
-                            <!-- /.widget -->
+                <div class="row">
+                    <div class="col-lg-4">
+                        <div class="widget">
+                            <h3>Contact</h3>
+                            <address>43 Raymouth Rd. Baltemoer, London 3910</address>
+                            <ul class="list-unstyled links">
+                                <li><a href="tel://11234567890">+1(123)-456-7890</a></li>
+                                <li><a href="tel://11234567890">+1(123)-456-7890</a></li>
+                                <li><a href="mailto:info@mydomain.com">info@mydomain.com</a></li>
+                            </ul>
                         </div>
-                        <!-- /.col-lg-4 -->
-                        <div class="col-lg-4">
-                            <div class="widget">
-                                <h3>Sources</h3>
-                                <ul class="list-unstyled float-start links">
-                                    <li><a href="#">About us</a></li>
-                                    <li><a href="#">Services</a></li>
-                                    <li><a href="#">Vision</a></li>
-                                    <li><a href="#">Mission</a></li>
-                                    <li><a href="#">Terms</a></li>
-                                    <li><a href="#">Privacy</a></li>
-                                </ul>
-                                <ul class="list-unstyled float-start links">
-                                    <li><a href="#">Partners</a></li>
-                                    <li><a href="#">Business</a></li>
-                                    <li><a href="#">Careers</a></li>
-                                    <li><a href="#">Blog</a></li>
-                                    <li><a href="#">FAQ</a></li>
-                                    <li><a href="#">Creative</a></li>
-                                </ul>
-                            </div>
-                            <!-- /.widget -->
-                        </div>
-                        <!-- /.col-lg-4 -->
-                        <div class="col-lg-4">
-                            <div class="widget">
-                                <h3>Links</h3>
-                                <ul class="list-unstyled links">
-                                    <li><a href="#">Our Vision</a></li>
-                                    <li><a href="#">About us</a></li>
-                                    <li><a href="#">Contact us</a></li>
-                                </ul>
-
-                                <ul class="list-unstyled social">
-                                    <li><a href="#"><span class="icon-instagram"></span></a></li>
-                                    <li><a href="#"><span class="icon-twitter"></span></a></li>
-                                    <li><a href="#"><span class="icon-facebook"></span></a></li>
-                                    <li><a href="#"><span class="icon-linkedin"></span></a></li>
-                                    <li><a href="#"><span class="icon-pinterest"></span></a></li>
-                                    <li><a href="#"><span class="icon-dribbble"></span></a></li>
-                                </ul>
-                            </div>
-                            <!-- /.widget -->
-                        </div>
-                        <!-- /.col-lg-4 -->
+                        <!-- /.widget -->
                     </div>
-                    <!-- /.row -->
+                    <!-- /.col-lg-4 -->
+                    <div class="col-lg-4">
+                        <div class="widget">
+                            <h3>Sources</h3>
+                            <ul class="list-unstyled float-start links">
+                                <li><a href="#">About us</a></li>
+                                <li><a href="#">Services</a></li>
+                                <li><a href="#">Vision</a></li>
+                                <li><a href="#">Mission</a></li>
+                                <li><a href="#">Terms</a></li>
+                                <li><a href="#">Privacy</a></li>
+                            </ul>
+                            <ul class="list-unstyled float-start links">
+                                <li><a href="#">Partners</a></li>
+                                <li><a href="#">Business</a></li>
+                                <li><a href="#">Careers</a></li>
+                                <li><a href="#">Blog</a></li>
+                                <li><a href="#">FAQ</a></li>
+                                <li><a href="#">Creative</a></li>
+                            </ul>
+                        </div>
+                        <!-- /.widget -->
+                    </div>
+                    <!-- /.col-lg-4 -->
+                    <div class="col-lg-4">
+                        <div class="widget">
+                            <h3>Links</h3>
+                            <ul class="list-unstyled links">
+                                <li><a href="#">Our Vision</a></li>
+                                <li><a href="#">About us</a></li>
+                                <li><a href="#">Contact us</a></li>
+                            </ul>
 
-
+                            <ul class="list-unstyled social">
+                                <li><a href="#"><span class="icon-instagram"></span></a></li>
+                                <li><a href="#"><span class="icon-twitter"></span></a></li>
+                                <li><a href="#"><span class="icon-facebook"></span></a></li>
+                                <li><a href="#"><span class="icon-linkedin"></span></a></li>
+                                <li><a href="#"><span class="icon-pinterest"></span></a></li>
+                                <li><a href="#"><span class="icon-dribbble"></span></a></li>
+                            </ul>
+                        </div>
+                        <!-- /.widget -->
+                    </div>
+                    <!-- /.col-lg-4 -->
                 </div>
-                <!-- /.container -->
+                <!-- /.row -->
+
+
             </div>
-            <!-- /.site-footer -->
+            <!-- /.container -->
+        </div>
+        <!-- /.site-footer -->
 
 
-            <!-- Preloader -->
-            <div id="overlayer"></div>
-            <div class="loader">
-                <div class="spinner-border" role="status">
-                    <span class="visually-hidden">Loading...</span>
-                </div>
+        <!-- Preloader -->
+        <div id="overlayer"></div>
+        <div class="loader">
+            <div class="spinner-border" role="status">
+                <span class="visually-hidden">Loading...</span>
             </div>
+        </div>
 
 
-            <script src="js/bootstrap.bundle.min.js"></script>
-            <script src="js/tiny-slider.js"></script>
-            <script src="js/aos.js"></script>
-            <script src="js/navbar.js"></script>
-            <script src="js/counter.js"></script>
-            <script src="js/custom.js"></script>
+        <script src="js/bootstrap.bundle.min.js"></script>
+        <script src="js/tiny-slider.js"></script>
+        <script src="js/aos.js"></script>
+        <script src="js/navbar.js"></script>
+        <script src="js/counter.js"></script>
+        <script src="js/custom.js"></script>
     </body>
 
 </html>

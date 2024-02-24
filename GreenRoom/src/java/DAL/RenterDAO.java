@@ -31,7 +31,7 @@ public class RenterDAO extends MyDAO {
                 + "    a.userMail, a.userPassword,"
                 + "    rm.roomFloor, rm.roomNumber"
                 + " FROM"
-                + "    [User] u \n"
+                + "    \"User\" u \n"
                 + " JOIN "
                 + "    Renter r ON u.userID = r.userID"
                 + " JOIN"
@@ -40,6 +40,7 @@ public class RenterDAO extends MyDAO {
                 + "    Room rm ON r.roomID = rm.roomID"
                 + " WHERE"
                 + "    a.userMail = ? AND a.userPassword = ?";
+
 
         try {
             ps = con.prepareStatement(sql);
