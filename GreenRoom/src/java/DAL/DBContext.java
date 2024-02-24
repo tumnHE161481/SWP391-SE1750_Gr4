@@ -18,7 +18,7 @@ public class DBContext {
             connection = DriverManager.getConnection(url, user, pass);
         } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(DBContext.class.getName()).log(Level.SEVERE, null, ex);
-            System.out.println("ohhhh myy goddd error");
+            System.out.println("error");
         }
     }
     public static void main(String[] args) {

@@ -1,0 +1,54 @@
+#adminhome-container {
+  background-color: rgb(79, 187, 79);
+  height: 80px;
+}
+#logo {
+  text-decoration: none;
+}
+.feature-lists {
+  height: 100vh;
+  background-color: #fff;
+  border-right: 1px solid black;
+}
+
+.feature-list {
+  height: 50px;
+  cursor: pointer;
+  margin-right: 4px;
+}
+a {
+  text-decoration: none;
+}
+.feature-list:hover {
+  color: rgb(255, 255, 255);
+  background-color: rgb(208, 190, 169);
+}
+.active {
+  background-color: #f36f21;
+  color: #fff;
+  border: 1px solid #f36f21;
+  border-radius: 15px;
+}
+.active:hover {
+  background-color: rgb(156, 107, 50);
+  color: rgb(255, 255, 255);
+}
+
+.feature-list p {
+  padding-bottom: 0;
+  margin-bottom: 0;
+}
+.feature-position {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+table{
+    width: 100%;
+    margin: auto;
+}
+thead{
+    background-color: black;
+}
