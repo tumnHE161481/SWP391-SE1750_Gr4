@@ -11,7 +11,7 @@
     <head>
         <meta charset="UTF-8" />
         <link rel="icon" href="home-guest/favicon.png">
-        <title>Manage Renter</title>
+                <title>Green Room</title>
         <link
             rel="stylesheet"
             type="text/css"

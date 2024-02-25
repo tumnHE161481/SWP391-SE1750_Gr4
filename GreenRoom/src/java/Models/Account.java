@@ -9,20 +9,37 @@ package Models;
  * @author ASUS
  */
 public class Account {
+
     private int userID;
     private String userMail;
     private String userPassword;
     private int userRole;
+    private User user;
 
     public Account() {
     }
 
+    public Account(int userRole) {
+        this.userRole = userRole;
+    }
+
+    
     public Account(int userID, String userMail, String userPassword, int userRole) {
         this.userID = userID;
         this.userMail = userMail;
         this.userPassword = userPassword;
         this.userRole = userRole;
     }
+
+    public Account(int userID, String userMail, String userPassword, int userRole, User user) {
+        this.userID = userID;
+        this.userMail = userMail;
+        this.userPassword = userPassword;
+        this.userRole = userRole;
+        this.user = user;
+    }
+    
+    
 
     public int getUserID() {
         return userID;
@@ -56,5 +73,12 @@ public class Account {
         this.userRole = userRole;
     }
 
-    
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
 }

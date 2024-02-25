@@ -38,11 +38,11 @@
             </div>
             <ul class="nav-list">
                 <li>
-                    <a href="managerenter" style="background-color: white">
+                    <a href="manageaccount" style="background-color: white">
                         <i class="fa-regular fa-address-book" style=" color: black"></i>
-                        <span class="links_name" style=" color: black">Renter</span>
+                        <span class="links_name" style=" color: black">Account</span>
                     </a>
-                    <span class="tooltip">Renter</span>
+                    <span class="tooltip">Account</span>
                 </li>
                 <li>
                     <a href="#">
@@ -183,8 +183,8 @@
                                                 <h6 class="card-title font-weight-bold">Support</h6>
                                                 <p class="card-text">Edit renter account status and add room for them.</p>
                                                 <div class="d-flex justify-content-center gap-4">
-                                                    <a href="managerenter" type="button" class="btn btn-danger">Back</a>
-                                                    <a href="adrenteredit?id=${id}" type="button" class="btn btn-primary">Edit</a>
+                                                    <a href="manageaccount" type="button" class="btn btn-danger"><i class="fa-solid fa-chevron-left"></i>&nbsp;Back</a>
+                                                    <a href="adrenteredit?id=${id}" type="button" class="btn btn-primary"><i class="fa-regular fa-pen-to-square"></i> &nbsp;Edit</a>
                                                 </div>
                                             </div>
                                         </div>

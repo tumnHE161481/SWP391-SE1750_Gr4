@@ -84,29 +84,95 @@ public class AccountDAO extends MyDAO {
     }
 
     public int getUserRole(String mail, String password) {
-    String sql = "SELECT userRole FROM [Account] \n"
-            + "WHERE userMail = ? AND userPassword = ?";
-    try {
-        ps = con.prepareStatement(sql);
-        ps.setString(1, mail);
-        ps.setString(2, password);
-        rs = ps.executeQuery();
+        String sql = "SELECT userRole FROM [Account] \n"
+                + "WHERE userMail = ? AND userPassword = ?";
+        try {
+            ps = con.prepareStatement(sql);
+            ps.setString(1, mail);
+            ps.setString(2, password);
+            rs = ps.executeQuery();
 
-        if (rs.next()) {
-            return rs.getInt("userRole");
+            if (rs.next()) {
+                return rs.getInt("userRole");
+            }
+        } catch (SQLException e) {
+            System.out.println("Fail: " + e.getMessage());
         }
-    } catch (SQLException e) {
-        System.out.println("Fail: " + e.getMessage());
+        return 0;
     }
-    return 0;
-}
+
+    public List<Account> manageAccount() {
+        List<Account> list = new ArrayList<>();
+        String sql = "SELECT a.userID,\n"
+                + "       a.userMail,\n"
+                + "       a.userPassword,\n"
+                + "       a.userRole,\n"
+                + "       u.userName,\n"
+                + "       u.userGender,\n"
+                + "       u.userBirth,\n"
+                + "       u.userAddress,\n"
+                + "       u.userPhone,\n"
+                + "       u.userAvatar\n"
+                + "FROM Account a\n"
+                + "INNER JOIN [User] u ON a.userID = u.userID\n"
+                + "WHERE a.userRole != 4;";
+
+        try {
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                User user = new User(rs.getInt(1), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9), rs.getString(10));
+                Account account = new Account(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), user);
+                list.add(account);
+            }
+        } catch (SQLException e) {
+            System.out.println("Fail: " + e.getMessage());
+        } finally {
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (ps != null) {
+                    ps.close();
+                }
+            } catch (SQLException e) {
+                System.out.println("Error closing resources: " + e.getMessage());
+            }
+        }
+        return list;
+    }
     
+    
+     public List<Account> getAllRole() {
+        List<Account> list = new ArrayList<>();
+        String sql = "SELECT DISTINCT userRole FROM Account;";
+        try {
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                Account account = new Account(rs.getInt(1));
+                list.add(account);
+            }
+        } catch (SQLException e) {
+            System.out.println("Fail: " + e.getMessage());
+        }
+        return list;
+     }
+
     public static void main(String[] args) {
         AccountDAO dao = new AccountDAO();
-        int role = dao.getUserRole("maitu@gmail.com", "12345678");
-        System.out.println("Role: " + role);
+//        int role = dao.getUserRole("maitu@gmail.com", "12345678");
+//        System.out.println("Role: " + role);
+
+        List<Account> list = dao.manageAccount();
+        for (Account account : list) {
+            System.out.println("ID: " + account.getUserID());
+            System.out.println("Img: " + account.getUser().getUserAvatar());
+            System.out.println("Name: " + account.getUser().getUserName());
+            System.out.println("Mail: " + account.getUserMail());
+            System.out.println("Role: " + account.getUserRole());
+        }
     }
-    
 
     /////////////////////Hung dog code
     public Account LoginAccount(String email, String password) {
