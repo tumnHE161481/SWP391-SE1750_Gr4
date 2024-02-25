@@ -15,18 +15,17 @@ public class RoomListSE {
     private String roomNumber;
     private String roomSize;
     private String roomImg;
-    private int sigleBed;
+
 
     public RoomListSE() {
     }
 
-    public RoomListSE(int roomID, int roomFloor, String roomNumber, String roomSize, String roomImg, int sigleBed) {
+    public RoomListSE(int roomID, int roomFloor, String roomNumber, String roomSize, String roomImg) {
         this.roomID = roomID;
         this.roomFloor = roomFloor;
         this.roomNumber = roomNumber;
         this.roomSize = roomSize;
         this.roomImg = roomImg;
-        this.sigleBed = sigleBed;
     }
 
     public int getRoomID() {
@@ -69,17 +68,10 @@ public class RoomListSE {
         this.roomImg = roomImg;
     }
 
-    public int getSigleBed() {
-        return sigleBed;
-    }
-
-    public void setSigleBed(int sigleBed) {
-        this.sigleBed = sigleBed;
-    }
-
     @Override
     public String toString() {
-        return "RoomListSE{" + "roomID=" + roomID + ", roomFloor=" + roomFloor + ", roomNumber=" + roomNumber + ", roomSize=" + roomSize + ", roomImg=" + roomImg + ", sigleBed=" + sigleBed + '}';
+        return "RoomListSE{" + "roomID=" + roomID + ", roomFloor=" + roomFloor + ", roomNumber=" + roomNumber + ", roomSize=" + roomSize + ", roomImg=" + roomImg + '}';
     }
 
+    
 }

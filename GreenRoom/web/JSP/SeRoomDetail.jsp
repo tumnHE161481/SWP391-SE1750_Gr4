@@ -132,11 +132,10 @@
                                         <tr>
                                             <td>${detail.roomFloor}</td>
                                             <td>${detail.roomSize}</td>
-                                            <td>${detail.singleBed}</td>
-                                            <td>${detail.bunk}</td>
-                                            <td>${detail.chair}</td>
-                                            <td>${detail.ceilingFans}</td>
-                                            <td>${detail.airConditional}</td>
+                                            <td>${detail.itemName}</td>
+                                            <td>${detail.itemImg}</td>
+                                            <td>${detail.quantity}</td>
+                                          
                                         </tr>
                                         <!-- Add more rows as needed -->
                                     </tbody>

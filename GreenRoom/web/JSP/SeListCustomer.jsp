@@ -141,7 +141,7 @@
                                   <c:forEach items="${ListC}" var="c">
                                 <tr>
                                     <td>${c.userID}</td>
-                                    <td>${c.userAvatar}</td>
+                                    <td style="height: 100px; width: 100px"><img style="height: 100%;width: 100%" src="${c.userAvatar}" alt="alt"/></td>
                                     <td>${c.userName}</td>
                                     <td>${c.userGender}</td>
                                     <td>${c.userPhone}</td>

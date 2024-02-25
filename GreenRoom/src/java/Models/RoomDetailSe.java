@@ -15,27 +15,23 @@ public class RoomDetailSe {
     private String roomImg;
     private String roomSize;
     private int roomFloor;
+    private String itemName;
+    private String itemImg;
+    private int quantity;
 
-    private int singleBed;
-    private int bunk;
-    private int chair;
-    private boolean ceilingFans;
-    private boolean airConditional;
 
     public RoomDetailSe() {
     }
 
-    public RoomDetailSe(int roomID, String roomNumber, String roomImg, String roomSize, int roomFloor, int singleBed, int bunk, int chair, boolean ceilingFans, boolean airConditional) {
+    public RoomDetailSe(int roomID, String roomNumber, String roomImg, String roomSize, int roomFloor, String itemName, String itemImg, int quantity) {
         this.roomID = roomID;
         this.roomNumber = roomNumber;
         this.roomImg = roomImg;
         this.roomSize = roomSize;
         this.roomFloor = roomFloor;
-        this.singleBed = singleBed;
-        this.bunk = bunk;
-        this.chair = chair;
-        this.ceilingFans = ceilingFans;
-        this.airConditional = airConditional;
+        this.itemName = itemName;
+        this.itemImg = itemImg;
+        this.quantity = quantity;
     }
 
     public int getRoomID() {
@@ -78,44 +74,34 @@ public class RoomDetailSe {
         this.roomFloor = roomFloor;
     }
 
-    public int getSingleBed() {
-        return singleBed;
+    public String getItemName() {
+        return itemName;
     }
 
-    public void setSingleBed(int singleBed) {
-        this.singleBed = singleBed;
+    public void setItemName(String itemName) {
+        this.itemName = itemName;
     }
 
-    public int getBunk() {
-        return bunk;
+    public String getItemImg() {
+        return itemImg;
     }
 
-    public void setBunk(int bunk) {
-        this.bunk = bunk;
+    public void setItemImg(String itemImg) {
+        this.itemImg = itemImg;
     }
 
-    public int getChair() {
-        return chair;
+    public int getQuantity() {
+        return quantity;
     }
 
-    public void setChair(int chair) {
-        this.chair = chair;
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 
-    public boolean isCeilingFans() {
-        return ceilingFans;
+    @Override
+    public String toString() {
+        return "RoomDetailSe{" + "roomID=" + roomID + ", roomNumber=" + roomNumber + ", roomImg=" + roomImg + ", roomSize=" + roomSize + ", roomFloor=" + roomFloor + ", itemName=" + itemName + ", itemImg=" + itemImg + ", quantity=" + quantity + '}';
     }
 
-    public void setCeilingFans(boolean ceilingFans) {
-        this.ceilingFans = ceilingFans;
-    }
-
-    public boolean isAirConditional() {
-        return airConditional;
-    }
-
-    public void setAirConditional(boolean airConditional) {
-        this.airConditional = airConditional;
-    }
-    
+   
 }

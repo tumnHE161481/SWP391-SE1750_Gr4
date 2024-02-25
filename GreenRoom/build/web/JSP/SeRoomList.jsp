@@ -31,6 +31,16 @@
         <link rel="stylesheet" href="<%=request.getContextPath()%>/css/style.css">
 
         <title>Room List</title>
+        <style>
+            .property-item img {
+                width: 381px;
+                height: 319px;
+            }
+            img-fluid {
+                max-width: 100%;
+                height: auto;
+            }
+        </style>
     </head>
 
     <body>
@@ -56,7 +66,7 @@
                             <li><a href="Payment.html">Profile</a></li>
                             <li><a href="selistcustomer">Renter</a></li>
                             <li><a href="Guide.html">Guide</a></li>
-               
+
                             <li><a href="News.html">Log Out</a></li>
                         </ul>
 
@@ -93,33 +103,21 @@
                             <div class="property-slider">
                                 <c:forEach items="${ListR}" var="r">
                                     <div class="property-item">
-
-                                      
-                                            <img src="${r.roomImg}" alt="Image" class="img-fluid">
-                                       
-
+                                        <img src="${r.roomImg}" alt="Image" class="img-fluid">
                                         <div class="property-content">
                                             <div class="price mb-2"><span>${r.roomNumber}</span></div>
                                             <div>
-                                                <span class="d-block mb-2 text-black-50">${r.roomSize}</span>
+                                                <span class="d-block mb-2 text-black-50"></span>
                                                 <span class="city d-block mb-3">Green Room</span>
 
                                                 <div class="specs d-flex mb-4">
-                                                    <span class="d-block d-flex align-items-center me-3">
-                                                        <span class="icon-bed me-2"></span>
-                                                        <span class="caption">${r.roomFloor}</span>
-                                                    </span>
-                                                    <span class="d-block d-flex align-items-center">
-                                                        <span class="icon-bath me-2"></span>
-                                                        <span class="caption">${r.sigleBed}</span>
-                                                    </span>
+
                                                 </div>
 
                                                 <a href="sedetailroom?pid=${r.getRoomID()}" class="btn btn-primary py-2 px-3">See details</a>
                                             </div>
                                         </div>
                                     </div>
-
                                 </c:forEach>
 
 

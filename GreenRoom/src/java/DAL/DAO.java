@@ -44,8 +44,6 @@ public class DAO extends DBContext {
         return list;
     }
 
-
-
     public List<RenterListSE> searchCustomerByName(String txtSearch) {
         List<RenterListSE> list = new ArrayList<>();
         String query = "SELECT u.userID, u.userAvatar, u.userName, u.userGender, u.userPhone, rm.[roomNumber]\n"
@@ -73,9 +71,8 @@ public class DAO extends DBContext {
 
     public List<RoomListSE> getAllRoom() {
         List<RoomListSE> list = new ArrayList<>();
-        String query = "select r.roomID, r.[roomNumber], r.[roomImg],r.[roomSize], r.roomFloor, ri.singleBed\n"
-                + "from [dbo].[Room] as r, [dbo].[Room_Item] as ri\n"
-                + "where r.roomItemID = ri.itemID";
+        String query = "SELECT r.roomID, r.roomFloor, r.roomNumber, r.roomSize, r.roomImg\n" +
+"              FROM [dbo].[Room] AS r";
         try {
             conn = connection;
             ps = conn.prepareStatement(query);
@@ -85,8 +82,7 @@ public class DAO extends DBContext {
                         rs.getInt(2),
                         rs.getString(3),
                         rs.getString(4),
-                        rs.getString(5),
-                        rs.getInt(6)));
+                        rs.getString(5)));
             }
         } catch (Exception e) {
         }
@@ -95,10 +91,11 @@ public class DAO extends DBContext {
 
     public RoomDetailSe getRoomById(String id) {
 
-        String query = "SELECT r.[roomID], r.[roomNumber], r.[roomImg], r.[roomSize], r.[roomFloor], ri.[singleBed],ri.[bunk],ri.[chair], ri.ceilingFans,ri.airConditional\n"
+        String query = "SELECT r.[roomID], r.[roomNumber], r.[roomImg], r.[roomSize], r.[roomFloor], i.itemName, i.itemImg, ri.quantity\n"
                 + "FROM [dbo].[Room] AS r\n"
-                + "JOIN [dbo].[Room_Item] AS ri ON r.roomItemID = ri.itemID\n"
-                + "where r.roomID = ?";
+                + "JOIN [dbo].[RoomItem] AS ri ON r.roomID = ri.roomID\n"
+                + "JOIN [dbo].[item] AS i ON ri.itemID = i.itemID\n"
+                + "where ri.roomID = ?";
         try {
             conn = connection;
             ps = conn.prepareStatement(query);
@@ -111,11 +108,9 @@ public class DAO extends DBContext {
                         rs.getString(3),
                         rs.getString(4),
                         rs.getInt(5),
-                        rs.getInt(6),
-                        rs.getInt(7),
-                        rs.getInt(8),
-                        rs.getBoolean(9),
-                        rs.getBoolean(10));
+                        rs.getString(6),
+                        rs.getString(7),
+                        rs.getInt(8));
             }
         } catch (Exception e) {
         }
