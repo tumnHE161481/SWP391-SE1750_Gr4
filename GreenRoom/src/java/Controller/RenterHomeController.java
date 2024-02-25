@@ -39,7 +39,7 @@ public class RenterHomeController extends HttpServlet {
             request.setAttribute("ListN", listN);
             
             RenterDAO dao = new RenterDAO();
-           List<User> list = dao.getRenterDetailByAccountAndPassword("maingoctu@gmail.com", "12345");
+           List<User> list = dao.getRenterDetailByAccountAndPassword("tester", "1");
             //List<User> list = dao.getRenterDetailByAccountAndPassword(email, password);
             request.setAttribute("ListRP", list);
             request.getRequestDispatcher("Renter/RenterHome.jsp").forward(request, response);

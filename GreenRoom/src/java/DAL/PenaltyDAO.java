@@ -66,7 +66,7 @@ public class PenaltyDAO extends MyDAO {
 
         // Uncomment the appropriate method call based on your needs
         // List<Penalty> list = dao.getPenalties();
-        List<Penalty> list = dao.getPenalty("hungdog@gmail.com", "12345678");
+        List<Penalty> list = dao.getPenalty("tester", "1");
 
         for (Penalty penalty : list) {
             System.out.println("User ID: " + penalty.getUser().getUserID());
@@ -83,10 +83,9 @@ public class PenaltyDAO extends MyDAO {
 
             // Print information from Penalty
             System.out.println("Penalty ID: " + penalty.getPenID());
-            System.out.println("Penalty Title: " + penalty.getTitle());
+            System.out.println("Penalty Title: " + penalty.getDescription());
             System.out.println("Penalty Description: " + penalty.getDescription());
-            System.out.println("Penalty Money: " + penalty.getPenMoney());
-            System.out.println("Penalty Status: " + penalty.getStatus());
+
 
             System.out.println("--------");
         }

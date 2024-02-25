@@ -47,7 +47,8 @@ public class RenterDAO extends MyDAO {
             ps.setString(2, password_input);
             rs = ps.executeQuery();
             while (rs.next()) {
-                int userId = rs.getInt(1);
+                
+                int userID = rs.getInt(1);
                 String userName = rs.getString(2);
                 String userGender = rs.getString(3);
                 String userBirth = rs.getString(4);
@@ -58,21 +59,21 @@ public class RenterDAO extends MyDAO {
                 int roomID = rs.getInt(9);
                 boolean renterStatus = rs.getBoolean(10);
                 boolean renterHaveRoom = rs.getBoolean(11);
-                String userMail = rs.getString(12);
-                String userPassword = rs.getString(13);
-                int roomFloor = rs.getInt(14);
-                String roomNumber = rs.getString(15);
-                int CGRScore = rs.getInt(16); // Fetch CGRScore
-                double balance = rs.getDouble(17); // Fetch balance
+                 int CGRScore = rs.getInt(12); // Fetch CGRScore
+                double balance = rs.getDouble(13); // Fetch balance
+                String userMail = rs.getString(14);
+                String userPassword = rs.getString(15);
+                int roomFloor = rs.getInt(16);
+                String roomNumber = rs.getString(17);
+               
 
-                Account account = new Account(userId, userMail, userPassword, 1);
-                Renter renter = new Renter(renterID, userId, roomID, renterStatus, renterHaveRoom, CGRScore, balance);
+                Account account = new Account(userID, userMail, userPassword, 1);
+                Renter renter = new Renter(renterID, userID, roomID, renterStatus, renterHaveRoom, CGRScore, balance);
                 Room room = new Room(roomID, roomFloor, roomNumber, roomID, roomNumber, roomNumber);
-                User user = new User(userId, userName, userGender, userBirth, userAddress, userPhone, userAvatar, account, renter, room);
-                list.add(user);
-
+                User user = new User(userID, userName, userGender, userBirth, userAddress, userPhone, userAvatar, account, renter, room);
                 list.add(user);
             }
+
         } catch (SQLException e) {
             System.out.println("Fail: " + e.getMessage());
         }
@@ -101,7 +102,7 @@ public class RenterDAO extends MyDAO {
 
         // Uncomment the appropriate method call based on your needs
         // List<User> list = dao.getUserList();
-        List<User> list = dao.getRenterDetailByAccountAndPassword("maingoctu@gmail.com", "12345");
+        List<User> list = dao.getRenterDetailByAccountAndPassword("tester", "1");
         for (User user : list) {
             System.out.println("User ID: " + user.getUserID());
             System.out.println("User Name: " + user.getUserName());
@@ -111,6 +112,19 @@ public class RenterDAO extends MyDAO {
             System.out.println("User Phone: " + user.getUserPhone());
             System.out.println("User Avatar: " + user.getUserAvatar());
 
+            // Print information from Account
+            System.out.println("User Mail: " + user.getAccount().getUserMail());
+            System.out.println("User Password: " + user.getAccount().getUserPassword());
+
+            // Print information from Renter
+            System.out.println("Renter ID: " + user.getRenter().getRenterID());
+            System.out.println("Room ID: " + user.getRenter().getRoomID());
+            System.out.println("Renter Status: " + user.getRenter().isRenterStatus());
+            System.out.println("Renter Have Room: " + user.getRenter().isRenterHaveRoom());
+
+            // Print information from Room
+            System.out.println("Room Floor: " + user.getRoom().getRoomFloor());
+            System.out.println("Room Number: " + user.getRoom().getRoomNumber());
 
             System.out.println("--------");
 

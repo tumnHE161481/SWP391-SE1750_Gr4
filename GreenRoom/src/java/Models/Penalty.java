@@ -4,6 +4,8 @@
  */
 package Models;
 
+import java.sql.Date;
+
 /**
  *
  * @author Creep
@@ -11,25 +13,30 @@ package Models;
 public class Penalty {
 
     private int penID;
-    private String title;
+    private int reportID;
+    private int accuseID;
+    private int roomID;
     private String description;
-    private int penMoney;
-    private int status;
+    private Date penDate;
+    private int ruleID;
+    private boolean penStatus;
     private Account account;
     private User user;
 
     public Penalty() {
     }
 
-    public Penalty(int penID, String title, String description, int penMoney, int status) {
+    public Penalty(int penID, int reportID, int accuseID, int roomID, String description, Date penDate, int ruleID, boolean penStatus, Account account, User user) {
         this.penID = penID;
-        this.title = title;
+        this.reportID = reportID;
+        this.accuseID = accuseID;
+        this.roomID = roomID;
         this.description = description;
-        this.penMoney = penMoney;
-        this.status = status;
+        this.penDate = penDate;
+        this.ruleID = ruleID;
+        this.penStatus = penStatus;
         this.account = account;
         this.user = user;
-
     }
 
     public int getPenID() {
@@ -40,52 +47,79 @@ public class Penalty {
         this.penID = penID;
     }
 
-    public String getTitle() {
-        return title;
+    public int getReportID() {
+        return reportID;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setReportID(int reportID) {
+        this.reportID = reportID;
+    }
+
+    public int getAccuseID() {
+        return accuseID;
+    }
+
+    public void setAccuseID(int accuseID) {
+        this.accuseID = accuseID;
+    }
+
+    public int getRoomID() {
+        return roomID;
+    }
+
+    public void setRoomID(int roomID) {
+        this.roomID = roomID;
     }
 
     public String getDescription() {
         return description;
     }
 
-    public Account getAccount() {
-        return account;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
     public void setDescription(String description) {
         this.description = description;
     }
 
-    public int getPenMoney() {
-        return penMoney;
+    public Date getPenDate() {
+        return penDate;
     }
 
-    public void setPenMoney(int penMoney) {
-        this.penMoney = penMoney;
+    public void setPenDate(Date penDate) {
+        this.penDate = penDate;
     }
 
-    public int getStatus() {
-        return status;
+    public int getRuleID() {
+        return ruleID;
     }
 
-    public void setStatus(int status) {
-        this.status = status;
+    public void setRuleID(int ruleID) {
+        this.ruleID = ruleID;
+    }
+
+    public boolean isPenStatus() {
+        return penStatus;
+    }
+
+    public void setPenStatus(boolean penStatus) {
+        this.penStatus = penStatus;
+    }
+
+    public Account getAccount() {
+        return account;
     }
 
     public void setAccount(Account account) {
         this.account = account;
     }
 
+    public User getUser() {
+        return user;
+    }
+
     public void setUser(User user) {
         this.user = user;
     }
+
+    
+    
 
 }

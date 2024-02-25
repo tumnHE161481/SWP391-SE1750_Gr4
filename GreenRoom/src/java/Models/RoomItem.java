@@ -9,72 +9,44 @@ package Models;
  * @author ASUS
  */
 public class RoomItem {
-    private int itemID;
-    private int singleBed;
-    private int bunk;
-    private int chair;
-    private boolean ceilingFans;
-    private boolean airConditional;
+    private int roomitemID;
+    private String itemName;
+    private String itemImg;
 
     public RoomItem() {
     }
 
-    public RoomItem(int itemID, int singleBed, int bunk, int chair, boolean ceilingFans, boolean airConditional) {
-        this.itemID = itemID;
-        this.singleBed = singleBed;
-        this.bunk = bunk;
-        this.chair = chair;
-        this.ceilingFans = ceilingFans;
-        this.airConditional = airConditional;
+    public RoomItem(int roomitemID, String itemName, String itemImg) {
+        this.roomitemID = roomitemID;
+        this.itemName = itemName;
+        this.itemImg = itemImg;
     }
 
-    public int getItemID() {
-        return itemID;
+    public int getRoomitemID() {
+        return roomitemID;
     }
 
-    public void setItemID(int itemID) {
-        this.itemID = itemID;
+    public void setRoomitemID(int roomitemID) {
+        this.roomitemID = roomitemID;
     }
 
-    public int getSingleBed() {
-        return singleBed;
+    public String getItemName() {
+        return itemName;
     }
 
-    public void setSingleBed(int singleBed) {
-        this.singleBed = singleBed;
+    public void setItemName(String itemName) {
+        this.itemName = itemName;
     }
 
-    public int getBunk() {
-        return bunk;
+    public String getItemImg() {
+        return itemImg;
     }
 
-    public void setBunk(int bunk) {
-        this.bunk = bunk;
+    public void setItemImg(String itemImg) {
+        this.itemImg = itemImg;
     }
 
-    public int getChair() {
-        return chair;
-    }
-
-    public void setChair(int chair) {
-        this.chair = chair;
-    }
-
-    public boolean isCeilingFans() {
-        return ceilingFans;
-    }
-
-    public void setCeilingFans(boolean ceilingFans) {
-        this.ceilingFans = ceilingFans;
-    }
-
-    public boolean isAirConditional() {
-        return airConditional;
-    }
-
-    public void setAirConditional(boolean airConditional) {
-        this.airConditional = airConditional;
-    }
+  
     
     
 }
