@@ -53,13 +53,6 @@
                 </li>
                 <li>
                     <a href="#">
-                        <i class="fa-solid fa-shield-halved"></i>
-                        <span class="links_name">Security</span>
-                    </a>
-                    <span class="tooltip">Security</span>
-                </li>
-                <li>
-                    <a href="#">
                         <i class="fa-solid fa-right-from-bracket"></i>
                         <span class="links_name">Log out</span>
                     </a>
@@ -139,11 +132,11 @@
                                                                             <div class="col-6" id="roomNumberSection" style="${rdl.renter.renterStatus ? 'display: block' : 'display: none'}">
                                                                                 <div class="form-group">
                                                                                     <label>Room Number: </label>
-                                                                                    <select name="roomNumber" class="w-100" style="background-color: #e6e9e9; padding: 6px 12px; border-radius: 5px; border: 1px solid #ced4da;">
-                                                                                        <c:forEach var="room" items="${roomNumberList}">
-                                                                                            <option value="${room.roomNumber}" ${rdl.room.roomNumber==room.roomNumber ? 'selected' : ''} >${room.roomNumber}</option>
-                                                                                        </c:forEach>
-                                                                                    </select>
+                                                                                <select name="roomNumber" class="w-100" style="background-color: #e6e9e9; padding: 6px 12px; border-radius: 5px; border: 1px solid #ced4da;">
+                                                                                    <c:forEach var="room" items="${roomNumberList}">
+                                                                                        <option value="${room.roomNumber}" ${rdl.room.roomNumber==room.roomNumber ? 'selected' : ''} >${room.roomNumber}</option>
+                                                                                    </c:forEach>
+                                                                                </select>
                                                                                 </div>
                                                                             </div>
                                                                         </div> 

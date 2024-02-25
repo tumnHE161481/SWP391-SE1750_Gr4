@@ -65,7 +65,7 @@ public class ManageSecurityDetail extends HttpServlet {
         UserDAO dao = new UserDAO();
         try{
             id=Integer.parseInt(id_raw);
-            List<User> rd = dao.getRenterDetail(id);
+            List<User> rd = dao.getSecurityDetail(id);
             request.setAttribute("detail", rd);
             request.getRequestDispatcher("/Admin/securitydetail.jsp").forward(request, response);
         }

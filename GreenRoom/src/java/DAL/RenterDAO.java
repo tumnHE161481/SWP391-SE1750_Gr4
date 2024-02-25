@@ -47,7 +47,7 @@ public class RenterDAO extends MyDAO {
 
     //Get Renter Update status
     public boolean updateRenter(int userID, int roomID, boolean newRenterStatus, boolean newRenterHaveRoom) {
-        String sql = "UPDATE [Renter] SET roomID = ?, renterStatus = ?, renterHaveRoom = ? WHERE userID = ?";
+        String sql = "UPDATE [renter] SET roomID = ?, renterStatus = ?, renterHaveRoom = ? WHERE userID = ?";
         try {
             ps = con.prepareStatement(sql);
             if (roomID == 0) {

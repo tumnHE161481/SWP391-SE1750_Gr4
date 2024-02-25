@@ -53,13 +53,6 @@
                 </li>
                 <li>
                     <a href="#">
-                        <i class="fa-solid fa-shield-halved"></i>
-                        <span class="links_name">Security</span>
-                    </a>
-                    <span class="tooltip">Security</span>
-                </li>
-                <li>
-                    <a href="#">
                         <i class="fa-solid fa-right-from-bracket"></i>
                         <span class="links_name">Log out</span>
                     </a>
@@ -71,7 +64,7 @@
             <div class="main--content">
                 <div class="header--wrapper">
                     <div class="header--title d-flex align-items-center">
-                        <img src="./Image/avatar8.jpg" alt="admin" style="height: 65px !important; width: 65px !important; margin-right: 20px"/>
+                        <img src="./Image/user/avatar20.jpg" alt="admin" style="height: 65px !important; width: 65px !important; margin-right: 20px"/>
                         <div>
                             <span>Admin Home</span>
                             <h2>Welcome !</h2>
@@ -142,7 +135,7 @@
                                                     <a style="text-decoration: none" href="renterdetail?id=${id}"><i class="fa-solid fa-circle-info"></i>&nbsp;Detail</a>
                                                 </c:when>
                                                 <c:when test="${user.account.userRole == 2}">
-                                                    <a style="text-decoration: none" href="/"><i class="fa-solid fa-circle-info"></i>&nbsp;Detail</a>
+                                                    <a style="text-decoration: none" href="adsedetail?id=${id}"><i class="fa-solid fa-circle-info"></i>&nbsp;Detail</a>
                                                 </c:when>
                                                 <c:when test="${user.account.userRole == 3}">
                                                     <a style="text-decoration: none" href="/"><i class="fa-solid fa-circle-info"></i>&nbsp;Detail</a>

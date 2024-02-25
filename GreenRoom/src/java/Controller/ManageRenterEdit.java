@@ -99,9 +99,10 @@ public class ManageRenterEdit extends HttpServlet {
             boolean renterHaveRoom = true;
             boolean haveRoom = renterStatus ? renterHaveRoom : !renterHaveRoom;
             String roomNumber = request.getParameter("roomNumber");
+            int number = Integer.parseInt(roomNumber);
             int roomID;
             if (haveRoom) {
-                roomID = dao1.findRoomIDByRoomNumber(roomNumber);
+                roomID = dao1.findRoomIDByRoomNumber(number);
             } else {
                 roomID = 0;
             }
