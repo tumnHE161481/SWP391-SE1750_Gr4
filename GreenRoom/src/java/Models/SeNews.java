@@ -4,31 +4,37 @@
  */
 package Models;
 
+import java.sql.Date;
+
 /**
  *
  * @author ASUS
  */
 public class SeNews {
 
-    private String userName;
+    private int newID;
     private String newsTitle;
-    private String newDes;
+    private String description;
+    private String img;
+    private String creatAt;
 
     public SeNews() {
     }
 
-    public SeNews(String userName, String newsTitle, String newDes) {
-        this.userName = userName;
+    public SeNews(int newID, String newsTitle, String description, String img, String creatAt) {
+        this.newID = newID;
         this.newsTitle = newsTitle;
-        this.newDes = newDes;
+        this.description = description;
+        this.img = img;
+        this.creatAt = creatAt;
     }
 
-    public String getUserName() {
-        return userName;
+    public int getNewID() {
+        return newID;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setNewID(int newID) {
+        this.newID = newID;
     }
 
     public String getNewsTitle() {
@@ -39,12 +45,29 @@ public class SeNews {
         this.newsTitle = newsTitle;
     }
 
-    public String getNewDes() {
-        return newDes;
+    public String getDescription() {
+        return description;
     }
 
-    public void setNewDes(String newDes) {
-        this.newDes = newDes;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
+    }
+
+    public String getCreatAt() {
+        return creatAt;
+    }
+
+    public void setCreatAt(String creatAt) {
+        this.creatAt = creatAt;
+    }
+
+   
 }
