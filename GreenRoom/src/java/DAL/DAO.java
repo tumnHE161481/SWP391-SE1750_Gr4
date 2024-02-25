@@ -91,7 +91,7 @@ public class DAO extends DBContext{
 
     public List<RoomListSE> getAllRoom() {
         List<RoomListSE> list = new ArrayList<>();
-        String query = "select r.roomID, r.[roomNumber], r.[roomImg],r.[roomSize], r.roomFloor, ri.singleBed\n"
+        String query = "select r.roomID, r.roomFloor, r.[roomNumber], r.[roomSize],r.[roomImg], ri.singleBed\n"
                 + "from [dbo].[Room] as r, [dbo].[Room_Item] as ri\n"
                 + "where r.roomItemID = ri.itemID";
         try {

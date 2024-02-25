@@ -48,12 +48,11 @@
             <div class="container">
                 <div class="menu-bg-wrap">
                     <div class="site-navigation">
-                        <a href="sehome" class="logo m-0 float-start">Green Room</a>
+                        <a href="./Owner/OwHome.jsp" class="logo m-0 float-start">Green Room</a>
 
                         <ul class="js-clone-nav d-none d-lg-inline-block text-start site-menu float-end">
-                            <li class="active"><a href="sehome">Home</a></li>
+                            <li class="active"><a href="./Owner/OwHome.jsp">Home</a></li>
                             <li class="active"><a href="listroom">Room</a></li>
-                            <li><a href="Payment.html">Payment</a></li>
                             <li><a href="selistcustomer">Renter</a></li>
                             <li><a href="Guide.html">Guide</a></li>
                             <li><a href="News.html">News</a></li>

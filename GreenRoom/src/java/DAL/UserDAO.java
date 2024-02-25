@@ -53,7 +53,7 @@ public class UserDAO extends MyDAO {
         List<User> list = new ArrayList<>();
         String sql = "SELECT DISTINCT "
                 + "    u.userID, u.userName, u.userGender, u.userBirth, u.userAddress, u.userPhone, u.userAvatar, \n"
-                + "    r.renterID, r.roomID, r.renterStatus, r.renterHaveRoom,"
+                + "    r.renterID, r.roomID, r.renterStatus, r.renterHaveRoom, r.CGRScore, r.balance, "
                 + "    a.userMail, a.userPassword,"
                 + "    rm.roomFloor, rm.roomNumber"
                 + " FROM"
@@ -83,12 +83,14 @@ public class UserDAO extends MyDAO {
                 int roomID = rs.getInt(9);
                 boolean renterStatus = rs.getBoolean(10);
                 boolean renterHaveRoom = rs.getBoolean(11);
-                String userMail = rs.getString(12);
-                String userPassword = rs.getString(13);
-                int roomFloor = rs.getInt(14);
-                String roomNumber = rs.getString(15);
+                int CGRScore = rs.getInt(12);
+                double balance = rs.getDouble(13);
+                String userMail = rs.getString(14);
+                String userPassword = rs.getString(15);
+                int roomFloor = rs.getInt(16);
+                String roomNumber = rs.getString(17);
                 Account account = new Account(userId, userMail, userPassword, 1);
-                Renter renter = new Renter(renterID, userId, roomID, renterStatus, renterHaveRoom);
+                Renter renter = new Renter(renterID, userId, roomID, renterStatus, renterHaveRoom, CGRScore, balance);
                 Room room = new Room(roomID, roomFloor, roomNumber, roomID, roomNumber, roomNumber);
                 User user = new User(userId, userName, userGender, userBirth, userAddress, userPhone, userAvatar, account, renter, room);
                 list.add(user);
@@ -135,12 +137,14 @@ public class UserDAO extends MyDAO {
                 int roomID = rs.getInt(9);
                 boolean renterStatus = rs.getBoolean(10);
                 boolean renterHaveRoom = rs.getBoolean(11);
-                String userMail = rs.getString(12);
-                String userPassword = rs.getString(13);
-                int roomFloor = rs.getInt(14);
-                String roomNumber = rs.getString(15);
+                int CGRScore = rs.getInt(12);
+                double balance = rs.getDouble(13);
+                String userMail = rs.getString(14);
+                String userPassword = rs.getString(15);
+                int roomFloor = rs.getInt(16);
+                String roomNumber = rs.getString(17);
                 Account account = new Account(userId, userMail, userPassword, 1);
-                Renter renter = new Renter(renterID, userId, roomID, renterStatus, renterHaveRoom);
+                Renter renter = new Renter(renterID, userId, roomID, renterStatus, renterHaveRoom, CGRScore, balance);
                 Room room = new Room(roomID, roomFloor, roomNumber, roomID, roomNumber, roomNumber);
                 User user = new User(userId, userName, userGender, userBirth, userAddress, userPhone, userAvatar, account, renter, room);
             return user;

@@ -24,6 +24,7 @@ public class RenterDAO extends MyDAO {
     3.roomID - int
     4.renterStatus - boolean
     5.renterHaveRoom - boolean
+    
      */
     //List Renter Data
     public List<Renter> getRenterList(int id) {
@@ -35,7 +36,7 @@ public class RenterDAO extends MyDAO {
             ps.setInt(1, id);
             rs = ps.executeQuery();
             while (rs.next()) {
-                Renter renter = new Renter(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getBoolean(4), rs.getBoolean(5));
+                Renter renter = new Renter(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getBoolean(4), rs.getBoolean(5), rs.getInt(6), rs.getDouble(7));
                 list.add(renter);
             }
         } catch (SQLException e) {
