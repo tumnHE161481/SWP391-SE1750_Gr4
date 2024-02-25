@@ -36,6 +36,25 @@ public class User{
         this.room = room;
     }
 
+    public User(int userID, String userName, String userGender, String userBirth, String userAddress, String userPhone, String userAvatar, Account account) {
+        this.userID = userID;
+        this.userName = userName;
+        this.userGender = userGender;
+        this.userBirth = userBirth;
+        this.userAddress = userAddress;
+        this.userPhone = userPhone;
+        this.userAvatar = userAvatar;
+        this.account = account;
+    }
+    
+    
+
+    public User(int userID, String userName, String userAvatar, Account account) {
+        this.userID = userID;
+        this.userName = userName;
+        this.userAvatar = userAvatar;
+        this.account = account;
+    }
 
     public User(int userID, String userName, String userGender, String userBirth, String userAddress, String userPhone, String userAvatar) {
         this.userID = userID;

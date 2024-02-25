@@ -19,8 +19,8 @@ import java.util.List;
  *
  * @author ASUS
  */
-@WebServlet(name = "ManageAccountController", urlPatterns = {"/manageaccount"})
-public class ManageAccountController extends HttpServlet {
+@WebServlet(name = "ManageSecurityDetail", urlPatterns = {"/adsedetail"})
+public class ManageSecurityDetail extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -39,52 +39,63 @@ public class ManageAccountController extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ManageRenterController</title>");
+            out.println("<title>Servlet ManageSecurityDetail</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet ManageRenterController at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet ManageSecurityDetail at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
     }
 
+    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+    /**
+     * Handles the HTTP <code>GET</code> method.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        String id_raw= request.getParameter("id");
+        int id;
         UserDAO dao = new UserDAO();
-        // Check if the search results are already stored in the session
-        List<User> list = (List<User>) request.getSession().getAttribute("manageAccount");
-        // If not, list all data
-        if (list == null) {
-            list = dao.manageAccount();
+        try{
+            id=Integer.parseInt(id_raw);
+            List<User> rd = dao.getRenterDetail(id);
+            request.setAttribute("detail", rd);
+            request.getRequestDispatcher("/Admin/securitydetail.jsp").forward(request, response);
         }
-        request.setAttribute("manageAccount", list);
-        request.getRequestDispatcher("/Admin/manageaccount.jsp").forward(request, response);
+        catch(NumberFormatException e){
+             
+        }
     }
 
+    /**
+     * Handles the HTTP <code>POST</code> method.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        UserDAO dao = new UserDAO();
-        String txtSearch = request.getParameter("txtSearch");
-        request.setAttribute("txtSearch", txtSearch);
-
-        if (txtSearch != null && !txtSearch.isEmpty()) {
-            List<User> searchResult = dao.searchResult(txtSearch);
-            request.getSession().setAttribute("manageAccount", searchResult);
-            int count = dao.countSearchResult(txtSearch);
-            // Set attribute based on search count
-            request.setAttribute("searchCount", count);
-            request.setAttribute("manageAccount", searchResult);
-        } else {
-            // If no search text provided, show all data
-            List<User> list = dao.manageAccount();
-            request.getSession().setAttribute("manageAccount", list);
-            request.setAttribute("manageAccount", list);
-            request.setAttribute("searchCount", "");
-        }
-
-        request.getRequestDispatcher("/Admin/manageaccount.jsp").forward(request, response);
+        processRequest(request, response);
     }
+
+    /**
+     * Returns a short description of the servlet.
+     *
+     * @return a String containing servlet description
+     */
+    @Override
+    public String getServletInfo() {
+        return "Short description";
+    }// </editor-fold>
 
 }

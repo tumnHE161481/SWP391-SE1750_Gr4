@@ -95,22 +95,7 @@
                             <div class="col-12">
                                 <div class="row">
                                     <div class="col-12 d-flex gap-3">
-                                        <c:forEach var="account" items="${filterByRole}">
-                                            <c:choose>
-                                                <c:when test="${account.userRole == 1}">
-                                                    <div id="role-tag" style="background-color: #abc0c4; color: #FFF; border-radius: 15px; border: 1px solid #abc0c4; padding: 5px; cursor: pointer">Renter</div>
-                                                </c:when>
-                                                <c:when test="${account.userRole == 2}">
-                                                    <div id="role-tag" style="background-color: #abc0c4; color: #FFF; border-radius: 15px; border: 1px solid #abc0c4; padding: 5px; cursor: pointer">Security</div>
-                                                </c:when>
-                                                <c:when test="${account.userRole == 3}">
-                                                    <div id="role-tag" style="background-color: #abc0c4; color: #FFF; border-radius: 15px; border: 1px solid #abc0c4; padding: 5px; cursor: pointer">Owner</div>
-                                                </c:when>
-                                                <c:otherwise>
-                                                    <div class="d-none">Unknown</div>
-                                                </c:otherwise>
-                                            </c:choose>
-                                        </c:forEach>
+                                        Result Found: ${searchCount}
                                     </div>
                                 </div>
                             </div>
@@ -129,22 +114,22 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <c:forEach var="account" items="${manageAccount}" varStatus="loop" >
-                                    <c:set var="id" value="${account.userID}"/>
+                                <c:forEach var="user" items="${manageAccount}" varStatus="loop" >
+                                    <c:set var="id" value="${user.userID}"/>
                                     <tr>
                                         <td style="text-align: center">${loop.index + 1}</td>
-                                        <td><img style="height: 50px; width: 50px; border-radius: 50%" src=${account.user.userAvatar}></td>
-                                        <td>${account.user.userName}</td>
-                                        <td>${account.userMail}</td>
+                                        <td style="padding: 20px 0px "><img style="height: 100px; width: 100px; border-radius: 50%; object-fit: cover" src=${user.userAvatar}></td>
+                                        <td style="font-weight: bold">${user.userName}</td>
+                                        <td>${user.account.userMail}</td>
                                         <td>
                                             <c:choose>
-                                                <c:when test="${account.userRole == 1}">
+                                                <c:when test="${user.account.userRole == 1}">
                                                     <div>Renter</div>
                                                 </c:when>
-                                                <c:when test="${account.userRole == 2}">
+                                                <c:when test="${user.account.userRole == 2}">
                                                     <div>Security</div>
                                                 </c:when>
-                                                <c:when test="${account.userRole == 3}">
+                                                <c:when test="${user.account.userRole == 3}">
                                                     <div>Owner</div>
                                                 </c:when>
                                                 <c:otherwise>
@@ -153,13 +138,13 @@
                                             </c:choose>
                                         </td>
                                         <td><c:choose>
-                                                <c:when test="${account.userRole == 1}">
+                                                <c:when test="${user.account.userRole == 1}">
                                                     <a style="text-decoration: none" href="renterdetail?id=${id}"><i class="fa-solid fa-circle-info"></i>&nbsp;Detail</a>
                                                 </c:when>
-                                                <c:when test="${account.userRole == 2}">
+                                                <c:when test="${user.account.userRole == 2}">
                                                     <a style="text-decoration: none" href="/"><i class="fa-solid fa-circle-info"></i>&nbsp;Detail</a>
                                                 </c:when>
-                                                <c:when test="${account.userRole == 3}">
+                                                <c:when test="${user.account.userRole == 3}">
                                                     <a style="text-decoration: none" href="/"><i class="fa-solid fa-circle-info"></i>&nbsp;Detail</a>
                                                 </c:when>
                                                 <c:otherwise>
