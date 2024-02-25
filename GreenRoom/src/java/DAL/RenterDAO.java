@@ -47,7 +47,7 @@ public class RenterDAO extends MyDAO {
             ps.setString(2, password_input);
             rs = ps.executeQuery();
             while (rs.next()) {
-                
+
                 int userID = rs.getInt(1);
                 String userName = rs.getString(2);
                 String userGender = rs.getString(3);
@@ -59,13 +59,12 @@ public class RenterDAO extends MyDAO {
                 int roomID = rs.getInt(9);
                 boolean renterStatus = rs.getBoolean(10);
                 boolean renterHaveRoom = rs.getBoolean(11);
-                 int CGRScore = rs.getInt(12); // Fetch CGRScore
+                int CGRScore = rs.getInt(12); // Fetch CGRScore
                 double balance = rs.getDouble(13); // Fetch balance
                 String userMail = rs.getString(14);
                 String userPassword = rs.getString(15);
                 int roomFloor = rs.getInt(16);
                 String roomNumber = rs.getString(17);
-               
 
                 Account account = new Account(userID, userMail, userPassword, 1);
                 Renter renter = new Renter(renterID, userID, roomID, renterStatus, renterHaveRoom, CGRScore, balance);
@@ -126,10 +125,12 @@ public class RenterDAO extends MyDAO {
             System.out.println("Room Floor: " + user.getRoom().getRoomFloor());
             System.out.println("Room Number: " + user.getRoom().getRoomNumber());
 
+            // Print information from Renter including CGRScore and balance
+            System.out.println("CGR Score: " + user.getRenter().getCGRScore());
+            System.out.println("Balance: " + user.getRenter().getBalance());
+
             System.out.println("--------");
-
         }
-
     }
 
     public String getPasswordByAccount(String accountInput) {
