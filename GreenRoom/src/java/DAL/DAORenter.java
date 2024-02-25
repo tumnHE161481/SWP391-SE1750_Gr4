@@ -23,9 +23,7 @@ public class DAORenter extends DBContext {
 
     public List<News> getAllNews() {
         List<News> list = new ArrayList<>();
-        String query = "select u.userName, n.newsTitle, n.newsDes\n"
-                + "from  [dbo].[News] as n, [dbo].[User] as u\n"
-                + "where n.ownerID = u.userID";
+        String query = "SELECT * from news";
         try {
             conn = connection;
             ps = conn.prepareStatement(query);

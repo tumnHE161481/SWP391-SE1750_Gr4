@@ -3,7 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Creep/OneDrive/Desktop/SWP391-SE1750_Gr4-maitu/GreenRoom/src/java/Controller/RenterHomeController.java</file>
+            <file>file:/C:/Users/Creep/OneDrive/Desktop/SWP391-SE1750_Gr4-maitu/GreenRoom/src/java/DAL/RenterDAO.java</file>
+            <file>file:/C:/Users/Creep/OneDrive/Desktop/SWP391-SE1750_Gr4-maitu/GreenRoom/src/java/Models/User.java</file>
+            <file>file:/C:/Users/Creep/OneDrive/Desktop/SWP391-SE1750_Gr4-maitu/GreenRoom/src/java/Models/Renter.java</file>
         </group>
     </open-files>
 </project-private>

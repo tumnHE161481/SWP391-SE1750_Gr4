@@ -17,11 +17,11 @@ public class PenaltyDAO extends MyDAO {
                 + "    u.userID, u.userName, u.userGender, u.userBirth, u.userAddress, u.userPhone, u.userAvatar,\n"
                 + "    p.penID, p.title, p.description, p.penMoney, p.penStatus\n"
                 + "FROM\n"
-                + "    [User] u\n" // Escape 'User' keyword
+                + "    [user] u\n" // Escape 'User' keyword
                 + "JOIN\n"
-                + "    Penalty p ON u.userID = p.userID\n"
+                + "    penalty p ON u.userID = p.userID\n"
                 + "JOIN\n"
-                + "    Account a ON u.userID = a.userID\n"
+                + "    account a ON u.userID = a.userID\n"
                 + "WHERE\n"
                 + "    a.userMail = ? AND a.userPassword = ?";
 

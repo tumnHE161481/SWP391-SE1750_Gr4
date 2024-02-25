@@ -203,15 +203,15 @@
                         <tr>
                             <th>Title</th>
                             <th>Description</th>
-                            <th>Author</th>
+                            <th>View Details</th>
                         </tr>
                     </thead>
                     <tbody>
                         <c:forEach items="${ListN}" var="n">
                             <tr>
-                                <td><a href="https://example.com">${n.newsTitle}</a></td>
+                                <td>${n.newsTitle}</td>
                                 <td>${n.newDes}</td>
-                                <td>${n.userName}</td>
+                                <td>Click To View</td>
                             </tr>
                         </c:forEach>
                     </tbody>

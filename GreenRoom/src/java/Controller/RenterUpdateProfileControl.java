@@ -59,7 +59,7 @@ public class RenterUpdateProfileControl extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         RenterDAO dao = new RenterDAO();
-        List<User> list = dao.getRenterDetailByAccountAndPassword("hungdog@gmail.com", "12345678");
+        List<User> list = dao.getRenterDetailByAccountAndPassword("maingoctu@gmail.com", "12345");
         request.setAttribute("ListRP", list);
         request.getRequestDispatcher("Renter/RenterUpdateProfile.jsp").forward(request, response);
 

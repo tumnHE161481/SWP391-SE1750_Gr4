@@ -1,15 +1,8 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
- */
 package Controller;
 
 import DAL.PenaltyDAO;
-import DAL.DAORenter;
-import DAL.RenterDAO;
-import Models.*;
+import Models.Penalty;
 import java.io.IOException;
-import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -17,82 +10,33 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import java.util.List;
 
-/**
- *
- * @author Creep
- */
 public class RenterPenaltyControl extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try ( PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet RenterHomeController</title>");
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet RenterHomeController at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
-    }
-
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
+        // Retrieve email and password from session attributes
         String email = (String) session.getAttribute("email");
-        String pass = (String) session.getAttribute("password");
-        PenaltyDAO dao = new PenaltyDAO();
-        List<Penalty> list = dao.getPenalty("hungdog@gmail.com", "12345678");
-        request.setAttribute("ListP", list);
-
-        request.getRequestDispatcher("Renter/RenterPenalty.jsp").forward(request, response);
-
+        String password = (String) session.getAttribute("password");
+        
+        if (email != null && password != null) {
+            PenaltyDAO dao = new PenaltyDAO();
+            //List<Penalty> list = dao.getPenalty(email, password);
+            List<Penalty> list = dao.getPenalty("hungdog@gmail.com", "12345678");
+            request.setAttribute("ListP", list);
+            request.getRequestDispatcher("Renter/RenterPenalty.jsp").forward(request, response);
+        } else {
+            // If email or password is null, redirect the user to the login page
+            response.sendRedirect("login.jsp");
+        }
     }
 
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        // This method might be used for handling form submissions in the future
+        // For now, you can leave it empty
     }
-
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
 
 }

@@ -271,7 +271,6 @@
                         <c:otherwise>Unknown</c:otherwise>
                     </c:choose>
                 </p>
-                        <p>Room Have Room?: ${user.renter.renterHaveRoom}</p>
                         <p>Room Floor: ${user.room.roomFloor}</p>
                         <!-- Add other renter-related properties as needed -->
                     </div>
