@@ -56,14 +56,13 @@
                     <a href="Homepage.html" class="logo m-0 float-start">Green Room</a>
 
                     <ul class="js-clone-nav d-none d-lg-inline-block text-start site-menu float-end">
-                        <li class="active"><a href="Homepage.html">Home</a></li>
-                        <li class="active"><a href="RoomList.html">Room</a></li>
-                        <li><a href="Payment.html">Profile</a></li>
-                        <li><a href="CustomerList.html">Customer</a></li>
-                        <li><a href="Guide.html">Guide</a></li>
-                        <li><a href="News.html">News</a></li>
-                        <li><a href="News.html">Log Out</a></li>
-                    </ul>
+                            <li class="active"><a href="sehome">Home</a></li>
+                            <li class="active"><a href="listroom">Room</a></li>
+                            <li><a href="seprofile">Profile</a></li>
+                            <li><a href="selistcustomer">Renter</a></li>
+                            <li><a href="Guide.html">Guide</a></li>
+                               <li><a href="News.html">Log Out</a></li>
+                        </ul>
 
                     <a href="#" class="burger light me-auto float-end mt-1 site-menu-toggle js-menu-toggle d-inline-block d-lg-none" data-toggle="collapse" data-target="#main-navbar">
                         <span></span>
@@ -104,7 +103,7 @@
                                 <div class="row">
                                     <div class="col-md-4">
                                         <!-- Avatar -->
-                                        <img src="path/to/avatar.jpg" alt="Avatar" class="profile-avatar img-fluid">
+                                        <img src="${account.user.userAvatar}" name="avatar" alt="Avatar" class="profile-avatar img-fluid">
                                     </div>
                                     <div class="col-md-8">
                                         <!-- Thông tin cá nhân -->
@@ -113,27 +112,27 @@
                                             <tbody>
                                                 <tr>
                                                     <th scope="row">Tên:</th>
-                                                    <td>John Doe</td>
+                                                    <td>${account.user.userName}</td>
                                                 </tr>
                                                 <tr>
                                                     <th scope="row">Email:</th>
-                                                    <td>john.doe@example.com</td>
+                                                    <td>${account.userMail}</td>
                                                 </tr>
                                                 <tr>
                                                     <th scope="row">Gender:</th>
-                                                    <td>Male</td>
+                                                    <td>${account.user.userGender}</td>
                                                 </tr>
                                                 <tr>
                                                     <th scope="row">Birth:</th>
-                                                    <td>January 1, 1990</td>
+                                                    <td>${account.user.userBirth}</td>
                                                 </tr>
                                                 <tr>
                                                     <th scope="row">Address:</th>
-                                                    <td>123 Main Street, City, Country</td>
+                                                    <td>${account.user.userAddress}</td>
                                                 </tr>
                                                 <tr>
                                                     <th scope="row">Phone:</th>
-                                                    <td>+1234567890</td>
+                                                    <td>${account.user.userPhone}</td>
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -143,7 +142,7 @@
                             
 
                             <div class="col-12">
-                                <input type="submit" value="Edit Profile" class="btn btn-primary">
+                                <a href="seeditprofile?pid=${o.id}&back=home"  value="Edit Profile" class="btn btn-primary">Edit Profile</a>
                                 <input type="submit" value="Change Password" class="btn btn-primary">
                             </div>
                            

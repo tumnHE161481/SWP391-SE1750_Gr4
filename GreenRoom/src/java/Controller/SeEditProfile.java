@@ -2,49 +2,57 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-
 package Controller;
 
+import DAL.DAO;
+import Models.Account;
+import Models.SeUserProfile;
+import Models.User;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+import java.text.SimpleDateFormat;
 
 /**
  *
  * @author ASUS
  */
 public class SeEditProfile extends HttpServlet {
-   
-    /** 
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
+
+    /**
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
+     *
      * @param request servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-    throws ServletException, IOException {
+            throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
+        try ( PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet SeEditProfile</title>");  
+            out.println("<title>Servlet SeEditProfile</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet SeEditProfile at " + request.getContextPath () + "</h1>");
+            out.println("<h1>Servlet SeEditProfile at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
-    } 
+    }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /** 
+    /**
      * Handles the HTTP <code>GET</code> method.
+     *
      * @param request servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
@@ -52,12 +60,31 @@ public class SeEditProfile extends HttpServlet {
      */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
-    throws ServletException, IOException {
-        processRequest(request, response);
-    } 
+            throws ServletException, IOException {
+        HttpSession session = request.getSession();
+        Account acc = (Account) session.getAttribute("user");
+        // get user
 
-    /** 
+        DAO dao = new DAO();
+        SeUserProfile se = dao.getProfileById(String.valueOf(acc.getUserID()));
+        User user = new User();
+        String back = request.getParameter("back");
+        user.setUserID(se.getUserID());
+        user.setUserName(se.getUserName());
+        user.setUserAddress(se.getUserAddress());
+        user.setUserAvatar(se.getUserAvatar());
+        user.setUserBirth(se.getUserBirth());
+        user.setUserGender(se.getUserGender());
+        user.setUserPhone(se.getUserPhone());
+        acc.setUser(user);
+        request.setAttribute("back", back);
+        request.setAttribute("account", acc);
+        request.getRequestDispatcher("JSP/SeEditProfile.jsp").forward(request, response);
+    }
+
+    /**
      * Handles the HTTP <code>POST</code> method.
+     *
      * @param request servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
@@ -65,12 +92,36 @@ public class SeEditProfile extends HttpServlet {
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-    throws ServletException, IOException {
-        processRequest(request, response);
+            throws ServletException, IOException {
+        System.out.println("start");
+        String back = request.getParameter("back");
+        String userName = request.getParameter("name");
+        String userGender = request.getParameter("gender");
+        String userBirth = request.getParameter("birth");
+        String userAddress = request.getParameter("address");
+        String userPhone = request.getParameter("phone");
+        String userAvatar = request.getParameter("avatar");
+        HttpSession session = request.getSession();
+        Account a = (Account) session.getAttribute("user");
+        System.out.println(userName);
+        System.out.println(userBirth);
+        System.out.println(userAddress);
+        System.out.println(userPhone);
+        System.out.println(userAvatar);
+        int sid = a.getUserID();
+        System.out.println(a.getUserID());
+        DAO dao = new DAO();
+        if (dao.updateProfile(userName, userGender, userBirth, userAddress, userPhone, userAvatar, a.getUserID())) {
+            System.out.println("update thanh cong");
+        } else {
+            System.out.println("update fail");
+        }
+        response.sendRedirect("seprofile");
     }
 
-    /** 
+    /**
      * Returns a short description of the servlet.
+     *
      * @return a String containing servlet description
      */
     @Override

@@ -15,7 +15,7 @@ public class SeUserProfile {
     private int userID;
     private String userName;
     private String userGender;
-    private Date userBirth;
+    private String userBirth;
     private String userAddress;
     private String userPhone;
     private String userAvatar;
@@ -24,7 +24,7 @@ public class SeUserProfile {
     public SeUserProfile() {
     }
 
-    public SeUserProfile(int userID, String userName, String userGender, Date userBirth, String userAddress, String userPhone, String userAvatar, String userMail) {
+    public SeUserProfile(int userID, String userName, String userGender, String userBirth, String userAddress, String userPhone, String userAvatar, String userMail) {
         this.userID = userID;
         this.userName = userName;
         this.userGender = userGender;
@@ -34,6 +34,8 @@ public class SeUserProfile {
         this.userAvatar = userAvatar;
         this.userMail = userMail;
     }
+
+    
 
     public int getUserID() {
         return userID;
@@ -59,14 +61,15 @@ public class SeUserProfile {
         this.userGender = userGender;
     }
 
-    public Date getUserBirth() {
+    public String getUserBirth() {
         return userBirth;
     }
 
-    public void setUserBirth(Date userBirth) {
+    public void setUserBirth(String userBirth) {
         this.userBirth = userBirth;
     }
 
+  
     public String getUserAddress() {
         return userAddress;
     }

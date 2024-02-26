@@ -6,6 +6,7 @@ package DAL;
 
 import Models.*;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -71,8 +72,8 @@ public class DAO extends DBContext {
 
     public List<RoomListSE> getAllRoom() {
         List<RoomListSE> list = new ArrayList<>();
-        String query = "SELECT r.roomID, r.roomFloor, r.roomNumber, r.roomSize, r.roomImg\n" +
-"              FROM [dbo].[Room] AS r";
+        String query = "SELECT r.roomID, r.roomFloor, r.roomNumber, r.roomSize, r.roomImg\n"
+                + "              FROM [dbo].[Room] AS r";
         try {
             conn = connection;
             ps = conn.prepareStatement(query);
@@ -142,4 +143,59 @@ public class DAO extends DBContext {
         }
         return list;
     }
+
+    public SeUserProfile getProfileById(String id) {
+
+        String query = "select u.[userID],u.[userName],u.[userGender],u.[userBirth],u.[userAddress],u.[userPhone] ,u.[userAvatar], a.userMail\n"
+                + "from [dbo].[user] as u\n"
+                + "join dbo.account as a on a.userID = u.userID\n"
+                + "where u.userID = ?";
+        try {
+            conn = connection;
+            ps = conn.prepareStatement(query);
+            ps.setString(1, id);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+
+                return new SeUserProfile(rs.getInt(1),
+                        rs.getString(2),
+                        rs.getString(3),
+                        rs.getString(4),
+                        rs.getString(5),
+                        rs.getString(6),
+                        rs.getString(7),
+                        rs.getString(8));
+            }
+        } catch (Exception e) {
+        }
+        return null;
+    }
+
+    public boolean updateProfile(String userName, String userGender,
+            String userBirth, String userAddress, String userPhone,
+            String userAvatar, int pid) {
+        String query = "update [dbo].[user]\n"
+                + " set [userName] = ?,\n"
+                + " [userGender] = ?,\n"
+                + " [userBirth] = ?,\n"
+                + " [userAddress] = ?,\n"
+                + " [userPhone] = ?,\n"
+                + " [userAvatar] = ?\n"
+                + " where userID = ?";
+        try (Connection conn = connection;
+             PreparedStatement ps = conn.prepareStatement(query)) {
+            ps.setString(1, userName);
+            ps.setString(2, userGender);
+            ps.setString(3, userBirth);
+            ps.setString(4, userAddress);
+            ps.setString(5, userPhone);
+            ps.setString(6, userAvatar);
+            ps.setInt(7, pid);
+            return ps.executeUpdate() > 0;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
 }

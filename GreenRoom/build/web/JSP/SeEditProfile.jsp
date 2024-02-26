@@ -38,7 +38,7 @@
             <div id="editEmployeeModal">
                 <div class="modal-dialog">
                     <div class="modal-content">
-                        <form action="edit" method="post">
+                        <form action="seeditprofile" method="post">
                             <input type="hidden" value="${back}" name="back">
                             <div class="modal-header">						
                                 <h4 class="modal-title"></h4>
@@ -49,32 +49,32 @@
                             <div class="modal-body">					
                                 <div class="form-group">
                                     <label>ID</label>
-                                    <input value="${detail.id}" name="id" type="text" class="form-control" readonly required>
+                                    <input value="${account.userID}" name="id" type="text" class="form-control" readonly required>
                                 </div>
                                  <div class="form-group">
                                     <label>Avatar</label>
-                                    <input value="${detail.image}" name="image" type="text" class="form-control" required>
+                                    <input value="${account.user.userAvatar}" name="avatar" type="text" class="form-control" required>
                                 </div>
                                 <div class="form-group">
                                     <label>Name</label>
-                                    <input value="${detail.name}" name="name" type="text" class="form-control" required>
+                                    <input value="${account.user.userName}" name="name" type="text" class="form-control" required>
                                 </div>
                                 <div class="form-group">
                                     <label>Gender</label>
-                                    <input value="${detail.id}" name="id" type="text" class="form-control" readonly required>
+                                    <input value="${account.user.userGender}" name="gender" type="text" class="form-control" readonly required>
                                 </div>
 
                                <div class="form-group">
                                     <label>Birth</label>
-                                    <input value="${detail.id}" name="id" type="text" class="form-control" readonly required>
+                                    <input value="${account.user.userBirth}" name="birth" type="text" class="form-control" readonly required>
                                 </div>
                                 <div class="form-group">
                                     <label>Phone</label>
-                                    <input value="${detail.price}" name="price" type="text" class="form-control" required>
+                                    <input value="${account.user.userPhone}" name="phone" type="text" class="form-control" required>
                                 </div>
                                 <div class="form-group">
                                     <label>Address</label>
-                                    <textarea name="title" class="form-control" required>${detail.title}</textarea>
+                                    <textarea name="address" class="form-control" required>${account.user.userAddress}</textarea>
                                 </div>
                                
                             </div>

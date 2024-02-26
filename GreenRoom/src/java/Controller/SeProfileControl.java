@@ -5,12 +5,17 @@
 
 package Controller;
 
+import DAL.DAO;
+import Models.Account;
+import Models.SeUserProfile;
+import Models.User;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 /**
  *
@@ -53,7 +58,23 @@ public class SeProfileControl extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        processRequest(request, response);
+        HttpSession session = request.getSession();
+        Account acc = (Account)session.getAttribute("user");
+        // get user
+        
+        DAO dao = new DAO();
+        SeUserProfile se= dao.getProfileById(String.valueOf(acc.getUserID()));
+        User user =  new User();
+        user.setUserID(se.getUserID());
+        user.setUserName(se.getUserName());
+        user.setUserAddress(se.getUserAddress());
+        user.setUserAvatar(se.getUserAvatar());
+        user.setUserBirth(se.getUserBirth());
+        user.setUserGender(se.getUserGender());
+        user.setUserPhone(se.getUserPhone());
+        acc.setUser(user);
+        request.setAttribute("account", acc);
+        request.getRequestDispatcher("JSP/SeProfile.jsp").forward(request, response);
     } 
 
     /** 
@@ -66,7 +87,7 @@ public class SeProfileControl extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        processRequest(request, response);
+         
     }
 
     /** 

@@ -3,14 +3,26 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/Clone_SWP1/SWP391-SE1750_Gr4/GreenRoom/src/java/Models/Renter.java</file>
-            <file>file:/D:/Clone_SWP1/SWP391-SE1750_Gr4/GreenRoom/src/java/DAL/AccountDAO.java</file>
             <file>file:/D:/Clone_SWP1/SWP391-SE1750_Gr4/GreenRoom/src/java/Models/User.java</file>
-            <file>file:/D:/Clone_SWP1/SWP391-SE1750_Gr4/GreenRoom/src/java/DAL/MyDAO.java</file>
-            <file>file:/D:/Clone_SWP1/SWP391-SE1750_Gr4/GreenRoom/web/login.jsp</file>
-            <file>file:/D:/Clone_SWP1/SWP391-SE1750_Gr4/GreenRoom/src/java/Models/Account.java</file>
+            <file>file:/D:/Clone_SWP1/SWP391-SE1750_Gr4/GreenRoom/web/JSP/SeRoomDetail.jsp</file>
+            <file>file:/D:/Clone_SWP1/SWP391-SE1750_Gr4/GreenRoom/src/java/Models/SeRenter.java</file>
+            <file>file:/D:/Clone_SWP1/SWP391-SE1750_Gr4/GreenRoom/src/java/Models/RoomDetailSe.java</file>
             <file>file:/D:/Clone_SWP1/SWP391-SE1750_Gr4/GreenRoom/src/java/Models/Room.java</file>
+            <file>file:/D:/Clone_SWP1/SWP391-SE1750_Gr4/GreenRoom/src/java/Models/SeSercurity.java</file>
+            <file>file:/D:/Clone_SWP1/SWP391-SE1750_Gr4/GreenRoom/src/java/Models/Renter.java</file>
+            <file>file:/D:/Clone_SWP1/SWP391-SE1750_Gr4/GreenRoom/src/java/DAL/DAO.java</file>
+            <file>file:/D:/Clone_SWP1/SWP391-SE1750_Gr4/GreenRoom/src/java/Models/SeRoom.java</file>
+            <file>file:/D:/Clone_SWP1/SWP391-SE1750_Gr4/GreenRoom/src/java/DAL/AccountDAO.java</file>
+            <file>file:/D:/Clone_SWP1/SWP391-SE1750_Gr4/GreenRoom/src/java/Models/RoomListSE.java</file>
+            <file>file:/D:/Clone_SWP1/SWP391-SE1750_Gr4/GreenRoom/src/java/Controller/ListRoomControl.java</file>
+            <file>file:/D:/Clone_SWP1/SWP391-SE1750_Gr4/GreenRoom/src/java/DAL/MyDAO.java</file>
+            <file>file:/D:/Clone_SWP1/SWP391-SE1750_Gr4/GreenRoom/src/java/Models/SeUserProfile.java</file>
+            <file>file:/D:/Clone_SWP1/SWP391-SE1750_Gr4/GreenRoom/src/java/Models/Account.java</file>
+            <file>file:/D:/Clone_SWP1/SWP391-SE1750_Gr4/GreenRoom/web/JSP/SeRoomList.jsp</file>
+            <file>file:/D:/Clone_SWP1/SWP391-SE1750_Gr4/GreenRoom/web/JSP/SeListCustomer.jsp</file>
             <file>file:/D:/Clone_SWP1/SWP391-SE1750_Gr4/GreenRoom/src/java/Controller/LoginController.java</file>
+            <file>file:/D:/Clone_SWP1/SWP391-SE1750_Gr4/GreenRoom/src/java/Models/SeNews.java</file>
+            <file>file:/D:/Clone_SWP1/SWP391-SE1750_Gr4/GreenRoom/web/Image/room/room4.jpg</file>
         </group>
     </open-files>
 </project-private>
