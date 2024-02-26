@@ -38,14 +38,14 @@
             </div>
             <ul class="nav-list">
                 <li>
-                    <a href="managerenter" style="background-color: white">
+                    <a href="manageaccount" style="background-color: white">
                         <i class="fa-regular fa-address-book" style=" color: black"></i>
                         <span class="links_name" style=" color: black">Renter</span>
                     </a>
                     <span class="tooltip">Renter</span>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="manageroom">
                         <i class="fa-solid fa-house-user"></i>
                         <span class="links_name">Room</span>
                     </a>
@@ -64,7 +64,7 @@
             <div class="main--content">
                 <div class="header--wrapper">
                     <div class="header--title d-flex align-items-center">
-                        <img src="./Image/avatar8.jpg" alt="admin" style="height: 65px !important; width: 65px !important; margin-right: 20px"/>
+                        <img src="./Image/user/avatar20.jpg" alt="admin" style="height: 65px !important; width: 65px !important; margin-right: 20px"/>
                         <div>
                             <span>Admin Home</span>
                             <h2>Welcome !</h2>

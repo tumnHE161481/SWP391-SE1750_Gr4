@@ -24,6 +24,8 @@ public class RenterDAO extends MyDAO {
     3.roomID - int
     4.renterStatus - boolean
     5.renterHaveRoom - boolean
+    6.CGRScore - int
+    7.balance - double
     
      */
     //List Renter Data

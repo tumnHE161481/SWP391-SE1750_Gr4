@@ -13,8 +13,7 @@ import java.util.List;
  * @author ASUS
  */
 public class SecurityDAO extends MyDAO {
-    //Table - Room
-
+    //Table - security
     /*
     1.seID - int
     2.userID - int

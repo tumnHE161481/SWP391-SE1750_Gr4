@@ -15,7 +15,18 @@ public class Room {
     private int roomNumber;
     private int roomSize;
     private String roomImg;
+    private int total;
 
+    public Room(int roomID, int roomFloor, int roomNumber, int roomSize, String roomImg, int total) {
+        this.roomID = roomID;
+        this.roomFloor = roomFloor;
+        this.roomNumber = roomNumber;
+        this.roomSize = roomSize;
+        this.roomImg = roomImg;
+        this.total = total;
+    }
+    
+    
     public Room(int roomID, int roomFloor, int roomNumber, int roomSize, String roomImg) {
         this.roomID = roomID;
         this.roomFloor = roomFloor;
@@ -66,6 +77,16 @@ public class Room {
     public void setRoomImg(String roomImg) {
         this.roomImg = roomImg;
     }
+
+    public int getTotal() {
+        return total;
+    }
+
+    public void setTotal(int total) {
+        this.total = total;
+    }
+    
+    
 
 }
 
