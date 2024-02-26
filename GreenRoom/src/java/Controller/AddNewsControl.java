@@ -40,8 +40,6 @@ public class AddNewsControl extends HttpServlet {
         String ndescription = request.getParameter("description");
         String nimage = request.getParameter("image");
         String ndate = request.getParameter("date");
-
-       
         DAO dao = new DAO();
         dao.addNews(ntitle, ndescription, nimage, ndate);
         response.sendRedirect("sehome");

@@ -199,9 +199,9 @@
                         </c:forEach>
                     </tbody>
                 </table>
-                  
+                     <a href="addnews"  value="Edit Profile" class="btn btn-primary">Add News</a>
             </div>
-            <a href="addnews"  value="Edit Profile" class="btn btn-primary">Add News</a>
+         
         </div>
         <div class="site-footer">
             <div class="container">
