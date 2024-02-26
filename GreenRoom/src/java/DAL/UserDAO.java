@@ -102,8 +102,7 @@ public class UserDAO extends MyDAO {
     }
     
     //List Security information detail
-    public List<User> getSecurityDetail(int id) {
-        List<User> list = new ArrayList<>();
+    public User getSecurityDetail(int id) {
         String sql = "SELECT DISTINCT "
                 + "    u.userID, u.userName, u.userGender, u.userBirth, u.userAddress, u.userPhone, u.userAvatar, \n"
                 + "    se.seID, se.sShift, se.seStatus,"
@@ -137,14 +136,14 @@ public class UserDAO extends MyDAO {
                 Account account = new Account(userId, userMail, userPassword, 2);
                 Security security = new Security(seID, userId, sShift, seStatus);
                 User user = new User(userId, userName, userGender, userBirth, userAddress, userPhone, userAvatar, account, security);
-                list.add(user);
+                return user;
             }
         } catch (SQLException e) {
             // Handle exception as needed
                         System.out.println("Fail: " + e.getMessage());
 
         }
-        return list;
+        return null;
     }
     
 
@@ -201,7 +200,7 @@ public class UserDAO extends MyDAO {
         return null;
     }
 
-    
+       
      public List<User> manageAccount() {
         List<User> list = new ArrayList<>();
         String sql = "SELECT a.userID,\n"
@@ -313,6 +312,10 @@ public class UserDAO extends MyDAO {
     return list;
 }
     
+    
+    
+    
+    
         public static void main(String[] args) {
         UserDAO dao = new UserDAO();
 //         List<User> list = dao.getUserList();
@@ -341,13 +344,13 @@ public class UserDAO extends MyDAO {
 //
 //            System.out.println("--------");
 //        }
-         User user = dao.getRenterForEdit(1);
-         System.out.println("ID: "+user.getUserID());
-         System.out.println("Name: "+user.getUserName());
-         System.out.println("Accout: "+user.getAccount().getUserMail());
-         System.out.println("Room Number: "+user.getRoom().getRoomNumber());
-         System.out.println("Renter Status: "+user.getRenter().isRenterHaveRoom());
-    
+//         User user = dao.getRenterForEdit(1);
+//         System.out.println("ID: "+user.getUserID());
+//         System.out.println("Name: "+user.getUserName());
+//         System.out.println("Accout: "+user.getAccount().getUserMail());
+//         System.out.println("Room Number: "+user.getRoom().getRoomNumber());
+//         System.out.println("Renter Status: "+user.getRenter().isRenterHaveRoom());
+//    
 //        String search = "mai";
 //        int count = dao.countSearchResult(search);
 //        System.out.println("//Results find: "+ count);
@@ -365,6 +368,13 @@ public class UserDAO extends MyDAO {
 //            System.out.println("Mail: " + user.getAccount().getUserMail());
 //            System.out.println("Role: " + user.getAccount().getUserRole());
 //        }
+        
+        User user = dao.getSecurityDetail(17);
+         System.out.println("ID: "+user.getUserID());
+         System.out.println("Name: "+user.getUserName());
+         System.out.println("Account: "+user.getAccount().getUserMail());
+         System.out.println("seID: "+user.getSecurity().getSeID());
+         System.out.println("Security Status: "+user.getSecurity().isSeStatus());
         }
         
         

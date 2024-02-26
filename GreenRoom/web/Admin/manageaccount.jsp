@@ -122,9 +122,6 @@
                                                 <c:when test="${user.account.userRole == 2}">
                                                     <div>Security</div>
                                                 </c:when>
-                                                <c:when test="${user.account.userRole == 3}">
-                                                    <div>Owner</div>
-                                                </c:when>
                                                 <c:otherwise>
                                                     <div>Unknown</div>
                                                 </c:otherwise>
@@ -136,9 +133,6 @@
                                                 </c:when>
                                                 <c:when test="${user.account.userRole == 2}">
                                                     <a style="text-decoration: none" href="adsedetail?id=${id}"><i class="fa-solid fa-circle-info"></i>&nbsp;Detail</a>
-                                                </c:when>
-                                                <c:when test="${user.account.userRole == 3}">
-                                                    <a style="text-decoration: none" href="/"><i class="fa-solid fa-circle-info"></i>&nbsp;Detail</a>
                                                 </c:when>
                                                 <c:otherwise>
                                                     <div>Unknown</div>

@@ -64,17 +64,15 @@
             <div class="main--content">
                 <div class="header--wrapper">
                     <div class="header--title d-flex align-items-center">
-                        <img src="./Image/avatar8.jpg" alt="admin" style="height: 65px !important; width: 65px !important; margin-right: 20px"/>
+                        <img src="./Image/user/avatar20.jpg" alt="admin" style="height: 65px !important; width: 65px !important; margin-right: 20px"/>
                         <div>
                             <span>Admin Home</span>
                             <h2>Welcome !</h2>
                         </div>
                     </div>
                 </div>
-                <c:set var="securityList" value="${requestScope.detail}"></c:set>
-                <c:forEach var="sd" items="${securityList}">
-                    <c:set var="id" value="${sd.userID}"></c:set>
-                        <div class="container">
+                <c:set var="sd" value="${requestScope.detail}"></c:set>
+                           <div class="container">
                             <div class="row flex-lg-nowrap">
                                 <div class="col">
                                     <div class="row">
@@ -173,12 +171,15 @@
                                     <div class="col-12 col-md-3 mb-3">
                                         <div class="card">
                                             <div class="card-body">
-                                                <form>
+                                                <form action="adsedetail" method="post">
+                                                    
                                                     <h6 class="card-title font-weight-bold">Support</h6>
                                                     <p class="card-text">Switch security account status.</p>
                                                     <div class="d-flex justify-content-center gap-4">
+                                                        <input name="id" value="${sd.userID}" class="d-none">
+                                                        <input name="seStatus" value="${sd.security.seStatus}" class="d-none">
                                                         <a href="manageaccount" type="button" class="btn btn-danger">Back</a>
-                                                        <a href="" type="button" class="btn btn-primary">Change</a>
+                                                        <button type="submit" class="btn btn-primary"><i class="fa-solid fa-arrows-rotate"></i>&nbsp;Switch</button>
                                                     </div>
                                                 </form>
                                             </div>
@@ -189,7 +190,6 @@
                         </div>
                     </div>
 
-                </c:forEach>
         </section>
     </div>
 </body>

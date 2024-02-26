@@ -64,7 +64,7 @@
             <div class="main--content">
                 <div class="header--wrapper">
                     <div class="header--title d-flex align-items-center">
-                        <img src="./Image/avatar8.jpg" alt="admin" style="height: 65px !important; width: 65px !important; margin-right: 20px"/>
+                        <img src="./Image/user/avatar20.jpg" alt="admin" style="height: 65px !important; width: 65px !important; margin-right: 20px"/>
                         <div>
                             <span>Admin Home</span>
                             <h2>Welcome !</h2>
@@ -154,7 +154,7 @@
                                                                                         <c:otherwise>
                                                                                             <div class="w-100" style="background-color: #e6e9e9; padding: 6px 12px; border-radius: 5px; border: 1px solid #ced4da;"><i style="font-weight: bolder;" class="fa-solid fa-ban"></i></div>
                                                                                             </c:otherwise>
-                                                                                        </c:choose>
+                                                                                    </c:choose>
                                                                                 </div>
                                                                             </div>
                                                                         </div> 

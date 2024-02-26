@@ -39,7 +39,7 @@ public class ManageSecurityDetail extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ManageSecurityDetail</title>");            
+            out.println("<title>Servlet ManageSecurityDetail</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet ManageSecurityDetail at " + request.getContextPath() + "</h1>");
@@ -60,17 +60,16 @@ public class ManageSecurityDetail extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String id_raw= request.getParameter("id");
+        String id_raw = request.getParameter("id");
         int id;
         UserDAO dao = new UserDAO();
-        try{
-            id=Integer.parseInt(id_raw);
-            List<User> rd = dao.getSecurityDetail(id);
+        try {
+            id = Integer.parseInt(id_raw);
+            User rd = dao.getSecurityDetail(id);
             request.setAttribute("detail", rd);
             request.getRequestDispatcher("/Admin/securitydetail.jsp").forward(request, response);
-        }
-        catch(NumberFormatException e){
-             
+        } catch (NumberFormatException e) {
+
         }
     }
 
@@ -85,7 +84,19 @@ public class ManageSecurityDetail extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        String id_raw = request.getParameter("id");
+        int id;
+        SecurityDAO dao = new SecurityDAO();
+        request.setCharacterEncoding("UTF-8");
+        try {
+            id = Integer.parseInt(id_raw);
+            boolean seStatus = Boolean.parseBoolean(request.getParameter("seStatus"));
+            seStatus = !seStatus;
+            dao.updateSecurity(id, seStatus);
+            response.sendRedirect(request.getContextPath() + "/adsedetail?id=" + id_raw);
+        } catch (NumberFormatException e) {
+            response.sendRedirect(request.getContextPath() + "/adsedetail?id=" + id_raw);
+        }
     }
 
     /**
