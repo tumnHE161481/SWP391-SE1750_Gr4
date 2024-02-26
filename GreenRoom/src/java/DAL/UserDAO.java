@@ -28,7 +28,6 @@ public class UserDAO extends MyDAO {
     6.userPhone - String
     7.userAvatar
      */
-    
     //List User Data
     public List<User> getUserList() {
         List<User> list = new ArrayList<>();
@@ -95,12 +94,12 @@ public class UserDAO extends MyDAO {
             }
         } catch (SQLException e) {
             // Handle exception as needed
-                        System.out.println("Fail: " + e.getMessage());
+            System.out.println("Fail: " + e.getMessage());
 
         }
         return list;
     }
-    
+
     //List Security information detail
     public User getSecurityDetail(int id) {
         String sql = "SELECT DISTINCT "
@@ -140,12 +139,11 @@ public class UserDAO extends MyDAO {
             }
         } catch (SQLException e) {
             // Handle exception as needed
-                        System.out.println("Fail: " + e.getMessage());
+            System.out.println("Fail: " + e.getMessage());
 
         }
         return null;
     }
-    
 
     //Get Renter information detail
     public User getRenterForEdit(int id) {
@@ -191,17 +189,16 @@ public class UserDAO extends MyDAO {
                 Renter renter = new Renter(renterID, userId, roomID, renterStatus, renterHaveRoom, CGRScore, balance);
                 Room room = new Room(roomID, roomFloor, roomNumber, roomNumber, "");
                 User user = new User(userId, userName, userGender, userBirth, userAddress, userPhone, userAvatar, account, renter, room);
-            return user;
+                return user;
             }
         } catch (SQLException e) {
-                        System.out.println("Fail: " + e.getMessage());
+            System.out.println("Fail: " + e.getMessage());
 
         }
         return null;
     }
 
-       
-     public List<User> manageAccount() {
+    public List<User> manageAccount() {
         List<User> list = new ArrayList<>();
         String sql = "SELECT a.userID,\n"
                 + "       a.userMail,\n"
@@ -241,7 +238,6 @@ public class UserDAO extends MyDAO {
         }
         return list;
     }
-    
 
     public List<User> getOwner() {
         List<User> list = new ArrayList<>();
@@ -262,8 +258,8 @@ public class UserDAO extends MyDAO {
         }
         return list;
     }
-    
-     //Count number search results
+
+    //Count number search results
     public int countSearchResult(String txtSearch) {
         String sql = "SELECT COUNT(*) AS resultCount\n"
                 + "FROM [User] u \n"
@@ -279,44 +275,70 @@ public class UserDAO extends MyDAO {
                 return rs.getInt(1);
             }
         } catch (SQLException e) {
-              System.out.println("Fail: " + e.getMessage());
+            System.out.println("Fail: " + e.getMessage());
         }
         return 0;
     }
-    
+
     //List search results
     public List<User> searchResult(String txtSearch) {
-    List<User> list = new ArrayList<>();
-    String sql = "SELECT u.userID, u.userAvatar, u.userName, a.userMail, a.userRole \n" 
-            + "FROM [user] u\n" 
-            + " JOIN account a ON u.userID = a.userID\n" 
-            + "WHERE a.userRole != 3 AND a.userRole != 4 \n" 
-            + "AND (u.userName LIKE ? OR a.userMail LIKE ?)\n" 
-            + "ORDER BY u.userID";
+        List<User> list = new ArrayList<>();
+        String sql = "SELECT u.userID, u.userAvatar, u.userName, a.userMail, a.userRole \n"
+                + "FROM [user] u\n"
+                + " JOIN account a ON u.userID = a.userID\n"
+                + "WHERE a.userRole != 3 AND a.userRole != 4 \n"
+                + "AND (u.userName LIKE ? OR a.userMail LIKE ?)\n"
+                + "ORDER BY u.userID";
 
-    try {
-        ps = con.prepareStatement(sql);
-        ps.setString(1, "%" + txtSearch + "%");
-        ps.setString(2, "%" + txtSearch + "%");
-        rs = ps.executeQuery();
-        while (rs.next()) {
-            Account account = new Account(rs.getInt(1), rs.getString(4), "", rs.getInt(5));
-            User user = new User(rs.getInt(1),rs.getString(3), rs.getString(2), account);
-            list.add(user);
+        try {
+            ps = con.prepareStatement(sql);
+            ps.setString(1, "%" + txtSearch + "%");
+            ps.setString(2, "%" + txtSearch + "%");
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                Account account = new Account(rs.getInt(1), rs.getString(4), "", rs.getInt(5));
+                User user = new User(rs.getInt(1), rs.getString(3), rs.getString(2), account);
+                list.add(user);
+            }
+        } catch (SQLException e) {
+            System.out.println("Fail: " + e.getMessage());
+        } finally {
+            // Handle closing resources
         }
-    } catch (SQLException e) {
-        System.out.println("Fail: " + e.getMessage());
-    } finally {
-        // Handle closing resources
+        return list;
     }
-    return list;
-}
-    
-    
-    
-    
-    
-        public static void main(String[] args) {
+
+    public List<User> getUserByRoomID(int id) {
+        List<User> list = new ArrayList<>();
+        String sql = "SELECT u.*\n"
+                + "FROM [user] u\n"
+                + "JOIN renter r ON u.userID = r.userID\n"
+                + "WHERE r.roomID = ?;";
+
+        try {
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, id);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                int userId = rs.getInt(1);
+                String userName = rs.getString(2);
+                String userGender = rs.getString(3);
+                String userBirth = rs.getString(4);
+                String userAddress = rs.getString(5);
+                String userPhone = rs.getString(6);
+                String userAvatar = rs.getString(7);
+                User user = new User(userId, userName, userGender, userBirth, userAddress, userPhone, userAvatar);
+                list.add(user);
+            }
+        } catch (SQLException e) {
+            // Handle exception as needed
+            System.out.println("Fail: " + e.getMessage());
+
+        }
+        return list;
+    }
+
+    public static void main(String[] args) {
         UserDAO dao = new UserDAO();
 //         List<User> list = dao.getUserList();
 //        for (User user : list) {
@@ -368,16 +390,12 @@ public class UserDAO extends MyDAO {
 //            System.out.println("Mail: " + user.getAccount().getUserMail());
 //            System.out.println("Role: " + user.getAccount().getUserRole());
 //        }
-        
-        User user = dao.getSecurityDetail(17);
-         System.out.println("ID: "+user.getUserID());
-         System.out.println("Name: "+user.getUserName());
-         System.out.println("Account: "+user.getAccount().getUserMail());
-         System.out.println("seID: "+user.getSecurity().getSeID());
-         System.out.println("Security Status: "+user.getSecurity().isSeStatus());
+
+        List<User> list = dao.getUserByRoomID(2);
+        for (User user : list) {
+            System.out.println("ID: " + user.getUserID());
+            System.out.println("Name: " + user.getUserName());
         }
-        
-        
-        
+    }
 
 }

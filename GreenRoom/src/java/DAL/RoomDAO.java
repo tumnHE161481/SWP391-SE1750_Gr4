@@ -4,10 +4,12 @@
  */
 package DAL;
 
+import Models.Item;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import Models.Room;
+import Models.RoomItem;
 
 /**
  *
@@ -97,17 +99,79 @@ public class RoomDAO extends MyDAO {
         return list;
     }
 
+    public List<Room> getRoomItems(int id) {
+        List<Room> list = new ArrayList<>();
+        String statement = "SELECT i.itemImg, i.itemName, ri.quantity\n"
+                + "FROM room r\n"
+                + "INNER JOIN roomitem ri ON r.roomID = ri.roomID\n"
+                + "INNER JOIN item i ON ri.itemID = i.itemID\n"
+                + "WHERE r.roomID = ?\n"
+                + "ORDER BY i.itemName;";
+        try {
+            ps = con.prepareStatement(statement);
+            ps.setInt(1, id);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                Item item = new Item(rs.getString(2), rs.getString(1));
+                RoomItem roomitem= new RoomItem(rs.getInt(3));
+                Room room = new Room(item, roomitem);
+                list.add(room);
+            }
+        } catch (SQLException e) {
+            System.out.println("Fail: " + e.getMessage());
+        }
+        return list;
+    }
+
+    public Room getRoomDetail(int id) {
+        String sql = "SELECT \n"
+                + "    r.*,\n"
+                + "    COUNT(re.renterID) AS total\n"
+                + "FROM \n"
+                + "    Room r\n"
+                + "LEFT JOIN \n"
+                + "    Renter re ON r.roomID = re.roomID\n"
+                + "WHERE \n"
+                + "    r.roomID = ?\n"
+                + "GROUP BY \n"
+                + "    r.roomID, r.roomFloor, r.roomNumber, r.roomSize, r.roomImg";
+
+        try {
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, id);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                int roomID = rs.getInt(1);
+                int roomFloor = rs.getInt(2);
+                int roomNumber = rs.getInt(3);
+                int roomSize = rs.getInt(4);
+                String roomImg = rs.getString(5);
+                int total = rs.getInt(6);
+                Room room = new Room(roomID, roomFloor, roomNumber, roomSize, roomImg, total);
+                return room;
+            }
+        } catch (SQLException e) {
+            System.out.println("Fail: " + e.getMessage());
+
+        }
+        return null;
+    }
+
     public static void main(String[] args) {
         RoomDAO dao = new RoomDAO();
-        List<Room> list = dao.getAvailableRoom();
-        System.out.println("Room data");
+        List<Room> list = dao.getRoomItems(1);
         for (Room room : list) {
-            System.out.println("RoomID: " + room.getRoomID());
-            System.out.println("RoomFloor: " + room.getRoomFloor());
-            System.out.println("RoomNumber: " + room.getRoomNumber());
-            System.out.println("RoomSize: " + room.getRoomSize());
-            System.out.println("RoomImg: " + room.getRoomImg());
+            System.out.println("itemName: "+ room.getItem().getItemName());
         }
+//        List<Room> list = dao.getAvailableRoom();
+//        System.out.println("Room data");
+//        for (Room room : list) {
+//            System.out.println("RoomID: " + room.getRoomID());
+//            System.out.println("RoomFloor: " + room.getRoomFloor());
+//            System.out.println("RoomNumber: " + room.getRoomNumber());
+//            System.out.println("RoomSize: " + room.getRoomSize());
+//            System.out.println("RoomImg: " + room.getRoomImg());
+//        }
 //        List<Room> list = dao.getRoomDetailsForRoomID(1);
 //        for (Room room : list) {
 //            System.out.println("Room ID: " + room.getRoomID());
@@ -127,7 +191,10 @@ public class RoomDAO extends MyDAO {
 //            System.out.println("-------------");
 //        }
 
-        int roomID = dao.findRoomIDByRoomNumber(202);
-        System.out.println("roomID = " + roomID);
+//        int roomID = dao.findRoomIDByRoomNumber(202);
+//        System.out.println("roomID = " + roomID);
+        Room room = dao.getRoomDetail(1);
+        System.out.println("roomID: " + room.getRoomID());
+        System.out.println("roomImg: " + room.getRoomImg());
     }
 }

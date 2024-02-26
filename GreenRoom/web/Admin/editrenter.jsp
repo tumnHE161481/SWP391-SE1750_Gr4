@@ -30,7 +30,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     </head>
     <body>
-        <div class="sidebar">
+         <div class="sidebar">
             <div class="logo-details">
                 <i class="fa-brands fa-gofore"></i>
                 <div class="logo_name">GreenRoom</div>
@@ -38,16 +38,16 @@
             </div>
             <ul class="nav-list">
                 <li>
-                    <a href="manageaccount" style="background-color: white">
-                        <i class="fa-regular fa-address-book" style=" color: black"></i>
-                        <span class="links_name" style=" color: black">Renter</span>
+                    <a href="manageaccount">
+                        <i class="fa-regular fa-address-book"></i>
+                        <span class="links_name" style=" color: white">Account</span>
                     </a>
-                    <span class="tooltip">Renter</span>
+                    <span class="tooltip">Account</span>
                 </li>
                 <li>
-                    <a href="manageroom">
-                        <i class="fa-solid fa-house-user"></i>
-                        <span class="links_name">Room</span>
+                    <a href="manageroom" style="background-color: white">
+                        <i class="fa-solid fa-house-user" style=" color: black"></i>
+                        <span style=" color: black" class="links_name">Room</span>
                     </a>
                     <span class="tooltip">Room</span>
                 </li>
@@ -87,7 +87,7 @@
                                                             <div class="col-12 col-sm-auto mb-3">
                                                                 <div class="mx-auto" style="width: 140px;">
                                                                     <div class="d-flex justify-content-center align-items-center rounded" style="height: 140px; background-color: rgb(233, 236, 239);">
-                                                                        <img class="w-100 h-100" src="${rdl.userAvatar}"/>
+                                                                        <img class="w-100 h-100" style="object-fit: cover" src="${rdl.userAvatar}"/>
                                                                 </div>
                                                             </div>
                                                         </div>

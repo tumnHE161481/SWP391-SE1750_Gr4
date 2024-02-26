@@ -41,14 +41,14 @@
                 <li>
                     <a href="manageaccount">
                         <i class="fa-regular fa-address-book"></i>
-                        <span class="links_name" style=" color: black">Account</span>
+                        <span class="links_name" style=" color: white">Account</span>
                     </a>
                     <span class="tooltip">Account</span>
                 </li>
                 <li>
                     <a href="manageroom" style="background-color: white">
                         <i class="fa-solid fa-house-user" style=" color: black"></i>
-                        <span class="links_name">Room</span>
+                        <span style=" color: black" class="links_name">Room</span>
                     </a>
                     <span class="tooltip">Room</span>
                 </li>
@@ -74,6 +74,20 @@
                 </div>
                 <!--Table Content-->
                 <div class="tabular--wrapper">
+                    <h3 style="margin-bottom: 40px">Room Management</h3>
+                    <div class="col-lg-4">
+                        <div class="row">
+                            <div class="col-2">
+                                <h3>Floor: </h3>
+                            </div>
+                            <div class="col-10">
+                                <div class="d-flex gap-4">
+                                    <button type="submit">All</button>
+                                    <button type="submit">1,2,3,4</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <div class="col-lg-12">
                         <div class="row g-4 justify-content-center">
                             <c:forEach var="room" items="${manageRoom}" varStatus="loop" >

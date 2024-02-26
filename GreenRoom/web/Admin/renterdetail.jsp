@@ -86,7 +86,7 @@
                                                             <div class="col-12 col-sm-auto mb-3">
                                                                 <div class="mx-auto" style="width: 140px;">
                                                                     <div class="d-flex justify-content-center align-items-center rounded" style="height: 140px; background-color: rgb(233, 236, 239);">
-                                                                        <img class="w-100 h-100" src="${rdl.userAvatar}"/>
+                                                                        <img class="w-100 h-100" style="object-fit: cover" src="${rdl.userAvatar}"/>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -154,7 +154,7 @@
                                                                                         <c:otherwise>
                                                                                             <div class="w-100" style="background-color: #e6e9e9; padding: 6px 12px; border-radius: 5px; border: 1px solid #ced4da;"><i style="font-weight: bolder;" class="fa-solid fa-ban"></i></div>
                                                                                             </c:otherwise>
-                                                                                    </c:choose>
+                                                                                        </c:choose>
                                                                                 </div>
                                                                             </div>
                                                                         </div> 
@@ -188,6 +188,7 @@
                     </div>
 
                 </c:forEach>
+            </div>
         </section>
     </div>
 </body>

@@ -72,54 +72,133 @@
                         </div>
                     </div>
                 </div>
-                <!--Table Content-->
-                <div class="tabular--wrapper">
-                    <div class="col-lg-12">
-                        <div class="row g-4 justify-content-center">
-                            <c:forEach var="room" items="${manageRoom}" varStatus="loop" >
-                                <c:set var="id" value="${room.roomID}"/>
-                                <div class="col-md-6 col-lg-6 col-xl-3">
-                                    <div class="rounded position-relative fruite-item">
-                                        <div class="fruite-img">
-                                            <img src=${room.roomImg} class="img-fluid w-100 rounded-top" alt="" style="object-fit: cover; height: 300px">
-                                        </div>
-                                        
-                                        <c:choose>
-                                            <c:when test="${room.roomSize == 1}">
-                                                <div class="text-white bg-secondary px-3 py-1 rounded position-absolute" style="top: 10px; left: 10px;">Small Size</div>
-                                            </c:when>
-                                            <c:when test="${room.roomSize == 2}">
-                                                <div class="text-white bg-secondary px-3 py-1 rounded position-absolute" style="top: 10px; left: 10px;">Medium Size</div>
-                                            </c:when>
-                                            <c:otherwise>
-                                                <div class="text-white bg-secondary px-3 py-1 rounded position-absolute" style="top: 10px; left: 10px;">Big Size</div>
-                                            </c:otherwise>
-                                        </c:choose>
-                                        <div class="p-4 border border-secondary border-top-0 rounded-bottom">
-                                            <h4>Room ${room.roomNumber}</h4>
-                                            <small style="padding: 0px; font-style: italic">Floor ${room.roomFloor}</small>
-                                            <div class="d-flex justify-content-between flex-lg-wrap align-items-center" style="text-align: center">
-                                                <c:choose>
-                                                    <c:when test="${room.roomSize == 1}">
-                                                        <p class="text-dark fw-bold mb-0" style="font-size: 16px">Renter ${room.total}/1&nbsp;<i class="fa-solid fa-people-group"></i> </p>
-                                                    </c:when>
-                                                    <c:when test="${room.roomSize == 2}">
-                                                        <p class="text-dark fw-bold mb-0" style="font-size: 16px">Renter ${room.total}/2&nbsp;<i class="fa-solid fa-people-group"></i> </p>
-                                                    </c:when>
-                                                    <c:otherwise>
-                                                        <p class="text-dark fw-bold mb-0" style="font-size: 16px">Renter ${room.total}/4&nbsp;<i class="fa-solid fa-people-group"></i> </p>
-                                                    </c:otherwise>
-                                                </c:choose>
-                                                <a href="adroomdetail?id=${id}" class="btn border border-secondary rounded-pill px-3 text-primary" style="font-size: 16px">
-                                                    <i class="fa-solid fa-hand-point-right fa-sm" style="color: #1959c8;"></i> View detail
-                                                </a>
+
+                <c:set var="rd" value="${requestScope.detail}"></c:set>
+                <c:set var="id" value="${rd.roomID}"></c:set>
+                    <div class="container">
+                        <div class="row flex-lg-nowrap">
+                            <div class="col">
+                                <div class="row">
+                                    <div class="col mb-3">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <div class="e-profile">
+                                                    <div class="row">
+                                                        <div class="col-12" style=" height: 400px">
+                                                            <img class="w-100 h-100" src="${rd.roomImg}"/>
+                                                    </div>
+                                                </div>
+
+                                                <div class="tab-content pt-3">
+                                                    <div class="tab-pane active">
+                                                        <form class="form" novalidate="">
+                                                            <div class="row">
+                                                                <div class="col">
+                                                                    <div class="row">
+                                                                        <div class="col-6">
+                                                                            <div class="form-group">
+                                                                                <label>Floor:</label>
+                                                                                <input readonly class="form-control" type="text" name="name" value="${rd.roomFloor}">
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-6">
+                                                                            <div class="form-group">
+                                                                                <label>Room Number:</label>
+                                                                                <input readonly class="form-control" type="text" name="name" value="${rd.roomNumber}">
+                                                                            </div>
+                                                                        </div>
+
+                                                                    </div>
+                                                                    <div class="row">           
+                                                                        <div class="col-6">
+                                                                            <div class="form-group">
+                                                                                <label>Room Size:</label>
+                                                                                <c:choose>
+                                                                                    <c:when test="${rd.roomSize == 1}">
+                                                                                        <input readonly class="form-control" type="text" name="username"  value="Small">
+                                                                                    </c:when>
+                                                                                    <c:when test="${rd.roomSize == 2}">
+                                                                                        <input readonly class="form-control" type="text" name="username"  value="Medium">
+                                                                                    </c:when>
+                                                                                    <c:otherwise>
+                                                                                        <input readonly class="form-control" type="text" name="username"  value="Big">
+                                                                                    </c:otherwise>
+                                                                                </c:choose>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-6">
+                                                                            <div class="form-group">
+                                                                                <label>Total Room members:</label>
+                                                                                <input readonly class="form-control" type="text" name="name" value="${rd.total}">
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row" style="margin-top: 80px">
+                                                                <c:choose>
+                                                                    <c:when test="${rd.total > 0}">
+                                                                        <h3>Here is room member(s):</h3>
+                                                                    </c:when>
+                                                                    <c:when test="${rd.roomSize == 0}">
+                                                                        <div></div>
+                                                                    </c:when>
+                                                                    <c:otherwise>
+                                                                        <div></div>
+                                                                    </c:otherwise>
+                                                                </c:choose>
+                                                                <c:forEach var="user" items="${renterInThatRoom}">
+                                                                    <div class="col-3">
+                                                                        <div class="card h-100 w-100">
+                                                                            <img src=${user.userAvatar} class="card-img-top" style= "height: 160px; width: 100%" alt="...">
+                                                                            <div class="card-body">
+                                                                                <p class="card-title">${user.userName}<p>
+                                                                                    <a href="adrenteredit?id=${user.userID}" class="btn btn-primary">Change room</a>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </c:forEach>
+
+                                                            </div>
+                                                            <div class="row" style="margin-top: 80px">
+                                                                <h3>Item(s)in this room(s):</h3>                                                                           
+                                                                <c:forEach var="it" items="${itemInThatRoom}">
+                                                                    <div class="col-3" style="margin-top: 10px ">
+                                                                        <div class="card h-100 w-100">
+                                                                            <img src=${it.item.itemImg} class="card-img-top" style= "height: 160px; width: 100%" alt="...">
+                                                                            <div class="card-body d-flex align-items-center justify-content-center" style="background-color: #20c997">
+                                                                                <p class="card-title" style="color: white; font-size:16px">${it.item.itemName} x ${it.roomitem.quantity} </p>
+                                                                        
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </c:forEach>
+
+                                                            </div>
+                                                        </form>
+
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </c:forEach>
+
+                                <div class="col-12">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <h6 class="card-title font-weight-bold">Support</h6>
+                                            <p class="card-text">Edit room information and item(s) in that room too.</p>
+                                            <div class="d-flex justify-content-center gap-4">
+                                                <a href="manageroom" type="button" class="btn btn-danger"><i class="fa-solid fa-chevron-left"></i>&nbsp;Back</a>
+                                                <a href="adrooomedit?id=${id}" type="button" class="btn btn-primary"><i class="fa-regular fa-pen-to-square"></i> &nbsp;Edit</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                    </div>    
+                    </div>
                 </div>
             </div>
         </section>

@@ -16,6 +16,16 @@ public class Room {
     private int roomSize;
     private String roomImg;
     private int total;
+    private Item item;
+    private RoomItem roomitem;
+
+    public Room(Item item, RoomItem roomitem) {
+        this.item = item;
+        this.roomitem = roomitem;
+    }
+    
+    
+    
 
     public Room(int roomID, int roomFloor, int roomNumber, int roomSize, String roomImg, int total) {
         this.roomID = roomID;
@@ -85,6 +95,23 @@ public class Room {
     public void setTotal(int total) {
         this.total = total;
     }
+
+    public Item getItem() {
+        return item;
+    }
+
+    public void setItem(Item item) {
+        this.item = item;
+    }
+
+    public RoomItem getRoomitem() {
+        return roomitem;
+    }
+
+    public void setRoomitem(RoomItem roomitem) {
+        this.roomitem = roomitem;
+    }
+    
     
     
 

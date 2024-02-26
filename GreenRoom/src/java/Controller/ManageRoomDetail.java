@@ -1,26 +1,29 @@
+package Controller;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-package Controller;
 
+import DAL.RoomDAO;
 import DAL.UserDAO;
+import Models.Room;
 import Models.User;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.util.List;
 
 /**
  *
  * @author ASUS
  */
-@WebServlet(name = "ManageRenterDetail", urlPatterns = {"/renterdetail"})
-public class ManageRenterDetail extends HttpServlet {
+@WebServlet(urlPatterns = {"/adroomdetail"})
+public class ManageRoomDetail extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -39,10 +42,10 @@ public class ManageRenterDetail extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ManageRenterDetail</title>");
+            out.println("<title>Servlet ManageRoomDetail</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet ManageRenterDetail at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet ManageRoomDetail at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -60,14 +63,19 @@ public class ManageRenterDetail extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        RoomDAO dao = new RoomDAO();
+        UserDAO dao1 = new UserDAO();
         String id_raw = request.getParameter("id");
         int id;
-        UserDAO dao = new UserDAO();
         try {
             id = Integer.parseInt(id_raw);
-            List<User> rd = dao.getRenterDetail(id);
+            Room rd = dao.getRoomDetail(id);
+            List<Room> itemlist = dao.getRoomItems(id);
+            List<User> list = dao1.getUserByRoomID(id);
             request.setAttribute("detail", rd);
-            request.getRequestDispatcher("/Admin/renterdetail.jsp").forward(request, response);
+            request.setAttribute("renterInThatRoom", list);
+            request.setAttribute("itemInThatRoom", itemlist);
+            request.getRequestDispatcher("/Admin/roomdetail.jsp").forward(request, response);
         } catch (NumberFormatException e) {
             System.err.println("Fail:" + e);
         }
