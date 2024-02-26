@@ -179,14 +179,14 @@
             </div>
         </div>
         <div class="tabular--wrapper">
-            <h3 class="main--title">New</h3>
+            <h3 class="main--title">News</h3>
             <div class="table-container">
                 <table>
                     <thead>
                         <tr>
                             <th>Title</th>
-                            <th>Description</th>
-                            <th>Author</th>
+                            
+                            <th>Date</th>
                         </tr>
                     </thead>
 
@@ -194,8 +194,8 @@
                         <c:forEach items="${ListN}" var="n">
                             <tr>
                                 <td>${n.newsTitle}</td>
-                                <td>${n.newDes}</td>
-                                <td>${n.userName}</td>
+                                
+                                <td>${n.creatAt}</td>
                             </tr>
                         </c:forEach>
                     </tbody>
