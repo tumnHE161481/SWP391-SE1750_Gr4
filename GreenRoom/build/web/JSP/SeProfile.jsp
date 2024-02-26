@@ -142,8 +142,8 @@
                             
 
                             <div class="col-12">
-                                <a href="seeditprofile?pid=${o.id}&back=home"  value="Edit Profile" class="btn btn-primary">Edit Profile</a>
-                                <input type="submit" value="Change Password" class="btn btn-primary">
+                                <a href="seeditprofile"  value="Edit Profile" class="btn btn-primary">Edit Profile</a>
+                       
                             </div>
                            
                         </div>

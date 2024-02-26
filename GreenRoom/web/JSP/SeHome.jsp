@@ -145,7 +145,7 @@
                             <li><a href="seprofile">Profile</a></li>
                             <li><a href="selistcustomer">Renter</a></li>
                             <li><a href="Guide.html">Guide</a></li>
-                               <li><a href="News.html">Log Out</a></li>
+                            <li><a href="News.html">Log Out</a></li>
                         </ul>
 
                         <a href="#" class="burger light me-auto float-end mt-1 site-menu-toggle js-menu-toggle d-inline-block d-lg-none" data-toggle="collapse" data-target="#main-navbar">
@@ -185,7 +185,7 @@
                     <thead>
                         <tr>
                             <th>Title</th>
-                            
+
                             <th>Date</th>
                         </tr>
                     </thead>
@@ -194,13 +194,14 @@
                         <c:forEach items="${ListN}" var="n">
                             <tr>
                                 <td>${n.newsTitle}</td>
-                                
                                 <td>${n.creatAt}</td>
                             </tr>
                         </c:forEach>
                     </tbody>
                 </table>
+                  
             </div>
+            <a href="addnews"  value="Edit Profile" class="btn btn-primary">Add News</a>
         </div>
         <div class="site-footer">
             <div class="container">

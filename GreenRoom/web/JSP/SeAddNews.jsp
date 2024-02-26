@@ -36,7 +36,7 @@
         <link rel="stylesheet" href="css/aos.css">
         <link rel="stylesheet" href="css/style.css">
 
-        <title>Property &mdash; Free Bootstrap 5 Website Template by Untree.co</title>
+        <title>Add News</title>
         <style>
             .hi{
                 margin-top: 20px; /* or any other value you prefer */
@@ -104,22 +104,22 @@
                     <div class="card">
                         <div class="card-body">
                             <h1 class="card-title">Add News</h1>
-                            <form action="/submit_news" method="post">
+                            <form action="addnews" method="post">
                                 <div class="mb-3">
                                     <label for="title" class="form-label">Title:</label>
                                     <input type="text" class="form-control" id="title" name="title" required>
                                 </div>
                                 <div class="mb-3">
                                     <label for="author" class="form-label">Imagine:</label>
-                                    <input type="text" class="form-control" id="author" name="author" required>
+                                    <input type="text" class="form-control" id="author" name="image" required>
                                 </div>
                                 <div class="mb-3">
                                     <label for="author" class="form-label">Date:</label>
-                                    <input type="text" class="form-control" id="author" name="author" required>
+                                    <input type="text" class="form-control" id="author" name="date" required>
                                 </div>
                                 <div class="mb-3">
                                     <label for="content" class="form-label">Description:</label>
-                                    <textarea class="form-control" id="content" name="content" rows="4" required></textarea>
+                                    <textarea class="form-control" id="content" name="description" rows="4" required></textarea>
                                 </div>
                                 <button type="submit" class="btn btn-primary">Submit</button>
                             </form>

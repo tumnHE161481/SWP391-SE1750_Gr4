@@ -182,8 +182,7 @@ public class DAO extends DBContext {
                 + " [userPhone] = ?,\n"
                 + " [userAvatar] = ?\n"
                 + " where userID = ?";
-        try (Connection conn = connection;
-             PreparedStatement ps = conn.prepareStatement(query)) {
+        try ( Connection conn = connection;  PreparedStatement ps = conn.prepareStatement(query)) {
             ps.setString(1, userName);
             ps.setString(2, userGender);
             ps.setString(3, userBirth);
@@ -198,4 +197,19 @@ public class DAO extends DBContext {
         return false;
     }
 
+    public void addNews(String newTitle, String description, String img, String creatAt) {
+        String query = "INSERT [dbo].[news] ( [newTitle], [description], [img], [creatAt])\n"
+                + "                VALUES (?,?,?,?)";
+        try {
+            conn = connection;
+            ps = conn.prepareStatement(query);
+            rs = ps.executeQuery();
+            ps.setString(1, newTitle);
+            ps.setString(2, description);
+            ps.setString(3, img);
+            ps.setString(4, creatAt);
+            ps.executeUpdate();
+        } catch (Exception e) {
+        }
+    }
 }

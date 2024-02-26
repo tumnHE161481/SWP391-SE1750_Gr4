@@ -93,6 +93,7 @@ public class SeEditProfile extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+            request.setCharacterEncoding("UTF-8");
         System.out.println("start");
         String back = request.getParameter("back");
         String userName = request.getParameter("name");
