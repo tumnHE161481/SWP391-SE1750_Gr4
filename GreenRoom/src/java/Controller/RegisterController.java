@@ -60,9 +60,17 @@ public class RegisterController extends HttpServlet {
             username = username.trim().replaceAll("\\s{2,}", " ");
 
             String email = request.getParameter("usermail");
+
             String phone = request.getParameter("userphone");
-            // Loại bỏ các khoảng trắng dư thừa
             phone = phone.trim().replaceAll("\\s{2,}", " ");
+            // Kiểm tra xem chuỗi có chứa ký tự khác số hay không. kiểm tra xem chuỗi có chứa ít nhất một chữ số từ 0 đến 9 hay không.
+            if (!phone.matches("[0-9]+")) {
+                request.setAttribute("message", "Phone only have numbers - invalid");
+                request.getRequestDispatcher("register.jsp").forward(request, response);
+            } else if (phone.length() != 11) {
+                request.setAttribute("message", "11 numbers is valid - invalid");
+                request.getRequestDispatcher("register.jsp").forward(request, response);
+            }
 
             String password = request.getParameter("password");
             // Kiểm tra xem mật khẩu có chứa khoảng trắng không
@@ -103,13 +111,12 @@ public class RegisterController extends HttpServlet {
 
             String gender = request.getParameter("gender");
             int role = 1;
-            
+
             //kiểm tra email có tồn tại trong database 
             if (a.findByEmail(email) != null) {
                 request.setAttribute("message", "Email is existed");
                 request.getRequestDispatcher("register.jsp").forward(request, response);
-            } 
-            // kiểm tra repassword có khớp với password 
+            } // kiểm tra repassword có khớp với password 
             else if (!repassword.endsWith(password)) {
                 request.setAttribute("message", "Password not match");
                 request.getRequestDispatcher("register.jsp").forward(request, response);

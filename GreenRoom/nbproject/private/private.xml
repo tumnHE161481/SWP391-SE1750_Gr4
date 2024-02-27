@@ -3,12 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/E:/FPT/CLONE-SWP/SWP391-SE1750_Gr4/GreenRoom/web/enterotpRegister.jsp</file>
-            <file>file:/E:/FPT/CLONE-SWP/SWP391-SE1750_Gr4/GreenRoom/web/enterotp.jsp</file>
-            <file>file:/E:/FPT/CLONE-SWP/SWP391-SE1750_Gr4/GreenRoom/src/java/Controller/ValidateOtpRegister.java</file>
+            <file>file:/E:/FPT/CLONE-SWP/SWP391-SE1750_Gr4/GreenRoom/web/login.jsp</file>
+            <file>file:/E:/FPT/CLONE-SWP/SWP391-SE1750_Gr4/GreenRoom/web/forgotPassword.jsp</file>
+            <file>file:/E:/FPT/CLONE-SWP/SWP391-SE1750_Gr4/GreenRoom/web/registerSuccess.jsp</file>
             <file>file:/E:/FPT/CLONE-SWP/SWP391-SE1750_Gr4/GreenRoom/src/java/Controller/RegisterController.java</file>
-            <file>file:/E:/FPT/CLONE-SWP/SWP391-SE1750_Gr4/GreenRoom/src/java/DAL/AccountDAO.java</file>
-            <file>file:/E:/FPT/CLONE-SWP/SWP391-SE1750_Gr4/GreenRoom/src/java/DAL/DBContext.java</file>
+            <file>file:/E:/FPT/CLONE-SWP/SWP391-SE1750_Gr4/GreenRoom/web/register.jsp</file>
         </group>
     </open-files>
 </project-private>

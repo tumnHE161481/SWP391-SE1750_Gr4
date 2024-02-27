@@ -23,7 +23,7 @@ public class AccountDAO extends DBContext {
         try {
             PreparedStatement ps;
             ResultSet rs;
-            String sql = "SELECT * FROM [GreenRoom].[dbo].[Account] where userMail = ? and userPassword = ?";
+            String sql = "SELECT * FROM [GreenRoom].[dbo].[account] where userMail = ? and userPassword = ?";
             ps = connection.prepareStatement(sql);
             ps.setString(1, email);
             ps.setString(2, password);
@@ -47,7 +47,7 @@ public class AccountDAO extends DBContext {
         try {
             PreparedStatement ps;
             ResultSet rs;
-            String sql = "SELECT * FROM [GreenRoom].[dbo].[Account] WHERE userMail = ?";
+            String sql = "SELECT * FROM [GreenRoom].[dbo].[account] WHERE userMail = ?";
             ps = connection.prepareStatement(sql);
             ps.setString(1, email);
             rs = ps.executeQuery();
@@ -70,7 +70,7 @@ public class AccountDAO extends DBContext {
         try {
             PreparedStatement ps;
             ResultSet rs;
-            String sql = "update [Account] set userPassword = ? where userMail = ?";
+            String sql = "update [account] set userPassword = ? where userMail = ?";
             ps = connection.prepareStatement(sql);
             ps.setString(2, email);
             ps.setString(1, password);
@@ -87,7 +87,7 @@ public class AccountDAO extends DBContext {
         try {
             PreparedStatement ps;
             ResultSet rs;
-            String sql = "INSERT INTO [dbo].[Account] ([userMail] ,[userPassword] ,[userRole]) VALUES (?,?,?)";
+            String sql = "INSERT INTO [dbo].[account] ([userMail] ,[userPassword] ,[userRole]) VALUES (?,?,?)";
 
             ps = connection.prepareStatement(sql);
             ps.setString(1, email);
@@ -105,7 +105,7 @@ public class AccountDAO extends DBContext {
     public boolean registerUser(int id, String gender, String address, String phone, String birth, String name) {
         try {
             PreparedStatement ps;
-            String sql = "INSERT INTO [dbo].[User]\n"
+            String sql = "INSERT INTO [dbo].[user]\n"
                     + "           ([userID]\n"
                     + "           ,[userName]\n"
                     + "           ,[userGender]\n"
@@ -132,8 +132,8 @@ public class AccountDAO extends DBContext {
     public boolean deleteAccount(int id) {
         try {
             PreparedStatement ps;
-            String sql = "DELETE FROM [dbo].[Account]\n"
-                    + "      WHERE Account.userID = ?";
+            String sql = "DELETE FROM [dbo].[account]\n"
+                    + "      WHERE account.userID = ?";
 
             ps = connection.prepareStatement(sql);
             ps.setInt(1, id);
@@ -149,7 +149,7 @@ public class AccountDAO extends DBContext {
         try {
             PreparedStatement ps;
             ResultSet rs;
-            String sql = "SELECT [userID] FROM [GreenRoom].[dbo].[Account] where Account.userMail = ?";
+            String sql = "SELECT [userID] FROM [GreenRoom].[dbo].[account] where account.userMail = ?";
             ps = connection.prepareStatement(sql);
             ps.setString(1, email);
             rs = ps.executeQuery();
