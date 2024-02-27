@@ -51,13 +51,15 @@ public class DBContext {
 //        // Bây giờ bạn có thể sử dụng dob (kiểu LocalDate) trong ứng dụng của bạn
 //        // Ví dụ: Định dạng lại thành chuỗi khác
 //        String formattedDob = dob.format(formatter);
-//        AccountDAO a = new AccountDAO();
-//        boolean c = a.registerUser(23, "Male", "Hanoi", "0858122236", formattedDob, "abc");
-//        System.out.println(c);
+        AccountDAO a = new AccountDAO();
+        
+//        boolean v = a.registerAccount("vuduyhung@gmail.com", "11111111", 1);
+//        System.out.println(v + " account");
+        int b = a.getUserId("vuduyhung@gmail.com");
+        boolean c = a.registerUser(b, "Male", "Hanoi", "0858122236", "2002-10-20", "abc");
+        System.out.println(c + " user");
             
-            AccountDAO a = new AccountDAO();
-            int c = a.getUserId("hungdog@gmail.com");
-            System.out.println(c);
+           
             
     }
 }

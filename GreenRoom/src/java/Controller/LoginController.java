@@ -43,8 +43,8 @@ public class LoginController extends HttpServlet {
 
             try {
                 if (password.contains(" ")) {
-                    request.setAttribute("message", "Passwords are not allowed to contain spaces - invalid");
-                    request.getRequestDispatcher("register.jsp").forward(request, response);
+                    request.setAttribute("message", "Passwords are not allowed to contain spaces");
+                    request.getRequestDispatcher("login.jsp").forward(request, response);
                 }
 
                 if (password.length() < 8) {

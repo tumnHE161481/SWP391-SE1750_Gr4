@@ -79,7 +79,7 @@
                     <input id="opt" name="otp" placeholder="Enter OTP" type="text" required>
                 </div>
                 <div class="reset-password">
-                    <input name="recover-submit" value="Reset Password" type="submit">
+                    <input name="recover-submit" value="Register" type="submit">
                 </div>
             </form>
         </div>

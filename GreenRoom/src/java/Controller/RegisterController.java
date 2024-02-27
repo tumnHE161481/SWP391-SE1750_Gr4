@@ -58,6 +58,10 @@ public class RegisterController extends HttpServlet {
             String username = request.getParameter("username");
             // Loại bỏ các khoảng trắng dư thừa
             username = username.trim().replaceAll("\\s{2,}", " ");
+            if (containsNumber(username)) {
+                request.setAttribute("message", "Username only have characters - invalid");
+                request.getRequestDispatcher("register.jsp").forward(request, response);
+            }
 
             String email = request.getParameter("usermail");
 
@@ -65,10 +69,10 @@ public class RegisterController extends HttpServlet {
             phone = phone.trim().replaceAll("\\s{2,}", " ");
             // Kiểm tra xem chuỗi có chứa ký tự khác số hay không. kiểm tra xem chuỗi có chứa ít nhất một chữ số từ 0 đến 9 hay không.
             if (!phone.matches("[0-9]+")) {
-                request.setAttribute("message", "Phone only have numbers - invalid");
+                request.setAttribute("message", "Phone only have numbers");
                 request.getRequestDispatcher("register.jsp").forward(request, response);
-            } else if (phone.length() != 11) {
-                request.setAttribute("message", "11 numbers is valid - invalid");
+            } else if (phone.length() != 10 && phone.length() != 11) {
+                request.setAttribute("message", "Phone have 10 - 11 numbers is valid");
                 request.getRequestDispatcher("register.jsp").forward(request, response);
             }
 
@@ -84,21 +88,20 @@ public class RegisterController extends HttpServlet {
             String address = request.getParameter("address");
             // Loại bỏ các khoảng trắng dư thừa
             address = address.trim().replaceAll("\\s{2,}", " ");
+            if (isNumeric(address)) {
+                request.setAttribute("message", "Address are not allowed to contain only number - invalid");
+                request.getRequestDispatcher("register.jsp").forward(request, response);
+            }
 
             String dobString = request.getParameter("dob");
-
-            // Loại bỏ các khoảng trắng dư thừa
             dobString = dobString.trim().replaceAll("\\s{2,}", " ");
-
             // Định dạng ngày tháng năm từ chuỗi thành LocalDate
             LocalDate dob = LocalDate.parse(dobString, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-
             // Lấy ngày hiện tại
             LocalDate currentDate = LocalDate.now();
-
             // Kiểm tra xem ngày sinh có sau ngày hiện tại không
             if (dob.isAfter(currentDate)) {
-                request.setAttribute("message", "Invalid date of birth");
+                request.setAttribute("message", "Invalid date of birth, have to > 18");
                 request.getRequestDispatcher("register.jsp").forward(request, response);
             }
 
@@ -122,7 +125,11 @@ public class RegisterController extends HttpServlet {
                 request.getRequestDispatcher("register.jsp").forward(request, response);
             } else {
 
-                a.registerAccount(email, password, role);
+                boolean m = a.registerAccount(email, password, role);
+                
+                if (m == false) {
+                    request.setAttribute("message", "Register account false");
+                }
 
                 int userID = a.getUserId(email);
 
@@ -130,71 +137,88 @@ public class RegisterController extends HttpServlet {
 
                 if (z == false) {
                     a.deleteAccount(userID);
-                    request.setAttribute("message", "Register false");
+                    request.setAttribute("message", "Register user false");
                     request.getRequestDispatcher("register.jsp").forward(request, response);
-                }
+                } else {
 
-                RequestDispatcher dispatcher = null;
+                    RequestDispatcher dispatcher = null;
 
-                int otpvalueLength = 6;
+                    int otpvalueLength = 6;
 
-                Random rand = new Random();
+                    Random rand = new Random();
 
-                String string = "0123456789";
+                    String string = "0123456789";
 
-                String randomOtp = "";
+                    String randomOtp = "";
 
-                HttpSession mySession = request.getSession();
+                    HttpSession mySession = request.getSession();
 
-                if (email != null || !email.equals("")) {
-                    for (int i = 0; i < otpvalueLength; i++) {
-                        char c = string.charAt(rand.nextInt(string.length()));
-                        randomOtp = randomOtp + c;
-                    }
-                    Cookie cookie = new Cookie("otpR", randomOtp);
-
-                    cookie.setMaxAge(5 * 60);
-
-                    response.addCookie(cookie);
-
-                    String to = email;
-
-                    // Get the session object
-                    Properties props = new Properties();
-                    props.put("mail.smtp.host", "smtp.gmail.com");
-                    props.put("mail.smtp.socketFactory.port", "465");
-                    props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
-                    props.put("mail.smtp.auth", "true");
-                    props.put("mail.smtp.port", "465");
-                    Session session = Session.getDefaultInstance(props, new javax.mail.Authenticator() {
-                        @Override
-                        protected PasswordAuthentication getPasswordAuthentication() {
-                            return new PasswordAuthentication("bnvqm1721@gmail.com", "tgqwyawkaytmqvka");
+                    if (email != null || !email.equals("")) {
+                        for (int i = 0; i < otpvalueLength; i++) {
+                            char c = string.charAt(rand.nextInt(string.length()));
+                            randomOtp = randomOtp + c;
                         }
-                    });
-                    try {
-                        MimeMessage message = new MimeMessage(session);
-                        message.setFrom(new InternetAddress(email));
-                        message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
-                        message.setSubject("Request to confirm email");
-                        message.setText("Hi, for security, please verify your account with the OPT below. "
-                                + "Your OTP is ==========> " + randomOtp + ". " + " <========== Click the link to enter otp: " + "http://localhost:9999/greenroom/enterotpRegister.jsp");
-                        Transport.send(message);
-                        System.out.println("message sent successfully");
-                    } catch (MessagingException e) {
-                    }
-                    //=======================================================
+                        Cookie cookie = new Cookie("otpR", randomOtp);
 
-                    dispatcher = request.getRequestDispatcher("register.jsp");
-                    request.setAttribute("message", "OTP is sent to your email id");
-                    mySession.setAttribute("otp", randomOtp);
-                    mySession.setAttribute("email", email);
-                    dispatcher.forward(request, response);
+                        cookie.setMaxAge(5 * 60);
+
+                        response.addCookie(cookie);
+
+                        String to = email;
+
+                        // Get the session object
+                        Properties props = new Properties();
+                        props.put("mail.smtp.host", "smtp.gmail.com");
+                        props.put("mail.smtp.socketFactory.port", "465");
+                        props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
+                        props.put("mail.smtp.auth", "true");
+                        props.put("mail.smtp.port", "465");
+                        Session session = Session.getDefaultInstance(props, new javax.mail.Authenticator() {
+                            @Override
+                            protected PasswordAuthentication getPasswordAuthentication() {
+                                return new PasswordAuthentication("bnvqm1721@gmail.com", "tgqwyawkaytmqvka");
+                            }
+                        });
+                        try {
+                            MimeMessage message = new MimeMessage(session);
+                            message.setFrom(new InternetAddress(email));
+                            message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
+                            message.setSubject("Request to confirm email");
+                            message.setText("Hi, for security, please verify your account with the OPT below. "
+                                    + "Your OTP is ==========> " + randomOtp + " " + " <========== Click the link to enter otp: " + "http://localhost:9999/greenroom/enterotpRegister.jsp");
+                            Transport.send(message);
+                            System.out.println("message sent successfully");
+                        } catch (MessagingException e) {
+                        }
+                        //=======================================================
+
+                        dispatcher = request.getRequestDispatcher("register.jsp");
+                        request.setAttribute("message", "OTP is sent to your email id");
+                        mySession.setAttribute("otp", randomOtp);
+                        mySession.setAttribute("email", email);
+                        dispatcher.forward(request, response);
+                    }
                 }
+
             }
 
         } catch (ServletException | IOException ex) {
             Logger.getLogger(RegisterController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
+    private boolean containsNumber(String str) {
+        for (char c : str.toCharArray()) {
+            if (Character.isDigit(c)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean isNumeric(String str) {
+        // Sử dụng regular expression để kiểm tra xem chuỗi có chứa chỉ số không
+        return str != null && str.matches("\\d+");
+    }
+
 }

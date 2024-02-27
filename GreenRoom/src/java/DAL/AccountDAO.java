@@ -59,7 +59,6 @@ public class AccountDAO extends DBContext {
                 a.setRole(rs.getInt(4));
                 return a;
             }
-
         } catch (SQLException ex) {
             Logger.getLogger(AccountDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -87,7 +86,7 @@ public class AccountDAO extends DBContext {
         try {
             PreparedStatement ps;
             ResultSet rs;
-            String sql = "INSERT INTO [dbo].[account] ([userMail] ,[userPassword] ,[userRole]) VALUES (?,?,?)";
+            String sql = "INSERT INTO [GreenRoom].[dbo].[account] ( [userMail] ,[userPassword] ,[userRole] ) VALUES (?,?,?)";
 
             ps = connection.prepareStatement(sql);
             ps.setString(1, email);
@@ -105,14 +104,7 @@ public class AccountDAO extends DBContext {
     public boolean registerUser(int id, String gender, String address, String phone, String birth, String name) {
         try {
             PreparedStatement ps;
-            String sql = "INSERT INTO [dbo].[user]\n"
-                    + "           ([userID]\n"
-                    + "           ,[userName]\n"
-                    + "           ,[userGender]\n"
-                    + "           ,[userBirth]\n"
-                    + "           ,[userAddress]\n"
-                    + "           ,[userPhone])\n"
-                    + "		   VALUES (?,?,?,?,?,?)";
+            String sql = "INSERT INTO [GreenRoom].[dbo].[user] ( [userID],[userName],[userGender],[userBirth],[userAddress],[userPhone] ) VALUES (?,?,?,?,?,?)";
 
             ps = connection.prepareStatement(sql);
             ps.setInt(1, id);
