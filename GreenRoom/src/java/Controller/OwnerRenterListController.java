@@ -4,7 +4,8 @@
  */
 
 package Controller;
-
+import DAL.*;
+import Models.*;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -12,7 +13,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-
+import java.util.List;
 /**
  *
  * @author ADMIN
@@ -55,8 +56,11 @@ public class OwnerRenterListController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        processRequest(request, response);
-    } 
+        UserDAO dao = new UserDAO();
+        List<User> list = dao.getRenterList();
+        
+        request.setAttribute("owrenterlist", list);
+        request.getRequestDispatcher("/Owner/OwnerRenterList.jsp").forward(request, response);    } 
 
     /** 
      * Handles the HTTP <code>POST</code> method.

@@ -26,9 +26,9 @@
         <link rel="stylesheet" href="<%=request.getContextPath()%>/fonts/icomoon/style.css">
         <link rel="stylesheet" href="<%=request.getContextPath()%>/fonts/flaticon/font/flaticon.css">
 
-        <link rel="stylesheet" href="<%=request.getContextPath()%>/css/tiny-slider.css">
-        <link rel="stylesheet" href="<%=request.getContextPath()%>/css/aos.css">
-        <link rel="stylesheet" href="<%=request.getContextPath()%>/css/style.css">
+        <link rel="stylesheet" href="<%=request.getContextPath()%>/scss/tiny-slider.css">
+        <link rel="stylesheet" href="<%=request.getContextPath()%>/scss/aos.css">
+        <link rel="stylesheet" href="<%=request.getContextPath()%>/scss/style.css">
 
         <title>Room List</title>
     </head>
