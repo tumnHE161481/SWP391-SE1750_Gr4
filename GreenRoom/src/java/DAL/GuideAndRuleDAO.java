@@ -13,7 +13,7 @@ import java.util.logging.Logger;
 
 public class GuideAndRuleDAO extends DBContext {
 
-    public List<Guideline> getAllGuideline() {
+    public List<Guideline> getGuide() {
         List<Guideline> list = new ArrayList<>();
         String sql = "SELECT * FROM guideline";
         // Declaring variables for connection, statement, and result set
@@ -38,9 +38,9 @@ public class GuideAndRuleDAO extends DBContext {
         // Return the list of guidelines
         return list;
     }
-    public List<Rule> getAllRule() {
-        List<Guideline> list = new ArrayList<>();
-        String sql = "SELECT * FROM rule";
+    public List<Rule> getRule() {
+        List<Rule> list = new ArrayList<>();
+        String sql = "SELECT * FROM [rule]";
         // Declaring variables for connection, statement, and result set
         try (Connection conn = connection;
              PreparedStatement ps = conn.prepareStatement(sql);
@@ -65,5 +65,17 @@ public class GuideAndRuleDAO extends DBContext {
         // Return the list of guidelines
         return list;
     }
+     public static void main(String[] args) {
+        GuideAndRuleDAO dao = new GuideAndRuleDAO();
+
+        // Uncomment the appropriate method call based on your needs
+        // List<User> list = dao.getUserList();
+        List<Rule> list = dao.getRule();
+         for (Rule rule : list) {
+             System.out.println("User ID: " + rule.getRuleName());
+             System.out.println("User ID: " + rule.getImg());
+         }
+    }
+
     
 }

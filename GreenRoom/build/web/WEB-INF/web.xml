@@ -60,6 +60,10 @@
         <servlet-name>RenterUpdateProfileControl</servlet-name>
         <servlet-class>Controller.RenterUpdateProfileControl</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>RenterGuideandRuleControl</servlet-name>
+        <servlet-class>Controller.RenterGuideandRuleControl</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>SeProfileControl</servlet-name>
         <url-pattern>/seprofile</url-pattern>
@@ -123,6 +127,10 @@
     <servlet-mapping>
         <servlet-name>RenterUpdateProfileControl</servlet-name>
         <url-pattern>/renterupdate</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RenterGuideandRuleControl</servlet-name>
+        <url-pattern>/guideandrule</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
