@@ -163,12 +163,11 @@
                                                             <div class="row" style="margin-top: 80px">
                                                                 <h3>Item(s)in this room(s):</h3>                                                                           
                                                                 <c:forEach var="it" items="${itemInThatRoom}">
-                                                                    <div class="col-3" style="margin-top: 10px ">
+                                                                    <div class="col-2" style="margin-top: 10px ">
                                                                         <div class="card h-100 w-100">
                                                                             <img src=${it.item.itemImg} class="card-img-top" style= "height: 160px; width: 100%" alt="...">
                                                                             <div class="card-body d-flex align-items-center justify-content-center" style="background-color: #20c997">
                                                                                 <p class="card-title" style="color: white; font-size:16px">${it.item.itemName} x ${it.roomitem.quantity} </p>
-                                                                        
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -183,7 +182,6 @@
                                         </div>
                                     </div>
                                 </div>
-
                                 <div class="col-12">
                                     <div class="card">
                                         <div class="card-body">
@@ -191,7 +189,7 @@
                                             <p class="card-text">Edit room information and item(s) in that room too.</p>
                                             <div class="d-flex justify-content-center gap-4">
                                                 <a href="manageroom" type="button" class="btn btn-danger"><i class="fa-solid fa-chevron-left"></i>&nbsp;Back</a>
-                                                <a href="adrooomedit?id=${id}" type="button" class="btn btn-primary"><i class="fa-regular fa-pen-to-square"></i> &nbsp;Edit</a>
+                                                <a href="adroomedit?id=${id}" type="button" class="btn btn-primary"><i class="fa-regular fa-pen-to-square"></i> &nbsp;Edit</a>
                                             </div>
                                         </div>
                                     </div>
