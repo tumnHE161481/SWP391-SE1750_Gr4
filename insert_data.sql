@@ -79,31 +79,52 @@ VALUES
     (N'Lê Văn Quân', 'Male', '1985-09-12', N'18 Trần Phú, Ba Đình, Hà Nội', '0987654321', './Image/user/avatar17.jpg'),
     (N'Trần Thị Thu', 'Female', '1996-11-30', N'42 Trần Phú, Nam Định', '0987654321', './Image/user/avatar18.jpg'),
     (N'Phạm Văn Khôi', 'Male', '1986-02-08', N'20 Lý Thường Kiệt, Hoàn Kiếm, Hà Nội', '0987654321', './Image/user/avatar19.jpg'),
-    (N'Admin', 'Unknown', '1989-07-18', 'Unknown', '0987654321', './Image/user/avatar20.jpg');
+    (N'Admin', 'Unknown', '1989-07-18', 'Unknown', '0987654321', './Image/user/avatar20.jpg'),
+	(N'Trần Thị Hoa', 'Female', '1990-08-10', N'30 Đường Lê Lợi, Hai Bà Trưng, Hà Nội', '0987654321', './Image/user/avatar21.jpg'),
+    (N'Nguyễn Văn Bình', 'Male', '1994-06-05', N'40 Phố Huế, Hai Bà Trưng, Hà Nội', '0987654322', './Image/user/avatar22.jpg'),
+    (N'Phạm Thị Lan', 'Female', '1998-02-18', N'50 Hàng Bài, Hoàn Kiếm, Hà Nội', '0987654323', './Image/user/avatar23.jpg'),
+    (N'Lê Văn Hải', 'Male', '2000-12-25', N'60 Trần Hưng Đạo, Hoàn Kiếm, Hà Nội', '0987654324', './Image/user/avatar24.jpg'),
+    (N'Nguyễn Thị Loan', 'Female', '1996-10-03', N'70 Trần Phú, Ba Đình, Hà Nội', '0987654325', './Image/user/avatar25.jpg'),
+    (N'Trần Đức Hòa', 'Male', '1992-04-15', N'80 Bà Triệu, Hai Bà Trưng, Hà Nội', '0987654326', './Image/user/avatar26.jpg'),
+    (N'Lê Thị Kim Ngân', 'Female', '1993-07-20', N'90 Lê Duẩn, Hai Bà Trưng, Hà Nội', '0987654327', './Image/user/avatar27.jpg'),
+    (N'Nguyễn Minh Tuấn', 'Male', '1988-09-28', N'100 Hàng Bài, Hoàn Kiếm, Hà Nội', '0987654328', './Image/user/avatar28.jpg'),
+    (N'Trần Thị Thanh Thảo', 'Female', '1991-11-17', N'110 Hàng Điếu, Hoàn Kiếm, Hà Nội', '0987654329', './Image/user/avatar29.jpg'),
+    (N'Phạm Văn Minh', 'Male', '1985-05-30', N'120 Trần Hưng Đạo, Hoàn Kiếm, Hà Nội', '0987654330', './Image/user/avatar30.jpg');
 
 
-INSERT INTO account (userMail, userPassword, userRole)
+
+INSERT INTO account (userID, userMail, userPassword, userRole)
 VALUES
-    ('maingoctu@gmail.com', 'pass1234', 1),
-    ('nguyenhuong@gmail.com', 'pass1234', 1),
-    ('phamvannam@gmail.com', 'pass1234', 1),
-    ('tranlananh@gmail.com', 'pass1234', 1),
-    ('levanduy@gmail.com', 'pass1234', 1),
-    ('nguyenthimai@gmail.com', 'pass1234', 1),
-    ('hoangvanlong@gmail.com', 'pass1234', 1),
-    ('dothihang@gmail.com', 'pass1234', 1),
-    ('vuvantuan@gmail.com', 'pass1234', 1),
-    ('nguyenvananh@gmail.com', 'pass1234', 1),
-    ('phanvanhung@gmail.com', 'pass1234', 1),
-    ('buithihang@gmail.com', 'pass1234', 1),
-    ('travanhung@gmail.com', 'pass1234', 1),
-    ('dangthiha@gmail.com', 'pass1234', 1),
-    ('nguyenvanlinh@gmail.com', 'pass1234', 2),
-    ('nguyenthihong@gmail.com', 'pass1234', 2),
-    ('levanquan@gmail.com', 'pass1234', 2),
-    ('tranthithu@gmail.com', 'pass1234', 2),
-    ('phamvankhoi@gmail.com', 'pass1234', 3),
-    ('admin@gmail.com', 'admin123', 4);
+    (1,'maingoctu@gmail.com', 'pass1234', 1),
+    (2,'nguyenhuong@gmail.com', 'pass1234', 1),
+    (3,'phamvannam@gmail.com', 'pass1234', 1),
+    (4,'tranlananh@gmail.com', 'pass1234', 1),
+    (5,'levanduy@gmail.com', 'pass1234', 1),
+    (6,'nguyenthimai@gmail.com', 'pass1234', 1),
+    (7,'hoangvanlong@gmail.com', 'pass1234', 1),
+    (8,'dothihang@gmail.com', 'pass1234', 1),
+    (9,'vuvantuan@gmail.com', 'pass1234', 1),
+    (10,'nguyenvananh@gmail.com', 'pass1234', 1),
+    (11,'phanvanhung@gmail.com', 'pass1234', 1),
+    (12,'buithihang@gmail.com', 'pass1234', 1),
+    (13,'travanhung@gmail.com', 'pass1234', 1),
+    (14,'dangthiha@gmail.com', 'pass1234', 1),
+    (15,'nguyenvanlinh@gmail.com', 'pass1234', 2),
+    (16,'nguyenthihong@gmail.com', 'pass1234', 2),
+    (17,'levanquan@gmail.com', 'pass1234', 2),
+    (18,'tranthithu@gmail.com', 'pass1234', 2),
+    (19,'phamvankhoi@gmail.com', 'pass1234', 3),
+    (20,'admin@gmail.com', 'admin123', 4),
+	(21,'hoatt@gmail.com', 'password123', 0),
+    (22,'binhnv@gmail.com', 'password123', 0),
+    (23,'lanpt@gmail.com', 'password123', 0),
+    (24,'haile@gmail.com', 'password123', 0),
+    (25,'loannt@gmail.com', 'password123', 0),
+    (26,'hoatd@gmail.com', 'password123', 0),
+    (27,'ngankn@gmail.com', 'password123', 0),
+    (28,'tuanntm@gmail.com', 'password123', 0),
+    (29,'thaottt@gmail.com', 'password123', 0),
+    (30,'minhvp@gmail.com', 'password123', 0);
 
 	-- Generating data for renter table
 INSERT INTO renter (userID, roomID, renterStatus, renterHaveRoom, CGRScore, balance)
@@ -160,13 +181,6 @@ VALUES
     ('Fire Safety Guidelines', './Image/guideline/guideline1.jpg'),
     ('Room Cleaning Guidelines', './Image/guideline/guideline2.jpg'),
     ('Noise Reduction Guidelines', './Image/guideline/guideline3.jpg');
-
--- Generating data for news table
-INSERT INTO news (newTitle, description)
-VALUES
-    ('New Community Events', 'Join us for our upcoming community events happening this month!'),
-    ('Maintenance Notice', 'Scheduled maintenance will take place on February 28th, please be advised.'),
-    ('Community Updates', 'Stay tuned for the latest updates and announcements from our community.');
 
 -- Generating data for bill table
 INSERT INTO bill (roomID, [service], electric, water, roomFee, other, penMoney, createAt, deadline, payAt)
