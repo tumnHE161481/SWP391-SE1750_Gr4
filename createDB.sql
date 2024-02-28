@@ -38,7 +38,7 @@ CREATE TABLE [user] (
 );
 
 CREATE TABLE account (
-    userID INT IDENTITY(1,1) PRIMARY KEY,
+    userID INT,
     userMail NVARCHAR(MAX) NOT NULL,
     userPassword NVARCHAR(MAX) NOT NULL,
     userRole INT NOT NULL,
