@@ -27,22 +27,22 @@ CREATE TABLE roomItem (
     FOREIGN KEY (itemID) REFERENCES item(itemID)
 );
 
-CREATE TABLE [user] (
+CREATE TABLE account (
     userID INT IDENTITY(1,1) PRIMARY KEY,
+    userMail NVARCHAR(MAX) NOT NULL,
+    userPassword NVARCHAR(MAX) NOT NULL,
+    userRole INT NOT NULL
+);
+
+CREATE TABLE [user] (
+    userID INT PRIMARY KEY,
     userName NVARCHAR(MAX) NOT NULL,
     userGender NVARCHAR(10) NOT NULL,
     userBirth DATE NOT NULL,
     userAddress NVARCHAR(MAX) NOT NULL,
     userPhone NVARCHAR(20) NOT NULL,
-    userAvatar NVARCHAR(MAX) NOT NULL
-);
-
-CREATE TABLE account (
-    userID INT IDENTITY(1,1) PRIMARY KEY,
-    userMail NVARCHAR(MAX) NOT NULL,
-    userPassword NVARCHAR(MAX) NOT NULL,
-    userRole INT NOT NULL,
-    FOREIGN KEY (userID) REFERENCES [user](userID)
+    userAvatar NVARCHAR(MAX) NOT NULL,
+    FOREIGN KEY (userID) REFERENCES account(userID)
 );
 
 
@@ -52,7 +52,7 @@ CREATE TABLE renter (
     roomID INT NULL,
     renterStatus BIT NOT NULL,
     renterHaveRoom BIT NOT NULL,
-	CGRScore int NOT NULL,
+    CGRScore int NOT NULL,
     balance MONEY NOT NULL,
     FOREIGN KEY (userID) REFERENCES [user](userID),
     FOREIGN KEY (roomID) REFERENCES room(roomID)
@@ -98,7 +98,9 @@ CREATE TABLE guideline (
 CREATE TABLE news (
     newID INT IDENTITY(1,1) PRIMARY KEY,
     newTitle NVARCHAR(MAX) NOT NULL,
-    description NVARCHAR(MAX) NOT NULL
+    description NVARCHAR(MAX) NOT NULL,
+    img NVARCHAR(MAX) NULL,
+    creatAt DATETIME NOT NULL,
 );
 
 CREATE TABLE bill (
@@ -106,7 +108,7 @@ CREATE TABLE bill (
     roomID INT NOT NULL,
     [service] MONEY NOT NULL,
     electric MONEY NOT NULL,
-	water MONEY NOT NULL,
+    water MONEY NOT NULL,
     roomFee MONEY NOT NULL,
     other MONEY NOT NULL,
     penMoney MONEY NOT NULL,

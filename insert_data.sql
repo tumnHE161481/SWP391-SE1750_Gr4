@@ -58,31 +58,11 @@ VALUES
     (19, 1, 2), (19, 3, 3), (19, 5, 1), (19, 6, 2), (19, 8, 2),
     (20, 2, 3), (20, 4, 2), (20, 6, 1), (20, 7, 3), (20, 9, 2);
 
-INSERT INTO [user] (userName, userGender, userBirth, userAddress, userPhone, userAvatar)
-VALUES
-    (N'Mai Ngọc Tú', 'Male', '2002-05-15', N'180 Phố Vọng, Thanh Xuân, Hà Nội', '0987654321', './Image/user/avatar1.jpg'),
-    (N'Vu Duy Hung', 'Female', '2002-10-20', N'56 Lê Lợi, Quận 1, Thành phố Hồ Chí Minh', '0981234567', './Image/user/avatar2.jpg'),
-    (N'Phạm Quang Thắng', 'Male', '2002-03-02', N'39 Lê Hồng Phong, TP. Hải Phòng', '0976543210', './Image/user/avatar3.jpg'),
-    (N'Trần Thị Lan Anh', 'Female', '2003-12-10', N'105 Trần Phú, TP. Vinh, Nghệ An', '0965432109', './Image/user/avatar4.jpg'),
-    (N'Lê Văn Duy', 'Male', '2003-08-25', N'30 Đại Cồ Việt, Hai Bà Trưng, Hà Nội', '0932109876', './Image/user/avatar5.jpg'),
-    (N'Nguyễn Thị Mai', 'Female', '2003-06-18', N'15 Hoàng Cầu, Đống Đa, Hà Nội', '0943210987', './Image/user/avatar6.jpg'),
-    (N'Hoàng Văn Long', 'Male', '2003-02-28', N'70 Lê Duẩn, Hoàn Kiếm, Hà Nội', '0910987654', './Image/user/avatar7.jpg'),
-    (N'Đỗ Thị Hằng', 'Female', '2004-09-07', N'45 Lý Thường Kiệt, Hà Tĩnh', '0921098765', './Image/user/avatar8.jpg'),
-    (N'Vũ Văn Tuấn', 'Male', '2005-11-12', N'112 Lý Thường Kiệt, Hà Tĩnh', '0909876543', './Image/user/avatar9.jpg'),
-    (N'Nguyễn Vân Anh', 'Other', '2005-07-22', N'5 Hàng Bài, Hoàn Kiếm, Hà Nội', '0998765432', './Image/user/avatar10.jpg'),
-    (N'Phan Văn Hùng', 'Male', '2005-04-03', N'51 Nguyễn Thái Học, Cà Mau', '0954321098', './Image/user/avatar11.jpg'),
-    (N'Bùi Thị Hằng', 'Female', '2005-01-30', N'36 Trần Nhân Tông, Hải Dương', '0912345678', './Image/user/avatar12.jpg'),
-    (N'Trần Văn Hùng', 'Male', '2000-08-14', N'35 Lê Thánh Tông, Hoàn Kiếm, Hà Nội', '0987654321', './Image/user/avatar13.jpg'),
-    (N'Đặng Thị Hà', 'Other', '2000-03-17', N'80 Lê Lai, TP. Biên Hòa, Đồng Nai', '0987654321', './Image/user/avatar14.jpg'),
-    (N'Nguyễn Văn Linh', 'Male', '1991-12-05', N'100 Hai Bà Trưng, Hoàn Kiếm, Hà Nội', '0987654321', './Image/user/avatar15.jpg'),
-    (N'Nguyễn Hoàng Hồng', 'Male', '1987-05-25', N'92 Điện Biên Phủ, Lào Cai', '0987654321', './Image/user/avatar16.jpg'),
-    (N'Lê Văn Quân', 'Male', '1985-09-12', N'18 Trần Phú, Ba Đình, Hà Nội', '0987654321', './Image/user/avatar17.jpg'),
-    (N'Trần Thị Thu', 'Female', '1996-11-30', N'42 Trần Phú, Nam Định', '0987654321', './Image/user/avatar18.jpg'),
-    (N'Phạm Văn Khôi', 'Male', '1986-02-08', N'20 Lý Thường Kiệt, Hoàn Kiếm, Hà Nội', '0987654321', './Image/user/avatar19.jpg'),
-    (N'Admin', 'Unknown', '1989-07-18', 'Unknown', '0987654321', './Image/user/avatar20.jpg');
 
 
-INSERT INTO account (userMail, userPassword, userRole)
+
+
+INSERT INTO account ( userMail, userPassword, userRole)
 VALUES
     ('maingoctu@gmail.com', 'pass1234', 1),
     ('nguyenhuong@gmail.com', 'pass1234', 1),
@@ -103,8 +83,51 @@ VALUES
     ('levanquan@gmail.com', 'pass1234', 2),
     ('tranthithu@gmail.com', 'pass1234', 2),
     ('phamvankhoi@gmail.com', 'pass1234', 3),
-    ('admin@gmail.com', 'admin123', 4);
+    ('admin@gmail.com', 'admin123', 4),
+	('hoatt@gmail.com', 'password123', 0),
+    ('binhnv@gmail.com', 'password123', 0),
+    ('lanpt@gmail.com', 'password123', 0),
+    ('haile@gmail.com', 'password123', 0),
+    ('loannt@gmail.com', 'password123', 0),
+    ('hoatd@gmail.com', 'password123', 0),
+    ('ngankn@gmail.com', 'password123', 0),
+    ('tuanntm@gmail.com', 'password123', 0),
+    ('thaottt@gmail.com', 'password123', 0),
+    ('minhvp@gmail.com', 'password123', 0);
 
+
+	INSERT INTO [user] (userID,userName, userGender, userBirth, userAddress, userPhone, userAvatar)
+VALUES
+    (1,N'Mai Ngọc Tú', 'Male', '2002-05-15', N'180 Phố Vọng, Thanh Xuân, Hà Nội', '0987654321', './Image/user/avatar1.jpg'),
+    (2,N'Vu Duy Hung', 'Female', '2002-10-20', N'56 Lê Lợi, Quận 1, Thành phố Hồ Chí Minh', '0981234567', './Image/user/avatar2.jpg'),
+    (3,N'Phạm Quang Thắng', 'Male', '2002-03-02', N'39 Lê Hồng Phong, TP. Hải Phòng', '0976543210', './Image/user/avatar3.jpg'),
+    (4,N'Trần Thị Lan Anh', 'Female', '2003-12-10', N'105 Trần Phú, TP. Vinh, Nghệ An', '0965432109', './Image/user/avatar4.jpg'),
+    (5,N'Lê Văn Duy', 'Male', '2003-08-25', N'30 Đại Cồ Việt, Hai Bà Trưng, Hà Nội', '0932109876', './Image/user/avatar5.jpg'),
+    (6,N'Nguyễn Thị Mai', 'Female', '2003-06-18', N'15 Hoàng Cầu, Đống Đa, Hà Nội', '0943210987', './Image/user/avatar6.jpg'),
+    (7,N'Hoàng Văn Long', 'Male', '2003-02-28', N'70 Lê Duẩn, Hoàn Kiếm, Hà Nội', '0910987654', './Image/user/avatar7.jpg'),
+    (8,N'Đỗ Thị Hằng', 'Female', '2004-09-07', N'45 Lý Thường Kiệt, Hà Tĩnh', '0921098765', './Image/user/avatar8.jpg'),
+    (9,N'Vũ Văn Tuấn', 'Male', '2005-11-12', N'112 Lý Thường Kiệt, Hà Tĩnh', '0909876543', './Image/user/avatar9.jpg'),
+    (10,N'Nguyễn Vân Anh', 'Other', '2005-07-22', N'5 Hàng Bài, Hoàn Kiếm, Hà Nội', '0998765432', './Image/user/avatar10.jpg'),
+    (11,N'Phan Văn Hùng', 'Male', '2005-04-03', N'51 Nguyễn Thái Học, Cà Mau', '0954321098', './Image/user/avatar11.jpg'),
+    (12,N'Bùi Thị Hằng', 'Female', '2005-01-30', N'36 Trần Nhân Tông, Hải Dương', '0912345678', './Image/user/avatar12.jpg'),
+    (13,N'Trần Văn Hùng', 'Male', '2000-08-14', N'35 Lê Thánh Tông, Hoàn Kiếm, Hà Nội', '0987654321', './Image/user/avatar13.jpg'),
+    (14,N'Đặng Thị Hà', 'Other', '2000-03-17', N'80 Lê Lai, TP. Biên Hòa, Đồng Nai', '0987654321', './Image/user/avatar14.jpg'),
+    (15,N'Nguyễn Văn Linh', 'Male', '1991-12-05', N'100 Hai Bà Trưng, Hoàn Kiếm, Hà Nội', '0987654321', './Image/user/avatar15.jpg'),
+    (16,N'Nguyễn Hoàng Hồng', 'Male', '1987-05-25', N'92 Điện Biên Phủ, Lào Cai', '0987654321', './Image/user/avatar16.jpg'),
+    (17,N'Lê Văn Quân', 'Male', '1985-09-12', N'18 Trần Phú, Ba Đình, Hà Nội', '0987654321', './Image/user/avatar17.jpg'),
+    (18,N'Trần Thị Thu', 'Female', '1996-11-30', N'42 Trần Phú, Nam Định', '0987654321', './Image/user/avatar18.jpg'),
+    (19,N'Phạm Văn Khôi', 'Male', '1986-02-08', N'20 Lý Thường Kiệt, Hoàn Kiếm, Hà Nội', '0987654321', './Image/user/avatar19.jpg'),
+    (20,N'Admin', 'Unknown', '1989-07-18', 'Unknown', '0987654321', './Image/user/avatar20.jpg'),
+	(21,N'Trần Thị Hoa', 'Female', '1990-08-10', N'30 Đường Lê Lợi, Hai Bà Trưng, Hà Nội', '0987654321', './Image/user/avatar21.jpg'),
+    (22,N'Nguyễn Văn Bình', 'Male', '1994-06-05', N'40 Phố Huế, Hai Bà Trưng, Hà Nội', '0987654322', './Image/user/avatar22.jpg'),
+    (23,N'Phạm Thị Lan', 'Female', '1998-02-18', N'50 Hàng Bài, Hoàn Kiếm, Hà Nội', '0987654323', './Image/user/avatar23.jpg'),
+    (24,N'Lê Văn Hải', 'Male', '2000-12-25', N'60 Trần Hưng Đạo, Hoàn Kiếm, Hà Nội', '0987654324', './Image/user/avatar24.jpg'),
+    (25,N'Nguyễn Thị Loan', 'Female', '1996-10-03', N'70 Trần Phú, Ba Đình, Hà Nội', '0987654325', './Image/user/avatar25.jpg'),
+    (26,N'Trần Đức Hòa', 'Male', '1992-04-15', N'80 Bà Triệu, Hai Bà Trưng, Hà Nội', '0987654326', './Image/user/avatar26.jpg'),
+    (27,N'Lê Thị Kim Ngân', 'Female', '1993-07-20', N'90 Lê Duẩn, Hai Bà Trưng, Hà Nội', '0987654327', './Image/user/avatar27.jpg'),
+    (28,N'Nguyễn Minh Tuấn', 'Male', '1988-09-28', N'100 Hàng Bài, Hoàn Kiếm, Hà Nội', '0987654328', './Image/user/avatar28.jpg'),
+    (29,N'Trần Thị Thanh Thảo', 'Female', '1991-11-17', N'110 Hàng Điếu, Hoàn Kiếm, Hà Nội', '0987654329', './Image/user/avatar29.jpg'),
+    (30,N'Phạm Văn Minh', 'Male', '1985-05-30', N'120 Trần Hưng Đạo, Hoàn Kiếm, Hà Nội', '0987654330', './Image/user/avatar30.jpg');
 	-- Generating data for renter table
 INSERT INTO renter (userID, roomID, renterStatus, renterHaveRoom, CGRScore, balance)
 VALUES
@@ -160,13 +183,6 @@ VALUES
     ('Fire Safety Guidelines', './Image/guideline/guideline1.jpg'),
     ('Room Cleaning Guidelines', './Image/guideline/guideline2.jpg'),
     ('Noise Reduction Guidelines', './Image/guideline/guideline3.jpg');
-
--- Generating data for news table
-INSERT INTO news (newTitle, description)
-VALUES
-    ('New Community Events', 'Join us for our upcoming community events happening this month!'),
-    ('Maintenance Notice', 'Scheduled maintenance will take place on February 28th, please be advised.'),
-    ('Community Updates', 'Stay tuned for the latest updates and announcements from our community.');
 
 -- Generating data for bill table
 INSERT INTO bill (roomID, [service], electric, water, roomFee, other, penMoney, createAt, deadline, payAt)
