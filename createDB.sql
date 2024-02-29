@@ -52,7 +52,7 @@ CREATE TABLE renter (
     roomID INT NULL,
     renterStatus BIT NOT NULL,
     renterHaveRoom BIT NOT NULL,
-	CGRScore int NOT NULL,
+    CGRScore int NOT NULL,
     balance MONEY NOT NULL,
     FOREIGN KEY (userID) REFERENCES [user](userID),
     FOREIGN KEY (roomID) REFERENCES room(roomID)
@@ -98,7 +98,9 @@ CREATE TABLE guideline (
 CREATE TABLE news (
     newID INT IDENTITY(1,1) PRIMARY KEY,
     newTitle NVARCHAR(MAX) NOT NULL,
-    description NVARCHAR(MAX) NOT NULL
+    description NVARCHAR(MAX) NOT NULL,
+    img NVARCHAR(MAX) NULL,
+    creatAt DATETIME NOT NULL,
 );
 
 CREATE TABLE bill (
@@ -106,7 +108,7 @@ CREATE TABLE bill (
     roomID INT NOT NULL,
     [service] MONEY NOT NULL,
     electric MONEY NOT NULL,
-	water MONEY NOT NULL,
+    water MONEY NOT NULL,
     roomFee MONEY NOT NULL,
     other MONEY NOT NULL,
     penMoney MONEY NOT NULL,
