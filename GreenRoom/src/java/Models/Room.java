@@ -12,35 +12,41 @@ public class Room {
 
     private int roomID;
     private int roomFloor;
-    private String roomNumber;
-    private int roomItemID;
-    private String roomSize;
+    private int roomNumber;
+    private int roomSize;
     private String roomImg;
-    private RoomItem item;
+    private int total;
+    private Item item;
+    private RoomItem roomitem;
+
+    public Room(Item item, RoomItem roomitem) {
+        this.item = item;
+        this.roomitem = roomitem;
+    }
+    
+    
+    
+
+    public Room(int roomID, int roomFloor, int roomNumber, int roomSize, String roomImg, int total) {
+        this.roomID = roomID;
+        this.roomFloor = roomFloor;
+        this.roomNumber = roomNumber;
+        this.roomSize = roomSize;
+        this.roomImg = roomImg;
+        this.total = total;
+    }
+    
+    
+    public Room(int roomID, int roomFloor, int roomNumber, int roomSize, String roomImg) {
+        this.roomID = roomID;
+        this.roomFloor = roomFloor;
+        this.roomNumber = roomNumber;
+        this.roomSize = roomSize;
+        this.roomImg = roomImg;
+    }
     
     public Room() {
     }
-
-    public Room(int roomID, int roomFloor, String roomNumber, int roomItemID, String roomSize, String roomImg) {
-        this.roomID = roomID;
-        this.roomFloor = roomFloor;
-        this.roomNumber = roomNumber;
-        this.roomItemID = roomItemID;
-        this.roomSize = roomSize;
-        this.roomImg = roomImg;
-    }
-
-    public Room(int roomID, int roomFloor, String roomNumber, int roomItemID, String roomSize, String roomImg, RoomItem item) {
-        this.roomID = roomID;
-        this.roomFloor = roomFloor;
-        this.roomNumber = roomNumber;
-        this.roomItemID = roomItemID;
-        this.roomSize = roomSize;
-        this.roomImg = roomImg;
-        this.item = item;
-    }
-
-    
 
     public int getRoomID() {
         return roomID;
@@ -58,27 +64,19 @@ public class Room {
         this.roomFloor = roomFloor;
     }
 
-    public String getRoomNumber() {
+    public int getRoomNumber() {
         return roomNumber;
     }
 
-    public void setRoomNumber(String roomNumber) {
+    public void setRoomNumber(int roomNumber) {
         this.roomNumber = roomNumber;
     }
 
-    public int getRoomItemID() {
-        return roomItemID;
-    }
-
-    public void setRoomItemID(int roomItemID) {
-        this.roomItemID = roomItemID;
-    }
-
-    public String getRoomSize() {
+    public int getRoomSize() {
         return roomSize;
     }
 
-    public void setRoomSize(String roomSize) {
+    public void setRoomSize(int roomSize) {
         this.roomSize = roomSize;
     }
 
@@ -90,12 +88,34 @@ public class Room {
         this.roomImg = roomImg;
     }
 
-    public RoomItem getItem() {
+    public int getTotal() {
+        return total;
+    }
+
+    public void setTotal(int total) {
+        this.total = total;
+    }
+
+    public Item getItem() {
         return item;
     }
 
-    public void setItem(RoomItem item) {
+    public void setItem(Item item) {
         this.item = item;
     }
 
+    public RoomItem getRoomitem() {
+        return roomitem;
+    }
+
+    public void setRoomitem(RoomItem roomitem) {
+        this.roomitem = roomitem;
+    }
+    
+    
+    
+
 }
+
+
+   

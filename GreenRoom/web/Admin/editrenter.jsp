@@ -30,7 +30,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     </head>
     <body>
-        <div class="sidebar">
+         <div class="sidebar">
             <div class="logo-details">
                 <i class="fa-brands fa-gofore"></i>
                 <div class="logo_name">GreenRoom</div>
@@ -38,25 +38,18 @@
             </div>
             <ul class="nav-list">
                 <li>
-                    <a href="managerenter" style="background-color: white">
-                        <i class="fa-regular fa-address-book" style=" color: black"></i>
-                        <span class="links_name" style=" color: black">Renter</span>
+                    <a href="manageaccount">
+                        <i class="fa-regular fa-address-book"></i>
+                        <span class="links_name" style=" color: white">Account</span>
                     </a>
-                    <span class="tooltip">Renter</span>
+                    <span class="tooltip">Account</span>
                 </li>
                 <li>
-                    <a href="#">
-                        <i class="fa-solid fa-house-user"></i>
-                        <span class="links_name">Room</span>
+                    <a href="manageroom" style="background-color: white">
+                        <i class="fa-solid fa-house-user" style=" color: black"></i>
+                        <span style=" color: black" class="links_name">Room</span>
                     </a>
                     <span class="tooltip">Room</span>
-                </li>
-                <li>
-                    <a href="#">
-                        <i class="fa-solid fa-shield-halved"></i>
-                        <span class="links_name">Security</span>
-                    </a>
-                    <span class="tooltip">Security</span>
                 </li>
                 <li>
                     <a href="#">
@@ -71,7 +64,7 @@
             <div class="main--content">
                 <div class="header--wrapper">
                     <div class="header--title d-flex align-items-center">
-                        <img src="./Image/avatar8.jpg" alt="admin" style="height: 65px !important; width: 65px !important; margin-right: 20px"/>
+                        <img src="./Image/user/avatar20.jpg" alt="admin" style="height: 65px !important; width: 65px !important; margin-right: 20px"/>
                         <div>
                             <span>Admin Home</span>
                             <h2>Welcome !</h2>
@@ -94,7 +87,7 @@
                                                             <div class="col-12 col-sm-auto mb-3">
                                                                 <div class="mx-auto" style="width: 140px;">
                                                                     <div class="d-flex justify-content-center align-items-center rounded" style="height: 140px; background-color: rgb(233, 236, 239);">
-                                                                        <img class="w-100 h-100" src="${rdl.userAvatar}"/>
+                                                                        <img class="w-100 h-100" style="object-fit: cover" src="${rdl.userAvatar}"/>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -139,11 +132,11 @@
                                                                             <div class="col-6" id="roomNumberSection" style="${rdl.renter.renterStatus ? 'display: block' : 'display: none'}">
                                                                                 <div class="form-group">
                                                                                     <label>Room Number: </label>
-                                                                                    <select name="roomNumber" class="w-100" style="background-color: #e6e9e9; padding: 6px 12px; border-radius: 5px; border: 1px solid #ced4da;">
-                                                                                        <c:forEach var="room" items="${roomNumberList}">
-                                                                                            <option value="${room.roomNumber}" ${rdl.room.roomNumber==room.roomNumber ? 'selected' : ''} >${room.roomNumber}</option>
-                                                                                        </c:forEach>
-                                                                                    </select>
+                                                                                <select name="roomNumber" class="w-100" style="background-color: #e6e9e9; padding: 6px 12px; border-radius: 5px; border: 1px solid #ced4da;">
+                                                                                    <c:forEach var="room" items="${roomNumberList}">
+                                                                                        <option value="${room.roomNumber}" ${rdl.room.roomNumber==room.roomNumber ? 'selected' : ''} >${room.roomNumber}</option>
+                                                                                    </c:forEach>
+                                                                                </select>
                                                                                 </div>
                                                                             </div>
                                                                         </div> 

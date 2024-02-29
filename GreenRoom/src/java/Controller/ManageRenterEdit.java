@@ -68,7 +68,7 @@ public class ManageRenterEdit extends HttpServlet {
         try {
             id = Integer.parseInt(id_raw);
             User ed = dao.getRenterForEdit(id);
-            List<Room> room = dao1.getRoom();
+            List<Room> room = dao1.getAvailableRoom();
             request.setAttribute("detail", ed);
             request.setAttribute("roomNumberList", room);
             request.getRequestDispatcher("/Admin/editrenter.jsp").forward(request, response);
@@ -99,9 +99,10 @@ public class ManageRenterEdit extends HttpServlet {
             boolean renterHaveRoom = true;
             boolean haveRoom = renterStatus ? renterHaveRoom : !renterHaveRoom;
             String roomNumber = request.getParameter("roomNumber");
+            int number = Integer.parseInt(roomNumber);
             int roomID;
             if (haveRoom) {
-                roomID = dao1.findRoomIDByRoomNumber(roomNumber);
+                roomID = dao1.findRoomIDByRoomNumber(number);
             } else {
                 roomID = 0;
             }

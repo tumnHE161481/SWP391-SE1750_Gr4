@@ -19,6 +19,7 @@ public class User{
     private Account account;
     private Renter renter;
     private Room room;
+    private Security security;
     
     public User() {
     }
@@ -36,6 +37,25 @@ public class User{
         this.room = room;
     }
 
+    public User(int userID, String userName, String userGender, String userBirth, String userAddress, String userPhone, String userAvatar, Account account) {
+        this.userID = userID;
+        this.userName = userName;
+        this.userGender = userGender;
+        this.userBirth = userBirth;
+        this.userAddress = userAddress;
+        this.userPhone = userPhone;
+        this.userAvatar = userAvatar;
+        this.account = account;
+    }
+    
+    
+
+    public User(int userID, String userName, String userAvatar, Account account) {
+        this.userID = userID;
+        this.userName = userName;
+        this.userAvatar = userAvatar;
+        this.account = account;
+    }
 
     public User(int userID, String userName, String userGender, String userBirth, String userAddress, String userPhone, String userAvatar) {
         this.userID = userID;
@@ -46,6 +66,27 @@ public class User{
         this.userPhone = userPhone;
         this.userAvatar = userAvatar;
     }
+
+    public User(int userID, String userName, String userGender, String userBirth, String userAddress, String userPhone, String userAvatar, Account account, Security security) {
+        this.userID = userID;
+        this.userName = userName;
+        this.userGender = userGender;
+        this.userBirth = userBirth;
+        this.userAddress = userAddress;
+        this.userPhone = userPhone;
+        this.userAvatar = userAvatar;
+        this.account = account;
+        this.security = security;
+    }
+
+    public Security getSecurity() {
+        return security;
+    }
+
+    public void setSecurity(Security security) {
+        this.security = security;
+    }
+    
 
     public int getUserID() {
         return userID;

@@ -51,45 +51,37 @@ public class ManageAccountController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        AccountDAO dao = new AccountDAO();
+        UserDAO dao = new UserDAO();
         // Check if the search results are already stored in the session
-        List<Account> list = (List<Account>) request.getSession().getAttribute("manageAccount");
+        List<User> list = (List<User>) request.getSession().getAttribute("manageAccount");
         // If not, list all data
         if (list == null) {
             list = dao.manageAccount();
         }
         request.setAttribute("manageAccount", list);
-        
-        AccountDAO dao1 = new AccountDAO();
-        List<Account> rolelist = (List<Account>) request.getSession().getAttribute("filterByRole");
-        // If not, list all data
-        if (rolelist == null) {
-            rolelist = dao1.getAllRole();
-        }
-        request.setAttribute("filterByRole", rolelist);
         request.getRequestDispatcher("/Admin/manageaccount.jsp").forward(request, response);
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        RenterListDAO dao = new RenterListDAO();
+        UserDAO dao = new UserDAO();
         String txtSearch = request.getParameter("txtSearch");
         request.setAttribute("txtSearch", txtSearch);
 
         if (txtSearch != null && !txtSearch.isEmpty()) {
-            List<RenterList> searchResult = dao.searchResult(txtSearch);
-            request.getSession().setAttribute("manageRenter", searchResult);
+            List<User> searchResult = dao.searchResult(txtSearch);
+            request.getSession().setAttribute("manageAccount", searchResult);
             int count = dao.countSearchResult(txtSearch);
             // Set attribute based on search count
             request.setAttribute("searchCount", count);
-            request.setAttribute("manageRenter", searchResult);
+            request.setAttribute("manageAccount", searchResult);
         } else {
             // If no search text provided, show all data
-            List<RenterList> list = dao.getManageRenterList();
-            request.getSession().setAttribute("manageRenter", list);
-            request.setAttribute("manageRenter", list);
-            request.setAttribute("searchCount", "Use search to have results");
+            List<User> list = dao.manageAccount();
+            request.getSession().setAttribute("manageAccount", list);
+            request.setAttribute("manageAccount", list);
+            request.setAttribute("searchCount", "");
         }
 
         request.getRequestDispatcher("/Admin/manageaccount.jsp").forward(request, response);

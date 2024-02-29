@@ -45,18 +45,11 @@
                     <span class="tooltip">Account</span>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="manageroom">
                         <i class="fa-solid fa-house-user"></i>
                         <span class="links_name">Room</span>
                     </a>
                     <span class="tooltip">Room</span>
-                </li>
-                <li>
-                    <a href="#">
-                        <i class="fa-solid fa-shield-halved"></i>
-                        <span class="links_name">Security</span>
-                    </a>
-                    <span class="tooltip">Security</span>
                 </li>
                 <li>
                     <a href="#">
@@ -71,7 +64,7 @@
             <div class="main--content">
                 <div class="header--wrapper">
                     <div class="header--title d-flex align-items-center">
-                        <img src="./Image/avatar8.jpg" alt="admin" style="height: 65px !important; width: 65px !important; margin-right: 20px"/>
+                        <img src="./Image/user/avatar20.jpg" alt="admin" style="height: 65px !important; width: 65px !important; margin-right: 20px"/>
                         <div>
                             <span>Admin Home</span>
                             <h2>Welcome !</h2>
@@ -93,7 +86,7 @@
                                                             <div class="col-12 col-sm-auto mb-3">
                                                                 <div class="mx-auto" style="width: 140px;">
                                                                     <div class="d-flex justify-content-center align-items-center rounded" style="height: 140px; background-color: rgb(233, 236, 239);">
-                                                                        <img class="w-100 h-100" src="${rdl.userAvatar}"/>
+                                                                        <img class="w-100 h-100" style="object-fit: cover" src="${rdl.userAvatar}"/>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -195,6 +188,7 @@
                     </div>
 
                 </c:forEach>
+            </div>
         </section>
     </div>
 </body>

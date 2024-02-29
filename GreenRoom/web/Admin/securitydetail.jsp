@@ -38,25 +38,18 @@
             </div>
             <ul class="nav-list">
                 <li>
-                    <a href="managerenter" style="background-color: white">
+                    <a href="manageaccount" style="background-color: white">
                         <i class="fa-regular fa-address-book" style=" color: black"></i>
                         <span class="links_name" style=" color: black">Renter</span>
                     </a>
                     <span class="tooltip">Renter</span>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="manageroom">
                         <i class="fa-solid fa-house-user"></i>
                         <span class="links_name">Room</span>
                     </a>
                     <span class="tooltip">Room</span>
-                </li>
-                <li>
-                    <a href="#">
-                        <i class="fa-solid fa-shield-halved"></i>
-                        <span class="links_name">Security</span>
-                    </a>
-                    <span class="tooltip">Security</span>
                 </li>
                 <li>
                     <a href="#">
@@ -71,17 +64,15 @@
             <div class="main--content">
                 <div class="header--wrapper">
                     <div class="header--title d-flex align-items-center">
-                        <img src="./Image/avatar8.jpg" alt="admin" style="height: 65px !important; width: 65px !important; margin-right: 20px"/>
+                        <img src="./Image/user/avatar20.jpg" alt="admin" style="height: 65px !important; width: 65px !important; margin-right: 20px"/>
                         <div>
                             <span>Admin Home</span>
                             <h2>Welcome !</h2>
                         </div>
                     </div>
                 </div>
-                <c:set var="renterList" value="${requestScope.detail}"></c:set>
-                <c:forEach var="rdl" items="${renterList}">
-                    <c:set var="id" value="${rdl.userID}"></c:set>
-                        <div class="container">
+                <c:set var="sd" value="${requestScope.detail}"></c:set>
+                           <div class="container">
                             <div class="row flex-lg-nowrap">
                                 <div class="col">
                                     <div class="row">
@@ -93,19 +84,19 @@
                                                             <div class="col-12 col-sm-auto mb-3">
                                                                 <div class="mx-auto" style="width: 140px;">
                                                                     <div class="d-flex justify-content-center align-items-center rounded" style="height: 140px; background-color: rgb(233, 236, 239);">
-                                                                        <img class="w-100 h-100" src="${rdl.userAvatar}"/>
+                                                                        <img class="w-100 h-100" src="${sd.userAvatar}"/>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                         <div class="col justify-content-between mb-3">
                                                             <div class="text-center text-sm-left mb-2 mb-sm-0">
                                                                 <h4 class="pt-sm-2 pb-1 mb-0 text-nowrap">
-                                                                    ${rdl.userName}</h4>
-                                                                <p class="mb-0">${rdl.account.userMail}</p>
+                                                                    ${sd.userName}</h4>
+                                                                <p class="mb-0">${sd.account.userMail}</p>
                                                                 <div class="text-muted"><small>
-                                                                        RenterID: ${rdl.renter.renterID} &nbsp;
+                                                                        SecurityID: ${sd.security.seID} &nbsp;
                                                                         <c:choose>
-                                                                            <c:when test="${rdl.renter.renterStatus}">
+                                                                            <c:when test="${sd.security.seStatus}">
                                                                                 <i style="color: rgb(44, 223, 44)" class="fa-solid fa-user-check"></i>
                                                                             </c:when>
                                                                             <c:otherwise>
@@ -126,13 +117,13 @@
                                                                             <div class="col-6">
                                                                                 <div class="form-group">
                                                                                     <label>Date of birth:</label>
-                                                                                    <input readonly class="form-control" type="date" name="name" value="${rdl.userBirth}">
+                                                                                    <input readonly class="form-control" type="date" name="name" value="${sd.userBirth}">
                                                                                 </div>
                                                                             </div>
                                                                             <div class="col-6">
                                                                                 <div class="form-group">
                                                                                     <label>Gender:</label>
-                                                                                    <input readonly class="form-control" type="text" name="name" value="${rdl.userGender}">
+                                                                                    <input readonly class="form-control" type="text" name="name" value="${sd.userGender}">
                                                                                 </div>
                                                                             </div>
                                                                         </div>
@@ -140,7 +131,7 @@
                                                                             <div class="col-12">
                                                                                 <div class="form-group">
                                                                                     <label>Address: </label>
-                                                                                    <input readonly class="form-control" type="text" name="username"  value="${rdl.userAddress}">
+                                                                                    <input readonly class="form-control" type="text" name="username"  value="${sd.userAddress}">
                                                                                 </div>
                                                                             </div>
                                                                         </div>
@@ -148,20 +139,20 @@
                                                                             <div class="col-6">
                                                                                 <div class="form-group">
                                                                                     <label>Contact: </label>
-                                                                                    <input readonly class="form-control" type="text" value="${rdl.userPhone}">
+                                                                                    <input readonly class="form-control" type="text" value="${sd.userPhone}">
                                                                                 </div>
                                                                             </div>
                                                                             <div class="col-6">
                                                                                 <div class="form-group">
-                                                                                    <label>Room Number: </label>
+                                                                                    <label>Account status: </label>
                                                                                     <c:choose>
-                                                                                        <c:when test="${not empty rdl.room.roomNumber}">
-                                                                                            <input readonly class="form-control" type="text" value="${rdl.room.roomNumber}">
+                                                                                        <c:when test="${sd.security.seStatus}">
+                                                                                            <div class="form-control" style="color: green; background-color: #e9ecef">Active&nbsp;&#10003; </div>
                                                                                         </c:when>
                                                                                         <c:otherwise>
-                                                                                            <div class="w-100" style="background-color: #e6e9e9; padding: 6px 12px; border-radius: 5px; border: 1px solid #ced4da;"><i style="font-weight: bolder;" class="fa-solid fa-ban"></i></div>
-                                                                                            </c:otherwise>
-                                                                                        </c:choose>
+                                                                                            <div class="form-control" style="color: red; background-color: #e9ecef" >Deactive&nbsp;&#10007; </div>
+                                                                                        </c:otherwise>
+                                                                                    </c:choose>
                                                                                 </div>
                                                                             </div>
                                                                         </div> 
@@ -180,12 +171,17 @@
                                     <div class="col-12 col-md-3 mb-3">
                                         <div class="card">
                                             <div class="card-body">
-                                                <h6 class="card-title font-weight-bold">Support</h6>
-                                                <p class="card-text">Edit renter account status and add room for them.</p>
-                                                <div class="d-flex justify-content-center gap-4">
-                                                    <a href="manageaccount" type="button" class="btn btn-danger">Back</a>
-                                                    <a href="adrenteredit?id=${id}" type="button" class="btn btn-primary">Edit</a>
-                                                </div>
+                                                <form action="adsedetail" method="post">
+                                                    
+                                                    <h6 class="card-title font-weight-bold">Support</h6>
+                                                    <p class="card-text">Switch security account status.</p>
+                                                    <div class="d-flex justify-content-center gap-4">
+                                                        <input name="id" value="${sd.userID}" class="d-none">
+                                                        <input name="seStatus" value="${sd.security.seStatus}" class="d-none">
+                                                        <a href="manageaccount" type="button" class="btn btn-danger">Back</a>
+                                                        <button type="submit" class="btn btn-primary"><i class="fa-solid fa-arrows-rotate"></i>&nbsp;Switch</button>
+                                                    </div>
+                                                </form>
                                             </div>
                                         </div>
                                     </div>
@@ -194,7 +190,6 @@
                         </div>
                     </div>
 
-                </c:forEach>
         </section>
     </div>
 </body>

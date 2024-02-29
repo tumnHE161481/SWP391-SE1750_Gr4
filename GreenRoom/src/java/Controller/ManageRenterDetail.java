@@ -39,7 +39,7 @@ public class ManageRenterDetail extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ManageRenterDetail</title>");            
+            out.println("<title>Servlet ManageRenterDetail</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet ManageRenterDetail at " + request.getContextPath() + "</h1>");
@@ -57,20 +57,19 @@ public class ManageRenterDetail extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-        @Override
+    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String id_raw= request.getParameter("id");
+        String id_raw = request.getParameter("id");
         int id;
         UserDAO dao = new UserDAO();
-        try{
-            id=Integer.parseInt(id_raw);
+        try {
+            id = Integer.parseInt(id_raw);
             List<User> rd = dao.getRenterDetail(id);
             request.setAttribute("detail", rd);
             request.getRequestDispatcher("/Admin/renterdetail.jsp").forward(request, response);
-        }
-        catch(NumberFormatException e){
-             
+        } catch (NumberFormatException e) {
+            System.err.println("Fail:" + e);
         }
     }
 
