@@ -30,7 +30,7 @@
         <link rel="stylesheet" href="<%=request.getContextPath()%>/scss/aos.css">
         <link rel="stylesheet" href="<%=request.getContextPath()%>/scss/style.css">
 
-        <title>Renter List</title>
+        <title>History penalty List</title>
     </head>
 
     <body>
