@@ -4,6 +4,8 @@
  */
 package Controller;
 
+import DAL.UserDAO;
+import Models.*;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -11,6 +13,8 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  *
@@ -36,7 +40,7 @@ public class RenterRequestController extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet RenterRequestController</title>");            
+            out.println("<title>Servlet RenterRequestController</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet RenterRequestController at " + request.getContextPath() + "</h1>");
@@ -57,7 +61,6 @@ public class RenterRequestController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-            request.getRequestDispatcher("/Renter/sendrequest.jsp").forward(request, response);
     }
 
     /**
@@ -71,7 +74,17 @@ public class RenterRequestController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        request.setCharacterEncoding("UTF-8");
+        UserDAO dao = new UserDAO();
+        String requestContent = request.getParameter("requestType");
+        int requestType = Integer.parseInt(requestContent);
+        String title = request.getParameter("title");
+        String description = request.getParameter("description");
+        Date currentDate = new Date();
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String createAt = formatter.format(currentDate);
+        User user = dao.doRequestByID(1, requestType, title, description, createAt, "Pending");
+        request.getRequestDispatcher("/Renter/sendrequest.jsp").forward(request, response);
     }
 
     /**

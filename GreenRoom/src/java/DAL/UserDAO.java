@@ -469,6 +469,32 @@ public class UserDAO extends MyDAO {
         return null;
     }
 
+    public User doRequestByID(int renterID, int requestType, String title, String description, String creatAt, String resStatus) {
+        String sql = "INSERT INTO [GreenRoom].[dbo].[request] ([renterID], [requestType], [title], [description], [createAt], [resStatus]) "
+                + "VALUES (?, ?, ?, ?, ?, ?)";
+
+        try {
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, renterID);
+            ps.setInt(2, requestType);
+            ps.setString(3, title);
+            ps.setString(4, description);
+            ps.setString(5, creatAt);
+            ps.setString(6, resStatus);
+            int rowsAffected = ps.executeUpdate();
+
+            if (rowsAffected > 0) {
+                System.out.println("Request inserted successfully.");
+            } else {
+                System.out.println("Failed to insert request.");
+            }
+
+        } catch (SQLException e) {
+            System.out.println("Fail: " + e.getMessage());
+        } 
+        return null;
+    }
+
     public static void main(String[] args) {
         UserDAO dao = new UserDAO();
 //         List<User> list = dao.getUserList();
@@ -522,11 +548,13 @@ public class UserDAO extends MyDAO {
 //            System.out.println("Role: " + user.getAccount().getUserRole());
 //        }
 
-        List<User> list = dao.getUserByRoomID(2);
-        for (User user : list) {
-            System.out.println("ID: " + user.getUserID());
-            System.out.println("Name: " + user.getUserName());
-        }
+//        List<User> list = dao.getUserByRoomID(2);
+//        for (User user : list) {
+//            System.out.println("ID: " + user.getUserID());
+//            System.out.println("Name: " + user.getUserName());
+//        }
+
+        User user = dao.doRequestByID(1, 1, "fix chair", "3 Chairs in Room 101 are broken leg","2024-03-01 02:42:50.890", "Pending");
     }
 
 }
