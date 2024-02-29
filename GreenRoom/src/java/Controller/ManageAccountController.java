@@ -52,6 +52,7 @@ public class ManageAccountController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         UserDAO dao = new UserDAO();
+        List<User> list1 = dao.manageAccount();
         // Check if the search results are already stored in the session
         List<User> list = (List<User>) request.getSession().getAttribute("manageAccount");
         // If not, list all data
@@ -59,6 +60,12 @@ public class ManageAccountController extends HttpServlet {
             list = dao.manageAccount();
         }
         request.setAttribute("manageAccount", list);
+        List<User> list2 = (List<User>) request.getSession().getAttribute("manageNewAccount");
+        // If not, list all data
+        if (list2 == null) {
+            list2 = dao.manageNewAccount();
+        }
+        request.setAttribute("manageNewAccount", list2);
         request.getRequestDispatcher("/Admin/manageaccount.jsp").forward(request, response);
     }
 
@@ -83,6 +90,25 @@ public class ManageAccountController extends HttpServlet {
             request.setAttribute("manageAccount", list);
             request.setAttribute("searchCount", "");
         }
+        
+        String txtSearch2 = request.getParameter("txtSearch2");
+        request.setAttribute("txtSearch2", txtSearch2);
+
+        if (txtSearch2 != null && !txtSearch2.isEmpty()) {
+            List<User> searchResult2 = dao.searchResult2(txtSearch2);
+            request.getSession().setAttribute("manageNewAccount", searchResult2);
+            int count2 = dao.countSearchResult2(txtSearch2);
+            // Set attribute based on search count
+            request.setAttribute("searchCount2", count2);
+            request.setAttribute("manageAccount2", searchResult2);
+        } else {
+            // If no search text provided, show all data
+            List<User> list2 = dao.manageNewAccount();
+            request.getSession().setAttribute("manageNewAccount", list2);
+            request.setAttribute("manageNewAccount", list2);
+            request.setAttribute("searchCount2", "");
+        }
+        
 
         request.getRequestDispatcher("/Admin/manageaccount.jsp").forward(request, response);
     }
