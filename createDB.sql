@@ -27,22 +27,22 @@ CREATE TABLE roomItem (
     FOREIGN KEY (itemID) REFERENCES item(itemID)
 );
 
-CREATE TABLE [user] (
+CREATE TABLE account (
     userID INT IDENTITY(1,1) PRIMARY KEY,
+    userMail NVARCHAR(MAX) NOT NULL,
+    userPassword NVARCHAR(MAX) NOT NULL,
+    userRole INT NOT NULL
+);
+
+CREATE TABLE [user] (
+    userID INT PRIMARY KEY,
     userName NVARCHAR(MAX) NOT NULL,
     userGender NVARCHAR(10) NOT NULL,
     userBirth DATE NOT NULL,
     userAddress NVARCHAR(MAX) NOT NULL,
     userPhone NVARCHAR(20) NOT NULL,
-    userAvatar NVARCHAR(MAX) NOT NULL
-);
-
-CREATE TABLE account (
-    userID INT IDENTITY(1,1) PRIMARY KEY,
-    userMail NVARCHAR(MAX) NOT NULL,
-    userPassword NVARCHAR(MAX) NOT NULL,
-    userRole INT NOT NULL,
-    FOREIGN KEY (userID) REFERENCES [user](userID)
+    userAvatar NVARCHAR(MAX) NOT NULL,
+    FOREIGN KEY (userID) REFERENCES account(userID)
 );
 
 
