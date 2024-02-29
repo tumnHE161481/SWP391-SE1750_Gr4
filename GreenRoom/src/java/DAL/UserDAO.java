@@ -18,7 +18,7 @@ import Models.User;
  */
 public class UserDAO extends MyDAO {
 
-    //Table - User
+    //Table - user
     /*
     1.userID - int
     2.userName - String
@@ -212,7 +212,48 @@ public class UserDAO extends MyDAO {
                 + "       u.userAvatar\n"
                 + "FROM Account a\n"
                 + "INNER JOIN [User] u ON a.userID = u.userID\n"
-                + "WHERE a.userRole != 3 AND a.userRole != 4;";
+                + "WHERE  a.userRole != 0 AND a.userRole != 3 AND a.userRole != 4;";
+
+        try {
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                Account account = new Account(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4));
+                User user = new User(rs.getInt(1), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9), rs.getString(10), account);
+                list.add(user);
+            }
+        } catch (SQLException e) {
+            System.out.println("Fail: " + e.getMessage());
+        } finally {
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (ps != null) {
+                    ps.close();
+                }
+            } catch (SQLException e) {
+                System.out.println("Error closing resources: " + e.getMessage());
+            }
+        }
+        return list;
+    }
+
+    public List<User> manageNewAccount() {
+        List<User> list = new ArrayList<>();
+        String sql = "SELECT a.userID,\n"
+                + "       a.userMail,\n"
+                + "       a.userPassword,\n"
+                + "       a.userRole,\n"
+                + "       u.userName,\n"
+                + "       u.userGender,\n"
+                + "       u.userBirth,\n"
+                + "       u.userAddress,\n"
+                + "       u.userPhone,\n"
+                + "       u.userAvatar\n"
+                + "FROM Account a\n"
+                + "INNER JOIN [User] u ON a.userID = u.userID\n"
+                + "WHERE  a.userRole = 0;";
 
         try {
             ps = con.prepareStatement(sql);
@@ -308,6 +349,55 @@ public class UserDAO extends MyDAO {
         return list;
     }
 
+    //Count number search results
+    public int countSearchResult2(String txtSearch) {
+        String sql = "SELECT COUNT(*) AS resultCount\n"
+                + "FROM [User] u \n"
+                + "JOIN Account a ON u.userID = a.userID \n"
+                + "WHERE a.userRole = 0\n"
+                + "AND (u.userName LIKE ? OR a.userMail LIKE ?)";
+        try {
+            ps = con.prepareStatement(sql);
+            ps.setString(1, "%" + txtSearch + "%");
+            ps.setString(2, "%" + txtSearch + "%");
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                return rs.getInt(1);
+            }
+        } catch (SQLException e) {
+            System.out.println("Fail: " + e.getMessage());
+        }
+        return 0;
+    }
+
+    //List search results
+    public List<User> searchResult2(String txtSearch) {
+        List<User> list = new ArrayList<>();
+        String sql = "SELECT u.userID, u.userAvatar, u.userName, a.userMail, a.userRole \n"
+                + "FROM [user] u\n"
+                + " JOIN account a ON u.userID = a.userID\n"
+                + "WHERE a.userRole = 0\n"
+                + "AND (u.userName LIKE ? OR a.userMail LIKE ?)\n"
+                + "ORDER BY u.userID";
+
+        try {
+            ps = con.prepareStatement(sql);
+            ps.setString(1, "%" + txtSearch + "%");
+            ps.setString(2, "%" + txtSearch + "%");
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                Account account = new Account(rs.getInt(1), rs.getString(4), "", rs.getInt(5));
+                User user = new User(rs.getInt(1), rs.getString(3), rs.getString(2), account);
+                list.add(user);
+            }
+        } catch (SQLException e) {
+            System.out.println("Fail: " + e.getMessage());
+        } finally {
+            // Handle closing resources
+        }
+        return list;
+    }
+
     public List<User> getUserByRoomID(int id) {
         List<User> list = new ArrayList<>();
         String sql = "SELECT u.*\n"
@@ -336,6 +426,73 @@ public class UserDAO extends MyDAO {
 
         }
         return list;
+    }
+
+    public User getNewAccDetail(int id) {
+        String sql = "SELECT \n"
+                + "    u.userID, \n"
+                + "    u.userName, \n"
+                + "    u.userGender, \n"
+                + "    u.userBirth, \n"
+                + "    u.userAddress, \n"
+                + "    u.userPhone, \n"
+                + "    u.userAvatar,\n"
+                + "    a.userMail,\n"
+                + "    a.userPassword\n"
+                + "FROM [user] u\n"
+                + "INNER JOIN [account] a ON u.userID = a.userID\n"
+                + "WHERE a.userRole = 0 AND a.userID = ?;";
+
+        try {
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, id);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                int userId = rs.getInt(1);
+                String userName = rs.getString(2);
+                String userGender = rs.getString(3);
+                String userBirth = rs.getString(4);
+                String userAddress = rs.getString(5);
+                String userPhone = rs.getString(6);
+                String userAvatar = rs.getString(7);
+                String userMail = rs.getString(8);
+                String userPassword = rs.getString(9);
+                Account account = new Account(userId, userMail, userPassword, 0);
+                User user = new User(userId, userName, userGender, userBirth, userAddress, userPhone, userAvatar, account);
+                return user;
+            }
+        } catch (SQLException e) {
+            // Handle exception as needed
+            System.out.println("Fail: " + e.getMessage());
+
+        }
+        return null;
+    }
+
+    public User doRequestByID(int renterID, int requestType, String title, String description, String creatAt, String resStatus) {
+        String sql = "INSERT INTO [GreenRoom].[dbo].[request] ([renterID], [requestType], [title], [description], [createAt], [resStatus]) "
+                + "VALUES (?, ?, ?, ?, ?, ?)";
+
+        try {
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, renterID);
+            ps.setInt(2, requestType);
+            ps.setString(3, title);
+            ps.setString(4, description);
+            ps.setString(5, creatAt);
+            ps.setString(6, resStatus);
+            int rowsAffected = ps.executeUpdate();
+
+            if (rowsAffected > 0) {
+                System.out.println("Request inserted successfully.");
+            } else {
+                System.out.println("Failed to insert request.");
+            }
+
+        } catch (SQLException e) {
+            System.out.println("Fail: " + e.getMessage());
+        } 
+        return null;
     }
 
     public static void main(String[] args) {
@@ -391,11 +548,13 @@ public class UserDAO extends MyDAO {
 //            System.out.println("Role: " + user.getAccount().getUserRole());
 //        }
 
-        List<User> list = dao.getUserByRoomID(2);
-        for (User user : list) {
-            System.out.println("ID: " + user.getUserID());
-            System.out.println("Name: " + user.getUserName());
-        }
+//        List<User> list = dao.getUserByRoomID(2);
+//        for (User user : list) {
+//            System.out.println("ID: " + user.getUserID());
+//            System.out.println("Name: " + user.getUserName());
+//        }
+
+        User user = dao.doRequestByID(1, 1, "fix chair", "3 Chairs in Room 101 are broken leg","2024-03-01 02:42:50.890", "Pending");
     }
 
 }

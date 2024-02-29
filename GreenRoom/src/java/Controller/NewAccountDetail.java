@@ -18,8 +18,8 @@ import jakarta.servlet.http.HttpServletResponse;
  *
  * @author ASUS
  */
-@WebServlet(name = "ManageSecurityDetail", urlPatterns = {"/adsedetail"})
-public class ManageSecurityDetail extends HttpServlet {
+@WebServlet(name = "NewAccountDetail", urlPatterns = {"/newaccdetail"})
+public class NewAccountDetail extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,10 +38,10 @@ public class ManageSecurityDetail extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ManageSecurityDetail</title>");
+            out.println("<title>Servlet NewAccountDetail</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet ManageSecurityDetail at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet NewAccountDetail at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -64,9 +64,9 @@ public class ManageSecurityDetail extends HttpServlet {
         UserDAO dao = new UserDAO();
         try {
             id = Integer.parseInt(id_raw);
-            User rd = dao.getSecurityDetail(id);
+            User rd = dao.getNewAccDetail(id);
             request.setAttribute("detail", rd);
-            request.getRequestDispatcher("/Admin/securitydetail.jsp").forward(request, response);
+            request.getRequestDispatcher("/Admin/newaccountdetail.jsp").forward(request, response);
         } catch (NumberFormatException e) {
             System.err.println("Fail:" + e);
         }
@@ -83,19 +83,7 @@ public class ManageSecurityDetail extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String id_raw = request.getParameter("id");
-        int id;
-        SecurityDAO dao = new SecurityDAO();
-        request.setCharacterEncoding("UTF-8");
-        try {
-            id = Integer.parseInt(id_raw);
-            boolean seStatus = Boolean.parseBoolean(request.getParameter("seStatus"));
-            seStatus = !seStatus;
-            dao.updateSecurity(id, seStatus);
-            response.sendRedirect(request.getContextPath() + "/adsedetail?id=" + id_raw);
-        } catch (NumberFormatException e) {
-            response.sendRedirect(request.getContextPath() + "/adsedetail?id=" + id_raw);
-        }
+        processRequest(request, response);
     }
 
     /**

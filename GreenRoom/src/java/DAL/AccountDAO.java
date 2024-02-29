@@ -20,7 +20,7 @@ import Models.User;
  */
 public class AccountDAO extends MyDAO {
 
-    //Table - Account
+    //Table - account
     /*
     1.userID - int
     2.userMail - String
@@ -100,9 +100,8 @@ public class AccountDAO extends MyDAO {
         }
         return 0;
     }
-    
-    
-     public List<Account> getAllRole() {
+
+    public List<Account> getAllRole() {
         List<Account> list = new ArrayList<>();
         String sql = "SELECT DISTINCT userRole FROM Account;";
         try {
@@ -116,12 +115,37 @@ public class AccountDAO extends MyDAO {
             System.out.println("Fail: " + e.getMessage());
         }
         return list;
-     }
+    }
+
+    //List Account by userRole (Security)
+    public void deleteAccountByID(int userID) {
+        String sql = "DELETE FROM account WHERE userID = ?; "
+                + "DELETE FROM [user] WHERE userID = ?";
+
+        try {
+            ps = con.prepareStatement(sql);
+            if (userID == 0) {
+                ps.setObject(1, null);
+            } else {
+                ps.setInt(1, userID);
+                ps.setInt(2, userID);
+            }
+
+            int rowsAffected = ps.executeUpdate();
+              if (rowsAffected > 0) {
+            System.out.println("Data for user with userID " + userID + " deleted successfully.");
+        } else {
+            System.out.println("Failed to delete data for user with userID " + userID);
+        }
+
+        } catch (SQLException e) {
+            System.out.println("Fail: " + e.getMessage());
+        }
+    }
 
     public static void main(String[] args) {
         AccountDAO dao = new AccountDAO();
-//        int role = dao.getUserRole("maitu@gmail.com", "12345678");
-//        System.out.println("Role: " + role);
+        dao.deleteAccountByID(30);
     }
 
     /////////////////////Hung dog code

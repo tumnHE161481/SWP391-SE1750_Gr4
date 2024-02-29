@@ -73,69 +73,73 @@
                     </div>
                 </div>
                 <!--Table Content-->
-                <div class="tabular--wrapper">
-                    <h3 style="margin-bottom: 40px">Room Management</h3>
-                    <div class="col-lg-4">
-                        <div class="row">
-                            <div class="col-2">
-                                <h3>Floor: </h3>
-                            </div>
-                            <div class="col-10">
-                                <div class="d-flex gap-4">
-                                    <button type="submit">All</button>
-                                    <button type="submit">1,2,3,4</button>
-                                </div>
-                            </div>
+
+                <div class="tabular--wrapper row">
+                    <div class="col-2">
+                        <div class="wrap">
+                            <ul class="nav">
+                                <li class="nav__link">1</li>
+                                <li class="nav__link">2</li>
+                                <li class="nav__link">3</li>
+                                <li class="nav__link">4</li>
+                                <li class="nav__link">5</li>
+                                <div class="nav__bar"></div>
+                            </ul>
                         </div>
+
                     </div>
-                    <div class="col-lg-12">
-                        <div class="row g-4 justify-content-center">
-                            <c:forEach var="room" items="${manageRoom}" varStatus="loop" >
-                                <c:set var="id" value="${room.roomID}"/>
-                                <div class="col-md-6 col-lg-6 col-xl-3">
-                                    <div class="rounded position-relative fruite-item">
-                                        <div class="fruite-img">
-                                            <img src=${room.roomImg} class="img-fluid w-100 rounded-top" alt="" style="object-fit: cover; height: 300px">
-                                        </div>
-                                        
-                                        <c:choose>
-                                            <c:when test="${room.roomSize == 1}">
-                                                <div class="text-white bg-secondary px-3 py-1 rounded position-absolute" style="top: 10px; left: 10px;">Small Size</div>
-                                            </c:when>
-                                            <c:when test="${room.roomSize == 2}">
-                                                <div class="text-white bg-secondary px-3 py-1 rounded position-absolute" style="top: 10px; left: 10px;">Medium Size</div>
-                                            </c:when>
-                                            <c:otherwise>
-                                                <div class="text-white bg-secondary px-3 py-1 rounded position-absolute" style="top: 10px; left: 10px;">Big Size</div>
-                                            </c:otherwise>
-                                        </c:choose>
-                                        <div class="p-4 border border-secondary border-top-0 rounded-bottom">
-                                            <h4>Room ${room.roomNumber}</h4>
-                                            <small style="padding: 0px; font-style: italic">Floor ${room.roomFloor}</small>
-                                            <div class="d-flex justify-content-between flex-lg-wrap align-items-center" style="text-align: center">
-                                                <c:choose>
-                                                    <c:when test="${room.roomSize == 1}">
-                                                        <p class="text-dark fw-bold mb-0" style="font-size: 16px">Renter ${room.total}/1&nbsp;<i class="fa-solid fa-people-group"></i> </p>
-                                                    </c:when>
-                                                    <c:when test="${room.roomSize == 2}">
-                                                        <p class="text-dark fw-bold mb-0" style="font-size: 16px">Renter ${room.total}/2&nbsp;<i class="fa-solid fa-people-group"></i> </p>
-                                                    </c:when>
-                                                    <c:otherwise>
-                                                        <p class="text-dark fw-bold mb-0" style="font-size: 16px">Renter ${room.total}/4&nbsp;<i class="fa-solid fa-people-group"></i> </p>
-                                                    </c:otherwise>
-                                                </c:choose>
-                                                <a href="adroomdetail?id=${id}" class="btn border border-secondary rounded-pill px-3 text-primary" style="font-size: 16px">
-                                                    <i class="fa-solid fa-hand-point-right fa-sm" style="color: #1959c8;"></i> View detail
-                                                </a>
+                    <div class="col-10">
+                        <h3 style="margin-bottom: 40px">Room Management</h3>
+                        <div class="col-lg-12">
+                            <div class="row g-4 justify-content-center">
+                                <c:forEach var="room" items="${manageRoom}" varStatus="loop" >
+                                    <c:set var="id" value="${room.roomID}"/>
+                                    <div class="col-md-6 col-lg-6 col-xl-3">
+                                        <div class="rounded position-relative fruite-item">
+                                            <div class="fruite-img">
+                                                <img src=${room.roomImg} class="img-fluid w-100 rounded-top" alt="" style="object-fit: cover; height: 300px">
+                                            </div>
+
+                                            <c:choose>
+                                                <c:when test="${room.roomSize == 1}">
+                                                    <div class="text-white bg-secondary px-3 py-1 rounded position-absolute" style="top: 10px; left: 10px;">Small Size</div>
+                                                </c:when>
+                                                <c:when test="${room.roomSize == 2}">
+                                                    <div class="text-white bg-secondary px-3 py-1 rounded position-absolute" style="top: 10px; left: 10px;">Medium Size</div>
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <div class="text-white bg-secondary px-3 py-1 rounded position-absolute" style="top: 10px; left: 10px;">Big Size</div>
+                                                </c:otherwise>
+                                            </c:choose>
+                                            <div class="p-4 border border-secondary border-top-0 rounded-bottom">
+                                                <h4>Room ${room.roomNumber}</h4>
+                                                <small style="padding: 0px; font-style: italic">Floor ${room.roomFloor}</small>
+                                                <div class="d-flex justify-content-between flex-lg-wrap align-items-center" style="text-align: center">
+                                                    <c:choose>
+                                                        <c:when test="${room.roomSize == 1}">
+                                                            <p class="text-dark fw-bold mb-0" style="font-size: 16px">Renter ${room.total}/1&nbsp;<i class="fa-solid fa-people-group"></i> </p>
+                                                        </c:when>
+                                                        <c:when test="${room.roomSize == 2}">
+                                                            <p class="text-dark fw-bold mb-0" style="font-size: 16px">Renter ${room.total}/2&nbsp;<i class="fa-solid fa-people-group"></i> </p>
+                                                        </c:when>
+                                                        <c:otherwise>
+                                                            <p class="text-dark fw-bold mb-0" style="font-size: 16px">Renter ${room.total}/4&nbsp;<i class="fa-solid fa-people-group"></i> </p>
+                                                        </c:otherwise>
+                                                    </c:choose>
+                                                    <a href="adroomdetail?id=${id}" class="btn border border-secondary rounded-pill px-3 text-primary" style="font-size: 16px">
+                                                        <i class="fa-solid fa-hand-point-right fa-sm" style="color: #1959c8;"></i> View detail
+                                                    </a>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            </c:forEach>
-                        </div>
-                    </div>    
+                                </c:forEach>
+                            </div>
+                        </div>   
+                    </div>
                 </div>
             </div>
+
         </section>
         <script>
             let sidebar = document.querySelector(".sidebar");
@@ -161,6 +165,8 @@
                     closeBtn.classList.replace("fa-times", "fa-bars");
                 }
             }
+
+
         </script>
     </body>
 </html>
