@@ -5,6 +5,8 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!-- /*
 * Template Name: Property
 * Template Author: Untree.co
@@ -34,12 +36,12 @@
         <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 
-        <link rel="stylesheet" href="../fonts/icomoon/style.css">
-        <link rel="stylesheet" href="../fonts/flaticon/font/flaticon.css">
+         <link rel="stylesheet" href="<%=request.getContextPath()%>/fonts/icomoon/style.css">
+        <link rel="stylesheet" href="<%=request.getContextPath()%>/fonts/flaticon/font/flaticon.css">
 
-        <link rel="stylesheet" href="../css/tiny-slider.css">
-        <link rel="stylesheet" href="../css/aos.css">
-        <link rel="stylesheet" href="../css/style.css">
+        <link rel="stylesheet" href="<%=request.getContextPath()%>/css/tiny-slider.css">
+        <link rel="stylesheet" href="<%=request.getContextPath()%>/css/aos.css">
+        <link rel="stylesheet" href="<%=request.getContextPath()%>/css/style.css">
 
         <title>Property &mdash; Free Bootstrap 5 Website Template by Untree.co</title>
     </head>
@@ -59,15 +61,15 @@
             <div class="container">
                 <div class="menu-bg-wrap">
                     <div class="site-navigation">
-                        <a href="SeHome.jsp" class="logo m-0 float-start">GreenRoom</a>
+                        <a href="sehome" class="logo m-0 float-start">Green Room</a>
 
                         <ul class="js-clone-nav d-none d-lg-inline-block text-start site-menu float-end">
-                            <li class="active"><a href="Homepage.html">Home</a></li>
-                            <li class="active"><a href="RoomList.html">Room</a></li>
-                            <li><a href="seprofile">Payment</a></li>
-                            <li><a href="CustomerList.html">Customer</a></li>
+                            <li class="active"><a href="sehome">Home</a></li>
+                            <li class="active"><a href="listroom">Room</a></li>
+                            <li><a href="seprofile">Profile</a></li>
+                            <li><a href="selistcustomer">Renter</a></li>
                             <li><a href="Guide.html">Guide</a></li>
-                            <li><a href="News.html">News</a></li>
+                            <li><a href="News.html">Log Out</a></li>
                         </ul>
 
                         <a href="#"
@@ -81,44 +83,54 @@
             </div>
         </nav>
 
-        <div class="hero page-inner overlay" style="background-image: url('../images/hero_bg_1.jpg');">
+      <div class="hero page-inner overlay" style="background-image: url('<%=request.getContextPath()%>/images/hero_bg_3.jpg');">
 
-            <div class="container">
-                <div class="row justify-content-center align-items-center">
-                    <div class="col-lg-9 text-center mt-5">
-                        <h1 class="heading" data-aos="fade-up">Guideline</h1>
+        <div class="container">
+            <div class="row justify-content-center align-items-center">
+                <div class="col-lg-9 text-center mt-5">
+                    <h1 class="heading" data-aos="fade-up">News</h1>
 
-                        <nav aria-label="breadcrumb" data-aos="fade-up" data-aos-delay="200">
-                            <ol class="breadcrumb text-center justify-content-center">
-                                <li class="breadcrumb-item "><a href="index.html">Home</a></li>
-                                <li class="breadcrumb-item active text-white-50" aria-current="page">Guideline</li>
-                            </ol>
-                        </nav>
-                    </div>
+                    <nav aria-label="breadcrumb" data-aos="fade-up" data-aos-delay="200">
+                        <ol class="breadcrumb text-center justify-content-center">
+                            <li class="breadcrumb-item "><a href="index.html">Home</a></li>
+                            <li class="breadcrumb-item active text-white-50" aria-current="page">News</li>
+                        </ol>
+                    </nav>
                 </div>
             </div>
         </div>
+    </div>
 
 
-        <div class="section bg-light">
-            <div class="container">
-                <div class="row">
-                    <div class="col-6 col-lg-3" data-aos="fade-up" data-aos-delay="300">
-                        <div class="box-feature mb-4">
-                            <span class="flaticon-house mb-4 d-block"></span>
-                            <h3 class="text-black mb-3 font-weight-bold">Quality Properties</h3>
-                            <p class="text-black-50">Far far away, behind the word mountains, far from the countries Vokalia
-                                and Consonantia, there live the blind texts.</p>
-                            <p><a href="#" class="learn-more">Read more</a></p>
-                        </div>
-                    </div>
-
-
+    <div class="section">
+        <div class="container">
+            <div class="row text-left mb-5">
+                <div class="col-12">
+                    <h2 class="font-weight-bold heading text-primary mb-4">News</h2>
                 </div>
+                <div class="col-lg-12">
+                    <p class="text-black-50">Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam enim pariatur similique debitis vel nisi qui reprehenderit totam? Quod maiores.</p>
+                    <p class="text-black-50">Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni saepe, explicabo nihil. Est, autem error cumque ipsum repellendus veniam sed blanditiis unde ullam maxime veritatis perferendis cupiditate, at non esse!</p>
+                    <p class="text-black-50">Enim, nisi labore exercitationem facere cupiditate nobis quod autem veritatis quis minima expedita. Cumque odio illo iusto reiciendis, labore impedit omnis, nihil aut atque, facilis necessitatibus asperiores porro qui nam.</p>
+                </div>
+                
+            </div>
+
+        </div>
+    </div>
+
+    <div class="section pt-0">
+        <div class="container">
+            <div class="row justify-content-between mb-5">
+                <div class="col-lg-7 mb-5 mb-lg-0 order-lg-2">
+                    <div class="img-about dots">
+                        <img src="images/hero_bg_3.jpg" alt="Image" class="img-fluid">
+                    </div>
+                </div>
+                
             </div>
         </div>
-
-
+    </div>
 
 
 
@@ -200,13 +212,12 @@
             </div>
         </div>
 
-
-        <script src="../js/bootstrap.bundle.min.js"></script>
-        <script src="../js/tiny-slider.js"></script>
-        <script src="../js/aos.js"></script>
-        <script src="../js/navbar.js"></script>
-        <script src="../js/counter.js"></script>
-        <script src="../js/custom.js"></script>
+       <script src="<%=request.getContextPath()%>/js/bootstrap.bundle.min.js"></script>
+        <script src="<%=request.getContextPath()%>/js/tiny-slider.js"></script>
+        <script src="<%=request.getContextPath()%>/js/aos.js"></script>
+        <script src="<%=request.getContextPath()%>/js/navbar.js"></script>
+        <script src="<%=request.getContextPath()%>/js/counter.js"></script>
+        <script src="<%=request.getContextPath()%>/js/custom.js"></script>
     </body>
 
 </html>

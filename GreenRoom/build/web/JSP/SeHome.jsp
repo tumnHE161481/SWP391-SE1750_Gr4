@@ -181,27 +181,26 @@
         <div class="tabular--wrapper">
             <h3 class="main--title">News</h3>
             <div class="table-container">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Title</th>
+                <div class="section bg-light">
+                    <div class="container">
+                        <div class="row">
+                            <c:forEach items="${ListN}" var="n">
+                                <div class="col-6 col-lg-3" data-aos="fade-up" data-aos-delay="300">
+                                    <div class="box-feature mb-4">
+                                        <span class="flaticon-house mb-4 d-block"></span>
+                                        <h3 class="text-black mb-3 font-weight-bold">${n.creatAt}</h3>
+                                        <p class="text-black-50">${n.newsTitle}</p>
+                                        <p><a href="JSP/SeGuide.jsp" class="learn-more">Read more</a></p>
+                                    </div>
+                                </div>
+                            </c:forEach>
 
-                            <th>Date</th>
-                        </tr>
-                    </thead>
-
-                    <tbody>
-                        <c:forEach items="${ListN}" var="n">
-                            <tr>
-                                <td>${n.newsTitle}</td>
-                                <td>${n.creatAt}</td>
-                            </tr>
-                        </c:forEach>
-                    </tbody>
-                </table>
-                     <a href="addnews"  value="Edit Profile" class="btn btn-primary">Add News</a>
+                        </div>
+                    </div>
+                </div>
+                <a href="addnews"  value="" class="btn btn-primary">Add News</a>
             </div>
-         
+
         </div>
         <div class="site-footer">
             <div class="container">

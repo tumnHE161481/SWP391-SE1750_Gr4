@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -197,19 +198,53 @@ public class DAO extends DBContext {
         return false;
     }
 
-    public void addNews(String newTitle, String description, String img, String creatAt) {
+    public boolean addNews(String newTitle, String description, String img, LocalDateTime creatAt) {
+        boolean status = false;
         String query = "INSERT [dbo].[news] ( [newTitle], [description], [img], [creatAt])\n"
                 + "                VALUES (?,?,?,?)";
         try {
             conn = connection;
             ps = conn.prepareStatement(query);
-            rs = ps.executeQuery();
             ps.setString(1, newTitle);
             ps.setString(2, description);
             ps.setString(3, img);
-            ps.setString(4, creatAt);
-            ps.executeUpdate();
+            ps.setString(4, creatAt.toString());
+            rs = ps.executeQuery();
+//            ps.executeUpdate();
+
+            int val = ps.executeUpdate();
+            if (val > 0) {
+                status = true;
+            } else {
+                status = false;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return status;
+    }
+
+    public SeNews getNewsById(String id) {
+
+        String query = "select newID, newTitle, description, img,creatAt\n"
+                + "from dbo.news\n"
+                + "where newID = ?";
+        try {
+            conn = connection;
+            ps = conn.prepareStatement(query);
+            ps.setString(1, id);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+
+                return new SeNews(rs.getInt(1),
+                        rs.getString(2),
+                        rs.getString(3),
+                        rs.getString(4),
+                        rs.getString(5));
+            }
         } catch (Exception e) {
         }
+        return null;
     }
+
 }

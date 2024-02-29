@@ -3,9 +3,9 @@
     Created on : Feb 27, 2024, 1:28:09 AM
     Author     : ASUS
 --%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
 
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!-- /*
 * Template Name: Property
 * Template Author: Untree.co
@@ -16,7 +16,7 @@
 <html lang="en">
 
     <head>
-        <meta charset="utf-8">
+         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="author" content="Untree.co">
         <link rel="shortcut icon" href="favicon.png">
@@ -29,13 +29,12 @@
         <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 
-        <link rel="stylesheet" href="fonts/icomoon/style.css">
-        <link rel="stylesheet" href="fonts/flaticon/font/flaticon.css">
+        <link rel="stylesheet" href="<%=request.getContextPath()%>/fonts/icomoon/style.css">
+        <link rel="stylesheet" href="<%=request.getContextPath()%>/fonts/flaticon/font/flaticon.css">
 
-        <link rel="stylesheet" href="css/tiny-slider.css">
-        <link rel="stylesheet" href="css/aos.css">
-        <link rel="stylesheet" href="css/style.css">
-
+        <link rel="stylesheet" href="<%=request.getContextPath()%>/css/tiny-slider.css">
+        <link rel="stylesheet" href="<%=request.getContextPath()%>/css/aos.css">
+        <link rel="stylesheet" href="<%=request.getContextPath()%>/css/style.css">  
         <title>Add News</title>
         <style>
             .hi{
@@ -113,10 +112,7 @@
                                     <label for="author" class="form-label">Imagine:</label>
                                     <input type="text" class="form-control" id="author" name="image" required>
                                 </div>
-                                <div class="mb-3">
-                                    <label for="author" class="form-label">Date:</label>
-                                    <input type="text" class="form-control" id="author" name="date" required>
-                                </div>
+                               
                                 <div class="mb-3">
                                     <label for="content" class="form-label">Description:</label>
                                     <textarea class="form-control" id="content" name="description" rows="4" required></textarea>
