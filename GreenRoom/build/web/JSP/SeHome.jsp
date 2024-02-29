@@ -189,8 +189,8 @@
                                     <div class="box-feature mb-4">
                                         <span class="flaticon-house mb-4 d-block"></span>
                                         <h3 class="text-black mb-3 font-weight-bold">${n.creatAt}</h3>
-                                        <p class="text-black-50">${n.newsTitle}</p>
-                                        <p><a href="JSP/SeGuide.jsp" class="learn-more">Read more</a></p>
+                                        <p class="text-black-50">${n.newTitle}</p>
+                                        <p><a href="newsdetail?nid=${n.newID}" class="learn-more">Read more</a></p>
                                     </div>
                                 </div>
                             </c:forEach>

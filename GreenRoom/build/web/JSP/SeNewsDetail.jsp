@@ -106,12 +106,14 @@
         <div class="container">
             <div class="row text-left mb-5">
                 <div class="col-12">
-                    <h2 class="font-weight-bold heading text-primary mb-4">News</h2>
+                    <h1 class="font-weight-bold heading text-primary mb-4">${details.newTitle}</h1>
+                
+                    <h5>${details.creatAt}</h5>
                 </div>
+                <hr>
                 <div class="col-lg-12">
-                    <p class="text-black-50">Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam enim pariatur similique debitis vel nisi qui reprehenderit totam? Quod maiores.</p>
-                    <p class="text-black-50">Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni saepe, explicabo nihil. Est, autem error cumque ipsum repellendus veniam sed blanditiis unde ullam maxime veritatis perferendis cupiditate, at non esse!</p>
-                    <p class="text-black-50">Enim, nisi labore exercitationem facere cupiditate nobis quod autem veritatis quis minima expedita. Cumque odio illo iusto reiciendis, labore impedit omnis, nihil aut atque, facilis necessitatibus asperiores porro qui nam.</p>
+                    <p class="text-black-50">${details.description}</p>
+                   
                 </div>
                 
             </div>
@@ -123,9 +125,9 @@
         <div class="container">
             <div class="row justify-content-between mb-5">
                 <div class="col-lg-7 mb-5 mb-lg-0 order-lg-2">
-                    <div class="img-about dots">
-                        <img src="images/hero_bg_3.jpg" alt="Image" class="img-fluid">
-                    </div>
+                   
+                        <img src="${details.img}" alt="Image" class="img-fluid">
+                    
                 </div>
                 
             </div>

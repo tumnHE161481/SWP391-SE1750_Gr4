@@ -6,6 +6,7 @@
 package Controller;
 
 import DAL.DAO;
+import Models.Account;
 import Models.SeNews;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -13,6 +14,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import java.util.List;
 
 /**
@@ -59,6 +61,9 @@ public class SeHomeControl extends HttpServlet {
         DAO dao = new DAO();
         List<SeNews> listN = dao.getAllNews();
         request.setAttribute("ListN", listN);
+        HttpSession session = request.getSession();
+        Account a = (Account) session.getAttribute("user");
+        int sid = a.getUserID();
         request.getRequestDispatcher("JSP/SeHome.jsp").forward(request, response);
     } 
 

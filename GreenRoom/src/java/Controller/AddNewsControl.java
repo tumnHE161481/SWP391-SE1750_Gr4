@@ -73,9 +73,7 @@ public class AddNewsControl extends HttpServlet {
         String nimage = request.getParameter("image");
         String ndate = request.getParameter("date");
         HttpSession session = request.getSession();
-        System.out.println("1");
         Account a = (Account) session.getAttribute("user");
-        System.out.println("2");
         int sid = a.getUserID();
         DAO dao = new DAO();
         LocalDateTime currentDateTime = LocalDateTime.now();

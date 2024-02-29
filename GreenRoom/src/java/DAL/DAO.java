@@ -226,7 +226,7 @@ public class DAO extends DBContext {
 
     public SeNews getNewsById(String id) {
 
-        String query = "select newID, newTitle, description, img,creatAt\n"
+        String query = "select *\n"
                 + "from dbo.news\n"
                 + "where newID = ?";
         try {

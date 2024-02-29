@@ -13,6 +13,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import java.util.List;
 
 /**
@@ -49,6 +50,9 @@ public class SeListCustomerControl extends HttpServlet {
         List<RenterListSE> listC = dao.getAllCustomer();
         request.setAttribute("ListC", listC);
         System.out.println(listC);
+        HttpSession session = request.getSession();
+        Account a = (Account) session.getAttribute("user");
+        int sid = a.getUserID();
         request.getRequestDispatcher("JSP/SeListCustomer.jsp").forward(request, response);
     } 
 

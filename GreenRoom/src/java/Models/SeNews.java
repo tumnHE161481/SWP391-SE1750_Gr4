@@ -13,7 +13,7 @@ import java.sql.Date;
 public class SeNews {
 
     private int newID;
-    private String newsTitle;
+    private String newTitle;
     private String description;
     private String img;
     private String creatAt;
@@ -21,9 +21,9 @@ public class SeNews {
     public SeNews() {
     }
 
-    public SeNews(int newID, String newsTitle, String description, String img, String creatAt) {
+    public SeNews(int newID, String newTitle, String description, String img, String creatAt) {
         this.newID = newID;
-        this.newsTitle = newsTitle;
+        this.newTitle = newTitle;
         this.description = description;
         this.img = img;
         this.creatAt = creatAt;
@@ -37,12 +37,12 @@ public class SeNews {
         this.newID = newID;
     }
 
-    public String getNewsTitle() {
-        return newsTitle;
+    public String getNewTitle() {
+        return newTitle;
     }
 
-    public void setNewsTitle(String newsTitle) {
-        this.newsTitle = newsTitle;
+    public void setNewTitle(String newTitle) {
+        this.newTitle = newTitle;
     }
 
     public String getDescription() {
@@ -69,5 +69,4 @@ public class SeNews {
         this.creatAt = creatAt;
     }
 
-   
 }
