@@ -110,8 +110,6 @@
                 cursor: pointer;
             }
 
-
-
             .user-info {
                 display: flex;
                 flex-direction: column;
@@ -182,7 +180,7 @@
         <div class="personal-info">
             <%-- Iterate over the list of users --%>
             <c:forEach items="${ListRP}" var="user">
-                <div class="info-container">
+                <div class="info-container" >
                     <%-- First div with general user information on the left --%>
                     <div class="user-info">
                         <h3>WELCOME TO GREENROOM!!!</h3>

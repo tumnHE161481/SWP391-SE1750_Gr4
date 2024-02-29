@@ -96,43 +96,6 @@ public class RenterDAO extends MyDAO {
         }
     }
 
-    public static void main(String[] args) {
-        RenterDAO dao = new RenterDAO();
-
-        // Uncomment the appropriate method call based on your needs
-        // List<User> list = dao.getUserList();
-        List<User> list = dao.getRenterDetailByAccountAndPassword("tester", "1");
-        for (User user : list) {
-            System.out.println("User ID: " + user.getUserID());
-            System.out.println("User Name: " + user.getUserName());
-            System.out.println("User Gender: " + user.getUserGender());
-            System.out.println("User Birth: " + user.getUserBirth());
-            System.out.println("User Address: " + user.getUserAddress());
-            System.out.println("User Phone: " + user.getUserPhone());
-            System.out.println("User Avatar: " + user.getUserAvatar());
-
-            // Print information from Account
-            System.out.println("User Mail: " + user.getAccount().getUserMail());
-            System.out.println("User Password: " + user.getAccount().getUserPassword());
-
-            // Print information from Renter
-            System.out.println("Renter ID: " + user.getRenter().getRenterID());
-            System.out.println("Room ID: " + user.getRenter().getRoomID());
-            System.out.println("Renter Status: " + user.getRenter().isRenterStatus());
-            System.out.println("Renter Have Room: " + user.getRenter().isRenterHaveRoom());
-
-            // Print information from Room
-            System.out.println("Room Floor: " + user.getRoom().getRoomFloor());
-            System.out.println("Room Number: " + user.getRoom().getRoomNumber());
-
-            // Print information from Renter including CGRScore and balance
-            System.out.println("CGR Score: " + user.getRenter().getCGRScore());
-            System.out.println("Balance: " + user.getRenter().getBalance());
-
-            System.out.println("--------");
-        }
-    }
-
     public String getPasswordByAccount(String accountInput) {
         String password = null;
         String sql = "SELECT userPassword FROM Account WHERE userMail = ?";
@@ -167,4 +130,99 @@ public class RenterDAO extends MyDAO {
             return false;
         }
     }
+
+    public boolean updateUser(int id, String gender, String address, String phone, String birth, String name) {
+        try {
+            PreparedStatement ps;
+            String sql = "UPDATE INTO [dbo].[user]\n"
+                    + "           ([userID]\n"
+                    + "           ,[userName]\n"
+                    + "           ,[userGender]\n"
+                    + "           ,[userBirth]\n"
+                    + "           ,[userAddress]\n"
+                    + "           ,[userPhone])\n"
+                    + "		   VALUES (?,?,?,?,?,?)";
+
+            ps = connection.prepareStatement(sql);
+            ps.setInt(1, id);
+            ps.setString(2, name);
+            ps.setString(3, gender);
+            ps.setString(4, birth);
+            ps.setString(5, address);
+            ps.setString(6, phone);
+            ps.execute();
+            return true;
+        } catch (SQLException ex) {
+            Logger.getLogger(AccountDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
+    }
+
+    public User getUserByID(int userID) {
+        String sql = "SELECT * FROM [dbo].[user] WHERE userID = ?";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setInt(1, userID);
+            ResultSet rs = st.executeQuery();
+            if (rs.next()) {
+                User user = new User(
+                        rs.getInt("userID"),
+                        rs.getString("userName"),
+                        rs.getString("userGender"),
+                        rs.getString("userBirth"),
+                        rs.getString("userAddress"),
+                        rs.getString("userPhone"),
+                        rs.getString("userAvatar")
+                );
+                // Add any additional attributes you need from the ResultSet
+                return user;
+            } else {
+                // Handle case where user is not found
+                return null;
+            }
+        } catch (SQLException e) {
+            // Handle SQLException
+            Logger.getLogger(RenterDAO.class.getName()).log(Level.SEVERE, "Failed to get user by mail and password", e);
+            return null;
+        }
+    }
+
+    public void updateUser(User u) {
+    String sql = "UPDATE [dbo].[user]\n"
+                + "SET [userName] = ?,\n"
+                + "    [userGender] = ?,\n"
+                + "    [userBirth] = ?,\n"
+                + "    [userAddress] = ?,\n"
+                + "    [userPhone] = ?,\n"
+                + "    [userAvatar] = ?\n"
+                + "WHERE [userID] = ?";
+    try {
+        PreparedStatement st = connection.prepareStatement(sql);
+        st.setString(1, u.getUserName());
+        st.setString(2, u.getUserGender());
+        st.setString(3, u.getUserBirth());
+        st.setString(4, u.getUserAddress());
+        st.setString(5, u.getUserPhone());
+        st.setString(6, u.getUserAvatar());
+        st.setInt(7, u.getUserID()); // Assuming userID is an int
+
+        st.executeUpdate();
+    } catch (SQLException e) {
+        e.printStackTrace(); // Handle the exception properly in your application
+    }
+}
+public static void main(String[] args) {
+    RenterDAO dao = new RenterDAO();
+    int userID = 1; // Assuming you want to retrieve the user with ID 1
+    User user = dao.getUserByID(userID);
+    if (user != null) {
+        System.out.println("User ID: " + user.getUserID());
+        System.out.println("User Name: " + user.getUserName());
+        // Print other user information as needed
+    } else {
+        System.out.println("User with ID " + userID + " not found.");
+    }
+}
+
+
 }

@@ -117,10 +117,6 @@
         <url-pattern>/renterprofile</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>RenterChangePassController</servlet-name>
-        <url-pattern>/renterchangepass</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
         <servlet-name>RenterPenaltyControl</servlet-name>
         <url-pattern>/renterpenalty</url-pattern>
     </servlet-mapping>
@@ -131,6 +127,10 @@
     <servlet-mapping>
         <servlet-name>RenterGuideandRuleControl</servlet-name>
         <url-pattern>/guideandrule</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RenterChangePassController</servlet-name>
+        <url-pattern>/changepass</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

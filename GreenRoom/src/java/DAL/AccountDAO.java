@@ -194,5 +194,21 @@ public class AccountDAO extends MyDAO {
         }
         return null;
     }
+    
+     public Account check(String username, String password) {
+        String sql = "select * from Account where username = ? and Password = ?";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setString(1, username);
+            st.setString(2, password);
+            ResultSet rs = st.executeQuery();
+            if (rs.next()) {
+                return new Account(rs.getInt("userID"), username, password, rs.getInt("userRole"));
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return null;
+    }
 
 }

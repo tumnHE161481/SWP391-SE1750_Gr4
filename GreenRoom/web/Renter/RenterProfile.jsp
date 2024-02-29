@@ -125,10 +125,11 @@
                 box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
                 margin: 8px;
                 text-align: left;
-                max-width: 400px;
+                max-width: 800px;
+                max-height: 500px;
             }
 
-            .info-container h3 {
+            .info-container  {
                 color: #555;
             }
 
@@ -136,31 +137,27 @@
             @media (max-width: 768px) {
                 .info-container {
                     flex-direction: column;
+                    margin-bottom: 30px;
                 }
 
                 .user-info,
                 .renter-info {
-                    width: 100%;
-                    text-align: center;
-                    margin: 10px 0;
+                    width: 400px; /* Set the desired width */
+                    height: auto; /* Set height to auto to accommodate content */
+                    font-size: 16px; /* Adjust the font size as needed */
+                    padding: 20px; /* Add padding for better spacing */
+                    box-sizing: border-box; /* Include padding in the total width */
                 }
 
                 .personal-info h2 {
                     margin: 10px 0;
                     color: #006eff;
                 }
+                .personal-info h3 {
+                    font-size: 30px;
+                }
             }
 
-            /* Additional styles for the update profile section */
-            .update-profile {
-                margin-top: 50px;
-                padding: 20px;
-                background-color: #f9f9f9;
-                border-radius: 8px;
-                box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
-                max-width: 600px;
-                margin: 0 auto;
-            }
 
             .update-profile h3 {
                 color: #555;
@@ -168,32 +165,27 @@
                 text-align: center;
             }
 
-            .update-profile form {
-                display: grid;
-                grid-gap: 10px;
+            .user-info p,
+            .renter-info p {
+                font-size: 16px; /* Adjust the size as needed */
+            }
+            .Avatar {
+                text-align: center;
+                margin-bottom: 30px;
+
             }
 
-            .update-profile input[type="text"] {
-                width: 100%;
-                padding: 10px;
-                border: 1px solid #ccc;
-                border-radius: 5px;
-                box-sizing: border-box;
+            .Avatar h3 {
+                font-size: 34px;
             }
 
-            .update-profile button {
-                width: 100%;
-                padding: 12px;
-                border: none;
-                border-radius: 5px;
-                background-color: #007bff;
-                color: #fff;
-                cursor: pointer;
-                transition: background-color 0.3s ease;
+            .Avatar a {
+                font-size: 20px;
             }
-
-            .update-profile button:hover {
-                background-color: #0056b3;
+            .Avatar img {
+                border-radius: 25%;
+                width: 200px;
+                height: 200px;
             }
         </style>
 
@@ -242,20 +234,27 @@
             <!-- Content of PaddingMenu -->
         </div>
         <!--INSERT PERSONAL INFO-->
+        <c:forEach items="${ListRP}" var="user">
+             <c:set var="uid" value="${user.userID}" />
+            <div class="Avatar">
+                <h3>Personal Information</h3>         
+                <center><a href="RenterUpdateProfile.jsp">Edit Information</a></center>      
+               <!-- <img src="${user.userAvatar}" alt="User Avatar"> -->
+            </div>
 
 
-        <div class="personal-info">
-            <h3 style="text-align: center;">Personal Information</h3>
-            <c:forEach items="${ListRP}" var="user">
-                <div class="info-container">
+            <div class="personal-info">                
+
+                <div class="info-container " style="margin-bottom: 30px">
                     <div class="user-info">
-                        <h3>Basic Information</h3>
+                        <h3>Basic Information</h3>   
+                        <p>ID test: ${uid}</p>
                         <p>Name: ${user.userName}</p>
                         <p>Email: ${user.account.userMail}</p>
                         <p>Gender: ${user.userGender}</p>
                         <p>Address: ${user.userAddress}</p>
                         <p>Phone: ${user.userPhone}</p>
-                        <a href="./Renter/RenterUpdateProfile.jsp">Edit Information</a>
+
                     </div>
                     <div class="renter-info">
                         <h3>Renter Information</h3>

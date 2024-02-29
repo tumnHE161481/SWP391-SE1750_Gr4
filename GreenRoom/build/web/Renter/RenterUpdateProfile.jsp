@@ -246,14 +246,14 @@
 
         <div class="update-profile">
             <h3 style="text-align: center;">Update Profile</h3>
-            <form id="updateForm">
+            <form action="renterupdate">
                 <c:set var="update" value="${requestScope.User}" />
-                Enter Name: <input type="text" id="userName" name="userName" placeholder="New Name" value="${update.name}" /><br/>
-                Enter Email: <input type="text" id="userEmail" name="userEmail" placeholder="New Email" value="${update.email}" /><br/>
-                Enter Gender: <input type="text" id="userGender" name="userGender" placeholder="New Gender" value="${update.gender}" /><br/>
-                Enter Address: <input type="text" id="userAddress" name="userAddress" placeholder="New Address" value="${update.address}" /><br/>
-                Enter Phone: <input type="text" id="userPhone" name="userPhone" placeholder="New Phone" value="${update.phone}" /><br/>
-                <button type="button" onclick="updateProfile()">Update</button>
+                Enter Name: <input type="text"  name="userName"/><br/>
+                Enter Email: <input type="text"name="userEmail"  /><br/>
+                Enter Gender: <input type="text" name="userGender"/><br/>
+                Enter Address: <input type="text"  name="userAddress"/><br/>
+                Enter Phone: <input type="text"name="userPhone"/><br/>
+                <input type="submit" value="Update"/>
             </form>
         </div>
 

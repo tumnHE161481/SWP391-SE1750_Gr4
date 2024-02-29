@@ -1,65 +1,58 @@
 package Controller;
+
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
-import DAL.RenterDAO;
+import DAL.AccountDAO;
 import Models.*;
 
-import jakarta.servlet.annotation.*;
+import jakarta.servlet.annotation.WebServlet;
+
 
 public class RenterChangePassController extends HttpServlet {
 
-    public boolean checkPassword(String pass){
-        if(pass.length() < 8){
+    public boolean checkPassword(String pass) {
+        if (pass.length() < 8) {
             return false;
         }
-        
+
         boolean containsLetterAndNumber = pass.matches(".*[a-zA-Z].*") && pass.matches(".*\\d.*");
-        
+
         return containsLetterAndNumber;
     }
-    
+
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        try (PrintWriter out = resp.getWriter()) {
-            int id = Integer.parseInt(req.getParameter("id"));
-            String oldpassword = req.getParameter("oldpassword");
-            String newpassword = req.getParameter("newpassword");
-            String renewpassword = req.getParameter("renewpassword");
-            RenterDAO dao = new RenterDAO();
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        String u = request.getParameter("user");
+        String op = request.getParameter("opass"); // old
+        String p = request.getParameter("pass"); // new
 
-            String oldpassCheck = dao.getPasswordByAccount(newpassword);
-            if (oldpassCheck == null || !oldpassCheck.equals(oldpassword)) {
-                req.setAttribute("pass_mess", "Old password is wrong!");
-                req.setAttribute("id", id);
-                req.getRequestDispatcher("Customer_profile.jsp").forward(req, resp);
-                return;
-            }
-            if(!checkPassword(newpassword)){
-                req.setAttribute("pass_mess", "The new password must be at least 8 characters containing both letter and digit");
-                req.setAttribute("id", id);
-                req.getRequestDispatcher("Customer_profile.jsp").forward(req, resp);
-                return;
-            }
-            if (!newpassword.equals(renewpassword)) {
-                req.setAttribute("pass_mess", "The new passwords do not match!");
-                req.setAttribute("id", id);
-                req.getRequestDispatcher("Customer_profile.jsp").forward(req, resp);
-                return;
-            }
+        AccountDAO dao = new AccountDAO(); // Instantiate AccountDAO
+        // Check old password
+        Account a = dao.check(u, op);
+        if (a == null) {
+            // Old password is incorrect
+            String ms = "Old password is incorrect!";
+            request.setAttribute("ms", ms);
+            request.getRequestDispatcher("Renter/RenterPassChange.jsp").forward(request, response); // Forward to the change password page
+        } else {
+            // Update password
+            boolean updated = dao.updateUserPassword(u, p); // Assuming updateUserPassword method returns boolean
 
-            dao.updatePass(newpassword, id);
-            req.setAttribute("pass_mess", "Change password successfully!");
-            req.setAttribute("id", id);
-            req.getRequestDispatcher("Customer_profile.jsp").forward(req, resp);
+            if (updated) {
+                // Password updated successfully
+                Account ac = new Account(a.getUserID(), u, p, a.getUserRole());
+                request.getSession().setAttribute("account", ac); // Set updated account to session
+                response.sendRedirect("Renter/RenterHome.jsp"); // Redirect to the Renter Home page
+            } else {
+                // Failed to update password
+                String ms = "Failed to update password. Please try again.";
+                request.setAttribute("ms", ms);
+                request.getRequestDispatcher("Renter/RenterPassChange.jsp").forward(request, response); // Forward to the change password page
+            }
         }
-    }
-
-    @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        // Handle GET request if needed
     }
 }

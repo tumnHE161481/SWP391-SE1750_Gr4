@@ -87,7 +87,7 @@ public class UserDAO extends MyDAO {
                 int roomFloor = rs.getInt(14);
                 String roomNumber = rs.getString(15);
                 Account account = new Account(userId, userMail, userPassword, 1);
-                Renter renter = new Renter(renterID, userId, roomID, renterStatus, renterHaveRoom, roomID, roomID)
+                Renter renter = new Renter(renterID, userId, roomID, renterStatus, renterHaveRoom, roomID, roomID);
                 Room room = new Room(roomID, roomFloor, roomNumber, roomID, roomNumber, roomNumber);
                 User user = new User(userId, userName, userGender, userBirth, userAddress, userPhone, userAvatar, account, renter, room);
                 list.add(user);

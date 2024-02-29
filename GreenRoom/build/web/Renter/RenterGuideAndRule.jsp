@@ -346,7 +346,7 @@
                             <ul class="rule-list">
                                 <c:forEach items="${ListR}" var="rule" varStatus="loop">
                                     <c:if test="${loop.index % 2 == 0}">
-                                        <li><strong>${rule.ruleName}</strong></li>
+                                        <li><a href="#" onclick="showPicture('${rule.img}')">${rule.ruleName}</a></li>
                                             </c:if>
                                         </c:forEach>
                             </ul>
@@ -355,7 +355,7 @@
                             <ul class="rule-list">
                                 <c:forEach items="${ListR}" var="rule" varStatus="loop">
                                     <c:if test="${loop.index % 2 != 0}">
-                                        <li><strong>${rule.ruleName}</strong></li>
+                                       <li><a href="#" onclick="showPicture('${rule.img}')">${rule.ruleName}</a></li>
                                             </c:if>
                                         </c:forEach>
                             </ul>

@@ -5,6 +5,7 @@
 package Controller;
 
 import DAL.RenterDAO;
+import DAL.UserDAO;
 import Models.*;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -58,11 +59,22 @@ public class RenterUpdateProfileControl extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        String name = request.getParameter("userName");
+        String gender = request.getParameter("userGender"); // Corrected parameter name
+        String address = request.getParameter("userAddress"); // Corrected parameter name
+        String phone_raw = request.getParameter("userPhone"); // Corrected parameter name
+        int phone;
         RenterDAO dao = new RenterDAO();
-        List<User> list = dao.getRenterDetailByAccountAndPassword("tester", "1");
-        request.setAttribute("ListRP", list);
-        request.getRequestDispatcher("Renter/RenterUpdateProfile.jsp").forward(request, response);
-
+        try {
+            phone = Integer.parseInt(phone_raw);
+            // Retrieve the actual user ID from the session or request parameters
+            int userId = 1; // Get the user ID from session or request parameters
+            User u = dao.getUserByID(userId); // Retrieve the user from the database using the obtained ID
+            request.setAttribute("user", u); // Set the user attribute to be passed to the JSP page
+            request.getRequestDispatcher("RenterUpdateProfile.jsp").forward(request, response); // Forward the request to the JSP page
+        } catch (NumberFormatException e) {
+            e.printStackTrace(); // Handle the exception properly
+        }
     }
 
     /**
@@ -76,13 +88,25 @@ public class RenterUpdateProfileControl extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        // Get parameters from the form submission
+        String name = request.getParameter("userName");
+        String gender = request.getParameter("userGender");
+        String address = request.getParameter("userAddress");
+        String phone_raw = request.getParameter("userPhone");
+        int phone;
+        try {
+            phone = Integer.parseInt(phone_raw);
+            // Assuming you have a method in your DAO to update user information
+            RenterDAO dao = new RenterDAO();
+            int userId = 1; // Get the user ID from session or request parameters
+            dao.updateUserInfo(userId, name, gender, address, phone); // Update user information
+            // Redirect back to the profile page or any other appropriate page
+            response.sendRedirect("Profile.jsp");
+        } catch (NumberFormatException e) {
+            e.printStackTrace(); // Handle the exception properly
+        }
     }
 
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
     @Override
     public String getServletInfo() {
         return "Short description";
