@@ -247,4 +247,36 @@ public class DAO extends DBContext {
         return null;
     }
 
+    public void deleteNews(String nid) {
+        String query = "delete from [dbo].[News]\n"
+                + "where newID = ?";
+        try {
+            conn = connection;
+            ps = conn.prepareStatement(query);
+            ps.setString(1, nid);
+
+            ps.executeUpdate(); //khong tra ve bang result nen phai dung excute update
+        } catch (Exception e) {
+        }
+    }
+
+    public boolean updateNews(String newTitle, String description,
+            String img, LocalDateTime creatAt) {
+        String query = "update [dbo].[news]\n"
+                + " set [newTitle] = ?,\n"
+                + " [description] = ?,\n"
+                + " [img] = ?,\n"
+                + " [creatAt] = ?";
+        try ( Connection conn = connection;  PreparedStatement ps = conn.prepareStatement(query)) {
+            ps.setString(1, newTitle);
+            ps.setString(2, description);
+            ps.setString(3, img);
+            ps.setString(4, creatAt.toString());
+
+            return ps.executeUpdate() > 0;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
 }

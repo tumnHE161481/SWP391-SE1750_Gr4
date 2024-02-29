@@ -36,7 +36,7 @@
         <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 
-         <link rel="stylesheet" href="<%=request.getContextPath()%>/fonts/icomoon/style.css">
+        <link rel="stylesheet" href="<%=request.getContextPath()%>/fonts/icomoon/style.css">
         <link rel="stylesheet" href="<%=request.getContextPath()%>/fonts/flaticon/font/flaticon.css">
 
         <link rel="stylesheet" href="<%=request.getContextPath()%>/css/tiny-slider.css">
@@ -83,56 +83,59 @@
             </div>
         </nav>
 
-      <div class="hero page-inner overlay" style="background-image: url('<%=request.getContextPath()%>/images/hero_bg_3.jpg');">
+        <div class="hero page-inner overlay" style="background-image: url('<%=request.getContextPath()%>/images/hero_bg_3.jpg');">
 
-        <div class="container">
-            <div class="row justify-content-center align-items-center">
-                <div class="col-lg-9 text-center mt-5">
-                    <h1 class="heading" data-aos="fade-up">News</h1>
+            <div class="container">
+                <div class="row justify-content-center align-items-center">
+                    <div class="col-lg-9 text-center mt-5">
+                        <h1 class="heading" data-aos="fade-up">News</h1>
 
-                    <nav aria-label="breadcrumb" data-aos="fade-up" data-aos-delay="200">
-                        <ol class="breadcrumb text-center justify-content-center">
-                            <li class="breadcrumb-item "><a href="index.html">Home</a></li>
-                            <li class="breadcrumb-item active text-white-50" aria-current="page">News</li>
-                        </ol>
-                    </nav>
+                        <nav aria-label="breadcrumb" data-aos="fade-up" data-aos-delay="200">
+                            <ol class="breadcrumb text-center justify-content-center">
+                                <li class="breadcrumb-item "><a href="index.html">Home</a></li>
+                                <li class="breadcrumb-item active text-white-50" aria-current="page">News</li>
+                            </ol>
+                        </nav>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
 
-    <div class="section">
-        <div class="container">
-            <div class="row text-left mb-5">
-                <div class="col-12">
-                    <h1 class="font-weight-bold heading text-primary mb-4">${details.newTitle}</h1>
-                
-                    <h5>${details.creatAt}</h5>
+        <div class="section">
+            <div class="container">
+                <div class="row text-left mb-5">
+                    <div class="col-12">
+                        <h1 class="font-weight-bold heading text-primary mb-4" name="title" type="text" >${details.newTitle}</h1>
+
+                        <h5 name="id" type="text" >${details.creatAt}</h5>
+                    </div>
+                    <hr>
+                    <div class="col-lg-12">
+                        <p class="text-black-50" name="des" type="text" >${details.description}</p>
+
+                    </div>
+
                 </div>
-                <hr>
-                <div class="col-lg-12">
-                    <p class="text-black-50">${details.description}</p>
-                   
-                </div>
-                
-            </div>
 
-        </div>
-    </div>
-
-    <div class="section pt-0">
-        <div class="container">
-            <div class="row justify-content-between mb-5">
-                <div class="col-lg-7 mb-5 mb-lg-0 order-lg-2">
-                   
-                        <img src="${details.img}" alt="Image" class="img-fluid">
-                    
-                </div>
-                
             </div>
         </div>
-    </div>
+
+        <div class="section pt-0">
+            <div class="container">
+                <div class="row justify-content-between mb-5">
+                    <div class="col-lg-7 mb-5 mb-lg-0 order-lg-2">
+
+                        <img src="${details.img}" alt="Image"  name="img" type="text" >
+
+                    </div>
+
+                </div>
+                          <a href="seupdatenews?nid=${details.newID}"  value="Edit Profile" class="btn btn-primary">Edit News</a>
+            </div>
+                      
+        </div>
+    
 
 
 
@@ -214,7 +217,7 @@
             </div>
         </div>
 
-       <script src="<%=request.getContextPath()%>/js/bootstrap.bundle.min.js"></script>
+        <script src="<%=request.getContextPath()%>/js/bootstrap.bundle.min.js"></script>
         <script src="<%=request.getContextPath()%>/js/tiny-slider.js"></script>
         <script src="<%=request.getContextPath()%>/js/aos.js"></script>
         <script src="<%=request.getContextPath()%>/js/navbar.js"></script>

@@ -119,6 +119,20 @@
             .table-container td:nth-child(3) {
                 width: 10%; /* Adjust the width value as needed */
             }
+          .table-container .box-feature {
+    height: 100%; /* Đảm bảo chiều cao của các box-feature bằng nhau */
+    display: flex; /* Sử dụng flexbox */
+    flex-direction: column; /* Xếp các phần tử theo chiều dọc */
+}
+
+.table-container .box-feature .content {
+    flex-grow: 1; /* Kích thước phần nội dung mở rộng để lấp đầy không gian còn lại */
+}
+
+.table-container .box-feature .buttons {
+    margin-top: auto; /* Đẩy nút xuống dưới cùng */
+}
+
         </style>
     </head>
 
@@ -190,7 +204,10 @@
                                         <span class="flaticon-house mb-4 d-block"></span>
                                         <h3 class="text-black mb-3 font-weight-bold">${n.creatAt}</h3>
                                         <p class="text-black-50">${n.newTitle}</p>
-                                        <p><a href="newsdetail?nid=${n.newID}" class="learn-more">Read more</a></p>
+                                        <p>
+                                            <a href="newsdetail?nid=${n.newID}" class="learn-more">Read more</a>
+                                            <a href="sedeletenews?nid=${n.newID}" class="learn-more">Delete</a>
+                                        </p>
                                     </div>
                                 </div>
                             </c:forEach>
