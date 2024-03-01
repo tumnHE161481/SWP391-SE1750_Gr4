@@ -10,7 +10,10 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import Models.Account;
+import Models.Security;
 import Models.User;
+import java.util.ArrayList;
+import java.util.List;
 import utils.EmailUtils;
 
 /**
@@ -63,6 +66,22 @@ public class AccountDAO extends DBContext {
             Logger.getLogger(AccountDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
+    }
+    
+    public List<User> getSecurity() {
+        List<User> list = new ArrayList<>();
+        String sql = "SELECT * FROM [GreenRoom].[dbo].[account] a join [dbo].[user] u ON a.userID = u.userID where userRole = 2";
+        try {
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                User a = new User(rs.getInt("userID"), rs.getString("userName"), rs.getString("userGender"), rs.getDate("userBirth"), rs.getString("userAddress"), rs.getString("userPhone"), rs.getString("userAvatar"));
+                list.add(a);
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return list;
     }
 
     public boolean updateUserPassword(String email, String password) {

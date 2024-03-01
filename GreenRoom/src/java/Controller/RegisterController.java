@@ -113,7 +113,7 @@ public class RegisterController extends HttpServlet {
             }
 
             String gender = request.getParameter("gender");
-            int role = 1;
+            int role = 0;
 
             //kiểm tra email có tồn tại trong database 
             if (a.findByEmail(email) != null) {
