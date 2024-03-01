@@ -60,7 +60,7 @@ public class SeUpdateNewsControl extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-         response.setContentType("text/html");
+        response.setContentType("text/html");
         String id = request.getParameter("nid");
         DAO dao = new DAO();
         SeNews n = dao.getNewsById(id);
@@ -71,7 +71,7 @@ public class SeUpdateNewsControl extends HttpServlet {
         HttpSession session = request.getSession();
         Account a = (Account) session.getAttribute("user");
         int sid = a.getUserID();
-        request.getRequestDispatcher("JSP/SeNewsDetail.jsp").forward(request, response);
+        request.getRequestDispatcher("JSP/SeEditNews.jsp").forward(request, response);
     }
 
     /**
@@ -87,27 +87,22 @@ public class SeUpdateNewsControl extends HttpServlet {
             throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
 
-    String back = request.getParameter("back");
-    String newTitle = request.getParameter("title");
-    String description = request.getParameter("des");
-    String img = request.getParameter("img");
-    SeNews se = new SeNews();
-    LocalDateTime currentDateTime = LocalDateTime.now();
-    HttpSession session = request.getSession();
-    Account a = (Account) session.getAttribute("user");
-    int sid = a.getUserID();
+        String back = request.getParameter("back");
+        
+        String newTitle = request.getParameter("title");
+        String description = request.getParameter("des");
+        String img = request.getParameter("img");
+        SeNews se = new SeNews();
+        LocalDateTime currentDateTime = LocalDateTime.now();
+        HttpSession session = request.getSession();
+        Account a = (Account) session.getAttribute("user");
+        int sid = a.getUserID();
 
-    DAO dao = new DAO();
-    boolean updateSuccess = dao.updateNews(newTitle, description, img, currentDateTime);
+        DAO dao = new DAO();
+        dao.updateNews(newTitle, description, img, currentDateTime);
 
-    if (updateSuccess) {
-        // Nếu cập nhật thành công, điều hướng người dùng đến trang chi tiết tin tức
-        response.sendRedirect("senewsdetail?nid=" + se.getNewID()); // Thay đổi URL theo định dạng của trang chi tiết tin tức
-    } else {
-        // Nếu cập nhật thất bại, hiển thị thông báo lỗi hoặc điều hướng người dùng đến trang cập nhật lại tin tức
-        System.out.println("Loi");
-        // Thay thế bằng URL của trang thông báo lỗi hoặc trang cập nhật lại tin tức
-    }
+        response.sendRedirect("sehome");
+
     }
 
     /**

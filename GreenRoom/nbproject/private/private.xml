@@ -5,16 +5,16 @@
         <group>
             <file>file:/D:/Clone_SWP1/SWP391-SE1750_Gr4/GreenRoom/src/java/DAL/DAO.java</file>
             <file>file:/D:/Clone_SWP1/SWP391-SE1750_Gr4/GreenRoom/src/java/Controller/SeEditProfile.java</file>
-            <file>file:/D:/Clone_SWP1/SWP391-SE1750_Gr4/GreenRoom/web/JSP/SeProfile.jsp</file>
-            <file>file:/D:/Clone_SWP1/SWP391-SE1750_Gr4/GreenRoom/web/JSP/SeNews.jsp</file>
+            <file>file:/D:/Clone_SWP1/SWP391-SE1750_Gr4/GreenRoom/src/java/Controller/NewsDetailControl.java</file>
             <file>file:/D:/Clone_SWP1/SWP391-SE1750_Gr4/GreenRoom/web/JSP/SeHome.jsp</file>
-            <file>file:/D:/Clone_SWP1/SWP391-SE1750_Gr4/GreenRoom/src/java/Controller/AddNewsControl.java</file>
-            <file>file:/D:/Clone_SWP1/SWP391-SE1750_Gr4/GreenRoom/web/JSP/SeAddNews.jsp</file>
-            <file>file:/D:/Clone_SWP1/SWP391-SE1750_Gr4/GreenRoom/web/JSP/SeRoomDetail.jsp</file>
+            <file>file:/D:/Clone_SWP1/SWP391-SE1750_Gr4/GreenRoom/src/java/Controller/SeUpdateNewsControl.java</file>
+            <file>file:/D:/Clone_SWP1/SWP391-SE1750_Gr4/GreenRoom/web/WEB-INF/web.xml</file>
+            <file>file:/D:/Clone_SWP1/SWP391-SE1750_Gr4/GreenRoom/web/JSP/SeNewsDetail.jsp</file>
+            <file>file:/D:/Clone_SWP1/SWP391-SE1750_Gr4/GreenRoom/src/java/Controller/SeDeleteNewsControl.java</file>
             <file>file:/D:/Clone_SWP1/SWP391-SE1750_Gr4/GreenRoom/src/java/Models/SeNews.java</file>
             <file>file:/D:/Clone_SWP1/SWP391-SE1750_Gr4/GreenRoom/web/JSP/SeEditProfile.jsp</file>
-            <file>file:/D:/Clone_SWP1/SWP391-SE1750_Gr4/GreenRoom/src/java/Controller/LoginController.java</file>
-            <file>file:/D:/Clone_SWP1/SWP391-SE1750_Gr4/GreenRoom/web/JSP/SeGuide.jsp</file>
+            <file>file:/D:/Clone_SWP1/SWP391-SE1750_Gr4/GreenRoom/src/java/Controller/SeProfileControl.java</file>
+            <file>file:/D:/Clone_SWP1/SWP391-SE1750_Gr4/GreenRoom/src/java/Controller/SeHomeControl.java</file>
         </group>
     </open-files>
 </project-private>

@@ -263,10 +263,11 @@ public class DAO extends DBContext {
     public boolean updateNews(String newTitle, String description,
             String img, LocalDateTime creatAt) {
         String query = "update [dbo].[news]\n"
-                + " set [newTitle] = ?,\n"
-                + " [description] = ?,\n"
-                + " [img] = ?,\n"
-                + " [creatAt] = ?";
+                + "set [newTitle] = ?,\n"
+                + "[description] = ?,\n"
+                + "[img] = ?,\n"
+                + "[creatAt] = ?\n"
+                + "where newID = ?";
         try ( Connection conn = connection;  PreparedStatement ps = conn.prepareStatement(query)) {
             ps.setString(1, newTitle);
             ps.setString(2, description);

@@ -102,21 +102,25 @@
                 <div class="col-lg-9">
                     <div class="card">
                         <div class="card-body">
-                            <h1 class="card-title">Add News</h1>
-                            <form action="addnews" method="post">
+                            <h1 class="card-title">Edit News</h1>
+                            <form action="seupdatenews" method="post">
+                                
                                 <div class="mb-3">
                                     <label for="title" class="form-label">Title:</label>
-                                    <input type="text" class="form-control" id="title" name="title" required>
+                                    <input type="text" class="form-control" id="title" name="title" value="${details.newTitle}" required>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="author" class="form-label">Image:</label>
-                                    <input type="text" class="form-control" id="author" name="image" required>
+                                    <label for="author" class="form-label">Imagine:</label>
+                                    <input type="text" class="form-control" id="author" name="img" value="${details.img}" required>
                                 </div>
+
                                 <div class="mb-3">
                                     <label for="content" class="form-label">Description:</label>
-                                    <textarea class="form-control" id="content" name="description" rows="4" required></textarea>
+                                    <textarea class="form-control" id="content" name="des" value="${details.description}" rows="4" required></textarea>
                                 </div>
-                                <button type="submit" class="btn btn-primary">Submit</button>
+                                <div class="modal-footer">
+                                    <input type="submit" class="btn btn-success" value="Submit">
+                                </div>
                             </form>
                         </div>
                     </div>

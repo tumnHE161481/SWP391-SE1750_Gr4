@@ -16,7 +16,7 @@
 <html lang="en">
 
     <head>
-         <meta charset="utf-8">
+        <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="author" content="Untree.co">
         <link rel="shortcut icon" href="favicon.png">
@@ -66,7 +66,7 @@
                             <li><a href="seprofile">Profile</a></li>
                             <li><a href="selistcustomer">Renter</a></li>
                             <li><a href="Guide.html">Guide</a></li>
-                               <li><a href="News.html">Log Out</a></li>
+                            <li><a href="News.html">Log Out</a></li>
                         </ul>
 
                         <a href="#" class="burger light me-auto float-end mt-1 site-menu-toggle js-menu-toggle d-inline-block d-lg-none" data-toggle="collapse" data-target="#main-navbar">
@@ -109,10 +109,9 @@
                                     <input type="text" class="form-control" id="title" name="title" required>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="author" class="form-label">Imagine:</label>
+                                    <label for="author" class="form-label">Image:</label>
                                     <input type="text" class="form-control" id="author" name="image" required>
                                 </div>
-                               
                                 <div class="mb-3">
                                     <label for="content" class="form-label">Description:</label>
                                     <textarea class="form-control" id="content" name="description" rows="4" required></textarea>
