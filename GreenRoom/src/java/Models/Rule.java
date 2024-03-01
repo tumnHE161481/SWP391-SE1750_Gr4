@@ -9,5 +9,61 @@ package Models;
  * @author ADMIN
  */
 public class Rule {
+    private int ruleID;
+    private String ruleName;
+    private String img;
+    private String scoreChange;
+    private double penMoney;
+
+    public Rule() {
+    }
+
+    public Rule(int ruleID, String ruleName, String img, String scoreChange, double penMoney) {
+        this.ruleID = ruleID;
+        this.ruleName = ruleName;
+        this.img = img;
+        this.scoreChange = scoreChange;
+        this.penMoney = penMoney;
+    }
+
+    public int getRuleID() {
+        return ruleID;
+    }
+
+    public void setRuleID(int ruleID) {
+        this.ruleID = ruleID;
+    }
+
+    public String getRuleName() {
+        return ruleName;
+    }
+
+    public void setRuleName(String ruleName) {
+        this.ruleName = ruleName;
+    }
+
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
+    }
+
+    public String getScoreChange() {
+        return scoreChange;
+    }
+
+    public void setScoreChange(String scoreChange) {
+        this.scoreChange = scoreChange;
+    }
+
+    public double getPenMoney() {
+        return penMoney;
+    }
+
+    public void setPenMoney(double penMoney) {
+        this.penMoney = penMoney;
+    }
     
 }

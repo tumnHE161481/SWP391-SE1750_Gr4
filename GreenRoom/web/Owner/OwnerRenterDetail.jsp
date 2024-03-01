@@ -142,9 +142,9 @@
                                             </div>
                                         </div>
                                         <div class="row">
-                                            <div class="col-md-6 mt-5 text-center"><button class="btn btn-primary profile-button" type="button">Save Profile</button></div>
-                                            <div class="col-md-6 mt-5 text-center"><button class="btn btn-danger profile-button" type="button"><a href="ownerRenterList">Back</a></div>
-                                            <div class="col-md-12 mt-5 text-center"><a href="OwnerHistoryPenalty">Penalty</a></div>
+                                            <div class="col-md-6 mt-5 text-end"><button class="btn btn-primary profile-button" type="button">Save Profile</button></div>
+                                            <div class="col-md-6 mt-5 text-start"><button style="border: 1px solid #000" class="btn btn-info profile-button" type="button"><a href="ownerRenterList">Back</a></div>
+                                            <div class="col-md-12 mt-5 text-center"><button class="btn btn-danger profile-button" type="button"><a href="OwnerHistoryPenalty?id=${id}">Penalty</a></div>
 
                                         </div>
 

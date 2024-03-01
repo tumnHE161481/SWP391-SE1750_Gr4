@@ -4,7 +4,9 @@
  */
 package Controller;
 
+import DAL.PenaltyDAO;
 import DAL.UserDAO;
+import Models.Penalty;
 import Models.User;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -19,8 +21,8 @@ import java.util.List;
  *
  * @author ADMIN
  */
-@WebServlet(name = "OwnerRenterDetail", urlPatterns = {"/OwnerRenterDetail"})
-public class OwnerRenterDetail extends HttpServlet {
+@WebServlet(name = "OwnerHistoryPenalty", urlPatterns = {"/OwnerHistoryPenalty"})
+public class OwnerHistoryPenaltyController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -39,10 +41,10 @@ public class OwnerRenterDetail extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet OwnerRenterDetail</title>");
+            out.println("<title>Servlet OwnerHistoryPenalty</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet OwnerRenterDetail at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet OwnerHistoryPenalty at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -60,18 +62,13 @@ public class OwnerRenterDetail extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
         String id_raw = request.getParameter("id");
-        int id;
-        UserDAO dao = new UserDAO();
-        try {
-            id = Integer.parseInt(id_raw);
-            User rd = dao.getOwRenterDetail(id);
-            request.setAttribute("detail", rd);
-            request.getRequestDispatcher("/Owner/OwnerRenterDetail.jsp").forward(request, response);
-        } catch (NumberFormatException e) {
+        int id = Integer.parseInt(id_raw);
+        PenaltyDAO dao = new PenaltyDAO();
+        List<Penalty> list = dao.historyPenalty(id);
+        request.setAttribute("OwnerHistoryPenalty", list);
+        request.getRequestDispatcher("/Owner/OwnerHistoryPenalty.jsp").forward(request, response);
 
-        }
     }
 
     /**
@@ -85,7 +82,7 @@ public class OwnerRenterDetail extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+      
     }
 
     /**

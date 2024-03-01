@@ -6,6 +6,9 @@ package DAL;
 
 import Models.Account;
 import Models.Penalty;
+import Models.Renter;
+import Models.Room;
+import Models.Rule;
 import Models.User;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -15,26 +18,57 @@ import java.util.List;
  *
  * @author ADMIN
  */
-public class PenaltyDAO extends MyDAO{
-     public List<Penalty> historyPenalty() {
+public class PenaltyDAO extends MyDAO {
+
+    public List<Penalty> historyPenalty(int reportID) {
         List<Penalty> list = new ArrayList<>();
-        String sql = "SELECT \n" +
-"      [reportID]\n" +
-"      ,[accuseID]\n" +
-"      ,[roomID]\n" +
-"      ,[description]\n" +
-"      ,[penDate]\n" +
-"      ,[ruleID]\n" +
-"      ,[penStatus]\n" +
-"  FROM [GreenRoom].[dbo].[penalty]";
+        String sql = "SELECT \n"
+                + "    r.ruleID,\n"
+                + "    r.ruleName,\n"
+                + "    r.img,\n"
+                + "    r.scoreChange,\n"
+                + "    r.penMoney,\n"
+                + "    p.penID,\n"
+                + "    p.reportID,\n"
+                + "    p.accuseID,\n"
+                + "    p.roomID,\n"
+                + "    p.description,\n"
+                + "    p.penDate,\n"
+                + "    p.penStatus\n"
+                + "FROM \n"
+                + "    [GreenRoom].[dbo].[rule] r\n"
+                + "JOIN \n"
+                + "    [GreenRoom].[dbo].[penalty] p ON r.ruleID = p.ruleID\n"
+                + "where reportID = ?";
 
         try {
             ps = con.prepareStatement(sql);
+            ps.setInt(1, reportID);
             rs = ps.executeQuery();
             while (rs.next()) {
-                Account account = new Account(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4));
-                User user = new User(rs.getInt(1), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9), rs.getString(10), account);
-               
+
+                Rule rule = new Rule(
+                        rs.getInt("ruleID"),
+                        rs.getString("ruleName"),
+                        rs.getString("img"),
+                        rs.getString("scoreChange"),
+                        rs.getDouble("penMoney")
+                );
+
+                Penalty penalty = new Penalty(
+                        rs.getInt("penID"),
+                        rs.getInt("reportID"),
+                        rs.getInt("accuseID"),
+                        rs.getInt("roomID"),
+                        rs.getString("description"),
+                        rs.getString("penDate"),
+                        rs.getInt("ruleID"),
+                        rs.getInt("penStatus"),
+                        rule
+                );
+
+                // Add Penalty object to the list
+                list.add(penalty);
             }
         } catch (SQLException e) {
             System.out.println("Fail: " + e.getMessage());
@@ -51,5 +85,12 @@ public class PenaltyDAO extends MyDAO{
             }
         }
         return list;
+    }
+    public static void main(String[] args) {
+       PenaltyDAO dao = new PenaltyDAO();
+       List<Penalty> penalty = dao.historyPenalty(1);
+        for (Penalty penalty1 : penalty) {
+            System.out.println("Pen" + penalty1.getRuleID());
+        }
     }
 }

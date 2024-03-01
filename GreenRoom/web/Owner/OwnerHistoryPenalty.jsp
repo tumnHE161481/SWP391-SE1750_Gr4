@@ -71,7 +71,7 @@
             <div class="container">
                 <div class="row mb-5 align-items-center pt-5">
                     <div class="col-lg-6">
-                        <h2 class="font-weight-bold text-primary heading">View Renter List</h2>
+                        <h2 class="font-weight-bold text-primary heading">Penalty</h2>
                     </div>
                 </div>
 
@@ -87,7 +87,16 @@
                 <div class="row">
 
                     <div class="col-12">
-
+                        <form method="post" action="OwnerHistoryPenalty">
+                            <div class="row mt-2">
+                                <div class="col-md-6"><label class="labels" > Report ID</label><input type="text" class="form-control"  ></div>
+                                <div class="col-md-6"><label class="labels">Description</label><input type="text" class="form-control"></div>
+                                <div class="col-md-6"><label class="labels" >Rule ID</label><input type="text" class="form-control" ></div>
+                                <div class="col-md-6"><label class="labels">Pen Date</label><input type="text" class="form-control" ></div> 
+                                <div class="col-md-6"><label class="labels">Pen status</label><input type="text" class="form-control" ></div>
+                            </div>
+                            <button class="btn btn-primary profile-button m-2" type="button">Add</button>
+                        </form>
 
                         <div class="property-slider-wrap">
 
@@ -98,26 +107,27 @@
                                 <thead>
                                     <tr>
                                         <th style="padding: 12px; text-align: left; background-color: #f2f2f2;">ID</th>
-                                        <th style="padding: 12px; text-align: left; background-color: #f2f2f2;">Renter Name</th>
-                                        <th style="padding: 12px; text-align: left; background-color: #f2f2f2;">Renter Email</th>                                        
-                                        <th style="padding: 12px; text-align: left; background-color: #f2f2f2;">Room Number</th>                                               
-                                        <th style="padding: 12px; text-align: left; background-color: #f2f2f2;">Image</th>
-                                        <th style="padding: 12px; text-align: left; background-color: #f2f2f2;">Action</th>
+                                        <th style="padding: 12px; text-align: left; background-color: #f2f2f2;">Report ID</th>                                        
+                                        <th style="padding: 12px; text-align: left; background-color: #f2f2f2;">Description</th>  
+                                        <th style="padding: 12px; text-align: left; background-color: #f2f2f2;">Rule ID</th>                                        
+                                        <th style="padding: 12px; text-align: left; background-color: #f2f2f2;">Pen Date</th>  
+                                        <th style="padding: 12px; text-align: left; background-color: #f2f2f2;">Pen status</th>
 
 
 
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <c:forEach var="u" items="${owrenterlist}" varStatus="loop">
-                                        <c:set var="id" value="${u.userID}" />
+
+                                    <c:forEach var="p" items="${OwnerHistoryPenalty}" varStatus="loop">
+                                        <c:set var="id" value="${p.reportID}" />
                                         <tr style="border-bottom: 1px solid #ddd; background-color: #f9f9f9;">
                                             <td style="padding: 12px; text-align: left;">${loop.index + 1}</td>
-                                            <td style="padding: 12px; text-align: left;">${u.userName}</td>
-                                            <td style="padding: 12px; text-align: left;">${u.account.userMail}</td>
-                                            <td style="padding: 12px; text-align: left;">${u.room.roomNumber}</td>
-                                            <td style="padding: 12px; text-align: left; "><img style="width: 100px;height: 130px; border-radius: 10px" src=${u.userAvatar} /></td>
-                                            <td style="padding: 12px; text-align: left;"><a href="OwnerRenterDetail?id=${u.userID}">Detail</a></td>
+                                            <td style="padding: 12px; text-align: left;">${p.rule.ruleName}</td>
+                                            <td style="padding: 12px; text-align: left;">${p.description}</td>                                           
+                                            <td style="padding: 12px; text-align: left;">${p.rule.penMoney}</td>
+                                            <td style="padding: 12px; text-align: left;">${p.penDate}</td>
+                                            <td style="padding: 12px; text-align: left;">${p.penStatus}</a></td>
 
                                         </tr>
                                         <!-- Additional rows can follow the same pattern -->

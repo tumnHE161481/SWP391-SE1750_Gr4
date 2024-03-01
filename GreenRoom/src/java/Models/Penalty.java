@@ -9,16 +9,48 @@ package Models;
  * @author ADMIN
  */
 public class Penalty {
+
     private int penID;
-     private int reportID;
-      private int  accuseID;
-       private int roomID ;
-       private String description;
-      private String penDate;
-      private int ruleID;
-      private int penStatus;
+    private int reportID;
+    private int accuseID;
+    private int roomID;
+    private String description;
+    private String penDate;
+    private int ruleID;
+    private int penStatus;
+
+    private Rule rule;
 
     public Penalty() {
+    }
+
+    public Rule getRule() {
+        return rule;
+    }
+
+    public void setRule(Rule rule) {
+        this.rule = rule;
+    }
+
+    public Penalty(int penID, int reportID, int accuseID, int roomID, String description, String penDate, int ruleID, int penStatus, Rule rule) {
+        this.penID = penID;
+        this.reportID = reportID;
+        this.accuseID = accuseID;
+        this.roomID = roomID;
+        this.description = description;
+        this.penDate = penDate;
+        this.ruleID = ruleID;
+        this.penStatus = penStatus;
+        this.rule = rule;
+    }
+
+    public Penalty(int penID, int reportID, int accuseID, String description, String penDate, int penStatus) {
+        this.penID = penID;
+        this.reportID = reportID;
+        this.accuseID = accuseID;
+        this.description = description;
+        this.penDate = penDate;
+        this.penStatus = penStatus;
     }
 
     public Penalty(int penID, int reportID, int accuseID, int roomID, String description, String penDate, int ruleID, int penStatus) {
@@ -31,6 +63,8 @@ public class Penalty {
         this.ruleID = ruleID;
         this.penStatus = penStatus;
     }
+
+   
 
     public int getPenID() {
         return penID;
@@ -95,5 +129,5 @@ public class Penalty {
     public void setPenStatus(int penStatus) {
         this.penStatus = penStatus;
     }
-       
+
 }

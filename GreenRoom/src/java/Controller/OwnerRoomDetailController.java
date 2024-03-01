@@ -65,7 +65,7 @@ public class OwnerRoomDetailController extends HttpServlet {
          RoomDAO dao = new RoomDAO();
         try{
             id=Integer.parseInt(id_raw);
-            List<Room> rd = dao.getRoomDetailsForRoomID(id);
+            int rd = dao.findRoomIDByRoomNumber(id);
             request.setAttribute("detail", rd);
             request.getRequestDispatcher("/Owner/OwRoomDetail.jsp").forward(request, response);
         }

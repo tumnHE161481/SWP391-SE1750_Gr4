@@ -71,7 +71,7 @@
             <div class="container">
                 <div class="row mb-5 align-items-center pt-5">
                     <div class="col-lg-6">
-                        <h2 class="font-weight-bold text-primary heading">View Renter List</h2>
+                        <h2 class="font-weight-bold text-primary heading">Renter List</h2>
                     </div>
                 </div>
 
