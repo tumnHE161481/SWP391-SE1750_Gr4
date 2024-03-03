@@ -235,11 +235,11 @@
         </div>
         <!--INSERT PERSONAL INFO-->
         <c:forEach items="${ListRP}" var="user">
-             <c:set var="uid" value="${user.userID}" />
+            <c:set var="uid" value="${user.userID}" />
             <div class="Avatar">
                 <h3>Personal Information</h3>         
-                <center><a href="RenterUpdateProfile.jsp">Edit Information</a></center>      
-               <!-- <img src="${user.userAvatar}" alt="User Avatar"> -->
+                <center><a href="renterupdate?userID=${uid}">Edit Information</a></center>
+                <center><a href="changepass?userMail=${user.account.userMail}">Change Password</a></center>
             </div>
 
 
@@ -248,10 +248,10 @@
                 <div class="info-container " style="margin-bottom: 30px">
                     <div class="user-info">
                         <h3>Basic Information</h3>   
-                        <p>ID test: ${uid}</p>
                         <p>Name: ${user.userName}</p>
                         <p>Email: ${user.account.userMail}</p>
                         <p>Gender: ${user.userGender}</p>
+                         <p>Birth: ${user.userBirth}</p>
                         <p>Address: ${user.userAddress}</p>
                         <p>Phone: ${user.userPhone}</p>
 

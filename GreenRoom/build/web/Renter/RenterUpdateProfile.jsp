@@ -44,160 +44,212 @@
         <title>Property &mdash; Free Bootstrap 5 Website Template by Untree.co</title>
         <link rel="icon" href="home-guest/favicon.png">
         <style>
-    /* Existing styles */
-    .tabular--wrapper {
-        background: #fff;
-        margin-top: 1rem;
-        border-radius: 10px;
-        padding: 2rem;
-    }
+            /* Existing styles */
+            .tabular--wrapper {
+                background: #fff;
+                margin-top: 1rem;
+                border-radius: 10px;
+                padding: 2rem;
+            }
 
-    .table-container {
-        width: 100%;
-    }
+            .table-container {
+                width: 100%;
+            }
 
-    table {
-        width: 100%;
-        border-collapse: collapse;
-    }
+            table {
+                width: 100%;
+                border-collapse: collapse;
+            }
 
-    thead {
-        background: rgba(138, 110, 60, 0.5);
-        color: black;
-    }
+            thead {
+                background: rgba(138, 110, 60, 0.5);
+                color: black;
+            }
 
-    th {
-        padding: 15px;
-        text-align: left;
-    }
+            th {
+                padding: 15px;
+                text-align: left;
+            }
 
-    tbody {
-        background: #f2f2f2;
-    }
+            tbody {
+                background: #f2f2f2;
+            }
 
-    td {
-        padding: 15px;
-        font-size: 14px;
-        color: #333;
-    }
+            td {
+                padding: 15px;
+                font-size: 14px;
+                color: #333;
+            }
 
-    tr:nth-child(even) {
-        background: white;
-    }
+            tr:nth-child(even) {
+                background: white;
+            }
 
-    tfoot {
-        background: rgba(113, 99, 186, 0.5);
-        font-weight: bold;
-        color: rgb(255, 255, 255);
-    }
+            tfoot {
+                background: rgba(113, 99, 186, 0.5);
+                font-weight: bold;
+                color: rgb(255, 255, 255);
+            }
 
-    tfoot td {
-        padding: 15px;
-    }
+            tfoot td {
+                padding: 15px;
+            }
 
-    .table-container button {
-        color: green;
-        background: none;
-        cursor: pointer;
-    }
+            .table-container button {
+                color: green;
+                background: none;
+                cursor: pointer;
+            }
 
-    th {
-        padding: 15px;
-        background: none;
-        cursor: pointer;
-    }
+            th {
+                padding: 15px;
+                background: none;
+                cursor: pointer;
+            }
 
-    /* Combined styles for info-container, user-info, and renter-info */
-    .info-container {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-wrap: wrap;
-    }
+            /* Combined styles for info-container, user-info, and renter-info */
+            .info-container {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-wrap: wrap;
+            }
 
-    .user-info,
-    .renter-info {
-        width: 50%;
-        box-sizing: border-box;
-        padding: 15px;
-        background-color: #f9f9f9;
-        border-radius: 8px;
-        box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
-        margin: 8px;
-        text-align: left;
-        max-width: 400px;
-    }
+            .user-info,
+            .renter-info {
+                width: 50%;
+                box-sizing: border-box;
+                padding: 15px;
+                background-color: #f9f9f9;
+                border-radius: 8px;
+                box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+                margin: 8px;
+                text-align: left;
+                max-width: 400px;
+            }
 
-    .info-container h3 {
-        color: #555;
-    }
+            .info-container h3 {
+                color: #555;
+            }
 
-    /* Responsive adjustments for smaller screens */
-    @media (max-width: 768px) {
-        .info-container {
-            flex-direction: column;
-        }
+            /* Responsive adjustments for smaller screens */
+            @media (max-width: 768px) {
+                .info-container {
+                    flex-direction: column;
+                }
 
-        .user-info,
-        .renter-info {
-            width: 100%;
-            text-align: center;
-            margin: 10px 0;
-        }
+                .user-info,
+                .renter-info {
+                    width: 100%;
+                    text-align: center;
+                    margin: 10px 0;
+                }
 
-        .personal-info h2 {
-            margin: 10px 0;
-            color: #006eff;
-        }
-    }
+                .personal-info h2 {
+                    margin: 10px 0;
+                    color: #006eff;
+                }
+            }
 
-    /* Additional styles for the update profile section */
-    .update-profile {
-        margin-top: 50px;
-        padding: 20px;
-        background-color: #f9f9f9;
-        border-radius: 8px;
-        box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
-        max-width: 600px;
-        margin: 0 auto;
-    }
+            /* Additional styles for the update profile section */
+            .update-profile {
+                margin-top: 50px;
+                padding: 20px;
+                background-color: #f9f9f9;
+                border-radius: 8px;
+                box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+                max-width: 600px;
+                margin: 0 auto;
+            }
 
-    .update-profile h3 {
-        color: #555;
-        margin-bottom: 20px;
-        text-align: center;
-    }
+            .profile-title h3 {
+                color: #555;
+                margin-bottom: 34px;
+                text-align: center;
+            }
+            .profile-title a {
+                font-size: 20px;
+            }
 
-    .update-profile form {
-        display: grid;
-        grid-gap: 10px;
-    }
+            .update-profile form {
+                display: grid;
+                grid-gap: 10px;
+            }
 
-.update-profile input[type="text"] {
-    width: 100%;
-    padding: 10px;
-    border: 2px solid #ccc;
-    border-radius: 15px; /* Updated border radius */
-    box-sizing: border-box;
-    margin-bottom: 15px; /* Add 15px margin bottom */
-}
+            .update-profile input[type="text"] {
+                width: 100%;
+                padding: 10px;
+                border: 2px solid #ccc;
+                border-radius: 15px; /* Updated border radius */
+                box-sizing: border-box;
+                margin-bottom: 15px; /* Add 15px margin bottom */
+            }
 
-.update-profile button {
-    width: 100%;
-    padding: 12px;
-    border: none;
-    border-radius: 5px;
-    background-color: #007bff;
-    color: #fff;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
+            .update-profile button {
+                width: 100%;
+                padding: 12px;
+                border: none;
+                border-radius: 5px;
+                background-color: #007bff;
+                color: #fff;
+                cursor: pointer;
+                transition: background-color 0.3s ease;
+            }
 
-.update-profile button:hover {
-    background-color: #0056b3;
-}
+            .update-profile button:hover {
+                background-color: #0056b3;
+            }
+            .Avatar {
+                text-align: center;
+                margin-bottom: 30px;
 
-</style>
+            }
+
+            .Avatar h3 {
+                font-size: 34px;
+            }
+
+            .Avatar a {
+                font-size: 20px;
+            }
+            /* Added CSS for gender radio buttons */
+            .gender-radio {
+                display: flex;
+                align-items: center;
+            }
+
+            .gender-radio input[type="radio"] {
+                margin-right: 10px;
+            }
+
+            /* Same CSS styling for all input fields */
+            .update-profile input[type="text"],
+            .update-profile input[type="number"],
+            .update-profile input[type="radio"] {
+                width: 100%;
+                padding: 10px;
+                border: 2px solid #ccc;
+                border-radius: 15px;
+                box-sizing: border-box;
+                margin-bottom: 15px;
+            }
+
+            .update-profile button {
+                width: 100%;
+                padding: 12px;
+                border: none;
+                border-radius: 5px;
+                background-color: #007bff;
+                color: #fff;
+                cursor: pointer;
+                transition: background-color 0.3s ease;
+            }
+
+            .update-profile button:hover {
+                background-color: #0056b3;
+            }
+
+        </style>
     </head>
 
     <body>
@@ -243,19 +295,35 @@
         <!--INSERT PERSONAL INFO-->
 
 
-
+        <div class="Avatar">
+            <h3>Update Profile</h3>         
+            <center><a href="renterprofile">Back To Profile</a></center>         
+        </div>
         <div class="update-profile">
-            <h3 style="text-align: center;">Update Profile</h3>
-            <form action="renterupdate">
-                <c:set var="update" value="${requestScope.User}" />
-                Enter Name: <input type="text"  name="userName"/><br/>
-                Enter Email: <input type="text"name="userEmail"  /><br/>
-                Enter Gender: <input type="text" name="userGender"/><br/>
-                Enter Address: <input type="text"  name="userAddress"/><br/>
-                Enter Phone: <input type="text"name="userPhone"/><br/>
+            <form action="renterupdate" method="post">
+                <c:set var="user" value="${requestScope.user}" />
+
+                <input type="hidden" name="userID" value="${param.userID}" readonly/><br/>
+
+                Enter Name: <input type="text" name="userName" value="${user.userName}"/><br/>
+
+                Enter Gender: 
+                <div class="gender-radio">
+                    Male: <input type="radio" id="male" name="userGender" value="Male" <c:if test="${user.userGender == 'Male'}">checked</c:if>>
+                    Female: <input type="radio" id="female" name="userGender" value="Female" <c:if test="${user.userGender == 'Female'}">checked</c:if>>
+                    </div>
+
+                    Enter Birth: <input type="text" name="userBirth" value="${user.userBirth}"/><br/>
+                Enter Address: <input type="text" name="userAddress" value="${user.userAddress}"/><br/>
+
+                Enter Phone: <input type="text" name="userPhone" value="${user.userPhone}"/><br/>
+
                 <input type="submit" value="Update"/>
             </form>
         </div>
+
+
+
 
         <div class="site-footer">
             <div class="container">

@@ -59,21 +59,21 @@ public class RenterUpdateProfileControl extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String name = request.getParameter("userName");
-        String gender = request.getParameter("userGender"); // Corrected parameter name
-        String address = request.getParameter("userAddress"); // Corrected parameter name
-        String phone_raw = request.getParameter("userPhone"); // Corrected parameter name
-        int phone;
+        String jspuserID = request.getParameter("userID");
+        int userId;
         RenterDAO dao = new RenterDAO();
+        
+        System.out.println("Received userID parameter: " + jspuserID);
+        
         try {
-            phone = Integer.parseInt(phone_raw);
-            // Retrieve the actual user ID from the session or request parameters
-            int userId = 1; // Get the user ID from session or request parameters
-            User u = dao.getUserByID(userId); // Retrieve the user from the database using the obtained ID
-            request.setAttribute("user", u); // Set the user attribute to be passed to the JSP page
-            request.getRequestDispatcher("RenterUpdateProfile.jsp").forward(request, response); // Forward the request to the JSP page
+            userId = Integer.parseInt(jspuserID);
+            User u = dao.getUserByID(userId); // Hardcoded value '1' - consider using userId instead?
+            request.setAttribute("user", u); // Set the user attribute to be passed to the JSP page  
+            request.getRequestDispatcher("Renter/RenterUpdateProfile.jsp").forward(request, response); // Forward the request to the JSP page
+            System.out.println("Forwarded request to RenterUpdateProfile.jsp");
         } catch (NumberFormatException e) {
             e.printStackTrace(); // Handle the exception properly
+            System.err.println("NumberFormatException occurred: " + e.getMessage());
         }
     }
 
@@ -86,26 +86,54 @@ public class RenterUpdateProfileControl extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        // Get parameters from the form submission
-        String name = request.getParameter("userName");
-        String gender = request.getParameter("userGender");
-        String address = request.getParameter("userAddress");
-        String phone_raw = request.getParameter("userPhone");
-        int phone;
-        try {
-            phone = Integer.parseInt(phone_raw);
-            // Assuming you have a method in your DAO to update user information
-            RenterDAO dao = new RenterDAO();
-            int userId = 1; // Get the user ID from session or request parameters
-            dao.updateUserInfo(userId, name, gender, address, phone); // Update user information
-            // Redirect back to the profile page or any other appropriate page
-            response.sendRedirect("Profile.jsp");
-        } catch (NumberFormatException e) {
-            e.printStackTrace(); // Handle the exception properly
-        }
+protected void doPost(HttpServletRequest request, HttpServletResponse response)
+        throws ServletException, IOException {
+    request.setCharacterEncoding("UTF-8");
+    
+    // Get userID from request parameter
+    String jspuserID = request.getParameter("userID");
+    
+    // Initialize variables
+    int userId;
+    String name = request.getParameter("userName");
+    String gender = request.getParameter("userGender");
+    String birth = request.getParameter("userBirth");
+    String address = request.getParameter("userAddress");
+    String phone = request.getParameter("userPhone");
+    String avatar = "./Image/user/avatar1.jpg";
+    
+    // Initialize DAO
+    RenterDAO dao = new RenterDAO();
+    
+    try {
+        // Parse userID to integer
+        userId = Integer.parseInt(jspuserID);
+        
+        // Retrieve user from database
+        User u = dao.getUserByID(userId);
+        
+        // Create a new user object with updated information
+        User uNew = new User(userId, name, gender, birth, address, phone, avatar);
+        
+        // Update user in the database
+        dao.updateUser(uNew);
+        
+        // Redirect to a confirmation page or back to the profile page
+        response.sendRedirect("renterupdate?userID=" + userId);
+    } catch (NumberFormatException e) {
+        // Handle NumberFormatException
+        e.printStackTrace();
+        System.err.println("NumberFormatException occurred: " + e.getMessage());
+        // Redirect to an error page or display an error message
+        response.sendRedirect("error.jsp");
+    } catch (Exception e) {
+        // Handle other exceptions
+        e.printStackTrace();
+        System.err.println("Exception occurred: " + e.getMessage());
+        // Redirect to an error page or display an error message
+        response.sendRedirect("error.jsp");
     }
+}
 
     @Override
     public String getServletInfo() {

@@ -84,29 +84,22 @@ public class AccountDAO extends MyDAO {
     }
 
     public int getUserRole(String mail, String password) {
-    String sql = "SELECT userRole FROM [Account] \n"
-            + "WHERE userMail = ? AND userPassword = ?";
-    try {
-        ps = con.prepareStatement(sql);
-        ps.setString(1, mail);
-        ps.setString(2, password);
-        rs = ps.executeQuery();
+        String sql = "SELECT userRole FROM [Account] \n"
+                + "WHERE userMail = ? AND userPassword = ?";
+        try {
+            ps = con.prepareStatement(sql);
+            ps.setString(1, mail);
+            ps.setString(2, password);
+            rs = ps.executeQuery();
 
-        if (rs.next()) {
-            return rs.getInt("userRole");
+            if (rs.next()) {
+                return rs.getInt("userRole");
+            }
+        } catch (SQLException e) {
+            System.out.println("Fail: " + e.getMessage());
         }
-    } catch (SQLException e) {
-        System.out.println("Fail: " + e.getMessage());
+        return 0;
     }
-    return 0;
-}
-    
-    public static void main(String[] args) {
-        AccountDAO dao = new AccountDAO();
-        int role = dao.getUserRole("maitu@gmail.com", "12345678");
-        System.out.println("Role: " + role);
-    }
-    
 
     /////////////////////Hung dog code
     public Account LoginAccount(String email, String password) {
@@ -194,16 +187,49 @@ public class AccountDAO extends MyDAO {
         }
         return null;
     }
-    
-     public Account check(String username, String password) {
-        String sql = "select * from Account where username = ? and Password = ?";
+
+    public void changep(Account a) {
+        String sql = "UPDATE [dbo].[account] set userPassword = ? where userMail = ?";
         try {
             PreparedStatement st = connection.prepareStatement(sql);
-            st.setString(1, username);
+            st.setString(1, a.getUserPassword());
+            st.setString(2, a.getUserMail());
+            st.executeQuery();
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+    }
+
+    public Account check(String usermail, String password) {
+        String sql = "select * from Account where userMail = ? and userPassword = ?";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setString(1, usermail);
             st.setString(2, password);
             ResultSet rs = st.executeQuery();
             if (rs.next()) {
-                return new Account(rs.getInt("userID"), username, password, rs.getInt("userRole"));
+                // Create Account object
+                Account a = new Account(rs.getInt("userID"), usermail, password, rs.getInt("userRole"));
+                System.out.println("Sucessful");
+                return a; // Return Account object if found
+            } else {
+                System.err.println("Fail");
+                return null; // Return null if no matching account found
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return null; // Return null if an exception occurs
+    }
+
+    public Account checkID(int userid) {
+        String sql = "SELECT * FROM Account WHERE userid = ?";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setInt(1, userid); // Set parameter using setInt for integer value
+            ResultSet rs = st.executeQuery();
+            if (rs.next()) {
+                return new Account(userid, rs.getString("username"), rs.getString("password"), rs.getInt("userRole"));
             }
         } catch (SQLException e) {
             System.out.println(e);
@@ -211,4 +237,27 @@ public class AccountDAO extends MyDAO {
         return null;
     }
 
+    public void updatePassword(Account a) {
+        String sql = "UPDATE Account SET [userPassword] = ? WHERE userID = ?";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setString(1, a.getUserPassword());
+            st.setInt(2, a.getUserID());
+
+            st.executeUpdate();
+        } catch (SQLException e) {
+            // Handle the exception appropriately, e.g., log it
+            e.printStackTrace();
+        }
+    }
+        public static void main(String[] args) {
+        AccountDAO dao = new AccountDAO();
+//        int role = dao.getUserRole("maitu@gmail.com", "12345678");
+//        System.out.println("Role: " + role);
+//         AccountDAO dao = new AccountDAO();
+        Account a = dao.check("tester", "2");
+        dao.updatePassword(a);
+        Account ac = new Account(a.getUserID(), "tester", "1", a.getUserRole());
+        dao.changep(ac);
+    }
 }

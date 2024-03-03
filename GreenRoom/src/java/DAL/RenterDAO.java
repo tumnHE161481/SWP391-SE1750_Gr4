@@ -211,6 +211,11 @@ public class RenterDAO extends MyDAO {
         e.printStackTrace(); // Handle the exception properly in your application
     }
 }
+    
+    
+    
+    
+    
 public static void main(String[] args) {
     RenterDAO dao = new RenterDAO();
     int userID = 1; // Assuming you want to retrieve the user with ID 1

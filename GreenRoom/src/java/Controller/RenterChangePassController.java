@@ -7,9 +7,8 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import DAL.AccountDAO;
 import Models.*;
-
 import jakarta.servlet.annotation.WebServlet;
-
+import jakarta.servlet.http.HttpSession;
 
 public class RenterChangePassController extends HttpServlet {
 
@@ -26,33 +25,46 @@ public class RenterChangePassController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String u = request.getParameter("user");
+        String userMail = request.getParameter("userMail");
+        request.setAttribute("userMail", userMail);
+        request.getRequestDispatcher("Renter/RenterPassChange.jsp").forward(request, response);
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String u = request.getParameter("userMail");
         String op = request.getParameter("opass"); // old
         String p = request.getParameter("pass"); // new
+        String rp = request.getParameter("rp"); // confirmation password
+
+        // Check if new password matches confirmation password
+        if (!p.equals(rp)) {
+            String ms = "New password and confirmation password do not match!";
+            request.setAttribute("userMail", u);
+            request.setAttribute("ms", ms);
+            request.getRequestDispatcher("Renter/RenterPassChange.jsp").forward(request, response);
+            return; // Exit the method if passwords do not match
+        }
 
         AccountDAO dao = new AccountDAO(); // Instantiate AccountDAO
         // Check old password
         Account a = dao.check(u, op);
+
         if (a == null) {
             // Old password is incorrect
-            String ms = "Old password is incorrect!";
+            String ms = "Old password is incorrect! " + u + ", " + op;
+            request.setAttribute("userMail", u);
             request.setAttribute("ms", ms);
-            request.getRequestDispatcher("Renter/RenterPassChange.jsp").forward(request, response); // Forward to the change password page
+            request.getRequestDispatcher("Renter/RenterPassChange.jsp").forward(request, response);
         } else {
-            // Update password
-            boolean updated = dao.updateUserPassword(u, p); // Assuming updateUserPassword method returns boolean
-
-            if (updated) {
-                // Password updated successfully
-                Account ac = new Account(a.getUserID(), u, p, a.getUserRole());
-                request.getSession().setAttribute("account", ac); // Set updated account to session
-                response.sendRedirect("Renter/RenterHome.jsp"); // Redirect to the Renter Home page
-            } else {
-                // Failed to update password
-                String ms = "Failed to update password. Please try again.";
-                request.setAttribute("ms", ms);
-                request.getRequestDispatcher("Renter/RenterPassChange.jsp").forward(request, response); // Forward to the change password page
-            }
+            Account ac = new Account(a.getUserID(), u, p, a.getUserRole());
+            dao.changep(ac);
+            HttpSession session = request.getSession();
+            session.setAttribute("userMail", ac);
+            String ms = "Update password successful!";
+            request.setAttribute("ms", ms);
+            request.setAttribute("userMail", u);
+            request.getRequestDispatcher("Renter/RenterPassChange.jsp").forward(request, response);
         }
     }
 }
