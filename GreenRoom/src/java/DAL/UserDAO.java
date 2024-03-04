@@ -454,6 +454,7 @@ public class UserDAO extends MyDAO {
         return list;
     }
 
+    //Owner Renter Detail DAO
         public User getOwRenterDetail(int id) {
 
         String sql = "SELECT DISTINCT\n"
@@ -583,8 +584,8 @@ public class UserDAO extends MyDAO {
 //        for (User user : list) {
 //            System.out.println("mail: " + user.getAccount().getUserMail());
 //        }
-         User user = dao.getOwRenterDetail(1);
-        System.out.println("name" + user.getUserName());
+//         User user = dao.getOwRenterDetail(1);
+//        System.out.println("name" + user.getUserName());
 
 
          

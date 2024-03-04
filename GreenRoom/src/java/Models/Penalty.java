@@ -20,6 +20,8 @@ public class Penalty {
     private int penStatus;
 
     private Rule rule;
+    private User user;
+    private Renter renter;
 
     public Penalty() {
     }
@@ -30,6 +32,46 @@ public class Penalty {
 
     public void setRule(Rule rule) {
         this.rule = rule;
+    }
+
+    public Penalty(int penID, int reportID, int accuseID, int roomID, String description, String penDate, int ruleID, int penStatus, Rule rule, User user, Renter renter) {
+        this.penID = penID;
+        this.reportID = reportID;
+        this.accuseID = accuseID;
+        this.roomID = roomID;
+        this.description = description;
+        this.penDate = penDate;
+        this.ruleID = ruleID;
+        this.penStatus = penStatus;
+        this.rule = rule;
+        this.user = user;
+        this.renter = renter;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Renter getRenter() {
+        return renter;
+    }
+
+    public void setRenter(Renter renter) {
+        this.renter = renter;
+    }
+
+    public Penalty(int reportID, int accuseID, int roomID, String description, String penDate, int ruleID, int penStatus) {
+        this.reportID = reportID;
+        this.accuseID = accuseID;
+        this.roomID = roomID;
+        this.description = description;
+        this.penDate = penDate;
+        this.ruleID = ruleID;
+        this.penStatus = penStatus;
     }
 
     public Penalty(int penID, int reportID, int accuseID, int roomID, String description, String penDate, int ruleID, int penStatus, Rule rule) {
@@ -63,8 +105,6 @@ public class Penalty {
         this.ruleID = ruleID;
         this.penStatus = penStatus;
     }
-
-   
 
     public int getPenID() {
         return penID;
