@@ -170,17 +170,17 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <c:forEach var="u" items="${OwnerHistoryPenalty}" varStatus="loop">
-                                        <c:set var="id" value="${u.reportID}" />
+                                    <c:forEach var="ac" items="${OwnerHistoryPenalty}" varStatus="loop">
+                                      
                                         <tr style="border-bottom: 1px solid #ddd; background-color: #f9f9f9;">
                                             <td style="padding: 12px; text-align: left;">${loop.index + 1}</td>
-                                            <td style="padding: 12px; text-align: left;">${u.user.userName}</td>
-                                            <td style="padding: 12px; text-align: left;">${u.description}</td>
-                                            <td style="padding: 12px; text-align: left;">${u.rule.scoreChange}</td>
-                                            <td style="padding: 12px; text-align: left; ">${u.rule.ruleName}</td>
+                                            <td style="padding: 12px; text-align: left;">${ac.user.userName}</td>
+                                            <td style="padding: 12px; text-align: left;">${ac.description}</td>
+                                            <td style="padding: 12px; text-align: left;">${ac.rule.scoreChange}</td>
+                                            <td style="padding: 12px; text-align: left; ">${ac.rule.ruleName}</td>
                                             <td style="padding: 12px; text-align: left;">
                                                 <c:choose>
-                                                    <c:when test="${u.penStatus}">
+                                                    <c:when test="${ac.penStatus}">
                                                         <div value="true">Processed</div>
                                                     </c:when>
                                                     <c:otherwise> 

@@ -191,7 +191,8 @@ public class PenaltyDAO extends MyDAO {
 //        dao.addNewPenalty(1, 2, 1, "TestLan1", "2022-01-15 10:30:00.000", 1, false);
         List<Penalty> list = dao.historyPenalty(1);
         for (Penalty pen : list) {
-            System.out.println("RuleName:" + pen.getUser().getUserName());
+            System.out.println("AccName:" + pen.getUser().getUserName());
+            System.out.println("Des" + pen.getDescription());
         }
     }
 }

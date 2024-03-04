@@ -61,19 +61,36 @@ public class OwnerHistoryPenaltyController extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
+//    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+//            throws ServletException, IOException {
+//        String id_raw = request.getParameter("id");
+//        int id = Integer.parseInt(id_raw);
+//        PenaltyDAO dao = new PenaltyDAO();
+//        List<Penalty> list = dao.historyPenalty(id);
+//        request.setAttribute("OwnerHistoryPenalty", list);
+//        request.getRequestDispatcher("/Owner/OwnerHistoryPenalty.jsp").forward(request, response);
+//
+//        List<Rule> list1 = dao.listRule();
+//        request.setAttribute("ruleName", list1);
+//        request.getRequestDispatcher("/Owner/OwnerHistoryPenalty.jsp").forward(request, response);
+//
+//    }
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String id_raw = request.getParameter("id");
         int id = Integer.parseInt(id_raw);
         PenaltyDAO dao = new PenaltyDAO();
+
+        // Retrieve history penalties
         List<Penalty> list = dao.historyPenalty(id);
         request.setAttribute("OwnerHistoryPenalty", list);
-        
-        
+
+        // Retrieve list of rules
         List<Rule> list1 = dao.listRule();
         request.setAttribute("ruleName", list1);
+
+        // Forward the request and response to the JSP page
         request.getRequestDispatcher("/Owner/OwnerHistoryPenalty.jsp").forward(request, response);
-        
     }
 
     /**
