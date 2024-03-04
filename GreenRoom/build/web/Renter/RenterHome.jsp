@@ -134,7 +134,10 @@
                 }
             }        </style>
     </head>
-
+    <%
+    String email = (String) session.getAttribute("email");
+    String password = (String) session.getAttribute("password");
+    %>
     <body>
 
         <div class="site-mobile-menu site-navbar-target">

@@ -24,23 +24,22 @@ public class RenterHomeController extends HttpServlet {
         HttpSession session = request.getSession();
         // Retrieve the account object from the session
         Account account = (Account) session.getAttribute("user");
-        
+
         // Check if the account object exists in the session
-        if(account != null) {
+        if (account != null) {
             // Extract email and password from the account object
-            String email = account.getUserMail();
-            String password = account.getUserPassword();
-            
-            
+            String userMail = (String) session.getAttribute("email");
+            String userPassword = (String) session.getAttribute("password");
+
+            // Set email and password attributes in session
             // Now you can use the email and password to fetch data or perform any other actions
             // Example:
             DAORenter dao1 = new DAORenter();
             List<News> listN = dao1.getAllNews();
             request.setAttribute("ListN", listN);
-            
+
             RenterDAO dao = new RenterDAO();
-           List<User> list = dao.getRenterDetailByAccountAndPassword("tester", "1");
-            //List<User> list = dao.getRenterDetailByAccountAndPassword(email, password);
+            List<User> list = dao.getRenterDetailByAccountAndPassword(userMail, userPassword);
             request.setAttribute("ListRP", list);
             request.getRequestDispatcher("Renter/RenterHome.jsp").forward(request, response);
         } else {
@@ -49,7 +48,7 @@ public class RenterHomeController extends HttpServlet {
             response.sendRedirect("login.jsp");
         }
     }
-    
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {

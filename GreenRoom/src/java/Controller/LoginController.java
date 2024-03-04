@@ -2,7 +2,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-
 package Controller;
 
 import DAL.AccountDAO;
@@ -46,16 +45,23 @@ public class LoginController extends HttpServlet {
             } else {
                 HttpSession session = request.getSession();
                 session.setAttribute("user", account);
+                session.setAttribute("email", email);
+                session.setAttribute("password", password);
                 request.setAttribute("message", "Login successfully");
+
+                
 
                 int role = a.getUserRole(email, password);
 
                 switch (role) {
-                    case 1:response.sendRedirect(request.getContextPath() + "/renterhome");
+                    case 1:
+                        response.sendRedirect(request.getContextPath() + "/renterhome");
                         break;
-                    case 2: response.sendRedirect(request.getContextPath() + "/sehome");
+                    case 2:
+                        response.sendRedirect(request.getContextPath() + "/sehome");
                         break;
-                    case 3: response.sendRedirect("./Owner/OwHome.jsp");
+                    case 3:
+                        response.sendRedirect("./Owner/OwHome.jsp");
                         break;
                     case 4:
                         response.sendRedirect(request.getContextPath() + "/managerenter");

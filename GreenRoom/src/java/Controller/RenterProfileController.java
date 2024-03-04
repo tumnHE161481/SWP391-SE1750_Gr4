@@ -12,6 +12,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import java.util.List;
 
 /**
@@ -59,7 +60,11 @@ public class RenterProfileController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         RenterDAO dao = new RenterDAO();
-        List<User> list = dao.getRenterDetailByAccountAndPassword("tester", "1");
+        HttpSession session = request.getSession();
+        Account account = (Account) session.getAttribute("user");
+        String userMail = (String) session.getAttribute("email");
+        String userPassword = (String) session.getAttribute("password");
+        List<User> list = dao.getRenterDetailByAccountAndPassword(userMail, userPassword);
         request.setAttribute("ListRP", list);
         request.getRequestDispatcher("Renter/RenterProfile.jsp").forward(request, response);
 
