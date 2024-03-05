@@ -48,6 +48,10 @@
         <servlet-name>SeUpdateNewsControl</servlet-name>
         <servlet-class>Controller.SeUpdateNewsControl</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SeLogOutControl</servlet-name>
+        <servlet-class>Controller.SeLogOutControl</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>SeProfileControl</servlet-name>
         <url-pattern>/seprofile</url-pattern>
@@ -95,6 +99,10 @@
     <servlet-mapping>
         <servlet-name>SeUpdateNewsControl</servlet-name>
         <url-pattern>/seupdatenews</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SeLogOutControl</servlet-name>
+        <url-pattern>/selogout</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

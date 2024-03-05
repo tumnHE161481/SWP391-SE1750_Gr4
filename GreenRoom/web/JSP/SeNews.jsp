@@ -61,7 +61,7 @@
                         <li><a href="Payment.html">Payment</a></li>
                         <li><a href="CustomerList.html">Customer</a></li>
                         <li><a href="Guide.html">Guide</a></li>
-                        <li><a href="News.html">News</a></li>
+                        <li><a href="selogout">Log Out</a></li>
                     </ul>
 
                     <a href="#"
