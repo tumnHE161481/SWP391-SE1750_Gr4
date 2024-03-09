@@ -16,11 +16,12 @@ public class Request {
     private String description;
     private String createAt;
     private String resStatus;
+    private String reply;
 
     public Request() {
     }
 
-    public Request(int requestID, int renterID, int requestType, String title, String description, String createAt, String resStatus) {
+    public Request(int requestID, int renterID, int requestType, String title, String description, String createAt, String resStatus, String reply) {
         this.requestID = requestID;
         this.renterID = renterID;
         this.requestType = requestType;
@@ -28,7 +29,20 @@ public class Request {
         this.description = description;
         this.createAt = createAt;
         this.resStatus = resStatus;
+        this.reply = reply;
     }
+    
+    
+    
+
+    public String getReply() {
+        return reply;
+    }
+
+    public void setReply(String reply) {
+        this.reply = reply;
+    }
+
 
     public int getRequestID() {
         return requestID;

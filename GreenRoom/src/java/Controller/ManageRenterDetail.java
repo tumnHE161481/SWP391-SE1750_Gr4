@@ -65,7 +65,7 @@ public class ManageRenterDetail extends HttpServlet {
         UserDAO dao = new UserDAO();
         try {
             id = Integer.parseInt(id_raw);
-            List<User> rd = dao.getRenterDetail(id);
+            User rd = dao.getRenterDetail(id);
             request.setAttribute("detail", rd);
             request.getRequestDispatcher("/Admin/renterdetail.jsp").forward(request, response);
         } catch (NumberFormatException e) {

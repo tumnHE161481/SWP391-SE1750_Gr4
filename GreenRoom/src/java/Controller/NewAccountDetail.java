@@ -83,7 +83,29 @@ public class NewAccountDetail extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        AccountDAO dao = new AccountDAO();
+        String id_raw = request.getParameter("id");
+        int id;
+        try {
+            id = Integer.parseInt(id_raw);
+            String roleChoice = request.getParameter("userRole");
+            int userRole = Integer.parseInt(roleChoice);
+            boolean success = dao.updateUserRole(id, userRole);
+            String updateMessage = "updateMessage";
+            if (success) {
+                // Update successful
+                request.setAttribute(updateMessage, "Update Successful");
+                response.sendRedirect(request.getContextPath() + "/renterdetail?id=" + id_raw);
+
+            } else {
+                // Update failed
+                request.setAttribute(updateMessage, "Failed");
+                response.sendRedirect(request.getContextPath() + "//newaccdetail?id=" + id_raw);
+
+            }
+        } catch (NumberFormatException e) {
+            response.sendRedirect(request.getContextPath() + "/newaccdetail?id=" + id_raw);
+        }
     }
 
     /**

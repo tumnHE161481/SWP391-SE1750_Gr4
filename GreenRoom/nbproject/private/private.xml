@@ -3,15 +3,21 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/ASUS/OneDrive/Desktop/Documents/GitHub/SWP391-SE1750_Gr4/GreenRoom/web/Admin/roomdetail.jsp</file>
-            <file>file:/C:/Users/ASUS/OneDrive/Desktop/Documents/GitHub/SWP391-SE1750_Gr4/GreenRoom/src/java/Controller/ManageRoomDetail.java</file>
-            <file>file:/C:/Users/ASUS/OneDrive/Desktop/Documents/GitHub/SWP391-SE1750_Gr4/GreenRoom/src/java/Models/Item.java</file>
+            <file>file:/C:/Users/ASUS/OneDrive/Desktop/Documents/GitHub/SWP391-SE1750_Gr4/GreenRoom/web/Renter/sendrequest.jsp</file>
+            <file>file:/C:/Users/ASUS/OneDrive/Desktop/Documents/GitHub/SWP391-SE1750_Gr4/GreenRoom/src/java/Controller/LogoutController.java</file>
+            <file>file:/C:/Users/ASUS/OneDrive/Desktop/Documents/GitHub/SWP391-SE1750_Gr4/GreenRoom/src/java/Filter/UserAuthorizationFilter.java</file>
+            <file>file:/C:/Users/ASUS/OneDrive/Desktop/Documents/GitHub/SWP391-SE1750_Gr4/GreenRoom/src/java/Controller/SeProfileControl.java</file>
+            <file>file:/C:/Users/ASUS/OneDrive/Desktop/Documents/GitHub/SWP391-SE1750_Gr4/GreenRoom/src/java/Controller/AccessDeniedController.java</file>
+            <file>file:/C:/Users/ASUS/OneDrive/Desktop/Documents/GitHub/SWP391-SE1750_Gr4/GreenRoom/web/WEB-INF/web.xml</file>
+            <file>file:/C:/Users/ASUS/OneDrive/Desktop/Documents/GitHub/SWP391-SE1750_Gr4/GreenRoom/web/Admin/manageroom.jsp</file>
+            <file>file:/C:/Users/ASUS/OneDrive/Desktop/Documents/GitHub/SWP391-SE1750_Gr4/GreenRoom/web/Renter/requesthistory.jsp</file>
+            <file>file:/C:/Users/ASUS/OneDrive/Desktop/Documents/GitHub/SWP391-SE1750_Gr4/GreenRoom/src/java/Controller/ManageAccountController.java</file>
             <file>file:/C:/Users/ASUS/OneDrive/Desktop/Documents/GitHub/SWP391-SE1750_Gr4/GreenRoom/web/Admin/editrenter.jsp</file>
-            <file>file:/C:/Users/ASUS/OneDrive/Desktop/Documents/GitHub/SWP391-SE1750_Gr4/GreenRoom/src/java/Models/SeUser.java</file>
-            <file>file:/C:/Users/ASUS/OneDrive/Desktop/Documents/GitHub/SWP391-SE1750_Gr4/GreenRoom/src/java/DAL/UserDAO.java</file>
-            <file>file:/C:/Users/ASUS/OneDrive/Desktop/Documents/GitHub/SWP391-SE1750_Gr4/GreenRoom/src/java/DAL/RoomDAO.java</file>
-            <file>file:/C:/Users/ASUS/OneDrive/Desktop/Documents/GitHub/SWP391-SE1750_Gr4/GreenRoom/src/java/Models/Room.java</file>
-            <file>file:/C:/Users/ASUS/OneDrive/Desktop/Documents/GitHub/SWP391-SE1750_Gr4/GreenRoom/src/java/Models/RoomItem.java</file>
+            <file>file:/C:/Users/ASUS/OneDrive/Desktop/Documents/GitHub/SWP391-SE1750_Gr4/GreenRoom/web/Admin/newaccountdetail.jsp</file>
+            <file>file:/C:/Users/ASUS/OneDrive/Desktop/Documents/GitHub/SWP391-SE1750_Gr4/GreenRoom/web/accessDenied.jsp</file>
+            <file>file:/C:/Users/ASUS/OneDrive/Desktop/Documents/GitHub/SWP391-SE1750_Gr4/GreenRoom/src/java/Controller/SeSearchControl.java</file>
+            <file>file:/C:/Users/ASUS/OneDrive/Desktop/Documents/GitHub/SWP391-SE1750_Gr4/GreenRoom/src/java/Controller/DefaultHomeController.java</file>
+            <file>file:/C:/Users/ASUS/OneDrive/Desktop/Documents/GitHub/SWP391-SE1750_Gr4/GreenRoom/web/Admin/manageaccount.jsp</file>
         </group>
     </open-files>
 </project-private>

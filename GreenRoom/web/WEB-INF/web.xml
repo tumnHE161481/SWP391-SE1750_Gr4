@@ -1,10 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+    <filter>
+        <filter-name>UserAuthorizationFilter</filter-name>
+        <filter-class>Filter.UserAuthorizationFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>UserAuthorizationFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
     <servlet>
         <servlet-name>SeProfileControl</servlet-name>
         <servlet-class>Controller.SeProfileControl</servlet-class>
     </servlet>
-
     <servlet>
         <servlet-name>ListTaskControl</servlet-name>
         <servlet-class>Controller.ListTaskControl</servlet-class>
@@ -37,11 +44,22 @@
         <servlet-name>SeHomeControl</servlet-name>
         <servlet-class>Controller.SeHomeControl</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>RenterRequestController</servlet-name>
+        <servlet-class>Controller.RenterRequestController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>RenterRequestHistoryController</servlet-name>
+        <servlet-class>Controller.RenterRequestHistoryController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Test</servlet-name>
+        <servlet-class>Controller.Test</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>SeProfileControl</servlet-name>
         <url-pattern>/seprofile</url-pattern>
     </servlet-mapping>
-
     <servlet-mapping>
         <servlet-name>ListTaskControl</servlet-name>
         <url-pattern>/listtask</url-pattern>
@@ -81,6 +99,18 @@
     <servlet-mapping>
         <servlet-name>ListNewsControl</servlet-name>
         <url-pattern>/listnews</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RenterRequestController</servlet-name>
+        <url-pattern>/request</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RenterRequestHistoryController</servlet-name>
+        <url-pattern>/requesthistory</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Test</servlet-name>
+        <url-pattern>/test</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

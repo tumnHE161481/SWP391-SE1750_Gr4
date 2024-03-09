@@ -132,21 +132,18 @@ public class AccountDAO extends MyDAO {
             }
 
             int rowsAffected = ps.executeUpdate();
-              if (rowsAffected > 0) {
-            System.out.println("Data for user with userID " + userID + " deleted successfully.");
-        } else {
-            System.out.println("Failed to delete data for user with userID " + userID);
-        }
+            if (rowsAffected > 0) {
+                System.out.println("Data for user with userID " + userID + " deleted successfully.");
+            } else {
+                System.out.println("Failed to delete data for user with userID " + userID);
+            }
 
         } catch (SQLException e) {
             System.out.println("Fail: " + e.getMessage());
         }
     }
 
-    public static void main(String[] args) {
-        AccountDAO dao = new AccountDAO();
-        dao.deleteAccountByID(30);
-    }
+
 
     /////////////////////Hung dog code
     public Account LoginAccount(String email, String password) {
@@ -233,6 +230,36 @@ public class AccountDAO extends MyDAO {
             Logger.getLogger(AccountDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
+    }
+
+    public boolean updateUserRole(int userID, int userRole) {
+    String sql = "UPDATE account\n"
+            + "SET userRole = ?\n"
+            + "WHERE userID = ?;";
+    try {
+        ps = con.prepareStatement(sql);
+        ps.setInt(1, userRole);
+        ps.setInt(2, userID);
+        int rowsAffected = ps.executeUpdate();
+        if (rowsAffected > 0) {
+            System.out.println("User role updated successfully.");
+            return true;
+        } else {
+            System.out.println("No user found with the specified ID.");
+            return false;
+        }
+    } catch (SQLException e) {
+        System.out.println("Failed to update user role: " + e.getMessage());
+        return false;
+    }
+}
+
+    
+    public static void main(String[] args) {
+        AccountDAO dao = new AccountDAO();
+//        dao.deleteAccountByID(30);
+        boolean success = dao.updateUserRole(1, 1);
+        System.out.println(success);
     }
 
 }

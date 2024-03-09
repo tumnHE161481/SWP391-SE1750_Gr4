@@ -4,15 +4,15 @@
  */
 package Controller;
 
-import DAL.UserDAO;
-import Models.*;
+import DAL.*;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -20,7 +20,6 @@ import java.util.Date;
  *
  * @author ASUS
  */
-@WebServlet(name = "RenterRequestController", urlPatterns = {"/request"})
 public class RenterRequestController extends HttpServlet {
 
     /**
@@ -61,6 +60,7 @@ public class RenterRequestController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        request.getRequestDispatcher("/Renter/sendrequest.jsp").forward(request, response);
     }
 
     /**
@@ -74,8 +74,9 @@ public class RenterRequestController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.setCharacterEncoding("UTF-8");
-        UserDAO dao = new UserDAO();
+        HttpSession session = request.getSession();
+        String renterID = session.getAttribute("renterID").toString();
+        int id = Integer.parseInt(renterID);
         String requestContent = request.getParameter("requestType");
         int requestType = Integer.parseInt(requestContent);
         String title = request.getParameter("title");
@@ -83,8 +84,24 @@ public class RenterRequestController extends HttpServlet {
         Date currentDate = new Date();
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String createAt = formatter.format(currentDate);
-        User user = dao.doRequestByID(1, requestType, title, description, createAt, "Pending");
-        request.getRequestDispatcher("/Renter/sendrequest.jsp").forward(request, response);
+        RequestDAO dao = new RequestDAO();
+        request.setCharacterEncoding("UTF-8");
+        try {
+            boolean success = dao.doRequestByID(id, requestType, title, description, createAt, "Pending");
+            String updateMessage = "updateMessage";
+            if (success) {
+                request.setAttribute(updateMessage, "Add Successful");
+                response.sendRedirect(request.getContextPath() + "/requesthistory");
+
+            } else {
+                request.setAttribute(updateMessage, "Failed");
+                response.sendRedirect(request.getContextPath() + "/request");
+
+            }
+        } catch (IOException ex) {
+            response.sendRedirect(request.getContextPath() + "/request");
+
+        }
     }
 
     /**

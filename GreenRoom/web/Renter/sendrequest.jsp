@@ -192,7 +192,7 @@
                                             <div class="row">
                                                 <div class="col-md-6">
                                                     <div class="form-group">
-                                                        <label class="label" for="name">Request Type</label>
+                                                        <label class="label" for="type">Choose Request Type: </label>
                                                         <select name="requestType" class="w-100" style="background-color: #e6e9e9; padding: 6px 12px; border-radius: 5px; border: 1px solid #ced4da;" required>
                                                             <option value="1">Need to Repair</option>
                                                             <option value="2">Report someone</option>
@@ -204,19 +204,20 @@
                                                 </div>
                                                 <div class="col-md-6"> 
                                                     <div class="form-group">
-                                                        <label class="label" for="email">Title</label>
+                                                        <label class="label" for="subject">Title: </label>
                                                         <input type="text" class="form-control" name="title" id="email" placeholder="Enter Title" required>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-12">
                                                     <div class="form-group">
-                                                        <label class="label" for="subject">Decription</label>
+                                                        <label class="label" for="Decription">Decription: </label>
                                                         <textarea type="text" class="form-control" name="description" id="subject" placeholder="Enter Request Detail" style="height: 300px !important" required></textarea>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-12">
-                                                    <div class="form-group">
-                                                        <input type="submit" value="Send Message" class="btn btn-primary">
+                                                    <div class="form-group d-flex justify-content-between">
+                                                        <button type="submit" class="btn btn-primary"><i class="fa-solid fa-envelope-open-text"></i>&nbsp;Send Message</button>
+                                                        <a href="requesthistory" style="color:#FFF" class="btn btn-info"><i class="fa-regular fa-rectangle-list"></i>&nbsp;See History Request(s)</a>
                                                     </div>
                                                 </div>
                                             </div>

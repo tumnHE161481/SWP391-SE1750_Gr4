@@ -76,111 +76,114 @@
                     <div class="container">
                         <div class="row flex-lg-nowrap">
                             <div class="col">
-                                <div class="row">
-                                    <div class="col mb-3">
-                                        <div class="card">
-                                            <div class="card-body">
-                                                <div class="e-profile">
-                                                    <div class="row">
-                                                        <div class="col-12 col-sm-auto mb-3">
-                                                            <div class="mx-auto" style="width: 140px;">
-                                                                <div class="d-flex justify-content-center align-items-center rounded" style="height: 140px; background-color: rgb(233, 236, 239);">
-                                                                    <img class="w-100 h-100" src="${sd.userAvatar}"/>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col justify-content-between mb-3">
-                                                        <div class="text-center text-sm-left mb-2 mb-sm-0">
-                                                            <h4 class="pt-sm-2 pb-1 mb-0 text-nowrap">
-                                                                ${sd.userName}</h4>
-                                                            <p class="mb-0">${sd.account.userMail}</p>
-                                                            <div class="text-muted"><small>
-                                                                    UnknownRoleID: ${sd.userID} &nbsp;
-                                                                    <i class="fa-solid fa-user-plus" style="color: #74C0FC;"></i>
-                                                                </small></div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div class="tab-content pt-3">
-                                                    <div class="tab-pane active">
-                                                        <form class="form" novalidate="">
-                                                            <div class="row">
-                                                                <div class="col">
-                                                                    <div class="row">
-                                                                        <div class="col-6">
-                                                                            <div class="form-group">
-                                                                                <label>Date of birth:</label>
-                                                                                <input readonly class="form-control" type="date" name="name" value="${sd.userBirth}">
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="col-6">
-                                                                            <div class="form-group">
-                                                                                <label>Gender:</label>
-                                                                                <input readonly class="form-control" type="text" name="name" value="${sd.userGender}">
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="row">           
-                                                                        <div class="col-12">
-                                                                            <div class="form-group">
-                                                                                <label>Address: </label>
-                                                                                <input readonly class="form-control" type="text" name="username"  value="${sd.userAddress}">
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="row" style="margin-bottom: 40px">           
-                                                                        <div class="col-6">
-                                                                            <div class="form-group">
-                                                                                <label>Contact: </label>
-                                                                                <input readonly class="form-control" type="text" value="${sd.userPhone}">
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="col-6">
-                                                                            <div class="form-group">
-                                                                                <label style="color: red; font-style: italic">(*)Choose Role for this account: </label>
-                                                                                <select onchange="toggleRoomNum()" id="renterStatus" name="renterStatus" class="w-100" style="background-color: #e6e9e9; padding: 6px 12px; border-radius: 5px; border: 1px solid #ced4da;">
-                                                                                    <option value="1" selected>Renter</option>
-                                                                                    <option value="2">Security</option>
-                                                                                </select>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div> 
-
+                                <form action="newaccdetail" method="post">
+                                    <div class="row">
+                                        <div class="col mb-3">
+                                            <div class="card">
+                                                <div class="card-body">
+                                                    <div class="e-profile">
+                                                        <div class="row">
+                                                            <div class="col-12 col-sm-auto mb-3">
+                                                                <div class="mx-auto" style="width: 140px;">
+                                                                    <div class="d-flex justify-content-center align-items-center rounded" style="height: 140px; background-color: rgb(233, 236, 239);">
+                                                                        <img class="w-100 h-100" src="${sd.userAvatar}"/>
                                                                 </div>
                                                             </div>
-                                                        </form>
+                                                        </div>
+                                                        <div class="col justify-content-between mb-3">
+                                                            <div class="text-center text-sm-left mb-2 mb-sm-0">
+                                                                <h4 class="pt-sm-2 pb-1 mb-0 text-nowrap">
+                                                                    ${sd.userName}</h4>
+                                                                <p class="mb-0">${sd.account.userMail}</p>
+                                                                <div class="text-muted"><small>
+                                                                        UnknownRoleID: ${sd.userID} &nbsp;
+                                                                        <i class="fa-solid fa-user-plus" style="color: #74C0FC;"></i>
+                                                                    </small></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
 
+                                                    <div class="tab-content pt-3">
+                                                        <div class="tab-pane active">
+                                                            <form class="form" novalidate="">
+                                                                <div class="row">
+                                                                    <div class="col">
+                                                                        <div class="row">
+                                                                            <div class="col-6">
+                                                                                <div class="form-group">
+                                                                                    <label>Date of birth:</label>
+                                                                                    <input readonly class="form-control" type="date" name="name" value="${sd.userBirth}">
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-6">
+                                                                                <div class="form-group">
+                                                                                    <label>Gender:</label>
+                                                                                    <input readonly class="form-control" type="text" name="name" value="${sd.userGender}">
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="row">           
+                                                                            <div class="col-12">
+                                                                                <div class="form-group">
+                                                                                    <label>Address: </label>
+                                                                                    <input readonly class="form-control" type="text" name="username"  value="${sd.userAddress}">
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="row" style="margin-bottom: 40px">           
+                                                                            <div class="col-6">
+                                                                                <div class="form-group">
+                                                                                    <label>Contact: </label>
+                                                                                    <input readonly class="form-control" type="text" value="${sd.userPhone}">
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-6">
+                                                                                <div class="form-group">
+                                                                                    <label style="color: red; font-style: italic">(*)Choose Role for this account: </label>
+                                                                                    <select onchange="toggleRoomNum()" id="renterStatus" name="userRole" class="w-100" style="background-color: #e6e9e9; padding: 6px 12px; border-radius: 5px; border: 1px solid #ced4da;">
+                                                                                        <option value="1" selected>Renter</option>
+                                                                                        <option value="2">Security</option>
+                                                                                    </select>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div> 
+
+                                                                    </div>
+                                                                </div>
+                                                            </form>
+
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
 
-                                <div class="col-12 col-md-3 mb-3">
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <form action="newaccdetail" method="post">
+                                    <div class="col-12 col-md-3 mb-3">
+                                        <div class="card">
+                                            <div class="card-body">
+
                                                 <h6 class="card-title font-weight-bold">Support</h6>
-                                                <p class="card-text">Switch security account status.</p>
+                                                <p class="card-text">Add or Delete new account.</p>
                                                 <div class="d-flex justify-content-center gap-4">
-                                                    <input name="id" value="${sd.userID}" class="d-none">
                                                     <a href="manageaccount" type="button" class="btn btn-primary">< Back</a>
                                                     <button type="submit" class="btn btn-success"><i class="fa-solid fa-plus" style="color: #ffffff;"></i>&nbsp;Add</button>
-                                                    <button type="submit" class="btn btn-danger"><i class="fa-regular fa-trash-xmark" style="color: #ffffff;"></i>&nbsp;Delete</button>
+                                                    <a href="" class="btn btn-danger"><i class="fa-regular fa-trash-xmark" style="color: #ffffff;"></i>&nbsp;Delete</a>
                                                 </div>
-                                            </form>
+                                            </div>
                                         </div>
                                     </div>
+
                                 </div>
-                            </div>
+                            </form> 
+                                                                                
                         </div>
                     </div>
                 </div>
 
         </section>
     </div>
+                                                                                
 </body>
 <script>
     let sidebar = document.querySelector(".sidebar");
@@ -204,6 +207,12 @@
             closeBtn.classList.replace("fa-bars", "fa-times");
         } else {
             closeBtn.classList.replace("fa-times", "fa-bars");
+        }
+    }
+    <c:set var="mess" value="${requestScope.updateMessage}"></c:set>
+    function doUpdate() {
+        if (confirm("Are you sure about this change?")) {
+            alert("${mess}");
         }
     }
 </script>

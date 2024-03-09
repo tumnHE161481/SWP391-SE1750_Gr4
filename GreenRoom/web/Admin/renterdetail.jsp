@@ -71,8 +71,7 @@
                         </div>
                     </div>
                 </div>
-                <c:set var="renterList" value="${requestScope.detail}"></c:set>
-                <c:forEach var="rdl" items="${renterList}">
+                <c:set var="rdl" value="${requestScope.detail}"></c:set>
                     <c:set var="id" value="${rdl.userID}"></c:set>
                         <div class="container">
                             <div class="row flex-lg-nowrap">
@@ -186,8 +185,6 @@
                             </div>
                         </div>
                     </div>
-
-                </c:forEach>
             </div>
         </section>
     </div>

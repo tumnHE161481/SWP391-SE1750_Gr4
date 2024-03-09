@@ -53,7 +53,7 @@
                     <span class="tooltip">Room</span>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="logout">
                         <i class="fa-solid fa-right-from-bracket"></i>
                         <span class="links_name">Log out</span>
                     </a>

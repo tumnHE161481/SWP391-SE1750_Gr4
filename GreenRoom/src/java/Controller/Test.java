@@ -7,17 +7,16 @@ package Controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 /**
  *
  * @author ASUS
  */
-@WebServlet(name = "DefaultHomeController", urlPatterns = {"/home"})
-public class DefaultHomeController extends HttpServlet {
+public class Test extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -31,15 +30,25 @@ public class DefaultHomeController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        HttpSession session = request.getSession();
+        String userID = session.getAttribute("userID").toString();
+        String userRole = session.getAttribute("userRole").toString();
+//        String renterID = session.getAttribute("renterID").toString();
+//        String userName = session.getAttribute("userName").toString();
+//        String avatar = session.getAttribute("avatar").toString();
         try ( PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet DefaultHomeController</title>");            
+            out.println("<title>Servlet Test</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet DefaultHomeController at " + request.getContextPath() + "</h1>");
+            out.println("<h1>UserID: " + userID + "</h1>");
+            out.println("<h1>UserRole: " + userRole + "</h1>");
+//            out.println("<h1>renterID: " + renterID + "</h1>");
+//            out.println("<h1>userName: " + userName + "</h1>");
+//            out.println("<img src=" + avatar + " />");
             out.println("</body>");
             out.println("</html>");
         }
@@ -57,7 +66,7 @@ public class DefaultHomeController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-            request.getRequestDispatcher("index.html").forward(request, response);
+        processRequest(request, response);
     }
 
     /**

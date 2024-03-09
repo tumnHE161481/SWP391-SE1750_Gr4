@@ -7,7 +7,6 @@ package Controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -16,8 +15,7 @@ import jakarta.servlet.http.HttpServletResponse;
  *
  * @author ASUS
  */
-@WebServlet(name = "DefaultHomeController", urlPatterns = {"/home"})
-public class DefaultHomeController extends HttpServlet {
+public class RenterRequestHistoryController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,10 +34,10 @@ public class DefaultHomeController extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet DefaultHomeController</title>");            
+            out.println("<title>Servlet RenterRequestHistoryController</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet DefaultHomeController at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet RenterRequestHistoryController at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -57,7 +55,8 @@ public class DefaultHomeController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-            request.getRequestDispatcher("index.html").forward(request, response);
+        
+       request.getRequestDispatcher("/Renter/requesthistory.jsp").forward(request, response);
     }
 
     /**
