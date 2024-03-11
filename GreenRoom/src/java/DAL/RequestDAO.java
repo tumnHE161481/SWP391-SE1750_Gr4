@@ -161,8 +161,7 @@ public class RequestDAO extends MyDAO {
         }
         return list;
     }
-    
-    
+
     public Request getRequestByRequestID(int id) {
         String sql = "SELECT [requestID]\n"
                 + "     ,[renterID]\n"
@@ -191,16 +190,70 @@ public class RequestDAO extends MyDAO {
         return null;
     }
 
+    public boolean updateRequestByID(int requestID, int requestType, String title, String description, String creatAt, String resStatus) {
+        String sql = "UPDATE [GreenRoom].[dbo].[request]\n"
+                + "SET [requestType] = ?, [title] = ?, [description] = ?, [createAt] = ?, [resStatus] = ?, [reply] = ?\n"
+                + "WHERE [requestID] = ?;";
+
+        try {
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, requestType);
+            ps.setString(2, title);
+            ps.setString(3, description);
+            ps.setString(4, creatAt);
+            ps.setString(5, resStatus);
+            ps.setString(6, "");
+            ps.setInt(7, requestID);
+            int rowsAffected = ps.executeUpdate();
+
+            if (rowsAffected > 0) {
+                System.out.println("Request update successfully.");
+                return true;
+            } else {
+                System.out.println("Failed to update request.");
+                return false;
+            }
+
+        } catch (SQLException e) {
+            System.out.println("Fail: " + e.getMessage());
+            return false;
+        }
+
+    }
+
+    public boolean deleteRequestByID(int requestID) {
+        String sql = "DELETE FROM [GreenRoom].[dbo].[request] WHERE [requestID] = ?;";
+        try {
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, requestID);
+            int rowsAffected = ps.executeUpdate();
+
+            if (rowsAffected > 0) {
+                System.out.println("Request deleted successfully.");
+                return true;
+            } else {
+                System.out.println("Failed to delete request. RequestID may not exist.");
+                return false;
+            }
+
+        } catch (SQLException e) {
+            System.out.println("Failed to delete request: " + e.getMessage());
+            return false;
+        }
+    }
+
     public static void main(String[] args) {
         RequestDAO dao = new RequestDAO();
 //        List<Request> list = dao.getRequestByRenterID(1);
 //        for (Request request : list) {
 //            System.out.println("title: " + request.getTitle());
 //        }
-        List<Request> list = dao.getRequestByRenterIDAndStatus(1, "Rejected");
-        for (Request request : list) {
-            System.out.println("title: "+request.getTitle());
-        }
+//        List<Request> list = dao.getRequestByRenterIDAndStatus(1, "Rejected");
+//        for (Request request : list) {
+//            System.out.println("title: " + request.getTitle());
+//        }
+        boolean success = dao.updateRequestByID(14, 1, "Change to ROOM 409", "OKE", "2024-03-07 01:30:20.000", "Pending");
+        System.out.println("Success: " + success);
     }
 
 }

@@ -10,8 +10,25 @@
 <html>
     <head>
         <meta charset="UTF-8" />
-        <link rel="icon" href="home-guest/favicon.png">
-        <title>Green Room</title>
+        <meta name="author" content="Untree.co">
+        <link rel="shortcut icon" href="favicon.png">
+
+        <meta name="description" content="" />
+        <meta name="keywords" content="bootstrap, bootstrap5" />
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+
+        <link rel="stylesheet" href="fonts/icomoon/style.css">
+        <link rel="stylesheet" href="fonts/flaticon/font/flaticon.css">
+        <link rel="stylesheet" href="./vcss/tiny-slider.css">
+        <link rel="stylesheet" href="./vcss/aos.css">
+        <link rel="stylesheet" href="./vcss/style.css">
+        <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">	
+        <link rel="stylesheet" href="./CSS/Renter.css"/>
         <link
             rel="stylesheet"
             type="text/css"
@@ -189,7 +206,7 @@
                                             <p class="card-text">Edit room information and item(s) in that room too.</p>
                                             <div class="d-flex justify-content-center gap-4">
                                                 <a href="manageroom" type="button" class="btn btn-danger"><i class="fa-solid fa-chevron-left"></i>&nbsp;Back</a>
-                                                <a href="adroomedit?id=${id}" type="button" class="btn btn-primary"><i class="fa-regular fa-pen-to-square"></i> &nbsp;Edit</a>
+                                                <a href="editroom?id=${id}" type="button" class="btn btn-primary"><i class="fa-regular fa-pen-to-square"></i> &nbsp;Edit</a>
                                             </div>
                                         </div>
                                     </div>

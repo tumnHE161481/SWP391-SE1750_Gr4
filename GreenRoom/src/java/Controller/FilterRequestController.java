@@ -64,7 +64,6 @@ public class FilterRequestController extends HttpServlet {
         HttpSession session = request.getSession();
         Integer renterID = (Integer) session.getAttribute("renterID");
         if (renterID == null) {
-            // Nếu không có renterID trong session, chuyển hướng về trang đăng nhập hoặc xử lý lỗi
             response.sendRedirect("login.jsp");
             return;
         }

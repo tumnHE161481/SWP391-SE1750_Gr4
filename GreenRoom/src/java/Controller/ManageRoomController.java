@@ -63,7 +63,7 @@ public class ManageRoomController extends HttpServlet {
         RoomDAO dao = new RoomDAO();
         List <Room> list = dao.getRoom();
         request.setAttribute("manageRoom", list);
-        request.getRequestDispatcher("/Admin/manageroom.jsp").forward(request, response);
+        request.getRequestDispatcher("/Owner/manageroom.jsp").forward(request, response);
     }
 
     /**

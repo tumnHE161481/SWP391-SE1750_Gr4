@@ -301,8 +301,8 @@
                                                                             <div>
                                                                                 <c:choose>
                                                                                     <c:when test="${req.resStatus eq 'Pending'}">
-                                                                                        <a class="btn btn-primary" style="color: #FFF;height: auto" href="editrequest?id=${req.reportID}"><i class="fa fa-pencil"></i>&nbsp;Edit</a>
-                                                                                        <a class="btn btn-danger" style="color: #FFF;height: auto" href="deleterequest?id=${req.reportID}" ><i class="fa fa-trash"></i>&nbsp;Remove</a>
+                                                                                        <a class="btn btn-primary" style="color: #FFF;height: auto" href="editrequest?id=${req.requestID}"><i class="fa fa-pencil"></i>&nbsp;Edit</a>
+                                                                                        <a class="btn btn-danger" style="color: #FFF;height: auto" href="deleterequest?id=${req.requestID}" ><i class="fa fa-trash"></i>&nbsp;Remove</a>
                                                                                     </c:when>
                                                                                     <c:otherwise>
 

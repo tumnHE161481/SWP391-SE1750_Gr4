@@ -1,14 +1,11 @@
-package Controller;
-
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
+package Controller;
 
-import DAL.RoomDAO;
-import DAL.UserDAO;
-import Models.Room;
-import Models.User;
+import DAL.RequestDAO;
+import Models.Request;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -16,14 +13,13 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.util.List;
 
 /**
  *
  * @author ASUS
  */
-@WebServlet(urlPatterns = {"/adroomdetail"})
-public class ManageRoomDetail extends HttpServlet {
+@WebServlet(name = "RemoveRequestController", urlPatterns = {"/deleterequest"})
+public class RemoveRequestController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -42,10 +38,10 @@ public class ManageRoomDetail extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ManageRoomDetail</title>");
+            out.println("<title>Servlet RemoveRequestController</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet ManageRoomDetail at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet RemoveRequestController at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -63,21 +59,24 @@ public class ManageRoomDetail extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        RoomDAO dao = new RoomDAO();
-        UserDAO dao1 = new UserDAO();
         String id_raw = request.getParameter("id");
-        int id;
-        try {
-            id = Integer.parseInt(id_raw);
-            Room rd = dao.getRoomDetail(id);
-            List<Room> itemlist = dao.getRoomItems(id);
-            List<User> list = dao1.getUserByRoomID(id);
-            request.setAttribute("detail", rd);
-            request.setAttribute("renterInThatRoom", list);
-            request.setAttribute("itemInThatRoom", itemlist);
-            request.getRequestDispatcher("/Owner/roomdetail.jsp").forward(request, response);
-        } catch (NumberFormatException e) {
-            System.err.println("Fail:" + e);
+        RequestDAO dao = new RequestDAO();
+         try {
+             int id = Integer.parseInt(id_raw);
+            boolean success = dao.deleteRequestByID(id);
+            String updateMessage = "updateMessage";
+            if (success) {
+                request.setAttribute(updateMessage, "Delete Successful");
+                response.sendRedirect(request.getContextPath() + "/requesthistory");
+
+            } else {
+                request.setAttribute(updateMessage, "Failed");
+                response.sendRedirect(request.getContextPath() + "/requesthistory");
+
+            }
+        } catch (IOException ex) {
+            response.sendRedirect(request.getContextPath() + "/requesthistory");
+
         }
     }
 

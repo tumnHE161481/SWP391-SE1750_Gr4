@@ -138,8 +138,9 @@ public class UserAuthorizationFilter implements Filter {
     }
 
     private boolean hasPermission(String role, String url) {
-        if (url.contains("request") || url.contains("request") 
-                || url.contains("requesthistory") || url.contains("/filterrequest")) {
+        if (url.contains("request") || url.contains("requesthistory") 
+                || url.contains("/filterrequest")
+                || url.contains("/editrequest")) {
             return role.equals("1");
         } else if (url.contains("manageaccount") || url.contains("manageroom")
                 || url.contains("renterdetail") || url.contains("editrenter")

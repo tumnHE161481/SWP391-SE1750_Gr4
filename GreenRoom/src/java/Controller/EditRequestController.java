@@ -12,6 +12,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -34,15 +35,24 @@ public class EditRequestController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        String id_raw = request.getParameter("id");
+        String requestContent = request.getParameter("requestType");
+        String title = request.getParameter("title");
+        String description = request.getParameter("description");
+
         try ( PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet EditRequestController</title>");            
+            out.println("<title>Servlet EditRequestController</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet EditRequestController at " + request.getContextPath() + "</h1>");
+            out.println("<h1>id: " + id_raw + "</h1>");
+            out.println("<h1>requestcontent: " + requestContent + "</h1>");
+            out.println("<h1>id " + id_raw + "</h1>");
+            out.println("<h1>title " + title + "</h1>");
+            out.println("<h1>des " + description + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -61,40 +71,17 @@ public class EditRequestController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String id_raw = request.getParameter("id");
-        int id;
+        HttpSession session = request.getSession();
+        session.setAttribute("requestID", id_raw);
         try {
-            id = Integer.parseInt(id_raw);
+            int id = Integer.parseInt(id_raw);
             RequestDAO dao = new RequestDAO();
-        Request r = dao.getRequestByRequestID(id);
-        request.setAttribute("oldData", r);
-        String requestContent = request.getParameter("requestType");
-        int requestType = Integer.parseInt(requestContent);
-        String title = request.getParameter("title");
-        String description = request.getParameter("description");
-        Date currentDate = new Date();
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        String createAt = formatter.format(currentDate);
-        request.setCharacterEncoding("UTF-8");
-        try {
-            boolean success = dao.doRequestByID(id, requestType, title, description, createAt, "Pending");
-            String updateMessage = "updateMessage";
-            if (success) {
-                request.setAttribute(updateMessage, "Add Successful");
-                response.sendRedirect(request.getContextPath() + "/requesthistory");
-
-            } else {
-                request.setAttribute(updateMessage, "Failed");
-                response.sendRedirect(request.getContextPath() + "/editrequest");
-
-            }
-        } catch (IOException ex) {
-            response.sendRedirect(request.getContextPath() + "/editrequest");
-
-        }
+            Request r = dao.getRequestByRequestID(id);
+            request.setAttribute("oldData", r);
+            request.getRequestDispatcher("/Renter/editrequest.jsp").forward(request, response);
         } catch (NumberFormatException e) {
             System.err.println("Fail:" + e);
         }
-        request.getRequestDispatcher("/Renter/editrequest.jsp").forward(request, response);
     }
 
     /**
@@ -106,9 +93,36 @@ public class EditRequestController extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+       protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        HttpSession session = request.getSession();
+        String requestID = session.getAttribute("requestID").toString();
+        int id = Integer.parseInt(requestID);
+        String requestContent = request.getParameter("requestType");
+        int requestType = Integer.parseInt(requestContent);
+        String title = request.getParameter("title");
+        String description = request.getParameter("description");
+        Date currentDate = new Date();
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String createAt = formatter.format(currentDate);
+        RequestDAO dao = new RequestDAO();
+        request.setCharacterEncoding("UTF-8");
+        try {
+            boolean success = dao.updateRequestByID(id, requestType, title, description, createAt, "Pending");
+            String updateMessage = "updateMessage";
+            if (success) {
+                request.setAttribute(updateMessage, "Update Successful");
+                response.sendRedirect(request.getContextPath() + "/requesthistory");
+
+            } else {
+                request.setAttribute(updateMessage, "Failed");
+                response.sendRedirect(request.getContextPath() + "/editrequest");
+
+            }
+        } catch (IOException ex) {
+            response.sendRedirect(request.getContextPath() + "/editrequest");
+
+        }
     }
 
     /**
