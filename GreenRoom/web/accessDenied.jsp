@@ -31,7 +31,7 @@
             <div class="btt">
                 <c:choose>
                     <c:when test="${sessionScope.userRole == '1'}">
-                        <a class="button" href="sehome">Go back Home</a>
+                        <a class="button" href="renterhome">Go back Home</a>
                     </c:when>
                     <c:when test="${sessionScope.userRole == '2'}">
                         <a class="button" href="sehome">Go back Home</a>

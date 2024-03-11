@@ -115,14 +115,15 @@ public class UserAuthorizationFilter implements Filter {
         Throwable problem = null;
         try {
             // Role Guest
-            if (role == null && (requestedURL.contains("login") || requestedURL.contains("register") || requestedURL.contains("test"))) {
-                chain.doFilter(request, response); // Allow access
+            if (role == null && !requestedURL.contains("login") && !requestedURL.contains("register") && !requestedURL.contains("test")) {
+                resp.sendRedirect(req.getContextPath() + "/login");
                 return;
             }
             // Check if user has permission to access the requested URL
-            if (!hasPermission(role, requestedURL)) {
+            if (role == null || hasPermission(role, requestedURL)) {
+                chain.doFilter(request, response);
+            } else {
                 req.getRequestDispatcher("accessDenied").include(request, response);
-                return;
             }
 
             // If user is logged in and has permission, proceed with the request
@@ -137,7 +138,8 @@ public class UserAuthorizationFilter implements Filter {
     }
 
     private boolean hasPermission(String role, String url) {
-        if (url.contains("request") || url.contains("requesthistory")) {
+        if (url.contains("request") || url.contains("request") 
+                || url.contains("requesthistory") || url.contains("/filterrequest")) {
             return role.equals("1");
         } else if (url.contains("manageaccount") || url.contains("manageroom")
                 || url.contains("renterdetail") || url.contains("editrenter")

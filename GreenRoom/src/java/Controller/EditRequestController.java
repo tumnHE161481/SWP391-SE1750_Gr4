@@ -4,20 +4,23 @@
  */
 package Controller;
 
+import DAL.RequestDAO;
+import Models.*;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
 
 /**
  *
  * @author ASUS
  */
-@WebServlet(name = "DefaultHomeController", urlPatterns = {""})
-public class DefaultHomeController extends HttpServlet {
+public class EditRequestController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,10 +39,10 @@ public class DefaultHomeController extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet DefaultHomeController</title>");            
+            out.println("<title>Servlet EditRequestController</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet DefaultHomeController at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet EditRequestController at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -57,7 +60,41 @@ public class DefaultHomeController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-            request.getRequestDispatcher("index.html").forward(request, response);
+        String id_raw = request.getParameter("id");
+        int id;
+        try {
+            id = Integer.parseInt(id_raw);
+            RequestDAO dao = new RequestDAO();
+        Request r = dao.getRequestByRequestID(id);
+        request.setAttribute("oldData", r);
+        String requestContent = request.getParameter("requestType");
+        int requestType = Integer.parseInt(requestContent);
+        String title = request.getParameter("title");
+        String description = request.getParameter("description");
+        Date currentDate = new Date();
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String createAt = formatter.format(currentDate);
+        request.setCharacterEncoding("UTF-8");
+        try {
+            boolean success = dao.doRequestByID(id, requestType, title, description, createAt, "Pending");
+            String updateMessage = "updateMessage";
+            if (success) {
+                request.setAttribute(updateMessage, "Add Successful");
+                response.sendRedirect(request.getContextPath() + "/requesthistory");
+
+            } else {
+                request.setAttribute(updateMessage, "Failed");
+                response.sendRedirect(request.getContextPath() + "/editrequest");
+
+            }
+        } catch (IOException ex) {
+            response.sendRedirect(request.getContextPath() + "/editrequest");
+
+        }
+        } catch (NumberFormatException e) {
+            System.err.println("Fail:" + e);
+        }
+        request.getRequestDispatcher("/Renter/editrequest.jsp").forward(request, response);
     }
 
     /**

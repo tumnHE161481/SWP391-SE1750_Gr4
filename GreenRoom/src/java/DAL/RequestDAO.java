@@ -6,8 +6,13 @@ package DAL;
 
 import Models.*;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 /**
  *
@@ -58,22 +63,95 @@ public class RequestDAO extends MyDAO {
     public List<Request> getRequestByRenterID(int id) {
         List<Request> list = new ArrayList<>();
         String sql = "SELECT [requestID]\n"
-                + "      ,[renterID]\n"
-                + "      ,[requestType]\n"
-                + "      ,[title]\n"
-                + "      ,[description]\n"
-                + "      ,[createAt]\n"
-                + "      ,[resStatus]\n"
-                + "      ,[reply]\n"
-                + "  FROM [GreenRoom].[dbo].[request]\n"
-                + "  WHERE renterID = ?";
+                + "     ,[renterID]\n"
+                + "     ,[requestType]\n"
+                + "     ,[title]\n"
+                + "     ,[description]\n"
+                + "     ,[createAt]\n"
+                + "     ,[resStatus]\n"
+                + "     ,[reply]\n"
+                + "FROM [GreenRoom].[dbo].[request]\n"
+                + "WHERE renterID = ?\n"
+                + "ORDER BY [createAt] DESC";
 
         try {
             ps = con.prepareStatement(sql);
             ps.setInt(1, id);
             rs = ps.executeQuery();
             while (rs.next()) {
-                Request request = new Request(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8));
+                Request request = new Request(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getString(4), rs.getString(5), formatDate(rs.getString(6)), rs.getString(7), rs.getString(8));
+                list.add(request);
+            }
+        } catch (SQLException e) {
+            // Handle exception as needed
+            System.out.println("Fail: " + e.getMessage());
+
+        }
+        return list;
+    }
+
+    public static String formatDate(String inputDate) {
+        DateFormat inputDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S", Locale.ENGLISH);
+        DateFormat outputDateFormat = new SimpleDateFormat("MMMM dd, yyyy - 'at' hh:mm a", Locale.ENGLISH);
+        try {
+            Date date = inputDateFormat.parse(inputDate);
+            return outputDateFormat.format(date);
+        } catch (ParseException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public List<Request> getListByPage(List<Request> list, int start, int end) {
+        List<Request> arr = new ArrayList<>();
+        for (int i = start; i < end; i++) {
+            arr.add(list.get(i));
+        }
+        return arr;
+    }
+
+    public List<Request> getAllResponseStatus() {
+        List<Request> list = new ArrayList<>();
+        String sql = "SELECT DISTINCT [resStatus]\n"
+                + "FROM [GreenRoom].[dbo].[request];";
+
+        try {
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                Request request = new Request();
+                request.setResStatus(rs.getString("resStatus"));
+                list.add(request);
+            }
+        } catch (SQLException e) {
+            // Handle exception as needed
+            System.out.println("Fail: " + e.getMessage());
+
+        }
+        return list;
+    }
+
+    public List<Request> getRequestByRenterIDAndStatus(int id, String status) {
+        List<Request> list = new ArrayList<>();
+        String sql = "SELECT [requestID]\n"
+                + "     ,[renterID]\n"
+                + "     ,[requestType]\n"
+                + "     ,[title]\n"
+                + "     ,[description]\n"
+                + "     ,[createAt]\n"
+                + "     ,[resStatus]\n"
+                + "     ,[reply]\n"
+                + "FROM [GreenRoom].[dbo].[request]\n"
+                + "WHERE renterID = ? AND resStatus = ?\n"
+                + "ORDER BY [createAt] DESC";
+
+        try {
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, id);
+            ps.setString(2, status);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                Request request = new Request(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getString(4), rs.getString(5), formatDate(rs.getString(6)), rs.getString(7), rs.getString(8));
                 list.add(request);
             }
         } catch (SQLException e) {
@@ -84,9 +162,42 @@ public class RequestDAO extends MyDAO {
         return list;
     }
     
+    
+    public Request getRequestByRequestID(int id) {
+        String sql = "SELECT [requestID]\n"
+                + "     ,[renterID]\n"
+                + "     ,[requestType]\n"
+                + "     ,[title]\n"
+                + "     ,[description]\n"
+                + "     ,[createAt]\n"
+                + "     ,[resStatus]\n"
+                + "     ,[reply]\n"
+                + "FROM [GreenRoom].[dbo].[request]\n"
+                + "WHERE requestID = ?";
+
+        try {
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, id);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                Request request = new Request(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getString(4), rs.getString(5), formatDate(rs.getString(6)), rs.getString(7), rs.getString(8));
+                return request;
+            }
+        } catch (SQLException e) {
+            // Handle exception as needed
+            System.out.println("Fail: " + e.getMessage());
+
+        }
+        return null;
+    }
+
     public static void main(String[] args) {
         RequestDAO dao = new RequestDAO();
-        List<Request> list = dao.getRequestByRenterID(1);
+//        List<Request> list = dao.getRequestByRenterID(1);
+//        for (Request request : list) {
+//            System.out.println("title: " + request.getTitle());
+//        }
+        List<Request> list = dao.getRequestByRenterIDAndStatus(1, "Rejected");
         for (Request request : list) {
             System.out.println("title: "+request.getTitle());
         }

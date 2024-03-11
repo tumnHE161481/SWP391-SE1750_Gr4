@@ -181,37 +181,38 @@
                         <h2 class="heading-section">Request Form</h2>
                     </div>
                 </div>
+               <c:set var="rq" value="${requestScope.oldData}"></c:set>
                 <div class="row justify-content-center">
                     <div class="col-md-12">
                         <div class="wrapper">
                             <div class="row no-gutters">
                                 <div class="col-lg-8 col-md-7 order-md-last d-flex align-items-stretch">
                                     <div class="contact-wrap w-100 p-md-5 p-4">
-                                        <h3 class="mb-4">Get a request</h3>
+                                        <h3 class="mb-4">Update request</h3>
                                         <form method="POST" action="request">
                                             <div class="row">
                                                 <div class="col-md-6">
                                                     <div class="form-group">
-                                                        <label class="label" for="type">Choose Request Type: </label>
+                                                        <label class="label" for="type">Change Request Type: </label>
                                                         <select name="requestType" class="w-100" style="background-color: #e6e9e9; padding: 6px 12px; border-radius: 5px; border: 1px solid #ced4da;" required>
-                                                            <option value="1">Need to Repair</option>
-                                                            <option value="2">Report someone</option>
-                                                            <option value="3">Rental housing support</option>
-                                                            <option value="4">Checkout or Change Room</option>
-                                                            <option value="5">Other</option>     
+                                                            <option value="1" ${rq.requestType==1 ? 'selected' : ''}>Need to Repair ${rq.requestType==1 ? '(*)' : ''}</option>
+                                                            <option value="2" ${rq.requestType==2 ? 'selected' : ''}>Report someone ${rq.requestType==2 ? '(*)' : ''}</option>
+                                                            <option value="3" ${rq.requestType==3 ? 'selected' : ''}>Rental housing support ${rq.requestType==3 ? '(*)' : ''}</option>
+                                                            <option value="4" ${rq.requestType==4 ? 'selected' : ''}>Checkout or Change Room ${rq.requestType==4 ? '(*)' : ''}</option>
+                                                            <option value="5" ${rq.requestType==5 ? 'selected' : ''}>Other ${rq.requestType==5 ? '(*)' : ''}</option>     
                                                         </select>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6"> 
                                                     <div class="form-group">
                                                         <label class="label" for="subject">Title: </label>
-                                                        <input type="text" class="form-control" name="title" id="email" placeholder="Enter Title" required>
+                                                        <input type="text" class="form-control" name="title" id="email" placeholder="Enter Title" value="${rq.title}" required>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-12">
                                                     <div class="form-group">
                                                         <label class="label" for="Decription">Decription: </label>
-                                                        <textarea type="text" class="form-control" name="description" id="subject" placeholder="Enter Request Detail" style="height: 300px !important" required></textarea>
+                                                        <textarea value="${rq.description}" class="form-control" name="description" id="subject" placeholder="Enter Request Detail" style="height: 300px !important" required>${rq.description}</textarea>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-12">

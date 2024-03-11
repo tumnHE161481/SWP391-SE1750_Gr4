@@ -4,12 +4,16 @@
  */
 package Controller;
 
+import DAL.*;
+import Models.Request;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+import java.util.List;
 
 /**
  *
@@ -34,7 +38,7 @@ public class RenterRequestHistoryController extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet RenterRequestHistoryController</title>");            
+            out.println("<title>Servlet RenterRequestHistoryController</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet RenterRequestHistoryController at " + request.getContextPath() + "</h1>");
@@ -55,8 +59,30 @@ public class RenterRequestHistoryController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-       request.getRequestDispatcher("/Renter/requesthistory.jsp").forward(request, response);
+        HttpSession session = request.getSession();
+        String renterID = session.getAttribute("renterID").toString();
+        int id = Integer.parseInt(renterID);
+        RequestDAO dao = new RequestDAO();
+        List<Request> list1 = dao.getRequestByRenterID(id);
+        int page, numberpage = 5;
+        int size = list1.size();
+        int num=(size%5==0?(size/5) : (size/5) + 1); //number page
+        String xpage = request.getParameter("page");
+        if (xpage == null) {
+            page = 1;
+        } else {
+            page = Integer.parseInt(xpage);
+        }
+        int start, end;
+        start = (page - 1) * numberpage;
+        end = Math.min(page * numberpage, size);
+        List<Request> list = dao.getListByPage(list1, start, end);
+        request.setAttribute("requestList", list);
+        request.setAttribute("page", page);
+        request.setAttribute("num", num);
+        List<Request> allStatus = dao.getAllResponseStatus();
+        request.setAttribute("allStatus", allStatus); // Truyền danh sách tất cả các trạng thái để hiển thị lựa chọn filter
+        request.getRequestDispatcher("/Renter/requesthistory.jsp").forward(request, response);
     }
 
     /**

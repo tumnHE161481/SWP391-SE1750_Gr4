@@ -301,8 +301,8 @@
                                                                             <div>
                                                                                 <c:choose>
                                                                                     <c:when test="${req.resStatus eq 'Pending'}">
-                                                                                        <a class="btn btn-primary" style="color: #FFF;height: auto" href="editrequest?id=${req.requestID}"><i class="fa fa-pencil"></i>&nbsp;Edit</a>
-                                                                                        <a class="btn btn-danger" style="color: #FFF;height: auto" href="deleterequest?id=${req.requestID}"><i class="fa fa-trash"></i>&nbsp;Remove</a>
+                                                                                        <a class="btn btn-primary" style="color: #FFF;height: auto" href="editrequest?id=${req.reportID}"><i class="fa fa-pencil"></i>&nbsp;Edit</a>
+                                                                                        <a class="btn btn-danger" style="color: #FFF;height: auto" href="deleterequest?id=${req.reportID}" ><i class="fa fa-trash"></i>&nbsp;Remove</a>
                                                                                     </c:when>
                                                                                     <c:otherwise>
 
@@ -316,9 +316,10 @@
                                                                 </div>
                                                             </c:forEach>
                                                         </div>
-                                                        <div class="pagination">
+                                                        <c:set var="status" value="${requestScope.status}"></c:set>
+                                                            <div class="pagination">
                                                             <c:forEach begin="${1}" end="${requestScope.num}" var="i">
-                                                                <a class="${i==page?"active":""}" href="requesthistory?page=${i}">${i}</a>
+                                                                <a class="${i==page?"active":""}" href="filterrequest?page=${i}&status=${status}">${i}</a>
                                                             </c:forEach>
                                                         </div>
                                                     </div>

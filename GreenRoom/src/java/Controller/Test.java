@@ -33,9 +33,9 @@ public class Test extends HttpServlet {
         HttpSession session = request.getSession();
         String userID = session.getAttribute("userID").toString();
         String userRole = session.getAttribute("userRole").toString();
-//        String renterID = session.getAttribute("renterID").toString();
-//        String userName = session.getAttribute("userName").toString();
-//        String avatar = session.getAttribute("avatar").toString();
+        String renterID = session.getAttribute("renterID").toString();
+        String userName = session.getAttribute("userName").toString();
+        String avatar = session.getAttribute("avatar").toString();
         try ( PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
@@ -46,9 +46,9 @@ public class Test extends HttpServlet {
             out.println("<body>");
             out.println("<h1>UserID: " + userID + "</h1>");
             out.println("<h1>UserRole: " + userRole + "</h1>");
-//            out.println("<h1>renterID: " + renterID + "</h1>");
-//            out.println("<h1>userName: " + userName + "</h1>");
-//            out.println("<img src=" + avatar + " />");
+            out.println("<h1>renterID: " + renterID + "</h1>");
+            out.println("<h1>userName: " + userName + "</h1>");
+            out.println("<img src=" + avatar + " />");
             out.println("</body>");
             out.println("</html>");
         }
