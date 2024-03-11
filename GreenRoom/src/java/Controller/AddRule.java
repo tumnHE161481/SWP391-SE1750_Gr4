@@ -5,22 +5,26 @@
 
 package Controller;
 
-import DAL.SecurityDAO;
-import Models.Security;
+import DAL.GuideAndRuleDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.Part;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
+@MultipartConfig()
 /**
  *
  * @author yetvv.piacom
  */
-@WebServlet(name="OwnerListSecurityDetail", urlPatterns={"/olsdetail"})
-public class OwnerListSecurityDetail extends HttpServlet {
+@WebServlet(name="AddRule", urlPatterns={"/addrule"})
+public class AddRule extends HttpServlet {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -37,10 +41,10 @@ public class OwnerListSecurityDetail extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet OwnerListSecurityDetail</title>");  
+            out.println("<title>Servlet AddRule</title>");  
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet OwnerListSecurityDetail at " + request.getContextPath () + "</h1>");
+            out.println("<h1>Servlet AddRule at " + request.getContextPath () + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -57,19 +61,7 @@ public class OwnerListSecurityDetail extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        String idraw = request.getParameter("id");
-        int id;
-        try {
-            id = Integer.parseInt(idraw);
-            
-            SecurityDAO dao = new SecurityDAO();
-            Security c = dao.GetSecurityById(id);
-            int shift = c.getsShift();
-            request.setAttribute("detail", c);
-            request.getRequestDispatcher("OwnerListSecurityDetail.jsp").forward(request, response);
-        } catch (NumberFormatException e) {
-            System.out.println(e);
-        }
+        processRequest(request, response);
     } 
 
     /** 
@@ -82,34 +74,22 @@ public class OwnerListSecurityDetail extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        String idraw = request.getParameter("id");
-        String sshiftraw = request.getParameter("sshift");
-        int id, sshift;
-        try {
-            id = Integer.parseInt(idraw);
-            sshift = Integer.parseInt(sshiftraw);
-            
-            if (sshift != 0 && sshift != 1) {
-                request.setAttribute("error","only can choose 1 or 0, can not edit");
-                request.getRequestDispatcher("OwnerListSecurityDetail.jsp").forward(request, response);
+        
+            String ruleName = request.getParameter("name");
+            ruleName = ruleName.trim().replaceAll("\\s{2,}", " ");
+            if (isNumeric(ruleName)) {
+                request.setAttribute("message", "name are not allowed to contain only number - invalid");
+                request.getRequestDispatcher("olr").forward(request, response);
             }
+            int score = Integer.parseInt(request.getParameter("score"));
+            int penmoney = Integer.parseInt(request.getParameter("money"));
+            String photo = request.getParameter("photo");
+            photo = photo.trim().replaceAll("\\s{2,}", " ");
             
+            GuideAndRuleDAO dao = new GuideAndRuleDAO();
+            dao.addRule(ruleName, photo, score, penmoney);
             
-            SecurityDAO dao = new SecurityDAO();
-            Security c = dao.GetSecurityById(id);   // lay thong tin cua nguoi co id
-            int d = c.getsShift();                  // lay ca lam cua nguoi co id
-            int e = dao.CountShift(d);              // dem so ca lam 
-            if (e == 1) {
-                request.setAttribute("error","only one security left, can not edit");
-                request.getRequestDispatcher("OwnerListSecurityDetail.jsp").forward(request, response);
-            } else {
-                dao.EditShift(id, sshift);
-                request.getRequestDispatcher("OwnerListSecurity.jsp").forward(request, response);
-            }
-            
-        } catch (NumberFormatException e) {
-            System.out.println(e);
-        }
+            request.getRequestDispatcher("/olr").forward(request, response);
     }
 
     /** 
@@ -120,5 +100,8 @@ public class OwnerListSecurityDetail extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-
+    private boolean isNumeric(String str) {
+        // Sử dụng regular expression để kiểm tra xem chuỗi có chứa chỉ số không
+        return str != null && str.matches("\\d+");
+    }
 }

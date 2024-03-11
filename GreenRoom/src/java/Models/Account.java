@@ -13,8 +13,17 @@ public class Account {
     private String email;
     private String password;
     private int role;
+    private User user;
 
     public Account() {
+    }
+
+    public Account(int userId, String email, String password, int role, User user) {
+        this.userId = userId;
+        this.email = email;
+        this.password = password;
+        this.role = role;
+        this.user = user;
     }
     
     public Account(String email, String password, int role) {
@@ -28,6 +37,14 @@ public class Account {
         this.email = email;
         this.password = password;
         this.role = role;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public int getUserId() {

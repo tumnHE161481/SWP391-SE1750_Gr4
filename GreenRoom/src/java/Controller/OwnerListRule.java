@@ -5,8 +5,8 @@
 
 package Controller;
 
-import DAL.SecurityDAO;
-import Models.Security;
+import DAL.GuideAndRuleDAO;
+import Models.Rule;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -14,13 +14,14 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.util.List;
 
 /**
  *
  * @author yetvv.piacom
  */
-@WebServlet(name="OwnerListSecurityDetail", urlPatterns={"/olsdetail"})
-public class OwnerListSecurityDetail extends HttpServlet {
+@WebServlet(name="OwnerListRule", urlPatterns={"/olr"})
+public class OwnerListRule extends HttpServlet {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -37,10 +38,10 @@ public class OwnerListSecurityDetail extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet OwnerListSecurityDetail</title>");  
+            out.println("<title>Servlet OwnerListRule</title>");  
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet OwnerListSecurityDetail at " + request.getContextPath () + "</h1>");
+            out.println("<h1>Servlet OwnerListRule at " + request.getContextPath () + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -57,19 +58,10 @@ public class OwnerListSecurityDetail extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        String idraw = request.getParameter("id");
-        int id;
-        try {
-            id = Integer.parseInt(idraw);
-            
-            SecurityDAO dao = new SecurityDAO();
-            Security c = dao.GetSecurityById(id);
-            int shift = c.getsShift();
-            request.setAttribute("detail", c);
-            request.getRequestDispatcher("OwnerListSecurityDetail.jsp").forward(request, response);
-        } catch (NumberFormatException e) {
-            System.out.println(e);
-        }
+        GuideAndRuleDAO d = new GuideAndRuleDAO();
+        List<Rule> listR = d.getRule();
+        request.setAttribute("ListR", listR);
+        request.getRequestDispatcher("OwnerListRule.jsp").forward(request, response);
     } 
 
     /** 
@@ -82,34 +74,7 @@ public class OwnerListSecurityDetail extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        String idraw = request.getParameter("id");
-        String sshiftraw = request.getParameter("sshift");
-        int id, sshift;
-        try {
-            id = Integer.parseInt(idraw);
-            sshift = Integer.parseInt(sshiftraw);
-            
-            if (sshift != 0 && sshift != 1) {
-                request.setAttribute("error","only can choose 1 or 0, can not edit");
-                request.getRequestDispatcher("OwnerListSecurityDetail.jsp").forward(request, response);
-            }
-            
-            
-            SecurityDAO dao = new SecurityDAO();
-            Security c = dao.GetSecurityById(id);   // lay thong tin cua nguoi co id
-            int d = c.getsShift();                  // lay ca lam cua nguoi co id
-            int e = dao.CountShift(d);              // dem so ca lam 
-            if (e == 1) {
-                request.setAttribute("error","only one security left, can not edit");
-                request.getRequestDispatcher("OwnerListSecurityDetail.jsp").forward(request, response);
-            } else {
-                dao.EditShift(id, sshift);
-                request.getRequestDispatcher("OwnerListSecurity.jsp").forward(request, response);
-            }
-            
-        } catch (NumberFormatException e) {
-            System.out.println(e);
-        }
+        processRequest(request, response);
     }
 
     /** 

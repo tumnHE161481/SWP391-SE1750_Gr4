@@ -61,7 +61,7 @@ public class RegisterController extends HttpServlet {
             if (containsNumber(username)) {
                 request.setAttribute("message", "Username only have characters - invalid");
                 request.getRequestDispatcher("register.jsp").forward(request, response);
-            }
+            } 
 
             String email = request.getParameter("usermail");
 

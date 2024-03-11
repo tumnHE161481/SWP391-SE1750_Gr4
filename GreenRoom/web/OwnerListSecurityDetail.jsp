@@ -46,29 +46,35 @@
 
     <center>
         <h3 style="color: red">${requestScope.error}</h3>
-
+        <form action="olsdetail" method="post">
         <table border="1px solid" width="80%" style="background-color: white ; border-radius: 4px">
             <tr>
                 <th>seID</th>
                 <th>userID</th>
                 <th>sShift</th>
                 <th>seStatus</th>
-                <th>Action</th>
+<!--                <th>Action</th>-->
             </tr>
 
                 <c:set var="c" value="${requestScope.detail}"/>
-
+                
                 <tr>
                     <td  style="text-align: center;">${c.seID}</td>
                     <td  style="text-align: center;">${c.userID}</td>
-                    <td  style="text-align: center;">${c.sShift}</td>
-                    <td  style="text-align: center;">${c.seStatus}</td>
                     <td  style="text-align: center;">
-                        <a href="editsshift?id=${c.seID}">Edit-shift</a>
+                        <input type="number" name="sshift" value="${c.sShift}"/>
                     </td>
+                    <td  style="text-align: center;">${c.seStatus}</td>
+<!--                    <td  style="text-align: center;">
+                        <a href="editsshift?id=${c.seID}">Edit-shift</a>
+                    </td>-->
+                
                 </tr>
-
+                
+            
         </table>
+                    <input type="submit" value="Update shift" style="margin-top: 30px" />
+        </form>
     </center>
 </body>
 </html>
