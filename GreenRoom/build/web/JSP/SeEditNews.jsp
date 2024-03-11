@@ -119,7 +119,8 @@
                                     <textarea class="form-control" id="content" name="des" value="${details.description}" rows="4" required></textarea>
                                 </div>
                                 <div class="modal-footer">
-                                    <input type="submit" class="btn btn-success" value="Submit">
+                                    <input type ="hidden" name="nid" value="${param.nid}" ><!-- comment -->
+                                    <input  type="submit" class="btn btn-success" value="Submit">
                                 </div>
                             </form>
                         </div>

@@ -52,6 +52,14 @@
         <servlet-name>SeLogOutControl</servlet-name>
         <servlet-class>Controller.SeLogOutControl</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>RenterHomeController</servlet-name>
+        <servlet-class>Controller.RenterHomeController</servlet-class>
+    </servlet>
+        <servlet-mapping>
+        <servlet-name>RenterHomeController</servlet-name>
+        <url-pattern>/renterhome</url-pattern>
+    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>SeProfileControl</servlet-name>
         <url-pattern>/seprofile</url-pattern>

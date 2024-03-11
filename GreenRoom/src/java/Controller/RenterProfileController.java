@@ -4,9 +4,8 @@
  */
 package Controller;
 
-import DAL.DAO;
-import Models.Account;
-import Models.SeNews;
+import DAL.RenterDAO;
+import Models.*;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -14,13 +13,13 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import java.time.LocalDateTime;
+import java.util.List;
 
 /**
  *
- * @author ASUS
+ * @author Creep
  */
-public class SeUpdateNewsControl extends HttpServlet {
+public class RenterProfileController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -39,10 +38,10 @@ public class SeUpdateNewsControl extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet SeUpdateNewsControl</title>");
+            out.println("<title>Servlet RenterHomeController</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet SeUpdateNewsControl at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet RenterHomeController at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -60,17 +59,15 @@ public class SeUpdateNewsControl extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-           response.setContentType("text/html");
-        String id = request.getParameter("nid");
-        DAO dao = new DAO();
-        SeNews n = dao.getNewsById(id);
-        request.setAttribute("details", n);
-        request.setAttribute("id", id);
+        RenterDAO dao = new RenterDAO();
         HttpSession session = request.getSession();
-        Account a = (Account) session.getAttribute("user");
-        int sid = a.getUserID();
-     
-        request.getRequestDispatcher("JSP/SeEditNews.jsp").forward(request, response);
+        Account account = (Account) session.getAttribute("user");
+        String userMail = (String) session.getAttribute("email");
+        String userPassword = (String) session.getAttribute("password");
+        List<User> list = dao.getRenterDetailByAccountAndPassword(userMail, userPassword);
+        request.setAttribute("ListRP", list);
+        request.getRequestDispatcher("Renter/RenterProfile.jsp").forward(request, response);
+
     }
 
     /**
@@ -84,24 +81,6 @@ public class SeUpdateNewsControl extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.setCharacterEncoding("UTF-8");
-
-        String back = request.getParameter("back");
-        int nid = Integer.parseInt(request.getParameter("nid"));
-        String newTitle = request.getParameter("title");
-        String description = request.getParameter("des");
-        String img = request.getParameter("img");
-        SeNews se = new SeNews();
-        LocalDateTime currentDateTime = LocalDateTime.now();
-        HttpSession session = request.getSession();
-        Account a = (Account) session.getAttribute("user");
-        int uid = a.getUserID();
-
-        DAO dao = new DAO();
-        dao.updateNews(newTitle, description, img, currentDateTime, nid);
-
-        response.sendRedirect("sehome");
-
     }
 
     /**

@@ -3,18 +3,21 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/Clone_SWP1/SWP391-SE1750_Gr4/GreenRoom/src/java/Controller/NewsDetailControl.java</file>
-            <file>file:/D:/Clone_SWP1/SWP391-SE1750_Gr4/GreenRoom/web/JSP/SeProfile.jsp</file>
-            <file>file:/D:/Clone_SWP1/SWP391-SE1750_Gr4/GreenRoom/web/index.html</file>
-            <file>file:/D:/Clone_SWP1/SWP391-SE1750_Gr4/GreenRoom/web/JSP/SeNews.jsp</file>
-            <file>file:/D:/Clone_SWP1/SWP391-SE1750_Gr4/GreenRoom/src/java/Controller/SeLogOutControl.java</file>
+            <file>file:/D:/Clone_SWP1/SWP391-SE1750_Gr4/GreenRoom/src/java/Models/News.java</file>
+            <file>file:/D:/Clone_SWP1/SWP391-SE1750_Gr4/GreenRoom/src/java/Models/Renter.java</file>
+            <file>file:/D:/Clone_SWP1/SWP391-SE1750_Gr4/GreenRoom/src/java/DAL/DAO.java</file>
+            <file>file:/D:/Clone_SWP1/SWP391-SE1750_Gr4/GreenRoom/web/Renter/RenterHome.jsp</file>
+            <file>file:/D:/Clone_SWP1/SWP391-SE1750_Gr4/GreenRoom/src/java/Controller/RenterProfileController.java</file>
             <file>file:/D:/Clone_SWP1/SWP391-SE1750_Gr4/GreenRoom/web/JSP/SeHome.jsp</file>
-            <file>file:/D:/Clone_SWP1/SWP391-SE1750_Gr4/GreenRoom/web/JSP/SeAddNews.jsp</file>
-            <file>file:/D:/Clone_SWP1/SWP391-SE1750_Gr4/GreenRoom/web/JSP/SeRoomDetail.jsp</file>
+            <file>file:/D:/Clone_SWP1/SWP391-SE1750_Gr4/GreenRoom/src/java/Controller/SeUpdateNewsControl.java</file>
+            <file>file:/D:/Clone_SWP1/SWP391-SE1750_Gr4/GreenRoom/src/java/Controller/RenterHomeController.java</file>
+            <file>file:/D:/Clone_SWP1/SWP391-SE1750_Gr4/GreenRoom/src/java/DAL/DAORenter.java</file>
+            <file>file:/D:/Clone_SWP1/SWP391-SE1750_Gr4/GreenRoom/web/WEB-INF/web.xml</file>
             <file>file:/D:/Clone_SWP1/SWP391-SE1750_Gr4/GreenRoom/web/JSP/SeNewsDetail.jsp</file>
-            <file>file:/D:/Clone_SWP1/SWP391-SE1750_Gr4/GreenRoom/web/JSP/SeListCustomer.jsp</file>
+            <file>file:/D:/Clone_SWP1/SWP391-SE1750_Gr4/GreenRoom/src/java/DAL/RenterDAO.java</file>
             <file>file:/D:/Clone_SWP1/SWP391-SE1750_Gr4/GreenRoom/web/JSP/SeEditNews.jsp</file>
-            <file>file:/D:/Clone_SWP1/SWP391-SE1750_Gr4/GreenRoom/web/JSP/SeEditProfile.jsp</file>
+            <file>file:/D:/Clone_SWP1/SWP391-SE1750_Gr4/GreenRoom/src/java/Controller/LoginController.java</file>
+            <file>file:/D:/Clone_SWP1/SWP391-SE1750_Gr4/GreenRoom/src/java/Controller/SeHomeControl.java</file>
         </group>
     </open-files>
 </project-private>

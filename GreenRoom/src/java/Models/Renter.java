@@ -1,13 +1,5 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package Models;
 
-/**
- *
- * @author ASUS
- */
 public class Renter {
 
     private int renterID;
@@ -15,16 +7,20 @@ public class Renter {
     private int roomID;
     private boolean renterStatus;
     private boolean renterHaveRoom;
+    private int CGRScore; // assuming CGRScore is an integer
+    private double balance; // assuming balance is a double representing money
 
     public Renter() {
     }
 
-    public Renter(int renterID, int userID, int roomID, boolean renterStatus, boolean renterHaveRoom) {
+    public Renter(int renterID, int userID, int roomID, boolean renterStatus, boolean renterHaveRoom, int CGRScore, double balance) {
         this.renterID = renterID;
         this.userID = userID;
         this.roomID = roomID;
         this.renterStatus = renterStatus;
         this.renterHaveRoom = renterHaveRoom;
+        this.CGRScore = CGRScore;
+        this.balance = balance;
     }
 
     public int getRenterID() {
@@ -67,4 +63,19 @@ public class Renter {
         this.renterHaveRoom = renterHaveRoom;
     }
 
+    public int getCGRScore() {
+        return CGRScore;
+    }
+
+    public void setCGRScore(int CGRScore) {
+        this.CGRScore = CGRScore;
+    }
+
+    public double getBalance() {
+        return balance;
+    }
+
+    public void setBalance(double balance) {
+        this.balance = balance;
+    }
 }
