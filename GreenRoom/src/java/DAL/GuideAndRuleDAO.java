@@ -36,7 +36,23 @@ public class GuideAndRuleDAO extends DBContext {
         // Return the list of guidelines
         return list;
     }
-
+    
+    public Rule GetRuleById(int id) {
+        String sql = "SELECT * FROM [dbo].[rule] where [ruleID] = ?";
+        try {
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setInt(1, id);
+            
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                Rule c = new Rule(rs.getInt("ruleID"), rs.getString("ruleName"), rs.getString("img"),rs.getInt("scoreChange"),rs.getInt("penMoney"));
+                return c;
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return null;
+    }
     public List<Rule> getRule() {
         List<Rule> list = new ArrayList<>();
         String sql = "SELECT * FROM [rule]";
@@ -88,7 +104,7 @@ public class GuideAndRuleDAO extends DBContext {
         return false;
     }
 
-    public boolean editRule(int id,String name, String img, int score, int money) {
+    public void editRule(int id,String name, String img, double score, double money) {
         try {
             PreparedStatement ps;
             ResultSet rs;
@@ -102,15 +118,13 @@ public class GuideAndRuleDAO extends DBContext {
             ps = connection.prepareStatement(sql);
             ps.setString(1, name);
             ps.setString(2, img);
-            ps.setInt(3, score);
-            ps.setInt(4, money);
+            ps.setDouble(3, score);
+            ps.setDouble(4, money);
             ps.setInt(5, id);
-            ps.execute();
-            return true;
+            ps.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(AccountDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return false;
     }
 
     public void DeleteRule(int id) {
@@ -144,9 +158,9 @@ public class GuideAndRuleDAO extends DBContext {
 //        }
 //        boolean d = dao.addRule("test", "./Image/rule/rule6.jpg", 10, 100);
 //        System.err.println(d);
-        boolean b = dao.editRule(2, "Quiet Hour", "./Image/rule/rule2.jpg", -5, 50);
-        System.err.println(b);
 
     }
+    
+    
 
 }

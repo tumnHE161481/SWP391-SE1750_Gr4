@@ -1,4 +1,5 @@
 
+<%-- Document : SeNews Created on : Jan 18, 2024, 2:59:38 PM Author : ASUS --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -170,9 +171,9 @@
             }
             .guidelines,
             .rules {
-                background-color: #005555;
+                background-color: #f9f9f9;
                 /* or any shade of gray you prefer */
-                padding-left: 0px;
+                padding: 20px;
                 padding-top: 0px;
                 /* Add padding for better readability */
                 margin-bottom: 20px;
@@ -182,9 +183,9 @@
                 border-radius: 8px;
                 width: 400px;
                 /* Fixed width */
-                height: 500px;
+                height: 300px;
                 /* Fixed height */
-                padding-right: 0px;
+                padding-right: 100px;
                 overflow-y: auto;
                 /* Add scrollbar if content exceeds dimensions */
                 margin: 10px;
@@ -192,7 +193,7 @@
             .rule-container {
                 display: flex;
                 flex-direction: column;
-                align-items: center; /* Căn giữa theo chiều ngang */
+                align-items: first; /* Căn giữa theo chiều ngang */
             }
             .container {
                 display: flex;
@@ -287,14 +288,6 @@
                 }
 
             </style>
-            
-            <script type="text/javascript">
-            function DoDelete(id) {
-                if (confirm("Are you sure you want to delete rule id = " + id)) {
-                    window.location = "deleterule?id="+id;
-                }
-            }
-        </script>
         </head>
 
         <body>
@@ -345,28 +338,36 @@
             <!-- Content section -->
             <h3 style="text-align: center;
                 font-size: 38px;
-                margin-top: 20px">Rule</h3>
+                margin-top: 20px">Update Rule</h3>
+            <h3  style="color: #FF0E0E; margin-bottom: 20px; text-align: center">${message}</h3>
 
-            <a href="OwnerAddRule.jsp" class="btn btn-primary" style="margin-left: 350px">Add Rule</a>    
-            <div class="container">
-
-                <div class="rules" style="padding-top: 30px; display: flex; justify-content: center" >
-                    <div class="rule-container" style="width: 1100px">
-                        <table>
-                            <tr>
-                                <th>Name</th>
-                                <th>Delete</th>
-                                <th>Update</th>
-                            </tr>
-                        <c:forEach items="${requestScope.ListR}" var="rule">
-                            <tr>
-                                <td><a href="#" onclick="showPicture('${rule.img}')">${rule.ruleName}</a></td>
-                                <td><a href="#" onclick="DoDelete('${rule.ruleID}')" style="color: red">Delete</a></td>
-                                <td><a href="updaterule?id=${rule.ruleID}" style="color: red">Update</a></td>
-                            </tr>
-                        </c:forEach>
-                        </table>
-                    </div>
+            <div class="container" style="display: flex; justify-content: center">
+                <c:set var="c" value="${requestScope.rule}"/>
+                <div class="add-rule">
+                    <form action="updaterule" method="post">
+                        <div class="form-group" style="margin-bottom: 20px">
+                            <label for="ruleName">Rule ID:</label>
+                            <input type="number" id="ruleID" name="id" value="${rule.ruleID}" class="form-control" required readonly="">
+                        </div>
+                        <div class="form-group" style="margin-bottom: 20px">
+                            <label for="ruleName">Rule Name:</label>
+                            <input type="text" id="ruleName" name="name" value="${rule.ruleName}" class="form-control" required>
+                        </div>
+                        <div class="form-group" style="margin-bottom: 20px">
+                            <label for="ruleDescription">Score Change:</label>
+                            <input type="number" id="ruleScore" name="score" value="${rule.scoreChange}" class="form-control" required>
+                        </div>
+                        <div class="form-group" style="margin-bottom: 20px">
+                            <label for="ruleDescription">Penalty Money: </label>
+                            <input type="number" id="PenMoney" name="money" value="${rule.penMoney}" class="form-control" required>
+                        </div>
+                        <div class="form-group" style="margin-bottom: 20px">
+                            <label for="ruleName">Rule Image:</label>
+                            <input type="text" id="ruleImage" name="img" value="${rule.img}" class="form-control" required>
+                        </div>
+                        <a href="olr" class="btn btn-primary" style="background: #efefef; color: black">Back to list</a>
+                        <button type="submit" class="btn btn-primary">Update Rule</button>
+                    </form>
                 </div>
 
 

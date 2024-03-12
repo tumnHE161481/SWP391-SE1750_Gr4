@@ -1,4 +1,4 @@
-<%-- Document : SeNews Created on : Jan 18, 2024, 2:59:38 PM Author : ASUS --%>
+
 
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -170,9 +170,9 @@
             }
             .guidelines,
             .rules {
-                background-color: #f9f9f9;
+                background-color: #005555;
                 /* or any shade of gray you prefer */
-                padding: 20px;
+                padding-left: 0px;
                 padding-top: 0px;
                 /* Add padding for better readability */
                 margin-bottom: 20px;
@@ -182,9 +182,9 @@
                 border-radius: 8px;
                 width: 400px;
                 /* Fixed width */
-                height: 300px;
+                height: 500px;
                 /* Fixed height */
-                padding-right: 100px;
+                padding-right: 0px;
                 overflow-y: auto;
                 /* Add scrollbar if content exceeds dimensions */
                 margin: 10px;
@@ -192,7 +192,7 @@
             .rule-container {
                 display: flex;
                 flex-direction: column;
-                align-items: first; /* Căn giữa theo chiều ngang */
+                align-items: center; /* Căn giữa theo chiều ngang */
             }
             .container {
                 display: flex;
@@ -287,6 +287,14 @@
                 }
 
             </style>
+            
+            <script type="text/javascript">
+            function DoDelete(id) {
+                if (confirm("Are you sure you want to delete rule id = " + id)) {
+                    window.location = "deleterule?id="+id;
+                }
+            }
+        </script>
         </head>
 
         <body>
@@ -338,18 +346,26 @@
             <h3 style="text-align: center;
                 font-size: 38px;
                 margin-top: 20px">Rule</h3>
-            
-                <button href="AddRule.jsp" class="btn btn-primary" style="margin-left: 500px">Add Rule</button>    
+
+            <a href="OwnerAddRule.jsp" class="btn btn-primary" style="margin-left: 350px">Add Rule</a>    
             <div class="container">
-                
-                <div class="rules" style="padding-top: 30px">
-                    <div class="rule-container">
-                        <ul class="rule-list">
-                            <c:forEach items="${requestScope.ListR}" var="rule">
-                                <li><a href="#" onclick="showPicture('${rule.img}')">${rule.ruleName}</a>  <span style="color: red" class="delete-btn">Delete</span></li>
-                                
-                               </c:forEach>
-                        </ul>
+
+                <div class="rules" style="padding-top: 30px; display: flex; justify-content: center" >
+                    <div class="rule-container" style="width: 1100px">
+                        <table>
+                            <tr>
+                                <th>Name</th>
+                                <th>Delete</th>
+                                <th>Update</th>
+                            </tr>
+                        <c:forEach items="${requestScope.ListR}" var="rule">
+                            <tr>
+                                <td><a href="#" onclick="showPicture('${rule.img}')">${rule.ruleName}</a></td>
+                                <td><a href="#" onclick="DoDelete('${rule.ruleID}')" style="color: red">Delete</a></td>
+                                <td><a href="updaterule?id=${rule.ruleID}" style="color: red">Update</a></td>
+                            </tr>
+                        </c:forEach>
+                        </table>
                     </div>
                 </div>
 

@@ -6,25 +6,21 @@
 package Controller;
 
 import DAL.GuideAndRuleDAO;
+import Models.Rule;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.Part;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
-@MultipartConfig()
 /**
  *
  * @author yetvv.piacom
  */
-@WebServlet(name="AddRule", urlPatterns={"/addrule"})
-public class AddRule extends HttpServlet {
+@WebServlet(name="UpdateRule", urlPatterns={"/updaterule"})
+public class UpdateRule extends HttpServlet {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -41,10 +37,10 @@ public class AddRule extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet AddRule</title>");  
+            out.println("<title>Servlet UpdateRule</title>");  
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet AddRule at " + request.getContextPath () + "</h1>");
+            out.println("<h1>Servlet UpdateRule at " + request.getContextPath () + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -61,42 +57,17 @@ public class AddRule extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        
-            String ruleName = request.getParameter("name");
-            
-            ruleName = ruleName.trim().replaceAll("\\s{2,}", " ");
-            
-            if (isNumeric(ruleName)) {
-                request.setAttribute("message", "name are not allowed to contain only number - invalid");
-                request.getRequestDispatcher("OwnerAddRule.jsp").forward(request, response);
-            } else if(ruleName.contains(" ")){
-                request.setAttribute("message", "name are not allowed to contain space - invalid");
-                request.getRequestDispatcher("OwnerAddRule.jsp").forward(request, response);
-            }
-            
-            
-            int score = Integer.parseInt(request.getParameter("score"));
-            int penmoney = Integer.parseInt(request.getParameter("money"));
-            
-            
-            String photo = request.getParameter("photo");
-            
-            photo = photo.trim().replaceAll("\\s{2,}", " ");
-            
-            if (isNumeric(photo)) {
-                request.setAttribute("message", "photo are not allowed to contain only number - invalid");
-                request.getRequestDispatcher("OwnerAddRule.jsp").forward(request, response);
-            } else if(photo.contains(" ")){
-                request.setAttribute("message", "photo are not allowed to contain space - invalid");
-                request.getRequestDispatcher("OwnerAddRule.jsp").forward(request, response);
-            }
-            
-            
+        String idraw = request.getParameter("id");
+        int id;
+        try {
+            id = Integer.parseInt(idraw);
             GuideAndRuleDAO dao = new GuideAndRuleDAO();
-            dao.addRule(ruleName, photo, score, penmoney);
-            
-            response.sendRedirect("olr");
-        
+            Rule c = dao.GetRuleById(id);
+            request.setAttribute("rule", c);
+            request.getRequestDispatcher("OwnerUpdateRule.jsp").forward(request, response);
+        } catch (NumberFormatException e) {
+            System.out.println(e);
+        }
     } 
 
     /** 
@@ -109,7 +80,27 @@ public class AddRule extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        processRequest(request, response);
+        String idraw = request.getParameter("id");
+        String name = request.getParameter("name");
+        String img = request.getParameter("img");
+        String score = request.getParameter("score");
+        String money = request.getParameter("money");
+        
+        
+        
+        GuideAndRuleDAO dao = new GuideAndRuleDAO();
+
+        try {
+            int id = Integer.parseInt(idraw);
+            double scores = Double.parseDouble(score);
+            double moneys = Double.parseDouble(money);
+            
+            dao.editRule(id, name, img, scores, moneys);
+            response.sendRedirect("olr");
+
+        } catch (NumberFormatException e) {
+            System.out.println(e);
+        }
     }
 
     /** 
@@ -120,8 +111,5 @@ public class AddRule extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-    private boolean isNumeric(String str) {
-        // Sử dụng regular expression để kiểm tra xem chuỗi có chứa chỉ số không
-        return str != null && str.matches("\\d+");
-    }
+
 }
