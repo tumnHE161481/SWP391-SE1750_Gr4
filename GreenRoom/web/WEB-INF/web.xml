@@ -57,8 +57,20 @@
         <servlet-class>Controller.Test</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>RoomFeeController</servlet-name>
+        <servlet-class>Controller.RoomFeeController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>RoomFeeController</servlet-name>
+        <url-pattern>/roomfee</url-pattern>
+    </servlet-mapping>
+    <servlet>
         <servlet-name>EditRequestController</servlet-name>
         <servlet-class>Controller.EditRequestController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>RoomFeeDetailController</servlet-name>
+        <servlet-class>Controller.RoomFeeDetailController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>SeProfileControl</servlet-name>
@@ -119,6 +131,10 @@
     <servlet-mapping>
         <servlet-name>EditRequestController</servlet-name>
         <url-pattern>/editrequest</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RoomFeeDetailController</servlet-name>
+        <url-pattern>/roomfeedetail</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

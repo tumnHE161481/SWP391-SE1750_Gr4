@@ -137,9 +137,9 @@
 
                         <ul class="js-clone-nav d-none d-lg-inline-block text-start site-menu float-end">
                             <li><a href="Homepage.html">Home</a></li>
-                            <li><a href="RoomList.html">Room</a></li>
+                            <li class="active"><a href="manageroom">Room</a></li>
                             <li><a href="Payment.html">Payment</a></li>
-                            <li class="active"><a href="request">Send Request</a></li>
+                            <li><a href="request">Send Request</a></li>
                             <li><a href="Guide.html">Guide</a></li>
                             <li><a href="News.html">News</a></li>
                         </ul>
@@ -187,7 +187,6 @@
                             <div class="row no-gutters">
                                 <div class="col-lg-8 col-md-7 order-md-last d-flex align-items-stretch">
                                     <div class="contact-wrap w-100 p-md-5 p-4">
-                                        <h3 class="mb-4">Get a request</h3>
                                         <form method="POST" action="request">
                                             <div class="row">
                                                 <div class="col-md-6">

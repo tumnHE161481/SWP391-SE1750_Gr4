@@ -66,9 +66,9 @@
 
                         <ul class="js-clone-nav d-none d-lg-inline-block text-start site-menu float-end">
                             <li><a href="Homepage.html">Home</a></li>
-                            <li><a href="manageroom">Room</a></li>
+                            <li class="active"><a href="manageroom">Room</a></li>
                             <li><a href="Payment.html">Payment</a></li>
-                            <li class="active"><a href="request">Send Request</a></li>
+                            <li><a href="request">Send Request</a></li>
                             <li><a href="Guide.html">Guide</a></li>
                             <li><a href="News.html">News</a></li>
                         </ul>
@@ -102,123 +102,71 @@
             </div>
         </div>
 
-
-       	<section class="ftco-section">
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-md-6 text-center mb-5">
-                        <h2 class="heading-section">Request Form</h2>
-                    </div>
-                </div>
-                <div class="row justify-content-center">
-                    <div class="col-md-12">
-                        <div class="wrapper">
-                            <div class="row no-gutters">
-                                <div class="col-lg-8 col-md-7 order-md-last d-flex align-items-stretch">
-                                    <div class="contact-wrap w-100 p-md-5 p-4">
-                                        <h3 class="mb-4">Get a request</h3>
-                                        <div class="tabular--wrapper row">
-                                            <div class="col-2">
-                                                <div class="wrap">
-                                                    <ul class="nav">
-                                                        <li class="nav__link">1</li>
-                                                        <li class="nav__link">2</li>
-                                                        <li class="nav__link">3</li>
-                                                        <li class="nav__link">4</li>
-                                                        <li class="nav__link">5</li>
-                                                        <div class="nav__bar"></div>
-                                                    </ul>
-                                                </div>
-
-                                            </div>
-                                            <div class="col-10">
-                                                <h3 style="margin-bottom: 40px">Room Management</h3>
-                                                <div class="col-lg-12">
-                                                    <div class="row g-4 justify-content-center">
-                                                        <c:forEach var="room" items="${manageRoom}" varStatus="loop" >
-                                                            <c:set var="id" value="${room.roomID}"/>
-                                                            <div class="col-md-6 col-lg-6 col-xl-3">
-                                                                <div class="rounded position-relative fruite-item">
-                                                                    <div class="fruite-img">
-                                                                        <img src=${room.roomImg} class="img-fluid w-100 rounded-top" alt="" style="object-fit: cover; height: 300px">
-                                                                    </div>
-
-                                                                    <c:choose>
-                                                                        <c:when test="${room.roomSize == 1}">
-                                                                            <div class="text-white bg-secondary px-3 py-1 rounded position-absolute" style="top: 10px; left: 10px;">Small Size</div>
-                                                                        </c:when>
-                                                                        <c:when test="${room.roomSize == 2}">
-                                                                            <div class="text-white bg-secondary px-3 py-1 rounded position-absolute" style="top: 10px; left: 10px;">Medium Size</div>
-                                                                        </c:when>
-                                                                        <c:otherwise>
-                                                                            <div class="text-white bg-secondary px-3 py-1 rounded position-absolute" style="top: 10px; left: 10px;">Big Size</div>
-                                                                        </c:otherwise>
-                                                                    </c:choose>
-                                                                    <div class="p-4 border border-secondary border-top-0 rounded-bottom">
-                                                                        <h4>Room ${room.roomNumber}</h4>
-                                                                        <small style="padding: 0px; font-style: italic">Floor ${room.roomFloor}</small>
-                                                                        <div class="d-flex justify-content-between flex-lg-wrap align-items-center" style="text-align: center">
-                                                                            <c:choose>
-                                                                                <c:when test="${room.roomSize == 1}">
-                                                                                    <p class="text-dark fw-bold mb-0" style="font-size: 16px">Renter ${room.total}/1&nbsp;<i class="fa-solid fa-people-group"></i> </p>
-                                                                                </c:when>
-                                                                                <c:when test="${room.roomSize == 2}">
-                                                                                    <p class="text-dark fw-bold mb-0" style="font-size: 16px">Renter ${room.total}/2&nbsp;<i class="fa-solid fa-people-group"></i> </p>
-                                                                                </c:when>
-                                                                                <c:otherwise>
-                                                                                    <p class="text-dark fw-bold mb-0" style="font-size: 16px">Renter ${room.total}/4&nbsp;<i class="fa-solid fa-people-group"></i> </p>
-                                                                                </c:otherwise>
-                                                                            </c:choose>
-                                                                            <a href="adroomdetail?id=${id}" class="btn border border-secondary rounded-pill px-3 text-primary" style="font-size: 16px">
-                                                                                <i class="fa-solid fa-hand-point-right fa-sm" style="color: #1959c8;"></i> View detail
-                                                                            </a>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </c:forEach>
-                                                    </div>
-                                                </div>   
-                                            </div>
-                                        </div>    
-                                    </div>
-                                </div>
-                                <div class="col-lg-4 col-md-5 d-flex align-items-stretch">
-                                    <div class="info-wrap w-100 p-md-5 p-4" style="background-color :#005555; color: #FFF" >
-                                        <h3 style="color: #FFF">Contact GreenRoom Owner</h3>
-                                        <p class="mb-4">If it is an emergency, please contact the information below!</p>
-                                        <div class="dbox w-100 d-flex align-items-start">
-                                            <div class="icon d-flex align-items-center justify-content-center">
-                                                <span class="fa fa-map-marker"></span>
-                                            </div>
-                                            <div class="text pl-3">
-                                                <p><span>Address:</span> 198 Pho Vong, Thanh Xuan, Ha Noi</p>
-                                            </div>
-                                        </div>
-                                        <div class="dbox w-100 d-flex align-items-center">
-                                            <div class="icon d-flex align-items-center justify-content-center">
-                                                <span class="fa fa-phone"></span>
-                                            </div>
-                                            <div class="text pl-3">
-                                                <p><span>Phone:</span> <a href="tel://1234567920">+ 1235 2355 98</a></p>
-                                            </div>
-                                        </div>
-                                        <div class="dbox w-100 d-flex align-items-center">
-                                            <div class="icon d-flex align-items-center justify-content-center">
-                                                <span class="fa fa-paper-plane"></span>
-                                            </div>
-                                            <div class="text pl-3">
-                                                <p><span>Email:</span> <a href="mailto:info@yoursite.com">maituboss@gmail.com</a></p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+    <div class="tabular--wrapper row">
+                    <div class="col-2">
+                        <div class="wrap">
+                            <ul class="nav">
+                                <li class="nav__link">1</li>
+                                <li class="nav__link">2</li>
+                                <li class="nav__link">3</li>
+                                <li class="nav__link">4</li>
+                                <li class="nav__link">5</li>
+                                <div class="nav__bar"></div>
+                            </ul>
                         </div>
+
+                    </div>
+                    <div class="col-10">
+                        <h3 style="margin-bottom: 40px">Room Management</h3>
+                        <div class="col-lg-12">
+                            <div class="row g-4 justify-content-center">
+                                <c:forEach var="room" items="${manageRoom}" varStatus="loop" >
+                                    <c:set var="id" value="${room.roomID}"/>
+                                    <div class="col-md-6 col-lg-6 col-xl-3">
+                                        <div class="rounded position-relative fruite-item">
+                                            <div class="fruite-img">
+                                                <img src=${room.roomImg} class="img-fluid w-100 rounded-top" alt="" style="object-fit: cover; height: 300px">
+                                            </div>
+
+                                            <c:choose>
+                                                <c:when test="${room.roomSize == 1}">
+                                                    <div class="text-white bg-secondary px-3 py-1 rounded position-absolute" style="top: 10px; left: 10px;">Small Size</div>
+                                                </c:when>
+                                                <c:when test="${room.roomSize == 2}">
+                                                    <div class="text-white bg-secondary px-3 py-1 rounded position-absolute" style="top: 10px; left: 10px;">Medium Size</div>
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <div class="text-white bg-secondary px-3 py-1 rounded position-absolute" style="top: 10px; left: 10px;">Big Size</div>
+                                                </c:otherwise>
+                                            </c:choose>
+                                            <div class="p-4 border border-secondary border-top-0 rounded-bottom">
+                                                <h4>Room ${room.roomNumber}</h4>
+                                                <small style="padding: 0px; font-style: italic">Floor ${room.roomFloor}</small>
+                                                <div class="d-flex justify-content-between flex-lg-wrap align-items-center" style="text-align: center">
+                                                    <c:choose>
+                                                        <c:when test="${room.roomSize == 1}">
+                                                            <p class="text-dark fw-bold mb-0" style="font-size: 16px">Renter ${room.total}/1&nbsp;<i class="fa-solid fa-people-group"></i> </p>
+                                                        </c:when>
+                                                        <c:when test="${room.roomSize == 2}">
+                                                            <p class="text-dark fw-bold mb-0" style="font-size: 16px">Renter ${room.total}/2&nbsp;<i class="fa-solid fa-people-group"></i> </p>
+                                                        </c:when>
+                                                        <c:otherwise>
+                                                            <p class="text-dark fw-bold mb-0" style="font-size: 16px">Renter ${room.total}/4&nbsp;<i class="fa-solid fa-people-group"></i> </p>
+                                                        </c:otherwise>
+                                                    </c:choose>
+                                                    <a href="adroomdetail?id=${id}" class="btn border border-secondary rounded-pill px-3 text-primary" style="font-size: 16px">
+                                                        <i class="fa-solid fa-hand-point-right fa-sm" style="color: #1959c8;"></i> View detail
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </c:forEach>
+                            </div>
+                        </div>   
                     </div>
                 </div>
-            </div>
-        </section>
+       	
         <!--        <script>
         <c:set var="succ" value="${requestScope.success}"></c:set>
         <c:set var="err" value="${requestScope.error}"></c:set>
