@@ -94,12 +94,13 @@ public class BillDAO extends MyDAO {
         } catch (SQLException e) {
             // Handle exception as needed
             System.out.println("Fail: " + e.getMessage());
-
+        
         }
         return null;
     }
     public static void main(String[] args) {
         BillDAO dao = new BillDAO();
-       
+        Bill bill = new Bill();
+        System.out.println("pen:"+bill.getPenMoney());
     }
 }

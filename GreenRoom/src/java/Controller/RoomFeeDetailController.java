@@ -62,7 +62,7 @@ public class RoomFeeDetailController extends HttpServlet {
         BillDAO dao = new BillDAO();
         try {
             int id = Integer.parseInt(id_raw);
-            Bill  bill = dao.getBillBybillID(id);
+            Bill bill = dao.getBillBybillID(id);
             request.setAttribute("billDetail", bill);
             request.getRequestDispatcher("/Owner/roomfeedetail.jsp").forward(request, response);
         } catch (NumberFormatException e) {
