@@ -60,6 +60,7 @@ public class OwnerListRule extends HttpServlet {
     throws ServletException, IOException {
         GuideAndRuleDAO d = new GuideAndRuleDAO();
         List<Rule> listR = d.getRule();
+        request.setAttribute("message", request.getParameter("message"));
         request.setAttribute("ListR", listR);
         request.getRequestDispatcher("OwnerListRule.jsp").forward(request, response);
     } 

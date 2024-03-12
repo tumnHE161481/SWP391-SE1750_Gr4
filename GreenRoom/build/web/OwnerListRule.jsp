@@ -338,9 +338,10 @@
             <h3 style="text-align: center;
                 font-size: 38px;
                 margin-top: 20px">Rule</h3>
-            <h3  style="color: #FF0E0E; margin-bottom: 20px; text-align: center">${message}</h3>
-
+            
+                <button href="AddRule.jsp" class="btn btn-primary" style="margin-left: 500px">Add Rule</button>    
             <div class="container">
+                
                 <div class="rules" style="padding-top: 30px">
                     <div class="rule-container">
                         <ul class="rule-list">
@@ -350,29 +351,6 @@
                                </c:forEach>
                         </ul>
                     </div>
-                </div>
-
-                <div class="add-rule">
-                    <h3>Add Rule</h3>
-                    <form action="addrule" method="post" >
-                        <div class="form-group">
-                            <label for="ruleName">Rule Name:</label>
-                            <input type="text" id="ruleName" name="name" class="form-control" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="ruleDescription">Score Change:</label>
-                            <input type="number" id="ruleScore" name="score" class="form-control" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="ruleDescription">Penalty Money: </label>
-                            <input type="number" id="PenMoney" name="money" class="form-control" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="ruleName">Rule Image:</label>
-                            <input type="text" id="ruleImage" name="photo" value="./Image/rule/rule?.jpg" class="form-control" required>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Add Rule</button>
-                    </form>
                 </div>
 
 

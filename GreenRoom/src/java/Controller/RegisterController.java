@@ -71,9 +71,11 @@ public class RegisterController extends HttpServlet {
             if (!phone.matches("[0-9]+")) {
                 request.setAttribute("message", "Phone only have numbers");
                 request.getRequestDispatcher("register.jsp").forward(request, response);
+                return;
             } else if (phone.length() != 10 && phone.length() != 11) {
                 request.setAttribute("message", "Phone have 10 - 11 numbers is valid");
                 request.getRequestDispatcher("register.jsp").forward(request, response);
+                return;
             }
 
             String password = request.getParameter("password");
@@ -81,6 +83,7 @@ public class RegisterController extends HttpServlet {
             if (password.contains(" ")) {
                 request.setAttribute("message", "Passwords are not allowed to contain spaces - invalid");
                 request.getRequestDispatcher("register.jsp").forward(request, response);
+                return;
             }
 
             String repassword = request.getParameter("repassword");
@@ -91,6 +94,7 @@ public class RegisterController extends HttpServlet {
             if (isNumeric(address)) {
                 request.setAttribute("message", "Address are not allowed to contain only number - invalid");
                 request.getRequestDispatcher("register.jsp").forward(request, response);
+                return;
             }
 
             String dobString = request.getParameter("dob");
@@ -103,6 +107,7 @@ public class RegisterController extends HttpServlet {
             if (dob.isAfter(currentDate)) {
                 request.setAttribute("message", "Invalid date of birth, have to > 18");
                 request.getRequestDispatcher("register.jsp").forward(request, response);
+                return;
             }
 
             // Kiểm tra xem người dùng có đủ 18 tuổi không
@@ -110,6 +115,7 @@ public class RegisterController extends HttpServlet {
             if (dob.isAfter(eighteenYearsAgo)) {
                 request.setAttribute("message", "Users under 18 years old - invalid");
                 request.getRequestDispatcher("register.jsp").forward(request, response);
+                return;
             }
 
             String gender = request.getParameter("gender");
@@ -119,10 +125,12 @@ public class RegisterController extends HttpServlet {
             if (a.findByEmail(email) != null) {
                 request.setAttribute("message", "Email is existed");
                 request.getRequestDispatcher("register.jsp").forward(request, response);
+                return;
             } // kiểm tra repassword có khớp với password 
             else if (!repassword.endsWith(password)) {
                 request.setAttribute("message", "Password not match");
                 request.getRequestDispatcher("register.jsp").forward(request, response);
+                return;
             } else {
 
                 boolean m = a.registerAccount(email, password, role);

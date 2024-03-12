@@ -61,7 +61,33 @@ public class AddRule extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        processRequest(request, response);
+        
+            String ruleName = request.getParameter("name");
+            ruleName = ruleName.trim().replaceAll("\\s{2,}", " ");
+            if (isNumeric(ruleName)) {
+                request.setAttribute("message", "name are not allowed to contain only number - invalid");
+                request.getRequestDispatcher("add.jsp").forward(request, response);
+            }
+            
+            
+            int score = Integer.parseInt(request.getParameter("score"));
+            int penmoney = Integer.parseInt(request.getParameter("money"));
+            
+            
+            String photo = request.getParameter("photo");
+            photo = photo.trim().replaceAll("\\s{2,}", " ");
+            if (isNumeric(photo)) {
+                request.setAttribute("message", "photo are not allowed to contain only number - invalid");
+                response.sendRedirect("olr");
+            }
+            
+            
+            GuideAndRuleDAO dao = new GuideAndRuleDAO();
+            dao.addRule(ruleName, photo, score, penmoney);
+            
+            request.setAttribute("message", "Add Success");
+            response.sendRedirect("olr");
+        
     } 
 
     /** 
@@ -74,22 +100,7 @@ public class AddRule extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        
-            String ruleName = request.getParameter("name");
-            ruleName = ruleName.trim().replaceAll("\\s{2,}", " ");
-            if (isNumeric(ruleName)) {
-                request.setAttribute("message", "name are not allowed to contain only number - invalid");
-                request.getRequestDispatcher("olr").forward(request, response);
-            }
-            int score = Integer.parseInt(request.getParameter("score"));
-            int penmoney = Integer.parseInt(request.getParameter("money"));
-            String photo = request.getParameter("photo");
-            photo = photo.trim().replaceAll("\\s{2,}", " ");
-            
-            GuideAndRuleDAO dao = new GuideAndRuleDAO();
-            dao.addRule(ruleName, photo, score, penmoney);
-            
-            request.getRequestDispatcher("/olr").forward(request, response);
+        processRequest(request, response);
     }
 
     /** 
