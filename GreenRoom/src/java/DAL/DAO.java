@@ -52,7 +52,7 @@ public class DAO extends DBContext {
                 + "FROM [dbo].[User] AS u\n"
                 + "JOIN [dbo].[Renter] AS r ON u.userID = r.userID\n"
                 + "JOIN [dbo].[Room] AS rm ON r.roomID = rm.roomID\n"
-                + "WHERE rm.[roomNumber] LIKE ?;";
+                + "WHERE u.[userName] LIKE ?;";
         try {
             conn = connection;
             ps = conn.prepareStatement(query);
