@@ -131,7 +131,7 @@
                     </div>
 
                 </div>
-                          <a href="seupdatenews?nid=${details.newID}"  value="Edit Profile" class="btn btn-primary">Edit News</a>
+                
             </div>
                       
         </div>

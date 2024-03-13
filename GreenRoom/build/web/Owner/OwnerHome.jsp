@@ -156,12 +156,12 @@
                         <a href="sehome" class="logo m-0 float-start">Green Room</a>
 
                         <ul class="js-clone-nav d-none d-lg-inline-block text-start site-menu float-end">
-                            <li class="active"><a href="sehome">Home</a></li>
-                            <li class="active"><a href="listroom">Room</a></li>
-                            <li><a href="seprofile">Profile</a></li>
-                            <li><a href="selistcustomer">Renter</a></li>
-                            <li><a href="Guide.html">Guide</a></li>
-                            <li><a href="selogout">Log Out</a></li>
+                            <li class="active"><a href="ownerhome">Home</a></li>
+                            <li class="active"><a href="#">Room</a></li>
+                            <li><a href="#">Profile</a></li>
+                            <li><a href="#">Renter</a></li>
+                            <li><a href="#">Guide</a></li>
+                            <li><a href="#">Log Out</a></li>
                         </ul>
 
                         <a href="#" class="burger light me-auto float-end mt-1 site-menu-toggle js-menu-toggle d-inline-block d-lg-none" data-toggle="collapse" data-target="#main-navbar">
@@ -223,7 +223,7 @@
                                         <p>${n.newTitle}</p>
                                     </blockquote>
                                     <p class="text-black-50">
-                                        <a href="newsdetail?nid=${n.newID}" class="learn-more">Read more</a>
+                                        <a href="ownerdetailnews?nid=${n.newID}" class="learn-more">Read more</a>
                                         <a href="sedeletenews?nid=${n.newID}" class="learn-more">Delete</a>
                                     </p>
                                 </div>

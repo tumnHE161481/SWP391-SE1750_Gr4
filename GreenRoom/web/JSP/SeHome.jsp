@@ -224,7 +224,7 @@
                                     </blockquote>
                                     <p class="text-black-50">
                                         <a href="newsdetail?nid=${n.newID}" class="learn-more">Read more</a>
-                                        <a href="sedeletenews?nid=${n.newID}" class="learn-more">Delete</a>
+                    
                                     </p>
                                 </div>
                             </div>
@@ -232,7 +232,7 @@
 
 
                     </div>
-                    <a href="addnews"  value="" class="btn btn-primary">Add News</a>
+                    
                 </div>
 
             </div>

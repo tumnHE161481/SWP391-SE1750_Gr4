@@ -64,12 +64,12 @@
                         <a href="sehome" class="logo m-0 float-start">Green Room</a>
 
                         <ul class="js-clone-nav d-none d-lg-inline-block text-start site-menu float-end">
-                            <li class="active"><a href="sehome">Home</a></li>
-                            <li class="active"><a href="listroom">Room</a></li>
-                            <li><a href="seprofile">Profile</a></li>
-                            <li><a href="selistcustomer">Renter</a></li>
-                            <li><a href="Guide.html">Guide</a></li>
-                            <li><a href="selogout">Log Out</a></li>
+                            <li class="active"><a href="ownerhome">Home</a></li>
+                            <li class="active"><a href="#">Room</a></li>
+                            <li><a href="#">Profile</a></li>
+                            <li><a href="#">Renter</a></li>
+                            <li><a href="#">Guide</a></li>
+                            <li><a href="#">Log Out</a></li>
                         </ul>
 
                         <a href="#"
@@ -131,7 +131,7 @@
                     </div>
 
                 </div>
-                
+                          <a href="seupdatenews?nid=${details.newID}"  value="Edit Profile" class="btn btn-primary">Edit News</a>
             </div>
                       
         </div>

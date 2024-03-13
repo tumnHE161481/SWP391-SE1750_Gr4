@@ -53,7 +53,7 @@ public class AddNewsControl extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 //        processRequest(request, response);
-        request.getRequestDispatcher("JSP/SeAddNews.jsp").forward(request, response);
+        request.getRequestDispatcher("Owner/OwnerAddNews.jsp").forward(request, response);
     }
 
     /**
@@ -67,18 +67,26 @@ public class AddNewsControl extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.setCharacterEncoding("UTF-8");
-        String ntitle = request.getParameter("title");
-        String ndescription = request.getParameter("description");
-        String nimage = request.getParameter("image");
-        String ndate = request.getParameter("date");
+
         HttpSession session = request.getSession();
         Account a = (Account) session.getAttribute("user");
-        int sid = a.getUserID();
-        DAO dao = new DAO();
-        LocalDateTime currentDateTime = LocalDateTime.now();
-        dao.addNews(ntitle, ndescription, nimage, currentDateTime);
-        response.sendRedirect("sehome");
+        if (a != null) {
+            request.setCharacterEncoding("UTF-8");
+            String ntitle = request.getParameter("title");
+            String ndescription = request.getParameter("description");
+            String nimage = request.getParameter("image");
+            String ndate = request.getParameter("date");
+
+            int sid = a.getUserID();
+            DAO dao = new DAO();
+            LocalDateTime currentDateTime = LocalDateTime.now();
+            dao.addNews(ntitle, ndescription, nimage, currentDateTime);
+            response.sendRedirect("ownerhome");
+        } else {
+
+            response.sendRedirect("login.jsp");
+        }
+
     }
 
     /**

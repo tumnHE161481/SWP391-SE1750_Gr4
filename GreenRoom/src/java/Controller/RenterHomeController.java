@@ -23,31 +23,17 @@ public class RenterHomeController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
-        // Retrieve the account object from the session
-        Account account = (Account) session.getAttribute("user");
+        Account a = (Account) session.getAttribute("user");
 
-        // Check if the account object exists in the session
-        if (account != null) {
-            // Extract email and password from the account object
-            String userMail = (String) session.getAttribute("email");
-            String userPassword = (String) session.getAttribute("password");
-
-            // Set email and password attributes in session
-            // Now you can use the email and password to fetch data or perform any other actions
-            // Example:
+        if (a != null) {
             DAO dao = new DAO();
             List<SeNews> listN = dao.getAllNews();
             request.setAttribute("ListN", listN);
-
-            RenterDAO dao1 = new RenterDAO();
-            List<User> list = dao1.getRenterDetailByAccountAndPassword(userMail, userPassword);
-            request.setAttribute("ListRP", list);
+            int sid = a.getUserID();
             request.getRequestDispatcher("Renter/RenterHome.jsp").forward(request, response);
         } else {
-            // If account object is not found in the session, handle the situation accordingly
-            // For example, redirect the user to the login page
             response.sendRedirect("login.jsp");
-        }
+    }
     }
 
     @Override
