@@ -64,6 +64,10 @@
         <servlet-name>OwnerDetailNewsControl</servlet-name>
         <servlet-class>Controller.OwnerDetailNewsControl</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SeSearchRoomControl</servlet-name>
+        <servlet-class>Controller.SeSearchRoomControl</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>RenterHomeController</servlet-name>
         <url-pattern>/renterhome</url-pattern>
@@ -127,6 +131,10 @@
     <servlet-mapping>
         <servlet-name>OwnerDetailNewsControl</servlet-name>
         <url-pattern>/ownerdetailnews</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SeSearchRoomControl</servlet-name>
+        <url-pattern>/sesearchroom</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

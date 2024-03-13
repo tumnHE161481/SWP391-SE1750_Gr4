@@ -66,7 +66,7 @@
                             <li><a href="seprofile">Profile</a></li>
                             <li><a href="selistcustomer">Renter</a></li>
                             <li><a href="Guide.html">Guide</a></li>
-                               <li><a href="News.html">Log Out</a></li>
+                            <li><a href="News.html">Log Out</a></li>
                         </ul>
 
                         <a href="#"
@@ -76,13 +76,21 @@
                         </a>
 
                     </div>
+
                 </div>
+
             </div>
         </nav>
+
+
         <div class="section">
             <div class="container">
                 <div class="row mb-5 align-items-center pt-5">
-                    
+                    <form action="sesearchroom" method ="post" class="narrow-w form-search d-flex align-items-stretch mb-3" data-aos="fade-up"
+                          data-aos-delay="200">
+                        <input value="${txtS}" name="txt" type="text" class="form-control px-4" placeholder="VD...101">
+                        <button type="submit" class="btn btn-primary">Search</button>
+                    </form>
                 </div>
                 <div class="row">
 
@@ -128,7 +136,7 @@
                 </div>
             </div>
         </div>
-            <div class="site-footer">
+        <div class="site-footer">
             <div class="container">
 
                 <div class="row">

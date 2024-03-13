@@ -69,7 +69,7 @@ public class SeLogOutControl extends HttpServlet {
     throws ServletException, IOException {
         HttpSession session = request.getSession();
         session.removeAttribute("acc");
-        response.sendRedirect("index");
+        response.sendRedirect("login");
     }
 
     /** 

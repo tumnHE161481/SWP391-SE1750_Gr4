@@ -71,27 +71,27 @@ public class DAO extends DBContext {
         return list;
     }
 
-//    public List<RoomListSE> searchRoomByName(String txtSearch) {
-//        List<RoomListSE> list = new ArrayList<>();
-//        String query = "SELECT r.roomID, r.roomFloor, r.roomNumber, r.roomSize, r.roomImg\n"
-//                + "              FROM [dbo].[Room] AS r\n"
-//                + "WHERE r.[roomNumber] LIKE ?;";
-//        try {
-//            conn = connection;
-//            ps = conn.prepareStatement(query);
-//            ps.setString(1, "%" + txtSearch + "%");
-//            rs = ps.executeQuery();
-//            while (rs.next()) {
-//                list.add(new RoomListSE(rs.getInt(1),
-//                        rs.getInt(2),
-//                        rs.getString(3),
-//                        rs.getString(4),
-//                        rs.getString(5)));
-//            }
-//        } catch (Exception e) {
-//        }
-//        return list;
-//    }
+    public List<RoomListSE> searchRoomByName(String txtSearch) {
+        List<RoomListSE> list = new ArrayList<>();
+        String query = "SELECT r.roomID, r.roomFloor, r.roomNumber, r.roomSize, r.roomImg\n"
+                + "              FROM [dbo].[Room] AS r\n"
+                + "WHERE r.[roomNumber] LIKE ?;";
+        try {
+            conn = connection;
+            ps = conn.prepareStatement(query);
+            ps.setString(1, "%" + txtSearch + "%");
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                list.add(new RoomListSE(rs.getInt(1),
+                        rs.getInt(2),
+                        rs.getString(3),
+                        rs.getString(4),
+                        rs.getString(5)));
+            }
+        } catch (Exception e) {
+        }
+        return list;
+    }
 
     public List<RoomListSE> getAllRoom() {
         List<RoomListSE> list = new ArrayList<>();
