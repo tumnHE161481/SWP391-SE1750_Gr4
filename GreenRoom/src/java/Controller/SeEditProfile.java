@@ -93,8 +93,8 @@ public class SeEditProfile extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-            request.setCharacterEncoding("UTF-8");
-        System.out.println("start");
+        request.setCharacterEncoding("UTF-8");
+
         String back = request.getParameter("back");
         String userName = request.getParameter("name");
         String userGender = request.getParameter("gender");
@@ -104,13 +104,9 @@ public class SeEditProfile extends HttpServlet {
         String userAvatar = request.getParameter("avatar");
         HttpSession session = request.getSession();
         Account a = (Account) session.getAttribute("user");
-        System.out.println(userName);
-        System.out.println(userBirth);
-        System.out.println(userAddress);
-        System.out.println(userPhone);
-        System.out.println(userAvatar);
+
         int sid = a.getUserID();
-        System.out.println(a.getUserID());
+
         DAO dao = new DAO();
         if (dao.updateProfile(userName, userGender, userBirth, userAddress, userPhone, userAvatar, a.getUserID())) {
             System.out.println("update thanh cong");

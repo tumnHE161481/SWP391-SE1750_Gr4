@@ -104,14 +104,17 @@
                         <div class="card-body">
                             <h1 class="card-title">Edit News</h1>
                             <form action="seupdatenews" method="post">
-                                
+
                                 <div class="mb-3">
                                     <label for="title" class="form-label">Title:</label>
                                     <input type="text" class="form-control" id="title" name="title" value="${details.newTitle}" required>
                                 </div>
-                                <div class="mb-3">
-                                    <label for="author" class="form-label">Imagine:</label>
-                                    <input type="text" class="form-control" id="author" name="img" value="${details.img}" required>
+
+                                <div class="form-group">
+                                    <label>Photo</label> <br/>
+
+                                    <input type="file" 
+                                           class="form-control" name="img" value="${details.img}" placeholder="Enter photo">
                                 </div>
 
                                 <div class="mb-3">

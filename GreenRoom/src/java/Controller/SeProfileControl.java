@@ -63,20 +63,25 @@ public class SeProfileControl extends HttpServlet {
         HttpSession session = request.getSession();
         Account acc = (Account) session.getAttribute("user");
         // get user
+        if (acc != null) {
+            DAO dao = new DAO();
+            SeUserProfile se = dao.getProfileById(String.valueOf(acc.getUserID()));
+            User user = new User();
+            user.setUserID(se.getUserID());
+            user.setUserName(se.getUserName());
+            user.setUserAddress(se.getUserAddress());
+            user.setUserAvatar(se.getUserAvatar());
+            user.setUserBirth(se.getUserBirth());
+            user.setUserGender(se.getUserGender());
+            user.setUserPhone(se.getUserPhone());
+            acc.setUser(user);
+            request.setAttribute("account", acc);
+            request.getRequestDispatcher("JSP/SeProfile.jsp").forward(request, response);
+        } else {
 
-        DAO dao = new DAO();
-        SeUserProfile se = dao.getProfileById(String.valueOf(acc.getUserID()));
-        User user = new User();
-        user.setUserID(se.getUserID());
-        user.setUserName(se.getUserName());
-        user.setUserAddress(se.getUserAddress());
-        user.setUserAvatar(se.getUserAvatar());
-        user.setUserBirth(se.getUserBirth());
-        user.setUserGender(se.getUserGender());
-        user.setUserPhone(se.getUserPhone());
-        acc.setUser(user);
-        request.setAttribute("account", acc);
-        request.getRequestDispatcher("JSP/SeProfile.jsp").forward(request, response);
+            response.sendRedirect("login.jsp");
+        }
+
     }
 
     /**

@@ -60,17 +60,22 @@ public class NewsDetailControl extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
-        // Set content type
-        response.setContentType("text/html");
-        String id = request.getParameter("nid");
-        DAO dao = new DAO();
-        SeNews n = dao.getNewsById(id);
-        request.setAttribute("details", n);
         HttpSession session = request.getSession();
         Account a = (Account) session.getAttribute("user");
-        int sid = a.getUserID();
-        request.getRequestDispatcher("JSP/SeNewsDetail.jsp").forward(request, response);
+        if (a != null) {
+            response.setContentType("text/html");
+            String id = request.getParameter("nid");
+            DAO dao = new DAO();
+            SeNews n = dao.getNewsById(id);
+            request.setAttribute("details", n);
+
+            int sid = a.getUserID();
+            request.getRequestDispatcher("JSP/SeNewsDetail.jsp").forward(request, response);
+        } else {
+
+            response.sendRedirect("login.jsp");
+        }
+
     }
 
     /**

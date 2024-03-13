@@ -33,13 +33,7 @@ public class ListRoomControl extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        DAO dao = new DAO();
-        List<RoomListSE> listR = dao.getAllRoom();
-        request.setAttribute("ListR", listR);
-        HttpSession session = request.getSession();
-        Account a = (Account) session.getAttribute("user");
-        int sid = a.getUserID();
-        request.getRequestDispatcher("JSP/SeRoomList.jsp").forward(request, response);
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -54,7 +48,20 @@ public class ListRoomControl extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        HttpSession session = request.getSession();
+        Account a = (Account) session.getAttribute("user");
+        if (a != null) {
+            DAO dao = new DAO();
+            List<RoomListSE> listR = dao.getAllRoom();
+            request.setAttribute("ListR", listR);
+
+            int sid = a.getUserID();
+            request.getRequestDispatcher("JSP/SeRoomList.jsp").forward(request, response);
+        } else {
+
+            response.sendRedirect("login.jsp");
+        }
+
     }
 
     /**
