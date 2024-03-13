@@ -80,8 +80,10 @@ public class OwnerHistoryPenaltyController extends HttpServlet {
         String id_raw = request.getParameter("id");
         int id = Integer.parseInt(id_raw);
         PenaltyDAO dao = new PenaltyDAO();
-
+        UserDAO dao1 = new UserDAO();
         // Retrieve history penalties
+        User rd = dao1.getOwRenterDetail(id);
+        request.setAttribute("reportName", rd);
         List<Penalty> list = dao.historyPenalty(id);
         request.setAttribute("OwnerHistoryPenalty", list);
 
@@ -104,20 +106,26 @@ public class OwnerHistoryPenaltyController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String accuse = request.getParameter("accuseID");
-        String room = request.getParameter("roomID");
-        String description = request.getParameter("description");
-        String rule = request.getParameter("ruleID");
-        String penStatus = request.getParameter("penStatus");
+        request.setCharacterEncoding("UTF-8");
         String id_raw = request.getParameter("id");
-        Date currentDate = new Date();
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        String penDate = formatter.format(currentDate);
+
         int id;
         UserDAO dao = new UserDAO();
         PenaltyDAO dao1 = new PenaltyDAO();
+//        HttpSession session = request.getSession();
+//        AddPenalty ap = (AddPenalty) session.getAttribute("user");
+//        String id = ap.getRuleName();
         try {
             id = Integer.parseInt(id_raw);
+            String accuse = request.getParameter("accuseID");
+            String room = request.getParameter("roomID");
+            String description = request.getParameter("description");
+            String rule = request.getParameter("ruleID");
+            String penStatus = request.getParameter("penStatus");
+
+            Date currentDate = new Date();
+            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            String penDate = formatter.format(currentDate);
             User rd = dao.getOwRenterDetail(id);
 
             request.setAttribute("detail", rd);
@@ -126,13 +134,10 @@ public class OwnerHistoryPenaltyController extends HttpServlet {
             int ruleID = Integer.parseInt(rule);
             boolean status = Boolean.parseBoolean(penStatus);
             dao1.addNewPenalty(id, accuseID, roomID, description, penDate, ruleID, status);
-            request.getRequestDispatcher("/Owner/OwnerHistoryPenalty.jsp").forward(request, response);
+            response.sendRedirect(request.getContextPath() + "/OwnerHistoryPenalty?id=" + id_raw);
         } catch (NumberFormatException e) {
-
+            response.sendRedirect(request.getContextPath() + "/OwnerHistoryPenalty?id=" + id_raw);
         }
-//        HttpSession session = request.getSession();
-//        AddPenalty ap = (AddPenalty) session.getAttribute("user");
-//        String id = ap.getRuleName();
 
     }
 

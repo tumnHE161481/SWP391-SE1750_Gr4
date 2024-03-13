@@ -29,8 +29,9 @@
         <link rel="stylesheet" href="<%=request.getContextPath()%>/CSS/tiny-slider.css">
         <link rel="stylesheet" href="<%=request.getContextPath()%>/CSS/aos.css">
         <link rel="stylesheet" href="<%=request.getContextPath()%>/CSS/style.css">
+        <link rel="stylesheet" href="./CSS/Usage.css"/>
 
-        <title>Room List</title>
+        <title> Electric usage </title>
     </head>
 
     <body>
@@ -73,7 +74,7 @@
             <div class="container">
                 <div class="row mb-5 align-items-center pt-5">
                     <div class="col-lg-6">
-                        <h2 class="font-weight-bold text-primary heading">View List Room</h2>
+                        <h2 class="font-weight-bold text-primary heading">Electric and water usage</h2>
                     </div>
                 </div>
 
@@ -91,7 +92,7 @@
                                 .product-card {
                                     height: 100%;
                                     width: 100%;
-                                    margin: 20px;
+
                                 }
 
                                 .product-card img {
@@ -114,71 +115,69 @@
                                     margin-top: 10px;
                                 }
                             </style>
-                            <c:set var="owroomdetail" value="${requestScope.detail}"></c:set>
-                            <c:forEach var="rod" items="${owroomdetail}">
-                                <div class="container">
-                                    <div class="card product-card">
-                                        <img src="${rod.roomImg}" class="card-img-top" alt="Room Image">
-                                        <div class="card-body">
-                                            <h5 class="card-title">Room ${rod.roomNumber} - ${rod.roomSize}</h5>
-                                            <p class="card-text"> At Floor: ${rod.roomFloor}</p>
-                                            <p class="card-text"></p>
-                                            <a href="#" class="btn btn-primary">View Room Bill History</a>
-                                            <a href="#" class="btn btn-info">See Room Fees</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="container mt-4">
-                                    <div class="d-flex justify-content-center">
-                                        <h3>Number items in that room</h3>
-                                    </div>
-                                    <div class="d-flex justify-content-center" style="margin-bottom: 40px"><small style="font-style: italic">(Yes - mean only 1)</small></div>
-                                    <div class="d-flex justify-content-around">
-                                        <div class="text-center">
-                                            <img src="./Image/airconditional.png" alt="Image 1" class="circular-image">
-                                            <div class="text-below">Have: 
-                                                <c:choose>
-                                                    <c:when test="${rod.item.airConditional}">
-                                                        <span style="color: green"> Yes &nbsp;</span>
-                                                    </c:when>
-                                                    <c:otherwise>
-                                                        <span style="color: red"> No &nbsp;</span>
-                                                    </c:otherwise>
-                                                </c:choose>
-                                            </div>
-                                        </div>
-                                        <div class="text-center">
-                                            <img src="./Image/bunk.jpg" alt="Image 2" class="circular-image">
-                                            <div class="text-below">Have: ${rod.item.bunk} item(s)</div>
-                                        </div>
-                                        <div class="text-center">
-                                            <img src="./Image/CeillingFan.jpg" alt="Image 3" class="circular-image">
-                                            <div class="text-below">
-                                                Have: 
-                                                <c:choose>
-                                                    <c:when test="${rod.item.ceilingFans}">
-                                                        <span style="color: green"> Yes &nbsp;</span>
-                                                    </c:when>
-                                                    <c:otherwise>
-                                                        <span style="color: red"> No &nbsp;</span>
-                                                    </c:otherwise>
-                                                </c:choose></div>
-                                        </div>
-                                        <div class="text-center">
-                                            <img src="./Image/singlebed.jpg" alt="Image 4" class="circular-image">
-                                            <div class="text-below">Have: ${rod.item.singleBed} item(s)</div>
-                                        </div>
-                                        <div class="text-center">
-                                            <img src="./Image/chair.jpg" alt="Image 5" class="circular-image">
-                                            <div class="text-below">Have: ${rod.item.chair} item(s)</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </c:forEach>
+
+                            <div class="table-wrapper">
+                                <table class="fl-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Header 1</th>
+                                            <th>Header 2</th>
+                                            <th>Header 3</th>
+                                            <th>Header 4</th>
+                                            <th>Header 5</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Content 1</td>
+                                            <td>Content 1</td>
+                                            <td>Content 1</td>
+                                            <td>Content 1</td>
+                                            <td>Content 1</td>
+                                        </tr>
+                                       
+                                    <tbody>
+                                </table>
+                            </div>
 
                             <style>
-                                tbody tr:nth-child(odd) {
-                                    background-color: #f9f9f9; /* Set background color for odd rows */
+
+                                body {
+                                }
+
+                                .form-control:focus {
+                                    box-shadow: none;
+                                }
+
+                                .profile-button {
+                                    box-shadow: none;
+                                    border: none
+                                }
+
+                                .profile-button:hover {
+                                }
+
+                                .profile-button:focus {
+                                    box-shadow: none
+                                }
+
+                                .profile-button:active {
+                                    box-shadow: none
+                                }
+
+                                .back:hover {
+                                    cursor: pointer
+                                }
+
+                                .labels {
+                                    font-size: 11px
+                                }
+
+                                .add-experience:hover {
+                                    background: #BA68C8;
+                                    color: #fff;
+                                    cursor: pointer;
+                                    border: solid 1px #BA68C8
                                 }
                             </style>
 

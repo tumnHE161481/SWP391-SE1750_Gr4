@@ -27,9 +27,9 @@
         <link rel="stylesheet" href="<%=request.getContextPath()%>/fonts/icomoon/style.css">
         <link rel="stylesheet" href="<%=request.getContextPath()%>/fonts/flaticon/font/flaticon.css">
 
-        <link rel="stylesheet" href="<%=request.getContextPath()%>/vcss/tiny-slider.css">
-        <link rel="stylesheet" href="<%=request.getContextPath()%>/vcss/aos.css">
-        <link rel="stylesheet" href="<%=request.getContextPath()%>/vcss/style.css">
+        <link rel="stylesheet" href="<%=request.getContextPath()%>/CSS/tiny-slider.css">
+        <link rel="stylesheet" href="<%=request.getContextPath()%>/CSS/aos.css">
+        <link rel="stylesheet" href="<%=request.getContextPath()%>/CSS/style.css">
 
         <title>Owner Home</title>
         <style>

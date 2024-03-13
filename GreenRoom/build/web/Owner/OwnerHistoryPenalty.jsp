@@ -31,6 +31,55 @@
         <link rel="stylesheet" href="<%=request.getContextPath()%>/CSS/style.css">
 
         <title>Renter List</title>
+        <style>
+            tbody tr:nth-child(odd) {
+                background-color: #f9f9f9;
+                /* Set background color for odd rows */
+            }
+            /* Style for user details container */
+            .user-details {
+                margin-bottom: 20px;
+            }
+
+            /* Style for input boxes */
+            .penalty_input {
+                margin-bottom: 15px;
+            }
+
+            .penalty_input .details {
+                display: inline-block;
+                width: 150px; /* Adjust width as needed */
+            }
+
+            .penalty_input input[type="text"],
+            .penalty_input textarea,
+            .penalty_input select {
+                width: calc(100% - 150px); /* Adjust width as needed */
+                padding: 8px;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+                box-sizing: border-box;
+                margin-left: 10px; /* Adjust margin as needed */
+                font-size: 16px;
+            }
+
+            /* Style for the submit button */
+            .profile-button {
+                background-color: #007bff;
+                color: #fff;
+                border: none;
+                padding: 10px 20px;
+                border-radius: 5px;
+                cursor: pointer;
+                font-size: 16px;
+            }
+
+            .profile-button:hover {
+                background-color: #0056b3;
+            }
+
+        </style>
+
     </head>
 
     <body>
@@ -74,33 +123,29 @@
                         <h2 class="font-weight-bold text-primary heading">History penalty</h2>
                     </div>
                 </div>
-                <div class="content">
-                    <c:set var="r" value="${requestScope.detail}"></c:set>
-                    <c:set var="id" value="${r.userID}"></c:set>
+                <c:set var="r" value="${requestScope.detail}"></c:set>
+                <c:set var="rp" value="${requestScope.reportName}"></c:set>
+                <c:set var="id" value="${r.userID}"></c:set>
 
-                        <form action="addPenalty" method="post">
+                    <div class="content">
+
+                        <form action="OwnerHistoryPenalty" method="post">
                             <div class="user-details">
-                                <div class="input-box">
+                                <div class="penalty_input">
                                     <span class="details">Report </span>
-                                    <input type="text" placeholder="" value="" name="reportID"  readonly>
-                                </div>
-                                <div class="input-box">
-                                    <span class="details">Accuse </span>
-                                    <input type="text" placeholder="" name="accuseID" required>
-                                </div>
-
-                                <div class="input-box d-none" >
-                                    <span class="details">Room ID</span>
-                                    <input type="text" placeholder="" name="roomID" value="${r.roomID}" required>
+                                    <input type="text" placeholder="" value="${rp.userName}" name="reportID"  readonly>
+                            </div>
+                            <div class="penalty_input">
+                                <span class="details">Accuse </span>
+                                <input type="text" placeholder="" name="accuseID" required>
                             </div>
 
+                            <div class="penalty_input d-none" >
+                                <span class="details">Room ID</span>
+                                <input type="text" placeholder="Enter name rooom" name="roomID" value="${r.roomID}" required>
+                            </div>
 
-                            <!--                            <div class="input-box">
-                                                            <span class="details">Pen Date</span>
-                                                            <input type="date" name="penDate" required>
-                                                        </div>-->
-
-                            <div class="input-box">
+                            <div class="penalty_input">
                                 <span class="details">Violation of Rule</span>
                                 <select name="ruleID" class="details" 
                                         required>
@@ -112,7 +157,7 @@
                                 </select>
                                 <!--                                 <input type="text" placeholder="" name="ruleID" required>-->
                             </div>
-                            <div class="input-box">
+                            <div class="penalty_input">
                                 <span class="details"> Status</span>
 
                                 <select  name="penStatus" class="details"
@@ -121,7 +166,7 @@
                                     <option value="true">Processed</option>
                                 </select>
                             </div>
-                            <div class="input-box">
+                            <div class="penalty_input">
                                 <span class="details">Description</span>
 
                                 <textarea type="text" placeholder="" name="description" required></textarea>
@@ -129,8 +174,8 @@
                         </div>
 
                         <h3  style="color: #FF0E0E; margin-bottom: 20px;">${message}</h3>
-                        <div class="col-md-12  text-center"><button class="btn btn-primary profile-button" type="button">Add Penalty</button></div>
-
+                        <input type="submit" value="Add" class="btn btn-success"/>
+                                                <a href="OwnerRenterDetail?id=${rp.userID}">Back</a>
                     </form>
                 </div>
                 <div class="header--title d-flex align-items-center">
@@ -156,24 +201,18 @@
                                 <thead>
                                     <tr>
                                         <th style="padding: 12px; text-align: left; background-color: #f2f2f2;">ID</th>
-                                        <!--                                        <th style="padding: 12px; text-align: left; background-color: #f2f2f2;">Report ID</th>  -->
-                                        <th style="padding: 12px; text-align: left; background-color: #f2f2f2;">Accuse </th> 
-                                        <!--                                        <th style="padding: 12px; text-align: left; background-color: #f2f2f2;">Room ID</th>-->
+                                        <th style="padding: 12px; text-align: left; background-color: #f2f2f2;">Accuse </th>                                        
                                         <th style="padding: 12px; text-align: left; background-color: #f2f2f2;">Description</th>                                        
                                         <th style="padding: 12px; text-align: left; background-color: #f2f2f2;">Score Change</th>                                               
                                         <th style="padding: 12px; text-align: left; background-color: #f2f2f2;">Rule Name</th>
                                         <th style="padding: 12px; text-align: left; background-color: #f2f2f2;">Status</th> 
-                                        <!--                                        <th style="padding: 12px; text-align: left; background-color: #f2f2f2;">Pen Status</th>-->
-
-
-
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <c:forEach var="ac" items="${OwnerHistoryPenalty}" varStatus="loop">
-                                      
-                                        <tr style="border-bottom: 1px solid #ddd; background-color: #f9f9f9;">
-                                            <td style="padding: 12px; text-align: left;">${loop.index + 1}</td>
+                                        <c:set var="sid" value="${ac.user.userID}"></c:set>
+                                            <tr style="border-bottom: 1px solid #ddd; background-color: #f9f9f9;">
+                                                <td style="padding: 12px; text-align: left;">${loop.index + 1}</td>
                                             <td style="padding: 12px; text-align: left;">${ac.user.userName}</td>
                                             <td style="padding: 12px; text-align: left;">${ac.description}</td>
                                             <td style="padding: 12px; text-align: left;">${ac.rule.scoreChange}</td>
@@ -192,71 +231,6 @@
                                     </c:forEach>
                                 </tbody>
                             </table>
-
-                            <style>
-                                tbody tr:nth-child(odd) {
-                                    background-color: #f9f9f9;
-                                    /* Set background color for odd rows */
-                                }
-                                /* Overall form styling */
-                                .user-details {
-                                    display: flex; /* Make form elements align horizontally */
-                                    flex-wrap: wrap; /* Allow elements to wrap on smaller screens */
-                                    margin: auto; /* Center the form horizontally */
-                                    width: 60%; /* Adjust width as needed */
-                                    padding: 20px;
-                                    border-radius: 5px;
-                                    background-color: #f5f5f5; /* Light background color */
-                                    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-                                }
-
-                                /* Input box styling */
-                                .input-box {
-                                    margin-bottom: 15px;
-                                    display: flex;
-                                    width: 100%; /* Make input boxes fill full width */
-                                }
-
-                                /* Label styling (using .details span) */
-                                .details span {
-                                    display: block;
-                                    width: 200px; /* Adjust label width as needed */
-                                    text-align: center; /* Align labels to the right */
-                                    margin-right: 10px;
-                                    font-weight: bold;
-                                    color: #333; /* Darker label text color */
-                                }
-                                .details{
-                                    width: 200px;
-                                }
-                                /* Input field styling */
-                                .input-box input,
-                                .input-box select , textarea{
-                                    width: 100%;
-                                    padding: 10px;
-                                    border: 1px solid #ccc;
-                                    border-radius: 3px;
-                                    font-size: 16px;
-                                }
-
-                                /* Input field focus styling */
-                                .input-box input:focus,
-                                .input-box select:focus {
-                                    outline: none;
-                                    border-color: #007bff; /* Blue border on focus */
-                                }
-
-                                /* Select element styling */
-                                .input-box select {
-                                    appearance: none; /* Remove default select styles */
-                                    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 4'><polygon points='1 2 2 1 3 2'></svg>"); /* Downward arrow indicator */
-                                    background-repeat: no-repeat;
-                                    background-position: right 10px center; /* Position indicator */
-                                    padding-right: 25px; /* Adjust padding to accommodate indicator */
-                                }
-
-                            </style>
-
 
 
                         </div>

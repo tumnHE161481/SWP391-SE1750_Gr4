@@ -3,12 +3,15 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package DAL;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import Models.Renter;
+import Models.Usage;
+
 /**
  *
  * @author ADMIN
@@ -44,7 +47,8 @@ public class RenterDAO extends MyDAO {
         }
         return list;
     }
-     public List<Renter> getOwnerRenterList() {
+
+    public List<Renter> getOwnerRenterList() {
         List<Renter> list = new ArrayList<>();
         String sql = "SELECT * FROM Renter";
         try {
@@ -59,6 +63,7 @@ public class RenterDAO extends MyDAO {
         }
         return list;
     }
+
     //Get Renter Update status
     public boolean updateRenter(int userID, int roomID, boolean newRenterStatus, boolean newRenterHaveRoom) {
         String sql = "UPDATE [renter] SET roomID = ?, renterStatus = ?, renterHaveRoom = ? WHERE userID = ?";
@@ -82,13 +87,36 @@ public class RenterDAO extends MyDAO {
         }
     }
 
+    public List<Usage> getUsageListById(int id) {
+        List<Usage> list = new ArrayList<>();
+        String sql = "SELECT  [usageID]\n"
+                + "      ,[roomID]\n"
+                + "      ,[electricNum]\n"
+                + "      ,[waterBlock]\n"
+                + "      ,[createAt]\n"
+                + "      ,[payAt]\n"
+                + "  FROM [GreenRoom].[dbo].[usage]\n"
+                + "  where roomID = ?";
+        try {
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, id);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                Usage u = new Usage(rs.getInt("usageID"), rs.getInt("roomID"), rs.getFloat("electricNum"),
+                        rs.getFloat("waterBlock"), rs.getString("createAt"), rs.getString("payAt"));
+                list.add(u);
+            }
+        } catch (SQLException e) {
+            System.out.println("Fail: " + e.getMessage());
+        }
+        return list;
+    }
+
     public static void main(String[] args) {
         RenterDAO dao = new RenterDAO();
         dao.updateRenter(1, 1, true, true);
-        List<Renter> list = dao.getRenterList(1);
-        for (Renter renter : list) {
-            System.out.println("userID:" + renter.getUserID());
-            System.out.println("ACC:" + renter.isRenterStatus());
+        List<Usage> list = dao.getUsageListById(1);
+        for (Usage usage : list) {
+            System.out.println("Usage id = "+ usage.getUsageID());
         }
-    }
-}
+}}
