@@ -34,8 +34,8 @@
         <title>List Customer</title>
         <style>
             .equal-size {
-                width: 100px;
-                height: 100px;
+                width: 150px;
+                height: 150px;
             }
         </style>
     </head>

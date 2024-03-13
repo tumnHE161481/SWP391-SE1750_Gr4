@@ -40,6 +40,20 @@
                 max-width: 100%;
                 height: auto;
             }
+
+            .btn-primary {
+                padding: 0.375rem 1.5rem;
+            }
+
+
+            .form-search .form-control {
+                flex: 1;
+            }
+
+
+            .mr-2 {
+                margin-right: 0.5rem !important;
+            }
         </style>
     </head>
 
@@ -86,12 +100,11 @@
         <div class="section">
             <div class="container">
                 <div class="row mb-5 align-items-center pt-5">
-                    <form action="sesearchroom" method ="post" class="narrow-w form-search d-flex align-items-stretch mb-3" data-aos="fade-up"
-                          data-aos-delay="200">
-                        <input value="${txtS}" name="txt" type="text" class="form-control px-4" placeholder="VD...101">
-                        <button type="submit" class="btn btn-primary">Search</button>
+                    <form action="sesearchroom" method="post" class="narrow-w form-search d-flex align-items-stretch mb-3" data-aos="fade-up" data-aos-delay="200">
+                        <input value="${txtS}" name="txt" type="text" class="form-control px-4 mr-2" placeholder="VD...101"> <!-- Thêm lớp mr-2 để tạo khoảng cách giữa input và nút Search -->
+                        <button type="submit" class="btn btn-primary px-4">Search</button> <!-- Thay đổi lớp và padding của nút Search -->
                     </form>
-                </div>
+                </div>  
                 <div class="row">
 
                     <div class="col-12">
