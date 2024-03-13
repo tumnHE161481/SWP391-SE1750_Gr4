@@ -55,7 +55,7 @@ public class LoginController extends HttpServlet {
                     break;
                     case 2: response.sendRedirect(request.getContextPath() + "/sehome");
                         break;
-                    case 3: response.sendRedirect("./Owner/OwHome.jsp");
+                    case 3: response.sendRedirect(request.getContextPath() + "/ownerhome");
                         break;
                     case 4:
                         response.sendRedirect(request.getContextPath() + "/managerenter");

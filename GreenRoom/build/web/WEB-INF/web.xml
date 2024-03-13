@@ -56,7 +56,15 @@
         <servlet-name>RenterHomeController</servlet-name>
         <servlet-class>Controller.RenterHomeController</servlet-class>
     </servlet>
-        <servlet-mapping>
+    <servlet>
+        <servlet-name>OwnerHomeControl</servlet-name>
+        <servlet-class>Controller.OwnerHomeControl</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>OwnerDetailNewsControl</servlet-name>
+        <servlet-class>Controller.OwnerDetailNewsControl</servlet-class>
+    </servlet>
+    <servlet-mapping>
         <servlet-name>RenterHomeController</servlet-name>
         <url-pattern>/renterhome</url-pattern>
     </servlet-mapping>
@@ -111,6 +119,14 @@
     <servlet-mapping>
         <servlet-name>SeLogOutControl</servlet-name>
         <url-pattern>/selogout</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>OwnerHomeControl</servlet-name>
+        <url-pattern>/ownerhome</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>OwnerDetailNewsControl</servlet-name>
+        <url-pattern>/ownerdetailnews</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -119,20 +119,22 @@
             .table-container td:nth-child(3) {
                 width: 10%; /* Adjust the width value as needed */
             }
-          .table-container .box-feature {
-    height: 100%; /* Đảm bảo chiều cao của các box-feature bằng nhau */
-    display: flex; /* Sử dụng flexbox */
-    flex-direction: column; /* Xếp các phần tử theo chiều dọc */
-}
+            .table-container .box-feature {
+                height: 100%; /* Đảm bảo chiều cao của các box-feature bằng nhau */
+                display: flex; /* Sử dụng flexbox */
+                flex-direction: column; /* Xếp các phần tử theo chiều dọc */
+            }
 
-.table-container .box-feature .content {
-    flex-grow: 1; /* Kích thước phần nội dung mở rộng để lấp đầy không gian còn lại */
-}
+            .table-container .box-feature .content {
+                flex-grow: 1; /* Kích thước phần nội dung mở rộng để lấp đầy không gian còn lại */
+            }
 
-.table-container .box-feature .buttons {
-    margin-top: auto; /* Đẩy nút xuống dưới cùng */
-}
-
+            .table-container .box-feature .buttons {
+                margin-top: auto; /* Đẩy nút xuống dưới cùng */
+            }
+            .large-icon {
+                font-size: 75px; /* Đặt kích thước biểu tượng tại đây */
+            }
         </style>
     </head>
 
@@ -183,42 +185,63 @@
             <div class="container">
                 <div class="row justify-content-center align-items-center">
                     <div class="col-lg-9 text-center">
-                        <h1 class="heading" data-aos="fade-up">Easiest way to find your dream home</h1>
-                        <form action="#" class="narrow-w form-search d-flex align-items-stretch mb-3" data-aos="fade-up" data-aos-delay="200">
-                            <input type="text" class="form-control px-4" placeholder="Your ZIP code or City. e.g. New York">
-                            <button type="submit" class="btn btn-primary">Search</button>
-                        </form>
+                        <h1 class="heading" data-aos="fade-up">Welcome GreenRoom</h1>
+
                     </div>
                 </div>
             </div>
         </div>
-        <div class="tabular--wrapper">
-            <h3 class="main--title">News</h3>
-            <div class="table-container">
-                <div class="section bg-light">
-                    <div class="container">
-                        <div class="row">
-                            <c:forEach items="${ListN}" var="n">
-                                <div class="col-6 col-lg-3" data-aos="fade-up" data-aos-delay="300">
-                                    <div class="box-feature mb-4">
-                                        <span class="flaticon-house mb-4 d-block"></span>
-                                        <h3 class="text-black mb-3 font-weight-bold">${n.creatAt}</h3>
-                                        <p class="text-black-50">${n.newTitle}</p>
-                                        <p>
-                                            <a href="newsdetail?nid=${n.newID}" class="learn-more">Read more</a>
-                                            <a href="sedeletenews?nid=${n.newID}" class="learn-more">Delete</a>
-                                        </p>
-                                    </div>
-                                </div>
-                            </c:forEach>
+        <div class="section sec-testimonials">
+            <div class="container">
+                <div class="row mb-5 align-items-center">
+                    <div class="col-md-6">
+                        <h2 class="font-weight-bold heading text-primary mb-4 mb-md-0">News</h2>
+                    </div>
+                    <div class="col-md-6 text-md-end">
+                        <div id="testimonial-nav">
+                            <span class="prev" data-controls="prev">Prev</span>
 
+                            <span class="next" data-controls="next">Next</span>
                         </div>
                     </div>
                 </div>
-                <a href="addnews"  value="" class="btn btn-primary">Add News</a>
+
+                <div class="row">
+                    <div class="col-lg-4">
+
+                    </div>
+                </div>
+                <div class="testimonial-slider-wrap">
+                    <div class="testimonial-slider">
+                        <c:forEach items="${ListN}" var="n">
+                            <div class="item">
+                                <div class="testimonial">
+                                    <span class="flaticon-house large-icon"></span>
+
+                                    <h3 class="h5 text-primary mb-4">${n.creatAt}</h3>
+                                    <blockquote>
+                                        <p>${n.newTitle}</p>
+                                    </blockquote>
+                                    <p class="text-black-50">
+                                        <a href="newsdetail?nid=${n.newID}" class="learn-more">Read more</a>
+                                        <a href="sedeletenews?nid=${n.newID}" class="learn-more">Delete</a>
+                                    </p>
+                                </div>
+                            </div>
+                        </c:forEach>
+
+
+                    </div>
+                    <a href="addnews"  value="" class="btn btn-primary">Add News</a>
+                </div>
+
             </div>
 
         </div>
+
+
+
+
         <div class="site-footer">
             <div class="container">
 
