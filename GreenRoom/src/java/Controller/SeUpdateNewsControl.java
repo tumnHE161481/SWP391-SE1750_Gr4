@@ -72,16 +72,24 @@ public class SeUpdateNewsControl extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html");
-        String id = request.getParameter("nid");
-        DAO dao = new DAO();
-        SeNews n = dao.getNewsById(id);
-        request.setAttribute("details", n);
-        request.setAttribute("id", id);
         HttpSession session = request.getSession();
         Account a = (Account) session.getAttribute("user");
-        int sid = a.getUserID();
+        if (a != null) {
+            String id = request.getParameter("nid");
+            DAO dao = new DAO();
+            SeNews n = dao.getNewsById(id);
+            request.setAttribute("details", n);
+            request.setAttribute("id", id);
 
-        request.getRequestDispatcher("Owner/OwnerEditNews.jsp").forward(request, response);
+            int sid = a.getUserID();
+
+            request.getRequestDispatcher("Owner/OwnerEditNews.jsp").forward(request, response);
+
+        } else {
+
+            response.sendRedirect("login.jsp");
+        }
+
     }
 
     /**

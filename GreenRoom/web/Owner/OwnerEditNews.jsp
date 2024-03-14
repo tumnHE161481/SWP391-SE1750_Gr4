@@ -83,12 +83,12 @@
             <div class="container">
                 <div class="row justify-content-center align-items-center">
                     <div class="col-lg-9 text-center mt-5">
-                        <h1 class="heading" data-aos="fade-up">Add News</h1>
+                        <h1 class="heading" data-aos="fade-up">Edit News</h1>
 
                         <nav aria-label="breadcrumb" data-aos="fade-up" data-aos-delay="200">
                             <ol class="breadcrumb text-center justify-content-center">
                                 <li class="breadcrumb-item "><a href="index.html">Home</a></li>
-                                <li class="breadcrumb-item active text-white-50" aria-current="page">Add News</li>
+                                <li class="breadcrumb-item active text-white-50" aria-current="page">Edit News</li>
                             </ol>
                         </nav>
                     </div>
@@ -112,16 +112,16 @@
 
                                 <div class="form-group">
                                     <label>Photo</label> <br/>
-                                    <input id="image" type="file" class="hidden" name="img" onchange="getImgUrl(event)">
+                                    <input id="image" type="file" class="hidden"  name="img" onchange="getImgUrl(event)">
 
 <!--                                    <input type="file" 
                                            class="form-control" name="img" value="${details.img}" placeholder="Enter photo">-->
                                 </div>
-
-                                <div class="mb-3">
-                                    <label for="content" class="form-label">Description:</label>
-                                    <textarea class="form-control" id="content" name="des" value="${details.description}" rows="4" required></textarea>
+                                 <div class="form-group" class="mb-3">
+                                    <label>Description</label>
+                                    <textarea name="description" class="form-control" required>${details.description}</textarea>
                                 </div>
+                               
                                 <div class="modal-footer">
                                     <input type ="hidden" name="nid" value="${param.nid}" ><!-- comment -->
                                     <input  type="submit" onclick="return confirm('Are you sure you want to edit news')" class="btn btn-success" value="Submit">
