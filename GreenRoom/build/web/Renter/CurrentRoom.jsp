@@ -117,9 +117,9 @@
                         <div class="property-slider-wrap">
                             <c:set var="cr" value="${requestScope.croom}"></c:set>
 
-                                <div class="container">
-                                    <div class="card product-card">
-                                        <img src="${cr.roomImg}" class="card-img-top" alt="${cr.roomImg}">
+                                <div class="container ">
+                                    <div class="card product-card ">
+                                        <img src="${cr.roomImg}" class="card-img-top  " alt="${cr.roomImg}" style="object-fit: cover">
                                     <div class="card-body">
                                         <h5 class="card-title">Room ${cr.roomNumber} - 
                                             <c:choose >
@@ -131,7 +131,16 @@
                                         </h5>
 
                                         <p class="card-text"> At Floor: ${cr.roomFloor}</p>
-                                        <p class="card-text"></p>
+                                        <%--<c:forEach var="cre" items="${crenter}" >--%>
+
+<!--                                            <c:choose >
+                                                <c:when test="${cre.roomSize == 1}"><p class="card-text"> Member ${total}/ 1</p> </c:when>
+                                                <c:when test="${cre.roomSize == 2}"><p class="card-text"> Member ${total}/ 2</p></c:when>
+                                                <c:otherwise><p class="card-text"> Member ${total}/ 4</p></c:otherwise>
+                                            </c:choose>  -->
+                                        <%--</c:forEach>--%>
+
+
                                         <a href="#" class="btn btn-primary">View Room Bill History</a>
                                         <a href="#" class="btn btn-info">See Room Fees</a>
                                     </div>

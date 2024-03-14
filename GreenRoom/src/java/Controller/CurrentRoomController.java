@@ -14,6 +14,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import java.util.List;
 
 /**
  *
@@ -68,6 +69,8 @@ public class CurrentRoomController extends HttpServlet {
         int roomID = user.getRoom().getRoomID();
         RoomDAO dao1 = new RoomDAO();
         Room room = dao1.getRoomDetail(roomID);
+        List<User> list = dao.getUserByRoomID(roomID);
+        request.setAttribute("crenter", list);
         request.setAttribute("croom", room);
         request.getRequestDispatcher("/Renter/CurrentRoom.jsp").forward(request, response);
 
