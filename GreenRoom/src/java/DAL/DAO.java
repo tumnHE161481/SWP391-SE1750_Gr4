@@ -145,12 +145,13 @@ public class DAO extends DBContext {
         DAO dao = new DAO();
         RoomDetailSe a = dao.getRoomById("2");
         System.out.println(a);
-    }
+    }       
 
     public List<SeNews> getAllNews() {
         List<SeNews> list = new ArrayList<>();
-        String query = "select *"
-                + "from  [dbo].[News] ";
+        String query = "SELECT *\n"
+                + "FROM [dbo].[News]\n"
+                + "ORDER BY creatAt DESC ";
         try {
             conn = connection;
             ps = conn.prepareStatement(query);
@@ -303,4 +304,5 @@ public class DAO extends DBContext {
         } catch (Exception e) {
         }
     }
+    
 }

@@ -224,7 +224,7 @@
                                     </blockquote>
                                     <p class="text-black-50">
                                         <a href="ownerdetailnews?nid=${n.newID}" class="learn-more">Read more</a>
-                                        <a href="sedeletenews?nid=${n.newID}" class="learn-more">Delete</a>
+                                        <a href="sedeletenews?nid=${n.newID}" onclick="return confirm('Are you sure you want to delete')" class="learn-more">Delete</a>
                                     </p>
                                 </div>
                             </div>

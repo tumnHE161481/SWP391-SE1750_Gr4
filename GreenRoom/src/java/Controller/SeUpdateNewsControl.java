@@ -15,6 +15,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import jakarta.servlet.http.Part;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalDateTime;
@@ -72,7 +73,7 @@ public class SeUpdateNewsControl extends HttpServlet {
         HttpSession session = request.getSession();
         Account a = (Account) session.getAttribute("user");
         int sid = a.getUserID();
-
+        
         request.getRequestDispatcher("Owner/OwnerEditNews.jsp").forward(request, response);
     }
 
@@ -88,23 +89,32 @@ public class SeUpdateNewsControl extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
-
+        
         String back = request.getParameter("back");
         int nid = Integer.parseInt(request.getParameter("nid"));
         String newTitle = request.getParameter("title");
         String description = request.getParameter("des");
+        Part part = request.getPart("img");
+        String realPath = request.getServletContext().getRealPath("/uploads");
+        String filename = Paths.get(part.getSubmittedFileName()).getFileName().toString();
+        if (!Files.exists(Paths.get(realPath))) {
+            Files.createDirectory(Paths.get(realPath));
+            
+        }
+        part.write(realPath + "/" + filename);
+        
         String img = request.getParameter("img");
         SeNews se = new SeNews();
         LocalDateTime currentDateTime = LocalDateTime.now();
         HttpSession session = request.getSession();
         Account a = (Account) session.getAttribute("user");
         int uid = a.getUserID();
-
+        
         DAO dao = new DAO();
         dao.updateNews(newTitle, description, img, currentDateTime, nid);
-
+        
         response.sendRedirect("ownerhome");
-
+        
     }
 
     /**

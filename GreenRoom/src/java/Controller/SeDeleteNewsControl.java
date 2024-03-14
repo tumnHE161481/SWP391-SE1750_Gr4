@@ -40,7 +40,7 @@ public class SeDeleteNewsControl extends HttpServlet {
         PrintWriter out = response.getWriter();
         out.println("<script>");
         out.println("alert('News deleted successfully');");
-        out.println("window.location.href = 'sehome';");
+        out.println("window.location.href = 'ownerhome';");
         out.println("</script>");
 
     }

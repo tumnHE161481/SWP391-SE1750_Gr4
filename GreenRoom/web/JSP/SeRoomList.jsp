@@ -80,7 +80,7 @@
                             <li><a href="seprofile">Profile</a></li>
                             <li><a href="selistcustomer">Renter</a></li>
                             <li><a href="Guide.html">Guide</a></li>
-                            <li><a href="News.html">Log Out</a></li>
+                            <li><a href="selogout">Log Out</a></li>
                         </ul>
 
                         <a href="#"
