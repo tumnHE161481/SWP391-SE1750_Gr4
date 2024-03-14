@@ -52,12 +52,12 @@
                         <a href="/Owner/OwRoomDetail.jsp" class="logo m-0 float-start">Green Room</a>
 
                         <ul class="js-clone-nav d-none d-lg-inline-block text-start site-menu float-end">
-                            <li class="active"><a href="/Owner/OwRoomDetail.jsp">Home</a></li>
-                            <li class="active"><a href="currentroom">Room</a></li>
+                            <li><a href="/Owner/OwRoomDetail.jsp">Home</a></li>
+                            <li><a href="currentroom">Room</a></li>
                             <li><a href="selistcustomer">Renter</a></li>
                             <li><a href="Guide.html">Guide</a></li>
                             <li><a href="News.html">News</a></li>
-                            <li><a href="News.html">Usage fee</a></li>
+                            <li class="active"><a href="RenterUsage" class="active">Electricity water usage </a></li>
                             <li><a href="News.html">Log Out</a></li>
                         </ul>
 
