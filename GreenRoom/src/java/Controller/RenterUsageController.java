@@ -5,7 +5,10 @@
 package Controller;
 
 import DAL.RenterDAO;
+import DAL.UserDAO;
 import Models.Usage;
+import Models.UsagePrice;
+import Models.User;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -13,6 +16,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import java.util.List;
 
 /**
@@ -60,11 +64,30 @@ public class RenterUsageController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        HttpSession session = request.getSession();
+        String userID = session.getAttribute("userID").toString();
+        int id = Integer.parseInt(userID);
         RenterDAO dao = new RenterDAO();
-        List<Usage> = dao.getUsageListById(1);
-        
-        request.getRequestDispatcher("/Renter/RenterUsage.jsp").forward(request, response);
+        UserDAO dao1 = new UserDAO();
+        User u = dao1.getRenterDetail(id);
+        int roomID = u.getRoom().getRoomID();
+        List<Usage> list = dao.getUsageListById(roomID);
+        request.setAttribute("usage", list);
+        UsagePrice up = dao1.getPrice();
+        double eprice = up.getElecprice();
+        double wprice = up.getWaterprice();
+        request.setAttribute("eprice", eprice);
+        request.setAttribute("wprice", wprice);
+        for (Usage usage : list) {
+            double totale = (eprice * usage.getElectricNum());
+            double totalw = (wprice * usage.getWaterBlock());
+            double total = totale + totalw;
+            request.setAttribute("totale", totale);
+            request.setAttribute("totalw", totalw);
+            request.setAttribute("total", total);
+        }
 
+        request.getRequestDispatcher("/Renter/RenterUsage.jsp").forward(request, response);
     }
 
     /**

@@ -76,7 +76,7 @@ public class LoginController extends HttpServlet {
                         session.setAttribute("renterID", user.getRenter().getRenterID());
                         session.setAttribute("userName", user.getUserName());
                         session.setAttribute("avatar", user.getUserAvatar());
-                        response.sendRedirect(request.getContextPath() + "/renterhome");
+                        response.sendRedirect(request.getContextPath() + "/RenterUsage");
                         break;
                     case 2:
                         response.sendRedirect(request.getContextPath() + "/sehome");

@@ -46,8 +46,7 @@ public class UserDAO extends MyDAO {
     }
 
     //List Renter information detail
-    public List<User> getRenterDetail(int id) {
-        List<User> list = new ArrayList<>();
+    public User getRenterDetail(int id) {
         String sql = "SELECT DISTINCT "
                 + "    u.userID, u.userName, u.userGender, u.userBirth, u.userAddress, u.userPhone, u.userAvatar, \n"
                 + "    r.renterID, r.roomID, r.renterStatus, r.renterHaveRoom, r.CGRScore, r.balance, "
@@ -90,14 +89,14 @@ public class UserDAO extends MyDAO {
                 Renter renter = new Renter(renterID, userId, roomID, renterStatus, renterHaveRoom, CGRScore, balance);
                 Room room = new Room(roomID, roomFloor, roomNumber, roomNumber, "");
                 User user = new User(userId, userName, userGender, userBirth, userAddress, userPhone, userAvatar, account, renter, room);
-                list.add(user);
+                return user;
             }
         } catch (SQLException e) {
             // Handle exception as needed
             System.out.println("Fail: " + e.getMessage());
 
         }
-        return list;
+        return null;
     }
 
     //List Security information detail
@@ -455,7 +454,7 @@ public class UserDAO extends MyDAO {
     }
 
     //Owner Renter Detail DAO
-        public User getOwRenterDetail(int id) {
+    public User getOwRenterDetail(int id) {
 
         String sql = "SELECT DISTINCT\n"
                 + "    u.userID,\n"
@@ -522,74 +521,31 @@ public class UserDAO extends MyDAO {
         return null;
     }
 
+    public UsagePrice getPrice() {
+        String sql = "SELECT  [Electric_Price]\n"
+                + "      ,[Water_Block_Price]\n"
+                + "  FROM [GreenRoom].[dbo].[Usage_Price]";
+        try {
+            ps = con.prepareStatement(sql);
+
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                UsagePrice up = new UsagePrice(rs.getDouble(1), rs.getDouble(2));
+                return up;
+
+            }
+        } catch (SQLException e) {
+            // Handle exception as needed
+            System.out.println("Fail: " + e.getMessage());
+
+        }
+        return null;
+    }
+
     public static void main(String[] args) {
         UserDAO dao = new UserDAO();
-//         List<User> list = dao.getUserList();
-//        for (User user : list) {
-//            System.out.println("User ID: " + user.getUserID());
-//            System.out.println("User Name: " + user.getUserName());
-//            System.out.println("User Gender: " + user.getUserGender());
-//            System.out.println("User Birth: " + user.getUserBirth());
-//            System.out.println("User Address: " + user.getUserAddress());
-//            System.out.println("User Phone: " + user.getUserPhone());
-//            System.out.println("User Avatar: " + user.getUserAvatar());
-//
-//            // Print information from Account
-//            System.out.println("User Mail: " + user.getAccount().getUserMail());
-//            System.out.println("User Password: " + user.getAccount().getUserPassword());
-//
-//            // Print information from Renter
-//            System.out.println("Renter ID: " + user.getRenter().getRenterID());
-//            System.out.println("Room ID: " + user.getRenter().getRoomID());
-//            System.out.println("Renter Status: " + user.getRenter().isRenterStatus());
-//            System.out.println("Renter Have Room: " + user.getRenter().isRenterHaveRoom());
-//
-//            // Print information from Room
-//            System.out.println("Room Floor: " + user.getRoom().getRoomFloor());
-//            System.out.println("Room Number: " + user.getRoom().getRoomNumber());
-//
-//            System.out.println("--------");
-//        }
-//         User user = dao.getRenterForEdit(1);
-//         System.out.println("ID: "+user.getUserID());
-//         System.out.println("Name: "+user.getUserName());
-//         System.out.println("Accout: "+user.getAccount().getUserMail());
-//         System.out.println("Room Number: "+user.getRoom().getRoomNumber());
-//         System.out.println("Renter Status: "+user.getRenter().isRenterHaveRoom());
-//    
-//        String search = "mai";
-//        int count = dao.countSearchResult(search);
-//        System.out.println("//Results find: "+ count);
-//        System.out.printf("%-10s%-20s%-30s%-30s%-15s\n", "UserID", "UserAvatar", "UserName", "UserMail", "userRole");
-//        List<User> list = dao.searchResult(search);
-//        for (User u : list) {
-//            System.out.printf("%-10s%-20s%-30s%-30s%-15s\n", u.getUserID(), u.getUserAvatar(), u.getUserName(), u.getAccount().getUserMail(), u.getAccount().getUserRole());
-//        }
-//        
-//        List<User> list1 = dao.manageAccount();
-//        for (User user : list1) {
-//            System.out.println("ID: " + user.getUserID());
-//            System.out.println("Img: " + user.getUserAvatar());
-//            System.out.println("Name: " + user.getUserName());
-//            System.out.println("Mail: " + user.getAccount().getUserMail());
-//            System.out.println("Role: " + user.getAccount().getUserRole());
-//        }
-
-//        List<User> list = dao.getUserByRoomID(2);
-//        for (User user : list) {
-//            System.out.println("ID: " + user.getUserID());
-//            System.out.println("Name: " + user.getUserName());
-//        }
-//        List<User> list = dao.getOwRenterList();
-//        for (User user : list) {
-//            System.out.println("mail: " + user.getAccount().getUserMail());
-//        }
-//         User user = dao.getOwRenterDetail(1);
-//        System.out.println("name" + user.getUserName());
-
-
-         
-
+        UsagePrice test = dao.getPrice();
+        System.out.println("electric" + test.getElecprice());
     }
 
 }

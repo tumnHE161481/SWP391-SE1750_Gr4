@@ -53,10 +53,11 @@
 
                         <ul class="js-clone-nav d-none d-lg-inline-block text-start site-menu float-end">
                             <li class="active"><a href="/Owner/OwRoomDetail.jsp">Home</a></li>
-                            <li class="active"><a href="listroom">Room</a></li>
+                            <li class="active"><a href="currentroom">Room</a></li>
                             <li><a href="selistcustomer">Renter</a></li>
                             <li><a href="Guide.html">Guide</a></li>
                             <li><a href="News.html">News</a></li>
+                            <li><a href="News.html">Usage fee</a></li>
                             <li><a href="News.html">Log Out</a></li>
                         </ul>
 
@@ -116,26 +117,56 @@
                                 }
                             </style>
 
-                            <div class="table-wrapper">
+                            <div class="table-wrapper p-5 my-5">
+                                <h1>  Current Usage Price </h1>
                                 <table class="fl-table">
+
                                     <thead>
                                         <tr>
-                                            <th>Header 1</th>
-                                            <th>Header 2</th>
-                                            <th>Header 3</th>
-                                            <th>Header 4</th>
-                                            <th>Header 5</th>
+
+                                            <th>Electric Number Price (VND/kWh)</th>
+                                            <th>Water Block Price (VND/m^3)</th>
+
                                         </tr>
                                     </thead>
                                     <tbody>
+
                                         <tr>
-                                            <td>Content 1</td>
-                                            <td>Content 1</td>
-                                            <td>Content 1</td>
-                                            <td>Content 1</td>
-                                            <td>Content 1</td>
+                                            <td>${eprice}(VND)</td>
+                                            <td>${wprice}(VND)</td>
+
                                         </tr>
-                                       
+                                    <tbody>
+                                </table>
+                                <h1>  History Use </h1>
+
+                                <table class="fl-table p-5 my-5">
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Electric Number</th>
+                                            <th>Total Electric price</th>
+                                            <th>Water Block</th>
+                                            <th>Total Water price</th>
+                                            <th>Total </th>
+                                            <th>Create At</th>
+                                            <th>Pay At</th>
+
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <c:forEach items="${usage}" var="us" varStatus="loop">
+                                            <tr>
+                                                <td>${loop.index + 1}</td>
+                                                <td>${us.electricNum}</td>
+                                                <td>${totale} (VND)</td>
+                                                <td>${us.waterBlock}</td>
+                                                <td>${totalw} (VND)</td>
+                                                <td>${total} (VND)</td>
+                                                <td>${us.createAt}</td>
+                                                <td>${us.payAt}</td>
+                                            </tr>
+                                        </c:forEach> 
                                     <tbody>
                                 </table>
                             </div>

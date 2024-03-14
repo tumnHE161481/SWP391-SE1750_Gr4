@@ -19,7 +19,7 @@ import java.util.List;
  *
  * @author yetvv.piacom
  */
-public class AccountDAO extends DBContext {
+public class AccountDAO extends MyDAO {
 
     public Account LoginAccount(String email, String password) {
         try {
@@ -66,7 +66,7 @@ public class AccountDAO extends DBContext {
         }
         return null;
     }
-    
+
     public List<User> getSecurity() {
         List<User> list = new ArrayList<>();
         String sql = "SELECT * FROM [GreenRoom].[dbo].[account] a join [dbo].[user] u ON a.userID = u.userID where userRole = 2";
@@ -185,4 +185,21 @@ public class AccountDAO extends DBContext {
         return 0;
     }
 
+    public int getUserRole(String mail, String password) {
+        String sql = "SELECT userRole FROM [Account] \n"
+                + "WHERE userMail = ? AND userPassword = ?";
+        try {
+            ps = con.prepareStatement(sql);
+            ps.setString(1, mail);
+            ps.setString(2, password);
+            rs = ps.executeQuery();
+
+            if (rs.next()) {
+                return rs.getInt("userRole");
+            }
+        } catch (SQLException e) {
+            System.out.println("Fail: " + e.getMessage());
+        }
+        return 0;
+    }
 }
