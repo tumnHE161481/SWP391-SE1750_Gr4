@@ -5,6 +5,7 @@
 package DAL;
 
 import Models.Account;
+import Models.Bill;
 import Models.Renter;
 import Models.Room;
 import java.sql.PreparedStatement;
@@ -13,6 +14,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import Models.User;
+import java.sql.Timestamp;
+import java.sql.Types;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -77,6 +80,37 @@ public class RenterDAO extends MyDAO {
             System.out.println("Fail: " + e.getMessage());
         }
         return list;
+    }
+
+    public List<Bill> getAllBillsByUserID(int userID) {
+        List<Bill> billList = new ArrayList<>();
+        String sql = "SELECT b.* FROM bill b "
+                + "INNER JOIN renter r ON b.roomID = r.roomID "
+                + "INNER JOIN account a ON r.userID = a.userID "
+                + "WHERE a.userID = ?";
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, userID);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Bill bill = new Bill();
+                bill.setBillID(rs.getInt("billID"));
+                bill.setRoomID(rs.getInt("roomID"));
+                bill.setService(rs.getDouble("service"));
+                bill.setElectric(rs.getDouble("electric"));
+                bill.setWater(rs.getDouble("water"));
+                bill.setRoomFee(rs.getDouble("roomFee"));
+                bill.setOther(rs.getDouble("other"));
+                bill.setPenMoney(rs.getDouble("penMoney"));
+                bill.setCreateAt(rs.getTimestamp("createAt"));
+                bill.setDeadline(rs.getTimestamp("deadline"));
+                bill.setPayAt(rs.getTimestamp("payAt"));
+                billList.add(bill);
+            }
+        } catch (SQLException e) {
+            System.out.println("Failed to retrieve bills: " + e.getMessage());
+        }
+        return billList;
     }
 
     public boolean changePassword(String account_input, String oldPassword, String newPassword) {
@@ -188,7 +222,7 @@ public class RenterDAO extends MyDAO {
     }
 
     public void updateUser(User u) {
-    String sql = "UPDATE [dbo].[user]\n"
+        String sql = "UPDATE [dbo].[user]\n"
                 + "SET [userName] = ?,\n"
                 + "    [userGender] = ?,\n"
                 + "    [userBirth] = ?,\n"
@@ -196,27 +230,102 @@ public class RenterDAO extends MyDAO {
                 + "    [userPhone] = ?,\n"
                 + "    [userAvatar] = ?\n"
                 + "WHERE [userID] = ?";
-    try {
-        PreparedStatement st = connection.prepareStatement(sql);
-        st.setString(1, u.getUserName());
-        st.setString(2, u.getUserGender());
-        st.setString(3, u.getUserBirth());
-        st.setString(4, u.getUserAddress());
-        st.setString(5, u.getUserPhone());
-        st.setString(6, u.getUserAvatar());
-        st.setInt(7, u.getUserID()); // Assuming userID is an int
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setString(1, u.getUserName());
+            st.setString(2, u.getUserGender());
+            st.setString(3, u.getUserBirth());
+            st.setString(4, u.getUserAddress());
+            st.setString(5, u.getUserPhone());
+            st.setString(6, u.getUserAvatar());
+            st.setInt(7, u.getUserID()); // Assuming userID is an int
 
-        st.executeUpdate();
-    } catch (SQLException e) {
-        e.printStackTrace(); // Handle the exception properly in your application
+            st.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace(); // Handle the exception properly in your application
+        }
     }
-}
-    
-    
-    
-    
-    
 
+    public List<Bill> getBillsByRenterID(int renterID) {
+        List<Bill> billList = new ArrayList<>();
+        String sql = "SELECT * FROM bill WHERE renterID = ?";
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, renterID);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Bill bill = new Bill();
+                bill.setBillID(rs.getInt("billID"));
+                bill.setRoomID(rs.getInt("roomID"));
+                bill.setService(rs.getDouble("service"));
+                bill.setElectric(rs.getDouble("electric"));
+                bill.setWater(rs.getDouble("water"));
+                bill.setRoomFee(rs.getDouble("roomFee"));
+                bill.setOther(rs.getDouble("other"));
+                bill.setPenMoney(rs.getDouble("penMoney"));
+                bill.setCreateAt(rs.getTimestamp("createAt"));
+                bill.setDeadline(rs.getTimestamp("deadline"));
+                bill.setPayAt(rs.getTimestamp("payAt"));
+                billList.add(bill);
+            }
+        } catch (SQLException e) {
+            System.out.println("Failed to retrieve bills: " + e.getMessage());
+        }
+        return billList;
+    }
 
+    public boolean updateBill(Bill bill) {
+        String sql = "UPDATE bill SET service = ?, electric = ?, water = ?, roomFee = ?, other = ?, penMoney = ?, createAt = ?, deadline = ?, payAt = ? WHERE billID = ?";
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setDouble(1, bill.getService());
+            ps.setDouble(2, bill.getElectric());
+            ps.setDouble(3, bill.getWater());
+            ps.setDouble(4, bill.getRoomFee());
+            ps.setDouble(5, bill.getOther());
+            ps.setDouble(6, bill.getPenMoney());
+            ps.setTimestamp(7, new Timestamp(bill.getCreateAt().getTime()));
+            ps.setTimestamp(8, new Timestamp(bill.getDeadline().getTime()));
+            if (bill.getPayAt() != null) {
+                ps.setTimestamp(9, new Timestamp(bill.getPayAt().getTime()));
+            } else {
+                ps.setNull(9, Types.TIMESTAMP);
+            }
+            ps.setInt(10, bill.getBillID());
+
+            int rowsUpdated = ps.executeUpdate();
+            return rowsUpdated > 0;
+        } catch (SQLException e) {
+            System.out.println("Failed to update bill: " + e.getMessage());
+            return false;
+        }
+    }
+
+    public Bill getBillByID(int billID) {
+        Bill bill = null;
+        String sql = "SELECT * FROM bill WHERE billID = ?";
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, billID);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                bill = new Bill();
+                bill.setBillID(rs.getInt("billID"));
+                bill.setRoomID(rs.getInt("roomID"));
+                bill.setService(rs.getDouble("service"));
+                bill.setElectric(rs.getDouble("electric"));
+                bill.setWater(rs.getDouble("water"));
+                bill.setRoomFee(rs.getDouble("roomFee"));
+                bill.setOther(rs.getDouble("other"));
+                bill.setPenMoney(rs.getDouble("penMoney"));
+                bill.setCreateAt(rs.getTimestamp("createAt"));
+                bill.setDeadline(rs.getTimestamp("deadline"));
+                bill.setPayAt(rs.getTimestamp("payAt"));
+            }
+        } catch (SQLException e) {
+            System.out.println("Failed to retrieve bill: " + e.getMessage());
+        }
+        return bill;
+    }
 
 }

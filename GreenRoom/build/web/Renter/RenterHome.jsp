@@ -155,13 +155,14 @@
                     <div class="site-navigation">
                         <a href="sehome" class="logo m-0 float-start">Green Room</a>
 
+                       
                         <ul class="js-clone-nav d-none d-lg-inline-block text-start site-menu float-end">
                             <li class="active"><a href="renterhome">Home</a></li>
                             <li class="active"><a href="renterhome">Room</a></li>
-                            <li><a href="renterhome">Profile</a></li>
-                            <li><a href="renterhome">Renter</a></li>
+                            <li><a href="bill-list">Payment</a></li>
+                            <li><a href="renterhome">Customer</a></li>
                             <li><a href="renterhome">Guide</a></li>
-                            <li><a href="renterhome">Log Out</a></li>
+                            <li><a href="renterhome">News</a></li>
                         </ul>
 
                         <a href="#" class="burger light me-auto float-end mt-1 site-menu-toggle js-menu-toggle d-inline-block d-lg-none" data-toggle="collapse" data-target="#main-navbar">

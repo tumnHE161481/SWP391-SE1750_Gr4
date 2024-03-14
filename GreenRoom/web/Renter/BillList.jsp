@@ -1,12 +1,23 @@
 <%-- 
-    Document   : SeHome
-    Created on : Jan 15, 2024, 2:57:49 PM
+    Document   : SeNews
+    Created on : Jan 18, 2024, 2:59:38 PM
     Author     : ASUS
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+<!-- /*
+* Template Name: Property
+* Template Author: Untree.co
+* Template URI: https://untree.co/
+* License: https://creativecommons.org/licenses/by/3.0/
+*/ -->
+<!-- /*
+* Template Name: Property
+* Template Author: Untree.co
+* Template URI: https://untree.co/
+* License: https://creativecommons.org/licenses/by/3.0/
+*/ -->
 <!doctype html>
 <html lang="en">
 
@@ -29,10 +40,100 @@
 
         <link rel="stylesheet" href="<%=request.getContextPath()%>/css/tiny-slider.css">
         <link rel="stylesheet" href="<%=request.getContextPath()%>/css/aos.css">
-        <link rel="stylesheet" href="<%=request.getContextPath()%>/css/style.css">
+        <link rel="stylesheet" href="<%=request.getContextPath()%>/css/style.css">  
 
-        <title>Security Home</title>
+        <title>Property &mdash; Free Bootstrap 5 Website Template by Untree.co</title>
+        <link rel="icon" href="home-guest/favicon.png">
         <style>
+            /*table*/
+            .tabular--wrapper{
+                background: #fff;
+                margin-top: 1rem;
+                border-radius: 10px;
+                padding: 2rem;
+            }
+
+            .table-container{
+                width: 100%;
+            }
+
+            table{
+                width: 100%;
+                border-collapse: collapse;
+            }
+
+            /*Chinh mau chu o hang dau*/
+            thead{
+                background: rgb(138, 110, 60, 000);
+                color: black;
+            }
+
+            th{
+                padding: 15px;
+                text-align: left;
+            }
+
+            tbody{
+                background: #f2f2f2;
+            }
+
+            td{
+                padding: 15px;
+                font-size: 14px;
+                color: #333;
+            }
+
+            tr:nth-child(even){
+                background: white;
+            }
+
+
+            tfoot{
+                background: rgba(113, 99, 186, 255);
+                font-weight: bold;
+                color: rgb(255, 255, 255);
+            }
+
+            tfoot td{
+                padding: 15px;
+            }
+
+            .table-container button{
+                color: green;
+                background: none;
+                cursor: pointer;
+
+            }
+
+            th{
+                padding: 15px;
+                background: none;
+                cursor: pointer;
+            }
+
+            .user-info {
+                display: flex;
+                flex-direction: column;
+                align-items: center; /* Center items horizontally */
+                text-align: center;  /* Center text within the container */
+                background-color: #f9f9f9; /* Background color */
+                border-radius: 10px; /* Optional: Add rounded corners */
+                box-shadow: 0 0 12px rgba(0, 0, 0, 0.1); /* Optional: Add box shadow */
+                padding: 20px; /* Optional: Add padding */
+                max-width: 600px; /* Optional: Set max-width */
+                margin: 20px auto; /* Center the container */
+            }
+            .user-info p {
+                font-size: 20px;  /* Increase paragraph font size */
+                color: green;     /* Change color to green */
+                margin-bottom: 12px;
+            }
+
+            @media (max-width: 768px) {
+                .renter-info {
+                    max-width: 100%;
+                }
+            }
             /*table*/
             .tabular--wrapper{
                 background: #fff;
@@ -132,12 +233,8 @@
             .table-container .box-feature .buttons {
                 margin-top: auto; /* Đẩy nút xuống dưới cùng */
             }
-            .large-icon {
-                font-size: 75px; /* Đặt kích thước biểu tượng tại đây */
-            }
         </style>
     </head>
-
     <body>
 
         <div class="site-mobile-menu site-navbar-target">
@@ -153,10 +250,9 @@
             <div class="container">
                 <div class="menu-bg-wrap">
                     <div class="site-navigation">
-                        <a href="sehome" class="logo m-0 float-start">Green Room</a>
+                        <a href="Homepage.html" class="logo m-0 float-start">Property</a>
 
-                       
-                        <ul class="js-clone-nav d-none d-lg-inline-block text-start site-menu float-end">
+                       <ul class="js-clone-nav d-none d-lg-inline-block text-start site-menu float-end">
                             <li class="active"><a href="renterhome">Home</a></li>
                             <li class="active"><a href="renterhome">Room</a></li>
                             <li><a href="bill-list">Payment</a></li>
@@ -165,7 +261,9 @@
                             <li><a href="renterhome">News</a></li>
                         </ul>
 
-                        <a href="#" class="burger light me-auto float-end mt-1 site-menu-toggle js-menu-toggle d-inline-block d-lg-none" data-toggle="collapse" data-target="#main-navbar">
+                        <a href="#"
+                           class="burger light me-auto float-end mt-1 site-menu-toggle js-menu-toggle d-inline-block d-lg-none"
+                           data-toggle="collapse" data-target="#main-navbar">
                             <span></span>
                         </a>
 
@@ -174,74 +272,57 @@
             </div>
         </nav>
 
-        <div class="hero">
 
-
-            <div class="hero-slide">
-                <div class="img overlay" style="background-image: url('<%=request.getContextPath()%>/images/hero_bg_3.jpg')"></div>
-                <div class="img overlay" style="background-image: url('<%=request.getContextPath()%>/images/hero_bg_2.jpg')"></div>
-                <div class="img overlay" style="background-image: url('<%=request.getContextPath()%>/images/hero_bg_1.jpg')"></div>
-            </div>
-
-            <div class="container">
-                <div class="row justify-content-center align-items-center">
-                    <div class="col-lg-9 text-center">
-                        <h1 class="heading" data-aos="fade-up">Welcome GreenRoom</h1>
-
-                    </div>
-                </div>
+        <div class="PaddingMenu" style="background-image: url(''); height: 100px; padding: 40px;">
+            <!-- Content of PaddingMenu -->
+        </div>
+        <!-- Content section -->
+        <!--        <div class="personal-info">
+        <%-- Iterate over the list of users --%>
+        <c:forEach items="${listBill}" var="bill">
+            <div class="info-container" >
+            <%-- First div with general user information on the left --%>
+            <div class="user-info">
+                <h3>ID: ${bill.billID}</h3>
+                <p>Total: ${bill.total}</p>
+                <p>Deadline ${bill.deadline}</p>
+                <p>Room: ${bill.roomID}</p>
             </div>
         </div>
-        <div class="section sec-testimonials">
-            <div class="container">
-                <div class="row mb-5 align-items-center">
-                    <div class="col-md-6">
-                        <h2 class="font-weight-bold heading text-primary mb-4 mb-md-0">News</h2>
-                    </div>
-                    <div class="col-md-6 text-md-end">
-                        <div id="testimonial-nav">
-                            <span class="prev" data-controls="prev">Prev</span>
+        </c:forEach>
+    </div>-->
 
-                            <span class="next" data-controls="next">Next</span>
+        <!-- News section -->
+        <div class="tabular--wrapper">
+            <div class="table-container">
+                <div class="section bg-light">
+                    <div class="container">
+                        <div class="row">
+                            <c:forEach items="${listBill}" var="bill">
+                                <c:if test="${bill.payAt eq null}">
+                                    <div class="col-6 col-lg-3" data-aos="fade-up" data-aos-delay="300">
+                                        <div class="box-feature mb-4">
+                                            <span class="flaticon-house mb-4 d-block"></span>
+                                            <h3 class="text-black mb-3 font-weight-bold">ID: ${bill.billID}</h3>
+                                            <p class="text-black-50">Wat ${bill.total}</p>
+                                            <p class="text-black-50">Total: ${bill.total}</p>
+                                            <p class="text-black-50">Deadline ${bill.deadline}</p>
+                                            <p class="text-black-50">Room: ${bill.roomID}</p>
+                                            <p>
+                                                <a href="payment?id=${bill.billID}" class="learn-more">Pay</a>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </c:if>
+                            </c:forEach>
+
                         </div>
                     </div>
                 </div>
 
-                <div class="row">
-                    <div class="col-lg-4">
-
-                    </div>
-                </div>
-                <div class="testimonial-slider-wrap">
-                    <div class="testimonial-slider">
-                        <c:forEach items="${ListN}" var="n">
-                            <div class="item">
-                                <div class="testimonial">
-                                    <span class="flaticon-house large-icon"></span>
-
-                                    <h3 class="h5 text-primary mb-4">${n.creatAt}</h3>
-                                    <blockquote>
-                                        <p>${n.newTitle}</p>
-                                    </blockquote>
-                                    <p class="text-black-50">
-                                        <a href="newsdetail?nid=${n.newID}" class="learn-more">Read more</a>
-                    
-                                    </p>
-                                </div>
-                            </div>
-                        </c:forEach>
-
-
-                    </div>
-                    
-                </div>
-
             </div>
 
         </div>
-
-
-
 
         <div class="site-footer">
             <div class="container">
@@ -307,16 +388,12 @@
                 </div>
                 <!-- /.row -->
 
-                <div class="row mt-5">
-                    <div class="col-12 text-center">
 
-                    </div>
-                </div>
             </div>
             <!-- /.container -->
         </div>
         <!-- /.site-footer -->
-        
+
 
         <!-- Preloader -->
         <div id="overlayer"></div>
