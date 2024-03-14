@@ -17,7 +17,7 @@ public class Penalty {
     private String description;
     private String penDate;
     private int ruleID;
-    private int penStatus;
+    private boolean penStatus;
 
     private Rule rule;
     private User user;
@@ -34,7 +34,7 @@ public class Penalty {
         this.rule = rule;
     }
 
-    public Penalty(int penID, int reportID, int accuseID, int roomID, String description, String penDate, int ruleID, int penStatus, Rule rule, User user, Renter renter) {
+    public Penalty(int penID, int reportID, int accuseID, int roomID, String description, String penDate, int ruleID, boolean penStatus, Rule rule, User user, Renter renter) {
         this.penID = penID;
         this.reportID = reportID;
         this.accuseID = accuseID;
@@ -64,7 +64,7 @@ public class Penalty {
         this.renter = renter;
     }
 
-    public Penalty(int reportID, int accuseID, int roomID, String description, String penDate, int ruleID, int penStatus) {
+    public Penalty(int reportID, int accuseID, int roomID, String description, String penDate, int ruleID, boolean penStatus) {
         this.reportID = reportID;
         this.accuseID = accuseID;
         this.roomID = roomID;
@@ -74,7 +74,7 @@ public class Penalty {
         this.penStatus = penStatus;
     }
 
-    public Penalty(int penID, int reportID, int accuseID, int roomID, String description, String penDate, int ruleID, int penStatus, Rule rule) {
+    public Penalty(int penID, int reportID, int accuseID, int roomID, String description, String penDate, int ruleID, boolean penStatus, Rule rule) {
         this.penID = penID;
         this.reportID = reportID;
         this.accuseID = accuseID;
@@ -86,7 +86,7 @@ public class Penalty {
         this.rule = rule;
     }
 
-    public Penalty(int penID, int reportID, int accuseID, String description, String penDate, int penStatus) {
+    public Penalty(int penID, int reportID, int accuseID, String description, String penDate, boolean penStatus) {
         this.penID = penID;
         this.reportID = reportID;
         this.accuseID = accuseID;
@@ -95,7 +95,7 @@ public class Penalty {
         this.penStatus = penStatus;
     }
 
-    public Penalty(int penID, int reportID, int accuseID, int roomID, String description, String penDate, int ruleID, int penStatus) {
+    public Penalty(int penID, int reportID, int accuseID, int roomID, String description, String penDate, int ruleID, boolean penStatus) {
         this.penID = penID;
         this.reportID = reportID;
         this.accuseID = accuseID;
@@ -162,11 +162,11 @@ public class Penalty {
         this.ruleID = ruleID;
     }
 
-    public int getPenStatus() {
+    public boolean getPenStatus() {
         return penStatus;
     }
 
-    public void setPenStatus(int penStatus) {
+    public void setPenStatus(boolean penStatus) {
         this.penStatus = penStatus;
     }
 

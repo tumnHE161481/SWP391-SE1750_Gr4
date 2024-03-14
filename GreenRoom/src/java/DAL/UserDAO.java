@@ -1,4 +1,4 @@
-    /*
+/*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
@@ -527,11 +527,34 @@ public class UserDAO extends MyDAO {
                 + "  FROM [GreenRoom].[dbo].[Usage_Price]";
         try {
             ps = con.prepareStatement(sql);
-
             rs = ps.executeQuery();
             while (rs.next()) {
                 UsagePrice up = new UsagePrice(rs.getDouble(1), rs.getDouble(2));
                 return up;
+
+            }
+        } catch (SQLException e) {
+            // Handle exception as needed
+            System.out.println("Fail: " + e.getMessage());
+
+        }
+        return null;
+    }
+
+    public User getAccuse(String userName) {
+        String sql = "SELECT r.renterID, u.userName\n"
+                + "FROM [GreenRoom].[dbo].[renter] AS r\n"
+                + "JOIN [GreenRoom].[dbo].[user] AS u ON r.userID = u.userID\n"
+                + "WHERE u.userName = N?;";
+        try {
+            ps = con.prepareStatement(sql);
+            ps.setString(1, userName);
+
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                Renter re= new Renter(rs.getInt(1));
+                User u = new User( rs.getString(userName), re);
+                return u;
 
             }
         } catch (SQLException e) {

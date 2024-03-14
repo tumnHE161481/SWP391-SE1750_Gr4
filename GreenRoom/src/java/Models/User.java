@@ -24,6 +24,11 @@ public class User{
     public User() {
     }
 
+    public User( String userName, Renter renter) {
+        this.userName = userName;
+        this.renter = renter;
+    }
+
     public User(int userID, String userName, String userGender, String userBirth, String userAddress, String userPhone, String userAvatar, Account account, Renter renter, Room room) {
         this.userID = userID;
         this.userName = userName;

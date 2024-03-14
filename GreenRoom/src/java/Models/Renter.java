@@ -21,6 +21,10 @@ public class Renter {
     public Renter() {
     }
 
+    public Renter(int renterID) {
+        this.renterID = renterID;
+    }
+
     public Renter(int renterID, int userID, int roomID, boolean renterStatus, boolean renterHaveRoom, int CGRScore, double balance) {
         this.renterID = renterID;
         this.userID = userID;

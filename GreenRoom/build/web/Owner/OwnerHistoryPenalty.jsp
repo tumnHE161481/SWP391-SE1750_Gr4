@@ -128,7 +128,6 @@
                 <c:set var="id" value="${r.userID}"></c:set>
 
                     <div class="content">
-
                         <form action="OwnerHistoryPenalty" method="post">
                             <div class="user-details">
                                 <div class="penalty_input">
@@ -137,7 +136,7 @@
                             </div>
                             <div class="penalty_input">
                                 <span class="details">Accuse </span>
-                                <input type="text" placeholder="" name="accuseID" required>
+                                <input type="text" placeholder="" name="accuseID" value="" required >
                             </div>
 
                             <div class="penalty_input d-none" >
@@ -174,159 +173,112 @@
                         </div>
 
                         <h3  style="color: #FF0E0E; margin-bottom: 20px;">${message}</h3>
-                        <input type="submit" value="Add" class="btn btn-success"/>
-                                                <a href="OwnerRenterDetail?id=${rp.userID}">Back</a>
-                    </form>
-                </div>
-                <div class="header--title d-flex align-items-center">
-                    <c:forEach var="owner" items="${OwnerImage}">
-                        <img src="${owner.userAvatar}" alt="owner" style="height: 65px !important; width: 65px !important; margin-right: 20px" />
-                        <div>
-                            <span>Owner: ${owner.userName}</span>
-                        </div>
-                    </c:forEach>
-                </div>
+                        <button type="submit" value="Add" class="btn btn-success">Add</button>
+                        <button class="btn btn-success " type="button">   <a href="ownerpenaltylist?id=${rp.userID}"> Penalty List</a>
+                            <button class="btn btn-success " type="button">  <a href="OwnerRenterDetail?id=${rp.userID}">Back</a>
 
-                <div class="row">
-
-                    <div class="col-12">
-
-
-                        <div class="property-slider-wrap">
-
-
-
-
-                            <table style="width: 100%; border-collapse: collapse; margin-top: 20px;">
-                                <thead>
-                                    <tr>
-                                        <th style="padding: 12px; text-align: left; background-color: #f2f2f2;">ID</th>
-                                        <th style="padding: 12px; text-align: left; background-color: #f2f2f2;">Accuse </th>                                        
-                                        <th style="padding: 12px; text-align: left; background-color: #f2f2f2;">Description</th>                                        
-                                        <th style="padding: 12px; text-align: left; background-color: #f2f2f2;">Score Change</th>                                               
-                                        <th style="padding: 12px; text-align: left; background-color: #f2f2f2;">Rule Name</th>
-                                        <th style="padding: 12px; text-align: left; background-color: #f2f2f2;">Status</th> 
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <c:forEach var="ac" items="${OwnerHistoryPenalty}" varStatus="loop">
-                                        <c:set var="sid" value="${ac.user.userID}"></c:set>
-                                            <tr style="border-bottom: 1px solid #ddd; background-color: #f9f9f9;">
-                                                <td style="padding: 12px; text-align: left;">${loop.index + 1}</td>
-                                            <td style="padding: 12px; text-align: left;">${ac.user.userName}</td>
-                                            <td style="padding: 12px; text-align: left;">${ac.description}</td>
-                                            <td style="padding: 12px; text-align: left;">${ac.rule.scoreChange}</td>
-                                            <td style="padding: 12px; text-align: left; ">${ac.rule.ruleName}</td>
-                                            <td style="padding: 12px; text-align: left;">
-                                                <c:choose>
-                                                    <c:when test="${ac.penStatus}">
-                                                        <div value="true">Processed</div>
-                                                    </c:when>
-                                                    <c:otherwise> 
-                                                        <div value="false" selected="selected">Unprocessed</div>
-                                                    </c:otherwise>
-                                                </c:choose></td>
-                                        </tr>
-                                        <!-- Additional rows can follow the same pattern -->
+                                </form>
+                                </div>
+                                <div class="header--title d-flex align-items-center">
+                                    <c:forEach var="owner" items="${OwnerImage}">
+                                        <img src="${owner.userAvatar}" alt="owner" style="height: 65px !important; width: 65px !important; margin-right: 20px" />
+                                        <div>
+                                            <span>Owner: ${owner.userName}</span>
+                                        </div>
                                     </c:forEach>
-                                </tbody>
-                            </table>
+                                </div>
 
 
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
+                                </div>
+                                </div>
 
 
-        <div class="site-footer">
-            <div class="container">
+                                <div class="site-footer">
+                                    <div class="container">
 
-                <div class="row">
-                    <div class="col-lg-4">
-                        <div class="widget">
-                            <h3>Contact</h3>
-                            <address>43 Raymouth Rd. Baltemoer, London 3910</address>
-                            <ul class="list-unstyled links">
-                                <li><a href="tel://11234567890">+1(123)-456-7890</a></li>
-                                <li><a href="tel://11234567890">+1(123)-456-7890</a></li>
-                                <li><a href="mailto:info@mydomain.com">info@mydomain.com</a></li>
-                            </ul>
-                        </div>
-                        <!-- /.widget -->
-                    </div>
-                    <!-- /.col-lg-4 -->
-                    <div class="col-lg-4">
-                        <div class="widget">
-                            <h3>Sources</h3>
-                            <ul class="list-unstyled float-start links">
-                                <li><a href="#">About us</a></li>
-                                <li><a href="#">Services</a></li>
-                                <li><a href="#">Vision</a></li>
-                                <li><a href="#">Mission</a></li>
-                                <li><a href="#">Terms</a></li>
-                                <li><a href="#">Privacy</a></li>
-                            </ul>
-                            <ul class="list-unstyled float-start links">
-                                <li><a href="#">Partners</a></li>
-                                <li><a href="#">Business</a></li>
-                                <li><a href="#">Careers</a></li>
-                                <li><a href="#">Blog</a></li>
-                                <li><a href="#">FAQ</a></li>
-                                <li><a href="#">Creative</a></li>
-                            </ul>
-                        </div>
-                        <!-- /.widget -->
-                    </div>
-                    <!-- /.col-lg-4 -->
-                    <div class="col-lg-4">
-                        <div class="widget">
-                            <h3>Links</h3>
-                            <ul class="list-unstyled links">
-                                <li><a href="#">Our Vision</a></li>
-                                <li><a href="#">About us</a></li>
-                                <li><a href="#">Contact us</a></li>
-                            </ul>
+                                        <div class="row">
+                                            <div class="col-lg-4">
+                                                <div class="widget">
+                                                    <h3>Contact</h3>
+                                                    <address>43 Raymouth Rd. Baltemoer, London 3910</address>
+                                                    <ul class="list-unstyled links">
+                                                        <li><a href="tel://11234567890">+1(123)-456-7890</a></li>
+                                                        <li><a href="tel://11234567890">+1(123)-456-7890</a></li>
+                                                        <li><a href="mailto:info@mydomain.com">info@mydomain.com</a></li>
+                                                    </ul>
+                                                </div>
+                                                <!-- /.widget -->
+                                            </div>
+                                            <!-- /.col-lg-4 -->
+                                            <div class="col-lg-4">
+                                                <div class="widget">
+                                                    <h3>Sources</h3>
+                                                    <ul class="list-unstyled float-start links">
+                                                        <li><a href="#">About us</a></li>
+                                                        <li><a href="#">Services</a></li>
+                                                        <li><a href="#">Vision</a></li>
+                                                        <li><a href="#">Mission</a></li>
+                                                        <li><a href="#">Terms</a></li>
+                                                        <li><a href="#">Privacy</a></li>
+                                                    </ul>
+                                                    <ul class="list-unstyled float-start links">
+                                                        <li><a href="#">Partners</a></li>
+                                                        <li><a href="#">Business</a></li>
+                                                        <li><a href="#">Careers</a></li>
+                                                        <li><a href="#">Blog</a></li>
+                                                        <li><a href="#">FAQ</a></li>
+                                                        <li><a href="#">Creative</a></li>
+                                                    </ul>
+                                                </div>
+                                                <!-- /.widget -->
+                                            </div>
+                                            <!-- /.col-lg-4 -->
+                                            <div class="col-lg-4">
+                                                <div class="widget">
+                                                    <h3>Links</h3>
+                                                    <ul class="list-unstyled links">
+                                                        <li><a href="#">Our Vision</a></li>
+                                                        <li><a href="#">About us</a></li>
+                                                        <li><a href="#">Contact us</a></li>
+                                                    </ul>
 
-                            <ul class="list-unstyled social">
-                                <li><a href="#"><span class="icon-instagram"></span></a></li>
-                                <li><a href="#"><span class="icon-twitter"></span></a></li>
-                                <li><a href="#"><span class="icon-facebook"></span></a></li>
-                                <li><a href="#"><span class="icon-linkedin"></span></a></li>
-                                <li><a href="#"><span class="icon-pinterest"></span></a></li>
-                                <li><a href="#"><span class="icon-dribbble"></span></a></li>
-                            </ul>
-                        </div>
-                        <!-- /.widget -->
-                    </div>
-                    <!-- /.col-lg-4 -->
-                </div>
-                <!-- /.row -->
-
-
-            </div>
-            <!-- /.container -->
-        </div>
-        <!-- /.site-footer -->
+                                                    <ul class="list-unstyled social">
+                                                        <li><a href="#"><span class="icon-instagram"></span></a></li>
+                                                        <li><a href="#"><span class="icon-twitter"></span></a></li>
+                                                        <li><a href="#"><span class="icon-facebook"></span></a></li>
+                                                        <li><a href="#"><span class="icon-linkedin"></span></a></li>
+                                                        <li><a href="#"><span class="icon-pinterest"></span></a></li>
+                                                        <li><a href="#"><span class="icon-dribbble"></span></a></li>
+                                                    </ul>
+                                                </div>
+                                                <!-- /.widget -->
+                                            </div>
+                                            <!-- /.col-lg-4 -->
+                                        </div>
+                                        <!-- /.row -->
 
 
-        <!-- Preloader -->
-        <div id="overlayer"></div>
-        <div class="loader">
-            <div class="spinner-border" role="status">
-                <span class="visually-hidden">Loading...</span>
-            </div>
-        </div>
+                                    </div>
+                                    <!-- /.container -->
+                                </div>
+                                <!-- /.site-footer -->
 
 
-        <script src="<%=request.getContextPath()%>/js/bootstrap.bundle.min.js"></script>
-        <script src="<%=request.getContextPath()%>/js/tiny-slider.js"></script>
-        <script src="<%=request.getContextPath()%>/js/aos.js"></script>
-        <script src="<%=request.getContextPath()%>/js/navbar.js"></script>
-        <script src="<%=request.getContextPath()%>/js/counter.js"></script>
-        <script src="<%=request.getContextPath()%>/js/custom.js"></script>
-    </body>
+                                <!-- Preloader -->
+                                <div id="overlayer"></div>
+                                <div class="loader">
+                                    <div class="spinner-border" role="status">
+                                        <span class="visually-hidden">Loading...</span>
+                                    </div>
+                                </div>
 
-</html>
+
+                                <script src="<%=request.getContextPath()%>/js/bootstrap.bundle.min.js"></script>
+                                <script src="<%=request.getContextPath()%>/js/tiny-slider.js"></script>
+                                <script src="<%=request.getContextPath()%>/js/aos.js"></script>
+                                <script src="<%=request.getContextPath()%>/js/navbar.js"></script>
+                                <script src="<%=request.getContextPath()%>/js/counter.js"></script>
+                                <script src="<%=request.getContextPath()%>/js/custom.js"></script>
+                                </body>
+
+                                </html>

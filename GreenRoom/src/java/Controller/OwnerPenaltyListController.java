@@ -4,8 +4,11 @@
  */
 package Controller;
 
-import DAL.*;
-import Models.*;
+import DAL.PenaltyDAO;
+import DAL.UserDAO;
+import Models.Penalty;
+import Models.Rule;
+import Models.User;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -13,17 +16,14 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
 import java.util.List;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 /**
  *
  * @author ADMIN
  */
-@WebServlet(name = "OwnerHistoryPenaltyController", urlPatterns = {"/OwnerHistoryPenalty"})
-public class OwnerHistoryPenaltyController extends HttpServlet {
+@WebServlet(name = "OwnerPenaltyList", urlPatterns = {"/ownerpenaltylist"})
+public class OwnerPenaltyListController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -42,10 +42,10 @@ public class OwnerHistoryPenaltyController extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet OwnerHistoryPenalty</title>");
+            out.println("<title>Servlet OwnerPenaltyList</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet OwnerHistoryPenalty at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet OwnerPenaltyList at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -63,21 +63,18 @@ public class OwnerHistoryPenaltyController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+
         String id_raw = request.getParameter("id");
         int id = Integer.parseInt(id_raw);
+        request.setAttribute("id", id);
+
         PenaltyDAO dao = new PenaltyDAO();
-        UserDAO dao1 = new UserDAO();
-        // Retrieve history penalties
-        User rd = dao1.getOwRenterDetail(id);
-        request.setAttribute("reportName", rd);
-    
 
-        // Retrieve list of rules
-        List<Rule> list1 = dao.listRule();
-        request.setAttribute("ruleName", list1);
+        List<Penalty> list = dao.historyPenalty(id);
+        request.setAttribute("OwnerHistoryPenalty", list);
 
-        // Forward the request and response to the JSP page
-        request.getRequestDispatcher("/Owner/OwnerHistoryPenalty.jsp").forward(request, response);
+        request.getRequestDispatcher("/Owner/OwnerPenaltyList.jsp").forward(request, response);
+
     }
 
     /**
@@ -91,40 +88,6 @@ public class OwnerHistoryPenaltyController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.setCharacterEncoding("UTF-8");
-        String id_raw = request.getParameter("id");
-
-        int id;
-        UserDAO dao = new UserDAO();
-        PenaltyDAO dao1 = new PenaltyDAO();
-//        HttpSession session = request.getSession();
-//        AddPenalty ap = (AddPenalty) session.getAttribute("user");
-//        String id = ap.getRuleName();
-        try {
-            id = Integer.parseInt(id_raw);
-            String accuse = request.getParameter("accuseID");
-            User name = dao.getAccuse(accuse);
-            int accuseID = name.getRenter().getRenterID();
-           
-            String room = request.getParameter("roomID");
-            String description = request.getParameter("description");
-            String rule = request.getParameter("ruleID");
-            String penStatus = request.getParameter("penStatus");
-
-            Date currentDate = new Date();
-            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-            String penDate = formatter.format(currentDate);
-            User rd = dao.getOwRenterDetail(id);
-
-            request.setAttribute("detail", rd);
-            int roomID = Integer.parseInt(room);
-            int ruleID = Integer.parseInt(rule);
-            boolean status = Boolean.parseBoolean(penStatus);
-            dao1.addNewPenalty(id, accuseID, roomID, description, penDate, ruleID, status);
-            response.sendRedirect(request.getContextPath() + "/ownerpenaltylist?id=" + id_raw);
-        } catch (NumberFormatException e) {
-            response.sendRedirect(request.getContextPath() + "/OwnerHistoryPenalty?id=" + id_raw);
-        }
 
     }
 

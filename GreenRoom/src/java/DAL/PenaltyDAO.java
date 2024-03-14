@@ -96,7 +96,7 @@ public class PenaltyDAO extends MyDAO {
                         rs.getString("description"),
                         rs.getString("penDate"),
                         rs.getInt("ruleID"),
-                        rs.getInt("penStatus"),
+                        rs.getBoolean("penStatus"),
                         rule,
                         user,
                         renter

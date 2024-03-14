@@ -18,7 +18,7 @@ import jakarta.servlet.http.HttpServletResponse;
  * @author ADMIN
  */
 @WebServlet(name="OwnerEditPenalty", urlPatterns={"/OwnerEditPenalty"})
-public class OwnerEditPenalty extends HttpServlet {
+public class OwnerEditPenaltyController extends HttpServlet {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
