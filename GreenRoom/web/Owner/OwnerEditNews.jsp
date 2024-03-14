@@ -103,7 +103,7 @@
                     <div class="card">
                         <div class="card-body">
                             <h1 class="card-title">Edit News</h1>
-                            <form action="seupdatenews" method="post">
+                            <form action="seupdatenews" method="post"  enctype="multipart/form-data">
 
                                 <div class="mb-3">
                                     <label for="title" class="form-label">Title:</label>
@@ -112,9 +112,10 @@
 
                                 <div class="form-group">
                                     <label>Photo</label> <br/>
+                                    <input id="image" type="file" class="hidden" name="img" onchange="getImgUrl(event)">
 
-                                    <input type="file" 
-                                           class="form-control" name="img" value="${details.img}" placeholder="Enter photo">
+<!--                                    <input type="file" 
+                                           class="form-control" name="img" value="${details.img}" placeholder="Enter photo">-->
                                 </div>
 
                                 <div class="mb-3">
@@ -131,6 +132,22 @@
                 </div>
             </div>
         </div>
+
+        <script>
+            function getImgUrl(e) {
+                const input = e.target;
+                const previewImg = document.getElementById('previewImg');
+                if (input.files && input.files[0]) {
+                    const reader = new FileReader();
+
+                    reader.onload = function (e) {
+                        previewImg.src = e.target.result;
+                    };
+
+                    reader.readAsDataURL(input.files[0]);
+                }
+            }
+        </script>
 
 
         <script src="<%=request.getContextPath()%>/js/bootstrap.bundle.min.js"></script>

@@ -286,14 +286,15 @@ public class DAO extends DBContext {
     public void updateNews(String newTitle, String description,
             String img, LocalDateTime creatAt, int sid) {
         String query = "update [dbo].[news]\n"
-                + "set [newTitle] = ?,\n"
-                + "[description] = ?,\n"
-                + "[img] = ?,\n"
-                + "[creatAt] = ?\n"
+                + "set [newTitle] = ? , \n"
+                + "[description] = ? , \n"
+                + "[img] = ? , \n"
+                + "[creatAt] = ? \n"
                 + "where newID = ?";
         try {
             conn = connection;
             ps = conn.prepareStatement(query);
+
             ps.setString(1, newTitle);
             ps.setString(2, description);
             ps.setString(3, img);
@@ -302,6 +303,7 @@ public class DAO extends DBContext {
 
             ps.executeUpdate(); //khong tra ve bang result nen phai dung excute update
         } catch (Exception e) {
+            System.out.println(e);
         }
     }
 }

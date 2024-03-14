@@ -10,20 +10,27 @@ import Models.SeNews;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import jakarta.servlet.http.Part;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 /**
  *
  * @author ASUS
  */
+@MultipartConfig
 public class SeUpdateNewsControl extends HttpServlet {
 
     /**
@@ -73,7 +80,7 @@ public class SeUpdateNewsControl extends HttpServlet {
         HttpSession session = request.getSession();
         Account a = (Account) session.getAttribute("user");
         int sid = a.getUserID();
-        
+
         request.getRequestDispatcher("Owner/OwnerEditNews.jsp").forward(request, response);
     }
 
@@ -89,32 +96,81 @@ public class SeUpdateNewsControl extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
-        
+        HttpSession session = request.getSession();
+        Account a = (Account) session.getAttribute("user");
+
         String back = request.getParameter("back");
         int nid = Integer.parseInt(request.getParameter("nid"));
         String newTitle = request.getParameter("title");
         String description = request.getParameter("des");
-        Part part = request.getPart("img");
-        String realPath = request.getServletContext().getRealPath("/uploads");
-        String filename = Paths.get(part.getSubmittedFileName()).getFileName().toString();
-        if (!Files.exists(Paths.get(realPath))) {
-            Files.createDirectory(Paths.get(realPath));
-            
+
+        // Get the file part from the request
+        Part filePart = request.getPart("img");
+
+        // check img file
+        if (filePart.getSize() > 0 && !isImageFile(filePart)) {
+            request.setAttribute("error", "Please input file image");
+            request.getRequestDispatcher(
+                    "/view/pages/mentee/mentee_profile.jsp"
+            ).forward(request, response);
+            return;
         }
-        part.write(realPath + "/" + filename);
-        
-        String img = request.getParameter("img");
+// Get the filename
+        String fileName = getSubmittedFileName(filePart);
+        String filePath = null;
+
+        if (fileName.length() > 0) {
+            String uploadDirPath = getServletContext().getRealPath("") + File.separator + "img";
+            File uploadDir = new File(uploadDirPath);
+
+            if (!uploadDir.exists()) {
+                if (!uploadDir.mkdirs()) {
+                    throw new IOException("Failed to create directory: " + uploadDir.getAbsolutePath());
+                }
+            }
+
+            // Construct the file path relative to the web application's directory
+            filePath = "./img/" + fileName;
+
+            try ( InputStream input = filePart.getInputStream();  OutputStream output = new FileOutputStream(uploadDirPath + File.separator + fileName)) {
+                int read;
+                byte[] buffer = new byte[1024];
+                while ((read = input.read(buffer)) != -1) {
+                    output.write(buffer, 0, read);
+                }
+            } catch (IOException e) {
+                e.printStackTrace(); // Handle the exception properly, log it, or rethrow it
+            }
+        }
+
+// Now you can save filePath to the database
         SeNews se = new SeNews();
         LocalDateTime currentDateTime = LocalDateTime.now();
-        HttpSession session = request.getSession();
-        Account a = (Account) session.getAttribute("user");
         int uid = a.getUserID();
-        
+
         DAO dao = new DAO();
-        dao.updateNews(newTitle, description, img, currentDateTime, nid);
-        
+        filePath = filePath.replace("\\\\", "\\");
+        System.out.println("file path: " + filePath);
+        dao.updateNews(newTitle, description, filePath, currentDateTime, nid);
+
         response.sendRedirect("ownerhome");
-        
+
+    }
+
+    private String getSubmittedFileName(Part part) {
+        String header = part.getHeader("content-disposition");
+        String[] elements = header.split(";");
+        for (String element : elements) {
+            if (element.trim().startsWith("filename")) {
+                return element.substring(element.indexOf('=') + 1).trim().replace("\"", "");
+            }
+        }
+        return "";
+    }
+
+    private boolean isImageFile(Part part) {
+        String contentType = part.getContentType();
+        return contentType != null && contentType.startsWith("image");
     }
 
     /**
