@@ -145,7 +145,7 @@ public class DAO extends DBContext {
         DAO dao = new DAO();
         RoomDetailSe a = dao.getRoomById("2");
         System.out.println(a);
-    }       
+    }
 
     public List<SeNews> getAllNews() {
         List<SeNews> list = new ArrayList<>();
@@ -304,5 +304,4 @@ public class DAO extends DBContext {
         } catch (Exception e) {
         }
     }
-    
 }

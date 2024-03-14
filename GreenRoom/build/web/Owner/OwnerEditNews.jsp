@@ -123,7 +123,7 @@
                                 </div>
                                 <div class="modal-footer">
                                     <input type ="hidden" name="nid" value="${param.nid}" ><!-- comment -->
-                                    <input  type="submit" class="btn btn-success" value="Submit">
+                                    <input  type="submit" onclick="return confirm('Are you sure you want to edit news')" class="btn btn-success" value="Submit">
                                 </div>
                             </form>
                         </div>
