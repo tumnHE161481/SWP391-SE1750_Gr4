@@ -52,8 +52,8 @@
 
                         <ul class="js-clone-nav d-none d-lg-inline-block text-start site-menu float-end">
                             <li class="active"><a href="/Owner/OwHome.jsp">Home</a></li>
-                            <li class="active"><a href="listroom">Room</a></li>
-                            <li class="active"><a href="OwnerRenterList">Renter</a></li>
+                            <li class="active"><a href="owroomlist">Room</a></li>
+                            <li class="active"><a href="currentroom">Renter</a></li>
                             <li><a href="Guide.html">Guide</a></li>
                             <li><a href="News.html">News</a></li>
                             <li><a href="News.html">Log Out</a></li>

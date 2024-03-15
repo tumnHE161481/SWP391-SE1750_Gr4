@@ -42,7 +42,7 @@
             }
 
             .product-card img {
-                max-height: fit-content;
+/*                max-height: fit-content;*/
                 object-fit: cover;
             }
 
@@ -117,10 +117,10 @@
                         <div class="property-slider-wrap">
                             <c:set var="cr" value="${requestScope.croom}"></c:set>
 
-                                <div class="container ">
-                                    <div class="card product-card ">
-                                        <img src="${cr.roomImg}" class="card-img-top  " alt="${cr.roomImg}" style="object-fit: cover">
-                                    <div class="card-body">
+                                <div class="container row">
+                                    <div class="card product-card col-lg-6">
+                                        <img src="${cr.roomImg}" class="card-img-top w-50 text-center" alt="${cr.roomImg}" style="object-fit: cover">
+                                    <div class="card-body  col-lg-6">
                                         <h5 class="card-title">Room ${cr.roomNumber} - 
                                             <c:choose >
                                                 <c:when test="${cr.roomSize == 1}">Small Size </c:when>

@@ -119,7 +119,7 @@
 
                             <div class="table-wrapper p-5 my-5">
                                 <h1>  Current Usage Price </h1>
-                                <table class="fl-table">
+                                <table class="fl-table p-5 my-5">
 
                                     <thead>
                                         <tr>
