@@ -521,6 +521,7 @@ public class UserDAO extends MyDAO {
         return null;
     }
 
+    //Usage price
     public UsagePrice getPrice() {
         String sql = "SELECT  [Electric_Price]\n"
                 + "      ,[Water_Block_Price]\n"
@@ -541,6 +542,7 @@ public class UserDAO extends MyDAO {
         return null;
     }
 
+    //Add Penalty
     public User getAccuse(String userName) {
         String sql = "SELECT r.renterID, u.userName\n"
                 + "FROM [GreenRoom].[dbo].[renter] AS r\n"
@@ -552,8 +554,8 @@ public class UserDAO extends MyDAO {
 
             rs = ps.executeQuery();
             while (rs.next()) {
-                Renter re= new Renter(rs.getInt(1));
-                User u = new User( rs.getString(userName), re);
+                Renter re = new Renter(rs.getInt(1));
+                User u = new User(rs.getString(userName), re);
                 return u;
 
             }

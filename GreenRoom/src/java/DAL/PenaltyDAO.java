@@ -145,6 +145,7 @@ public class PenaltyDAO extends MyDAO {
         }
     }
 
+   //Add penalty
     public List<Rule> listRule() {
         List<Rule> list = new ArrayList<>();
         String sql = "SELECT  [ruleID]\n"

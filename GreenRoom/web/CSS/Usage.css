@@ -11,7 +11,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
 
 .usage_title{
     text-align: center;
-    font-size: 22px;
+    font-size: 18px;
     text-transform: uppercase;
     letter-spacing: 1px;
     color: white;
@@ -44,7 +44,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
 
 .fl-table td {
     border-right: 1px solid #f8f8f8;
-    font-size: 18px;
+    font-size: 12px;
 }
 
 .fl-table thead th {
@@ -99,7 +99,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
         overflow-x: hidden;
         overflow-y: auto;
         width: 120px;
-        font-size: 20px;
+        font-size: 13px;
         text-overflow: ellipsis;
     }
     .fl-table thead th {
