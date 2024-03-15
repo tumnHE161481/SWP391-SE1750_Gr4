@@ -173,143 +173,74 @@
             </div>
         </div>
 
-
-       	<section class="ftco-section">
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-md-12">
-                        <div class="wrapper">
-                            <div class="row no-gutters">
-                                <div class="col-12 order-md-last d-flex align-items-stretch">
-                                    <div class="contact-wrap w-100 p-md-5 p-4">
-                                        <section class="ftco-section">
-                                            <div class="container">
-                                                <div class="row justify-content-center">
-                                                    <div class="col-md-6 text-center mb-5">
-                                                        <h2 class="heading-section">Your Request(s)</h2>
-                                                    </div>
-                                                </div>
-                                                <c:set var="rd" value="${requestScope.billDetail}"></c:set>
-                                                    <div class="row justify-content-center">
-                                                        <div class="col-md-12">
-                                                            <div class="wrapper">
-                                                                <div class="row no-gutters">
-                                                                    <div class="col-12 order-md-last d-flex align-items-stretch">
-                                                                        <div class="container">
-                                                                            <div class="row">
-                                                                                <div class="col-12">
-
-                                                                                    <div class="row">
-                                                                                        <div class="col-xs-6 col-sm-6 col-md-6">
-                                                                                            <address>
-                                                                                                <strong>Elf Cafe</strong>
-                                                                                                <br>
-                                                                                                2135 Sunset Blvd
-                                                                                                <br>
-                                                                                                Los Angeles, CA 90026
-                                                                                                <br>
-                                                                                                <abbr title="Phone">P:</abbr> (213) 484-6829
-                                                                                            </address>
-                                                                                        </div>
-                                                                                        <div class="col-xs-6 col-sm-6 col-md-6 text-right">
-                                                                                            <p>
-                                                                                                <em>Date: ${rd.createAt}</em>
-                                                                                            </p>
-                                                                                            <p>
-                                                                                                <em>Receipt #: 34522677W</em>
-                                                                                            </p>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                    <div class="row">
-                                                                                        <div class="text-center">
-                                                                                            <h1>Receipt</h1>
-                                                                                        </div>
-                                                                                        </span>
-                                                                                        <table class="table table-hover">
-                                                                                            <thead>
-                                                                                                <tr>
-                                                                                                    <th>Fee Type</th>
-                                                                                                    <th class="text-center">Pay(VND)</th>
-                                                                                                </tr>
-                                                                                            </thead>
-                                                                                            <tbody>
-                                                                                                <tr>
-                                                                                                    <td class="col-md-9"><em>Room Fee</em></h4></td>
-                                                                                                    <td class="col-md-1 text-center">${rd.roomFree} VND</td>
-                                                                                                </tr>
-                                                                                                <tr>
-                                                                                                    <td class="col-md-9"><em>Service</em></h4></td>
-                                                                                                    <td class="col-md-1 text-center">${rd.service} VND</td>
-                                                                                                </tr>
-                                                                                                <tr>
-                                                                                                    <td class="col-md-9"><em>Electric usage Bill</em></h4></td>
-                                                                                                    <td class="col-md-1 text-center">${rd.electric} VND</td>
-                                                                                                </tr>
-                                                                                                <tr>
-                                                                                                    <td class="col-md-9"><em>Water usage Bill</em></h4></td>
-                                                                                                    <td class="col-md-1 text-center">${rd.water}</td>
-                                                                                                </tr>
-                                                                                                <tr>
-
-                                                                                                    <td class="text-right">
-                                                                                                        <p>
-                                                                                                            <strong>Other: </strong>
-                                                                                                        </p>
-                                                                                                        <p>
-                                                                                                            <strong>Penalty Money: </strong>
-                                                                                                        </p></td>
-                                                                                                    <td class="text-center">
-                                                                                                        <p>
-                                                                                                            <strong>$6.94</strong>
-                                                                                                        </p>
-                                                                                                        <p>
-                                                                                                            <strong>$6.94</strong>
-                                                                                                        </p></td>
-                                                                                                </tr>
-                                                                                                <tr>
-                                                                                                    <td>   </td>
-                                                                                                    <td>   </td>
-                                                                                                    <td class="text-right"><h4><strong>Total: </strong></h4></td>
-                                                                                                    <td class="text-center text-danger"><h4><strong>$31.53</strong></h4></td>
-                                                                                                </tr>
-                                                                                            </tbody>
-                                                                                        </table>
-                                                                                        <button type="button" class="btn btn-success btn-lg btn-block">
-                                                                                            Pay Now   <span class="glyphicon glyphicon-chevron-right"></span>
-                                                                                        </button></td>
-                                                                                    </div>
-
-                                                                                </div>
-                                                                            </div>
-
-
-                                                                            <div class="row" style="margin-top:50px ">
-                                                                                <div class="col-md-12">
-                                                                                    <div class="form-group d-flex justify-content-center">
-                                                                                        <a style="padding: 10px 20px; font-size: 18px" href="manageroom" class="btn btn-danger"><i class="fa-solid fa-chevron-left"></i>&nbsp;Back To List</a>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-
-                                                                        </div>
-                                                                    </div>
-
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </section>
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
+        <c:set var="bl" value="${billDetail}"></c:set>
+       	<div class="container rounded bg-white">
+            <div class="row d-flex justify-content-center pb-5">
+                <div class="col-sm-3 col-md-4 offset-md-1 mobile">
+                    <div class="py-4 d-flex justify-content-end">
+                        <h6><a href="#"> Return to List</a></h6>
+                    </div>
+                    <div class="bg-light rounded d-flex flex-column">
+                        <div class="p-2 ml-3"><h4>Bill Recap</h4></div>
+                        <div class="p-2 d-flex">
+                            <div class="col-8">Room Fee</div>
+                            <div class="ml-auto">${bl.roomFee} VND</div>
+                        </div>
+                        <div class="p-2 d-flex">
+                            <div class="col-8">Electric Bill</div>
+                            <div class="ml-auto">${bl.electric} VND</div>
+                        </div>
+                        <div class="p-2 d-flex">
+                            <div class="col-8">Water Bill</div>
+                            <div class="ml-auto">${bl.water} VND</div>
+                        </div>
+                        <div class="p-2 d-flex">
+                            <div class="col-8">Service</div>
+                            <div class="ml-auto">${bl.service} VND</div>
+                        </div>
+                        <div class="border-top px-4 mx-3">
+                        </div>
+                        <div class="p-2 d-flex pt-3">
+                            <div class="col-8">Penalty Money</div>
+                            <div class="ml-auto">${bl.penMoney} VND</div>
+                        </div>
+                        <div class="p-2 d-flex">
+                            <div class="col-8">Other Pay</div>
+                            <div class="ml-auto">${bl.other} VND</div>
+                        </div>
+                        <div class="border-top px-4 mx-3"></div>
+                        <div class="p-2 d-flex pt-3">
+                            <div class="col-8"><b>Total</b></div>
+                            <div class="ml-auto"><b class="green">${bl.roomFee + bl.electric + bl.water + bl.service + bl.penMoney + bl.other} VND</b></div>
                         </div>
                     </div>
-                </div>
-            </section>
-            <!--        <script>
+                </div>    
+                <div class="col-sm-5 col-md-5 ml-1">
+                    <div class="py-4 d-flex flex-row">
+                        <h5><span style="color: #005555" class="fa fa-check-square-o"></span><b style="color: #005555">GREENROOM</b> | </h5><span class="pl-2">Pay</span>
+                    </div>
+                    <h4 class="green">$85.00</h4>
+                    <h4>Diabetes Pump & Supplies</h4>
+                    <div class="d-flex pt-2">
+                        <div><p><b>Insurance Responsibility.</b><span class="green">$71.76</span></p></div>
+                        <div class="ml-auto"><p class="text-primary"><i class="fa fa-plus-circle text-primary"></i>Add insurance card</p></div>
+                    </div>
+                    <p>Insurance claims and all necessary dependencies will be submitted to your insurer for the coverred portion of this order</p>
+                    <div class="rounded bg-light d-flex">
+                        <div class="p-2">Aetna-Open Access</div>
+                        <div class="ml-auto p-2">OAP</div>
+                    </div>
+                    <hr>
+                    <div class="pt-2">
+                        <div class="d-flex">
+                            <div><p><b>Patient Balance.</b><span class="green">$13.24</span></p></div>
+                            <div class="ml-auto p-2"><p class="text-primary"><i class="fa fa-plus-circle text-primary"></i>Add payment card</p></div>
+                        </div>
+                    </div>
+                </div>    
+            </div>
+        </div>
+        <!--        <script>
         <c:set var="succ" value="${requestScope.success}"></c:set>
         <c:set var="err" value="${requestScope.error}"></c:set>
         var successMessage = "${succ}";

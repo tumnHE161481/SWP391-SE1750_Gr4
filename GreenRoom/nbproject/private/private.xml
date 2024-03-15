@@ -3,15 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/ASUS/OneDrive/Desktop/Documents/GitHub/SWP391-SE1750_Gr4/GreenRoom/web/Renter/requesthistory.jsp</file>
-            <file>file:/C:/Users/ASUS/OneDrive/Desktop/Documents/GitHub/SWP391-SE1750_Gr4/GreenRoom/src/java/Controller/ManageRenterDetail.java</file>
-            <file>file:/C:/Users/ASUS/OneDrive/Desktop/Documents/GitHub/SWP391-SE1750_Gr4/GreenRoom/src/java/Controller/ManageAccountController.java</file>
-            <file>file:/C:/Users/ASUS/OneDrive/Desktop/Documents/GitHub/SWP391-SE1750_Gr4/GreenRoom/src/java/Controller/Test.java</file>
-            <file>file:/C:/Users/ASUS/OneDrive/Desktop/Documents/GitHub/SWP391-SE1750_Gr4/GreenRoom/src/java/Filter/UserAuthorizationFilter.java</file>
-            <file>file:/C:/Users/ASUS/OneDrive/Desktop/Documents/GitHub/SWP391-SE1750_Gr4/GreenRoom/src/java/DAL/UserDAO.java</file>
-            <file>file:/C:/Users/ASUS/OneDrive/Desktop/Documents/GitHub/SWP391-SE1750_Gr4/GreenRoom/src/java/Controller/RenterHomeController.java</file>
-            <file>file:/C:/Users/ASUS/OneDrive/Desktop/Documents/GitHub/SWP391-SE1750_Gr4/GreenRoom/src/java/DAL/RequestDAO.java</file>
-            <file>file:/C:/Users/ASUS/OneDrive/Desktop/Documents/GitHub/SWP391-SE1750_Gr4/GreenRoom/src/java/Controller/RenterRequestHistoryController.java</file>
+            <file>file:/C:/Users/ASUS/OneDrive/Desktop/Documents/GitHub/SWP391-SE1750_Gr4/GreenRoom/web/Owner/roomfeedetail.jsp</file>
+            <file>file:/C:/Users/ASUS/OneDrive/Desktop/Documents/GitHub/SWP391-SE1750_Gr4/GreenRoom/src/java/Controller/RoomFeeDetailController.java</file>
+            <file>file:/C:/Users/ASUS/OneDrive/Desktop/Documents/GitHub/SWP391-SE1750_Gr4/GreenRoom/src/java/Controller/AddRoomFee.java</file>
         </group>
     </open-files>
 </project-private>

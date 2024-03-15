@@ -17,6 +17,14 @@
         <servlet-class>Controller.ListTaskControl</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>AddRoomFee</servlet-name>
+        <servlet-class>Controller.AddRoomFee</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EditRoomFee</servlet-name>
+        <servlet-class>Controller.EditRoomFee</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>AddTaskControl</servlet-name>
         <servlet-class>Controller.AddTaskControl</servlet-class>
     </servlet>
@@ -135,6 +143,10 @@
     <servlet-mapping>
         <servlet-name>RoomFeeDetailController</servlet-name>
         <url-pattern>/roomfeedetail</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EditRoomFee</servlet-name>
+        <url-pattern>/editroomfee</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -4,6 +4,9 @@
  */
 package Controller;
 
+import DAL.*;
+import Models.Room;
+import Models.UsagePrice;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -11,6 +14,10 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 
 /**
  *
@@ -36,7 +43,7 @@ public class AddRoomFee extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet AddRoomFee</title>");            
+            out.println("<title>Servlet AddRoomFee</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet AddRoomFee at " + request.getContextPath() + "</h1>");
@@ -57,7 +64,20 @@ public class AddRoomFee extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        String id_raw = request.getParameter("id");
+        int id = Integer.parseInt(id_raw);
+        HttpSession session = request.getSession();
+        session.setAttribute("roomID", id);
+        RoomDAO dao = new RoomDAO();
+        Room room = dao.getRoomDetail(id);
+        request.setAttribute("room", room);
+        BillDAO dao1 = new BillDAO();
+        UsagePrice price = dao1.getEWPrice();
+        double eprice = price.getEprice();
+        double wprice = price.getWprice();
+        request.setAttribute("eprice", eprice);
+        request.setAttribute("wprice", wprice);
+        request.getRequestDispatcher("/Owner/addroomfee.jsp").forward(request, response);
     }
 
     /**
@@ -71,7 +91,66 @@ public class AddRoomFee extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        String service = request.getParameter("service");
+        double serviceM = Double.parseDouble(service);
+        HttpSession session = request.getSession();
+        String roomID = session.getAttribute("roomID").toString();
+        int id = Integer.parseInt(roomID);
+        RoomDAO dao1 = new RoomDAO();
+        Room room = dao1.getRoomDetail(id);
+        double roomfee = 0;
+        switch (room.getRoomSize()) {
+            case 1:
+                roomfee = 2500000;
+                break;
+            case 2:
+                roomfee = 3000000;
+                break;
+            case 3:
+                roomfee = 3500000;
+                break;
+            default:
+                break;
+        }
+        BillDAO dao = new BillDAO();
+        UsagePrice price = dao.getEWPrice();
+        double eprice = price.getEprice();
+        double wprice = price.getWprice();
+        String water = request.getParameter("water");
+        String electric = request.getParameter("electric");
+        double elnum = Double.parseDouble(electric);
+        double wnum = Double.parseDouble(water);
+        double etotal = eprice * elnum;
+        double wtotal = wprice * wnum;
+        String other = request.getParameter("other");
+        double otherM = Double.parseDouble(other);
+        String pen = request.getParameter("penMoney");
+        double penmoney = Double.parseDouble(pen);
+        Date currentDate = new Date();
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String createAt = formatter.format(currentDate);
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(currentDate);
+        calendar.add(Calendar.MONTH, 1); // Adding 1 month to the current date
+
+        String deadline = formatter.format(calendar.getTime());
+        request.setCharacterEncoding("UTF-8");
+        try {
+            boolean success = dao.addFeeById(id, serviceM, etotal, wtotal, roomfee, otherM, penmoney, createAt, deadline, null);
+            String updateMessage = "updateMessage";
+            if (success) {
+                request.setAttribute(updateMessage, "Add Successful");
+                response.sendRedirect(request.getContextPath() + "/roomfee?id=" + roomID);
+                session.removeAttribute("roomID");
+            } else {
+                request.setAttribute(updateMessage, "Failed");
+                response.sendRedirect(request.getContextPath() + "/addroomfee?id="+ roomID);
+
+            }
+        } catch (IOException ex) {
+            response.sendRedirect(request.getContextPath() + "/addroomfee?id="+ roomID);
+
+        }
     }
 
     /**

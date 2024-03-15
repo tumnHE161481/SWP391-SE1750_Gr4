@@ -98,52 +98,51 @@ public class UserAuthorizationFilter implements Filter {
      */
     public void doFilter(ServletRequest request, ServletResponse response,
             FilterChain chain)
-        throws IOException, ServletException {
-    HttpServletRequest req = (HttpServletRequest) request;
-    HttpServletResponse resp = (HttpServletResponse) response;
-    HttpSession session = req.getSession();
-    String requestedURL = req.getRequestURI();
-    String role = (String) session.getAttribute("userRole");
+            throws IOException, ServletException {
+        HttpServletRequest req = (HttpServletRequest) request;
+        HttpServletResponse resp = (HttpServletResponse) response;
+        HttpSession session = req.getSession();
+        String requestedURL = req.getRequestURI();
+        String role = (String) session.getAttribute("userRole");
 
-    if (debug) {
-        log("UserAuthorizationFilter:doFilter()");
-    }
-
-    if (role == null && !requestedURL.contains("login") && !requestedURL.contains("register") && !requestedURL.contains("test")) {
-        resp.sendRedirect(req.getContextPath() + "/login");
-        return;
-    }
-
-    Throwable problem = null;
-    try {
-        if (role == null || hasPermission(role, requestedURL)) {
-            chain.doFilter(request, response);
-        } else {
-            req.getRequestDispatcher("/accessDenied").forward(request, response);
+        if (debug) {
+            log("UserAuthorizationFilter:doFilter()");
         }
-    } catch (Throwable t) {
-        problem = t;
-        t.printStackTrace();
+
+        if (role == null && !requestedURL.contains("login") && !requestedURL.contains("register") && !requestedURL.contains("test")) {
+            resp.sendRedirect(req.getContextPath() + "/login");
+            return;
+        }
+
+        Throwable problem = null;
+        try {
+            if (role == null || hasPermission(role, requestedURL)) {
+                chain.doFilter(request, response);
+            } else {
+                req.getRequestDispatcher("/accessDenied").forward(request, response);
+            }
+        } catch (Throwable t) {
+            problem = t;
+            t.printStackTrace();
+        }
     }
-}
 
-private boolean hasPermission(String role, String url) {
-    if (url.contains("request") || url.contains("requesthistory") || url.contains("filterrequest")
-            || url.contains("editrequest")) {
-        return role.equals("1");
+    private boolean hasPermission(String role, String url) {
+        if (url.contains("request") || url.contains("requesthistory") || url.contains("filterrequest")
+                || url.contains("editrequest")) {
+            return role.equals("1");
 
-    } else if (url.contains("manageroom") || url.contains("adroomdetail") || url.contains("editroom")
-            || url.contains("roomfee") || url.contains("addroomfee") || url.contains("roomfeedetail")
-            || url.contains("editroomfee")) {
-        return role.equals("3");
+        } else if (url.contains("manageroom") || url.contains("adroomdetail") || url.contains("editrenter")
+                || url.contains("editroom") || url.contains("roomfee") || url.contains("addroomfee") || url.contains("roomfeedetail")
+                || url.contains("editroomfee")) {
+            return role.equals("3");
 
-    } else if (url.contains("manageaccount") || url.contains("renterdetail") || url.contains("editrenter")
-            || url.contains("adsedetail") || url.contains("newaccdetail")) {
-        return role.equals("4");
+        } else if (url.contains("manageaccount") || url.contains("renterdetail")
+                || url.contains("adsedetail") || url.contains("newaccdetail")) {
+            return role.equals("4");
+        }
+        return true;
     }
-    return true;
-}
-
 
     /**
      * Return the filter configuration object for this filter.

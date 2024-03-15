@@ -203,14 +203,6 @@
                                                         </c:forEach>
 
                                                     </div>
-                                                    <div class="row" style="margin-top: 80px">
-                                                        <h3>Go to see room fee history:</h3>                                                                           
-                                                        <div class="col-2 d-flex justify-content-center" style="margin-top: 10px ">
-
-                                                            <a href="roomfee?id=${rd.roomID}" type="button" class="btn btn-success"><i class="fa-regular fa-eye"></i>&nbsp;Click to see</a>
-
-                                                        </div>
-                                                    </div>
                                                 </form>
 
                                             </div>
@@ -219,14 +211,37 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-12">
-                            <div class="card">
-                                <div class="card-body">
-                                    <h6 class="card-title font-weight-bold">Support</h6>
-                                    <p class="card-text">Edit room information and item(s) in that room too.</p>
-                                    <div class="d-flex justify-content-center gap-4">
-                                        <a href="manageroom" type="button" class="btn btn-danger"><i class="fa-solid fa-chevron-left"></i>&nbsp;Back</a>
-                                        <a href="editroom?id=${id}" type="button" class="btn btn-primary"><i class="fa-regular fa-pen-to-square"></i> &nbsp;Edit</a>
+                        <div class="row" style="margin-bottom: 100px">
+                            <div class="col-6">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h6 class="card-title font-weight-bold">Support</h6>
+                                        <p class="card-text">Edit room information and item(s) in that room too.</p>
+                                        <div class="d-flex justify-content-center gap-4">
+                                            <a href="manageroom" type="button" class="btn btn-danger"><i class="fa-solid fa-chevron-left"></i>&nbsp;Back</a>
+                                            <a href="editroom?id=${id}" type="button" class="btn btn-primary"><i class="fa-regular fa-pen-to-square"></i> &nbsp;Edit</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h6 class="card-title font-weight-bold">Go to see room fee history:</h6>
+                                        <p class="card-text" style="font-style: italic">(*)Only have renter live in here can go to it</p>
+                                        <c:choose>
+                                            <c:when test="${rd.total > 0}">
+                                                <div class="d-flex justify-content-center gap-4">
+                                                    <a href="roomfee?id=${rd.roomID}" type="button" class="btn btn-success"><i class="fa-regular fa-eye"></i>&nbsp;Click to see</a>
+                                                </div>
+                                            </c:when>
+                                            <c:otherwise>
+                                                <div class="d-flex justify-content-center gap-4">
+                                                    <button class="btn btn-warning"><i class="fa-regular fa-eye"></i>&nbsp; Sorry no one live in here to do that action</button>
+                                                </div>
+                                            </c:otherwise>
+                                        </c:choose>
+
                                     </div>
                                 </div>
                             </div>

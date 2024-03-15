@@ -237,7 +237,7 @@
                                                                                 </div>
                                                                                 <small style="font-style: italic; color: #EF3159">(*) you can edit or delete fee only when renter not paid that fee</small>
                                                                             </div>
-                                                                            <a class="btn btn-primary" style="text-decoration: none; color: #FFF" href="renterdetail?id=${id}"><i class="fa-solid fa-plus"></i>&nbsp;Add New Fee</a>                                                                                                             
+                                                                                                                                                                                            <a class="btn btn-primary" style="text-decoration: none; color: #FFF" href="addroomfee?id=${requestScope.roomID}"><i class="fa-solid fa-plus"></i>&nbsp;Add New Fee</a>                                                                                                             
                                                                             <c:set var="page" value="${requestScope.page}"></c:set>
                                                                                 <div class="comment-widgets m-b-20">
 
@@ -272,7 +272,7 @@
                                                                                                         <a class="btn btn-info" style="text-decoration: none; color: #FFF" href="roomfeedetail?id=${id}"><i class="fa-solid fa-circle-info"></i>&nbsp;Detail</a>
                                                                                                         <c:choose>
                                                                                                             <c:when test="${bl.payAt eq null}">
-                                                                                                                <a class="btn btn-success" style="text-decoration: none" href="editoomfee?id=${id}"><i class="fa-regular fa-pen-to-square"></i>&nbsp;Edit</a>
+                                                                                                                <a class="btn btn-success" style="text-decoration: none" href="editroomfee?id=${id}"><i class="fa-regular fa-pen-to-square"></i>&nbsp;Edit</a>
                                                                                                             </c:when>
                                                                                                             <c:otherwise>
                                                                                                             </c:otherwise>

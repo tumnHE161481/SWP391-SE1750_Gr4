@@ -62,10 +62,12 @@ public class RoomFeeController extends HttpServlet {
             throws ServletException, IOException {
          String id_raw = request.getParameter("id");
          int id = Integer.parseInt(id_raw);
+        request.setAttribute("roomID", id);
         BillDAO dao = new BillDAO();
         List<Bill> list = dao.getBillByRoomID(id);
         request.setAttribute("billList", list);
         request.getRequestDispatcher("/Owner/roomfee.jsp").forward(request, response);
+        
     }
 
     /**

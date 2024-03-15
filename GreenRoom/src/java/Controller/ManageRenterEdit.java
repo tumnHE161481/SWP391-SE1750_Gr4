@@ -71,7 +71,7 @@ public class ManageRenterEdit extends HttpServlet {
             List<Room> room = dao1.getAvailableRoom();
             request.setAttribute("detail", ed);
             request.setAttribute("roomNumberList", room);
-            request.getRequestDispatcher("/Admin/editrenter.jsp").forward(request, response);
+            request.getRequestDispatcher("/Owner/editrenter.jsp").forward(request, response);
         } catch (NumberFormatException e) {
             System.err.println("Fail:" + e);
         }
