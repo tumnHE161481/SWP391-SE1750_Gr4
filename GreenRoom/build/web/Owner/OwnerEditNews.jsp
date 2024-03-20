@@ -119,7 +119,7 @@
                                 </div>
                                  <div class="form-group" class="mb-3">
                                     <label>Description</label>
-                                    <textarea name="description" class="form-control" required>${details.description}</textarea>
+                                    <textarea name="des" class="form-control" required>${details.description}</textarea>
                                 </div>
                                
                                 <div class="modal-footer">
