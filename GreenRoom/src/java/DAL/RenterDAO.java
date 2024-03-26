@@ -6,6 +6,7 @@ package DAL;
 
 import Models.Account;
 import Models.Bill;
+import Models.ReBill;
 import Models.Renter;
 import Models.Room;
 import java.sql.PreparedStatement;
@@ -82,8 +83,8 @@ public class RenterDAO extends MyDAO {
         return list;
     }
 
-    public List<Bill> getAllBillsByUserID(int userID) {
-        List<Bill> billList = new ArrayList<>();
+    public List<ReBill> getAllBillsByUserID(int userID) {
+        List<ReBill> billList = new ArrayList<>();
         String sql = "SELECT b.* FROM bill b "
                 + "INNER JOIN renter r ON b.roomID = r.roomID "
                 + "INNER JOIN account a ON r.userID = a.userID "
@@ -93,7 +94,7 @@ public class RenterDAO extends MyDAO {
             ps.setInt(1, userID);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                Bill bill = new Bill();
+                ReBill bill = new ReBill();
                 bill.setBillID(rs.getInt("billID"));
                 bill.setRoomID(rs.getInt("roomID"));
                 bill.setService(rs.getDouble("service"));
@@ -246,15 +247,15 @@ public class RenterDAO extends MyDAO {
         }
     }
 
-    public List<Bill> getBillsByRenterID(int renterID) {
-        List<Bill> billList = new ArrayList<>();
+    public List<ReBill> getBillsByRenterID(int renterID) {
+        List<ReBill> billList = new ArrayList<>();
         String sql = "SELECT * FROM bill WHERE renterID = ?";
         try {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, renterID);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                Bill bill = new Bill();
+                ReBill bill = new ReBill();
                 bill.setBillID(rs.getInt("billID"));
                 bill.setRoomID(rs.getInt("roomID"));
                 bill.setService(rs.getDouble("service"));
@@ -274,7 +275,7 @@ public class RenterDAO extends MyDAO {
         return billList;
     }
 
-    public boolean updateBill(Bill bill) {
+    public boolean updateBill(ReBill bill) {
         String sql = "UPDATE bill SET service = ?, electric = ?, water = ?, roomFee = ?, other = ?, penMoney = ?, createAt = ?, deadline = ?, payAt = ? WHERE billID = ?";
         try {
             PreparedStatement ps = con.prepareStatement(sql);
@@ -301,15 +302,15 @@ public class RenterDAO extends MyDAO {
         }
     }
 
-    public Bill getBillByID(int billID) {
-        Bill bill = null;
+    public ReBill getBillByID(int billID) {
+        ReBill bill = null;
         String sql = "SELECT * FROM bill WHERE billID = ?";
         try {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, billID);
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
-                bill = new Bill();
+                bill = new ReBill();
                 bill.setBillID(rs.getInt("billID"));
                 bill.setRoomID(rs.getInt("roomID"));
                 bill.setService(rs.getDouble("service"));

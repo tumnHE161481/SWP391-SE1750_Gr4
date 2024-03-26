@@ -2,6 +2,7 @@ package Utils.VNPay;
 
 import DAL.RenterDAO;
 import Models.Bill;
+import Models.ReBill;
 import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
@@ -140,7 +141,7 @@ public class Config {
         int id = mem.get(ref);
         
         // get bill by id
-        Bill bill = new RenterDAO().getBillByID(id);
+        ReBill bill = new RenterDAO().getBillByID(id);
         
         // update pay at of bill
         bill.setPayAt(new java.sql.Timestamp(System.currentTimeMillis()));

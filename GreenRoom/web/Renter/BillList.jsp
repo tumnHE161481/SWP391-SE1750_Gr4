@@ -252,7 +252,7 @@
                     <div class="site-navigation">
                         <a href="Homepage.html" class="logo m-0 float-start">Property</a>
 
-                       <ul class="js-clone-nav d-none d-lg-inline-block text-start site-menu float-end">
+                        <ul class="js-clone-nav d-none d-lg-inline-block text-start site-menu float-end">
                             <li class="active"><a href="renterhome">Home</a></li>
                             <li class="active"><a href="renterhome">Room</a></li>
                             <li><a href="bill-list">Payment</a></li>
@@ -310,9 +310,38 @@
                                             <p class="text-black-50">Room: ${bill.roomID}</p>
                                             <p>
                                                 <a href="payment?id=${bill.billID}" class="learn-more">Pay</a>
+                                                <a href="#" data-bs-toggle="modal" data-bs-target="#billDetailModal${bill.billID}" class="learn-more">Details</a>
                                             </p>
                                         </div>
                                     </div>
+
+                                    <!-- Modal for this bill -->
+                                    <div class="modal fade" id="billDetailModal${bill.billID}" tabindex="-1" aria-labelledby="billDetailModalLabel${bill.billID}" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="billDetailModalLabel${bill.billID}">Bill Details</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <!-- Content for displaying bill details will go here -->
+                                                    <div>
+                                                        <p>ID: ${bill.billID}</p>
+                                                        <p>Total: ${bill.total}</p>
+                                                        <p>Deadline: ${bill.deadline}</p>
+                                                        <p>Electric: ${bill.electric}</p>
+                                                        <p>Water: ${bill.water}</p>
+                                                        <p>RoomFee: ${bill.roomFee}</p>
+                                                        <p>PenMoney: ${bill.penMoney}</p>
+                                                        <p>Other: ${bill.other}</p>
+                                                        <p>Room: ${bill.roomID}</p>
+                                                        <!-- Add more details as needed -->
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
                                 </c:if>
                             </c:forEach>
 

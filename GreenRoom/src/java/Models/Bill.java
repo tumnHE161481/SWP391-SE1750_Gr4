@@ -1,20 +1,49 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package Models;
 
-import java.util.Date;
-
+/**
+ *
+ * @author ASUS
+ */
 public class Bill {
+    private int billID, roomID;
+    private double service, electric, water, roomFee, other, penMoney, total;
+    private String createAt, deadline, payAt;
 
-    private int billID;
-    private int roomID;
-    private double service;
-    private double electric;
-    private double water;
-    private double roomFee;
-    private double other;
-    private double penMoney;
-    private Date createAt;
-    private Date deadline;
-    private Date payAt;
+    public Bill() {
+    }
+
+    public Bill(int billID, int roomID, double service, double electric, double water, double roomFee, double other, double penMoney, String createAt, String deadline, String payAt) {
+        this.billID = billID;
+        this.roomID = roomID;
+        this.service = service;
+        this.electric = electric;
+        this.water = water;
+        this.roomFee = roomFee;
+        this.other = other;
+        this.penMoney = penMoney;
+        this.createAt = createAt;
+        this.deadline = deadline;
+        this.payAt = payAt;
+    }
+
+    public Bill(int billID, int roomID, double service, double electric, double water, double roomFee, double other, double penMoney, double total, String createAt, String deadline, String payAt) {
+        this.billID = billID;
+        this.roomID = roomID;
+        this.service = service;
+        this.electric = electric;
+        this.water = water;
+        this.roomFee = roomFee;
+        this.other = other;
+        this.penMoney = penMoney;
+        this.total = total;
+        this.createAt = createAt;
+        this.deadline = deadline;
+        this.payAt = payAt;
+    }
 
     public int getBillID() {
         return billID;
@@ -80,32 +109,37 @@ public class Bill {
         this.penMoney = penMoney;
     }
 
-    public Date getCreateAt() {
+    public String getCreateAt() {
         return createAt;
     }
 
-    public void setCreateAt(Date createAt) {
+    public void setCreateAt(String createAt) {
         this.createAt = createAt;
     }
 
-    public Date getDeadline() {
+    public String getDeadline() {
         return deadline;
     }
 
-    public void setDeadline(Date deadline) {
+    public void setDeadline(String deadline) {
         this.deadline = deadline;
     }
 
-    public Date getPayAt() {
+    public String getPayAt() {
         return payAt;
     }
 
-    public void setPayAt(Date payAt) {
+    public void setPayAt(String payAt) {
         this.payAt = payAt;
     }
-    
+
     public double getTotal() {
-        return electric + penMoney + service + other + roomFee + water;
+        return total;
     }
 
+    public void setTotal(double total) {
+        this.total = total;
+    }
+    
+    
 }

@@ -2,6 +2,7 @@ package Controller;
 
 import DAL.RenterDAO;
 import Models.Bill;
+import Models.ReBill;
 import Utils.VNPay.Config;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
@@ -32,7 +33,7 @@ public class PaymentController extends HttpServlet {
 
         int id = Integer.parseInt(request.getParameter("id"));
 
-        Bill bill = new RenterDAO().getBillByID(id);
+        ReBill bill = new RenterDAO().getBillByID(id);
 
         double totalCostDouble = bill.getPenMoney() + bill.getElectric() + bill.getRoomFee() + bill.getWater() + bill.getService() + bill.getOther();
 

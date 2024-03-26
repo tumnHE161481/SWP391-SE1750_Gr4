@@ -2,15 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/D:/Clone_SWP1/SWP391-SE1750_Gr4/GreenRoom/src/java/Controller/SeSearchControl.java</file>
-            <file>file:/D:/Clone_SWP1/SWP391-SE1750_Gr4/GreenRoom/src/java/DAL/DAO.java</file>
-            <file>file:/D:/Clone_SWP1/SWP391-SE1750_Gr4/GreenRoom/src/java/Controller/SeDetailRoomControl.java</file>
-            <file>file:/D:/Clone_SWP1/SWP391-SE1750_Gr4/GreenRoom/src/java/Controller/SeListCustomerControl.java</file>
-            <file>file:/D:/Clone_SWP1/SWP391-SE1750_Gr4/GreenRoom/src/java/Models/RenterListSE.java</file>
-            <file>file:/D:/Clone_SWP1/SWP391-SE1750_Gr4/GreenRoom/src/java/Models/SeUserProfile.java</file>
-            <file>file:/D:/Clone_SWP1/SWP391-SE1750_Gr4/GreenRoom/web/JSP/SeRoomList.jsp</file>
-            <file>file:/D:/Clone_SWP1/SWP391-SE1750_Gr4/GreenRoom/web/JSP/SeListCustomer.jsp</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>
