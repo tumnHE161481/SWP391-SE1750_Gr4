@@ -18,13 +18,13 @@ public class UserTu{
     private String userAvatar;
     private Account account;
     private Renter renter;
-    private Room room;
+    private RoomTu room;
     private Security security;
     
     public UserTu() {
     }
 
-    public UserTu(int userID, String userName, String userGender, String userBirth, String userAddress, String userPhone, String userAvatar, Account account, Renter renter, Room room) {
+    public UserTu(int userID, String userName, String userGender, String userBirth, String userAddress, String userPhone, String userAvatar, Account account, Renter renter, RoomTu room) {
         this.userID = userID;
         this.userName = userName;
         this.userGender = userGender;
@@ -160,11 +160,11 @@ public class UserTu{
         this.renter = renter;
     }
     
-    public Room getRoom() {
+    public RoomTu getRoom() {
         return room;
     }
 
-    public void setRoom(Room room) {
+    public void setRoom(RoomTu room) {
         this.room = room;
     }
     

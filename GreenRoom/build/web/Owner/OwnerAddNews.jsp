@@ -58,15 +58,16 @@
             <div class="container">
                 <div class="menu-bg-wrap">
                     <div class="site-navigation">
-                        <a href="sehome" class="logo m-0 float-start">Green Room</a>
+                        <a href="ownerhome" class="logo m-0 float-start">Green Room</a>
 
                         <ul class="js-clone-nav d-none d-lg-inline-block text-start site-menu float-end">
-                            <li class="active"><a href="ownerhome">Home</a></li>
-                            <li class="active"><a href="ownerhome">Room</a></li>
-                            <li><a href="ownerhome">Profile</a></li>
-                            <li><a href="ownerhome">Renter</a></li>
-                            <li><a href="ownerhome">Guide</a></li>
-                            <li><a href="ownerhome">Log Out</a></li>
+                            <li><a href="ownerhome">Home</a></li>
+                            <li><a href="listroom">Room</a></li>
+                            <li><a href="">Renter</a></li> 
+                            <li><a href="">Request</a></li> 
+                            <li><a href="ownerhome">News</a></li>
+                            <li><a href="roomfee">Fee</a></li>
+                            <li><a href="logout">Log out</a></li>
                         </ul>
 
                         <a href="#" class="burger light me-auto float-end mt-1 site-menu-toggle js-menu-toggle d-inline-block d-lg-none" data-toggle="collapse" data-target="#main-navbar">
@@ -103,14 +104,17 @@
                     <div class="card">
                         <div class="card-body">
                             <h1 class="card-title">Add News</h1>
-                            <form action="addnews" method="post">
+                            <form action="addnews" method="post" enctype="multipart/form-data" >
                                 <div class="mb-3">
                                     <label for="title" class="form-label">Title:</label>
                                     <input type="text" class="form-control" id="title" name="title" required>
                                 </div>
-                                <div class="mb-3">
-                                    <label for="author" class="form-label">Image:</label>
-                                    <input type="text" class="form-control" id="author" name="image" required>
+                                <div class="form-group">
+                                    <label>Photo</label> <br/>
+                                    <input id="image" type="file" class="hidden"  name="image" onchange="getImgUrl(event)">
+
+                                    <!--                                    <input type="file" 
+                                                                               class="form-control" name="img" value="${details.img}" placeholder="Enter photo">-->
                                 </div>
                                 <div class="mb-3">
                                     <label for="content" class="form-label">Description:</label>
@@ -123,7 +127,21 @@
                 </div>
             </div>
         </div>
+        <script>
+            function getImgUrl(e) {
+                const input = e.target;
+                const previewImg = document.getElementById('previewImg');
+                if (input.files && input.files[0]) {
+                    const reader = new FileReader();
 
+                    reader.onload = function (e) {
+                        previewImg.src = e.target.result;
+                    };
+
+                    reader.readAsDataURL(input.files[0]);
+                }
+            }
+        </script>
 
         <script src="<%=request.getContextPath()%>/js/bootstrap.bundle.min.js"></script>
         <script src="<%=request.getContextPath()%>/js/tiny-slider.js"></script>

@@ -115,11 +115,11 @@ public class DAO extends DBContext {
 
     public RoomDetailSe getRoomById(String id) {
 
-        String query = "SELECT r.[roomID], r.[roomNumber], r.[roomImg], r.[roomSize], r.[roomFloor], i.itemName, i.itemImg, ri.quantity\n"
+        String query = "SELECT r.roomNumber, r.roomImg, u.userName,u.userGender,u.userBirth ,rt.CGRScore\n"
                 + "FROM [dbo].[Room] AS r\n"
-                + "JOIN [dbo].[RoomItem] AS ri ON r.roomID = ri.roomID\n"
-                + "JOIN [dbo].[item] AS i ON ri.itemID = i.itemID\n"
-                + "where ri.roomID = ?";
+                + "JOIN [dbo].[renter] AS rt ON r.roomID = rt.roomID\n"
+                + "JOIN [dbo].[user] AS u ON rt.userID = u.userID\n"
+                + "where r.roomID = ?";
         try {
             conn = connection;
             ps = conn.prepareStatement(query);
@@ -131,10 +131,9 @@ public class DAO extends DBContext {
                         rs.getString(2),
                         rs.getString(3),
                         rs.getString(4),
-                        rs.getInt(5),
+                        rs.getString(5),
                         rs.getString(6),
-                        rs.getString(7),
-                        rs.getInt(8));
+                        rs.getInt(7));
             }
         } catch (Exception e) {
         }

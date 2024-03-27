@@ -24,12 +24,12 @@
         <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 
-        <link rel="stylesheet" href="<%=request.getContextPath()%>/fonts/icomoon/style.css">
-        <link rel="stylesheet" href="<%=request.getContextPath()%>/fonts/flaticon/font/flaticon.css">
+        <link rel="stylesheet" href="./fonts/icomoon/style.css">
+        <link rel="stylesheet" href="./fonts/flaticon/font/flaticon.css">
 
-        <link rel="stylesheet" href="<%=request.getContextPath()%>/css/tiny-slider.css">
-        <link rel="stylesheet" href="<%=request.getContextPath()%>/css/aos.css">
-        <link rel="stylesheet" href="<%=request.getContextPath()%>/css/style.css">
+        <link rel="stylesheet" href="./css/tiny-slider.css">
+        <link rel="stylesheet" href="./css/aos.css">
+        <link rel="stylesheet" href="./css/style.css">
 
         <title>Security Home</title>
         <style>
@@ -161,7 +161,7 @@
                             <li><a href="seprofile">Profile</a></li>
                             <li><a href="selistcustomer">Renter</a></li>
                             <li><a href="Guide.html">Guide</a></li>
-                            <li><a href="selogout">Log Out</a></li>
+                            <li><a href="logout">Log out</a></li>   
                         </ul>
 
                         <a href="#" class="burger light me-auto float-end mt-1 site-menu-toggle js-menu-toggle d-inline-block d-lg-none" data-toggle="collapse" data-target="#main-navbar">

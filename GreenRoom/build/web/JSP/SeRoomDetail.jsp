@@ -57,13 +57,13 @@
                     <div class="site-navigation">
                         <a href="sehome" class="logo m-0 float-start">Green Room</a>
 
-                       <ul class="js-clone-nav d-none d-lg-inline-block text-start site-menu float-end">
+                        <ul class="js-clone-nav d-none d-lg-inline-block text-start site-menu float-end">
                             <li class="active"><a href="sehome">Home</a></li>
                             <li class="active"><a href="listroom">Room</a></li>
                             <li><a href="seprofile">Profile</a></li>
                             <li><a href="selistcustomer">Renter</a></li>
                             <li><a href="Guide.html">Guide</a></li>
-                               <li><a href="selogout">Log Out</a></li>
+                            <li><a href="logout">Log out</a></li>   
                         </ul>
 
                         <a href="#" class="burger light me-auto float-end mt-1 site-menu-toggle js-menu-toggle d-inline-block d-lg-none" data-toggle="collapse" data-target="#main-navbar">
@@ -85,8 +85,7 @@
 
                         <nav aria-label="breadcrumb" data-aos="fade-up" data-aos-delay="200">
                             <ol class="breadcrumb text-center justify-content-center">
-                                <li class="breadcrumb-item "><a href="index.html">Home</a></li>
-                                <li class="breadcrumb-item "><a href="properties.html">Properties</a></li>
+                                <li class="breadcrumb-item "><a href="sehome">Home</a></li>
                                 <li class="breadcrumb-item active text-white-50" aria-current="page">${detail.roomNumber}</li>
                             </ol>
                         </nav>
@@ -119,25 +118,20 @@
                                 <table class="table">
                                     <thead>
                                         <tr>
-                                            <th>Floor</th>
-                                            <th>Size</th>
-                                            <th>Single Bed</th>
-                                            <th>Bunk Bed</th>
-                                            <th>Chair</th>
-                                            <th>Ceiling Fans</th>
-                                            <th>Air Conditioning</th>
+                                            <th>Name</th>
+                                            <th>Gender</th>
+                                            <th>Birth</th>
+                                            <th>Score</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td>${detail.roomFloor}</td>
-                                            <td>${detail.roomSize}</td>
-                                            <td>${detail.itemName}</td>
-                                            <td>${detail.itemImg}</td>
-                                            <td>${detail.quantity}</td>
-                                          
+                                            <td>${detail.userName}</td>
+                                            <td>${detail.userGender}</td>
+                                            <td>${detail.userBirth}</td>
+                                            <td>${detail.CGRScore}</td>
                                         </tr>
-                                        <!-- Add more rows as needed -->
+
                                     </tbody>
                                 </table>
                             </div>

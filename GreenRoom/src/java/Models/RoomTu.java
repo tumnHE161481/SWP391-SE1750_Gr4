@@ -23,9 +23,11 @@ public class RoomTu {
         this.item = item;
         this.roomitem = roomitem;
     }
-    
-    
-    
+
+    public RoomTu(int roomID, int roomSize) {
+        this.roomID = roomID;
+        this.roomSize = roomSize;
+    }
 
     public RoomTu(int roomID, int roomFloor, int roomNumber, int roomSize, String roomImg, int total) {
         this.roomID = roomID;
@@ -35,8 +37,7 @@ public class RoomTu {
         this.roomImg = roomImg;
         this.total = total;
     }
-    
-    
+
     public RoomTu(int roomID, int roomFloor, int roomNumber, int roomSize, String roomImg) {
         this.roomID = roomID;
         this.roomFloor = roomFloor;
@@ -44,9 +45,10 @@ public class RoomTu {
         this.roomSize = roomSize;
         this.roomImg = roomImg;
     }
-    
+
     public RoomTu() {
     }
+
 
     public int getRoomID() {
         return roomID;
@@ -111,11 +113,5 @@ public class RoomTu {
     public void setRoomitem(RoomItem roomitem) {
         this.roomitem = roomitem;
     }
-    
-    
-    
 
 }
-
-
-   

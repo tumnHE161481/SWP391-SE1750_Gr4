@@ -61,15 +61,16 @@
             <div class="container">
                 <div class="menu-bg-wrap">
                     <div class="site-navigation">
-                        <a href="sehome" class="logo m-0 float-start">Green Room</a>
+                        <a href="ownerhome" class="logo m-0 float-start">Green Room</a>
 
                         <ul class="js-clone-nav d-none d-lg-inline-block text-start site-menu float-end">
-                            <li class="active"><a href="ownerhome">Home</a></li>
-                            <li class="active"><a href="#">Room</a></li>
-                            <li><a href="#">Profile</a></li>
-                            <li><a href="#">Renter</a></li>
-                            <li><a href="#">Guide</a></li>
-                            <li><a href="#">Log Out</a></li>
+                            <li><a href="ownerhome">Home</a></li>
+                                    <li><a href="listroom">Room</a></li>
+                                    <li><a href="">Renter</a></li> 
+                                    <li><a href="">Request</a></li> 
+                                    <li><a href="ownerhome">News</a></li>
+                                    <li><a href="roomfee">Fee</a></li>
+                                    <li><a href="logout">Log out</a></li>
                         </ul>
 
                         <a href="#"

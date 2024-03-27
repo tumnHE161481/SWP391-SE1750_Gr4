@@ -61,7 +61,7 @@
                             <li><a href="seprofile">Profile</a></li>
                             <li><a href="selistcustomer">Renter</a></li>
                             <li><a href="Guide.html">Guide</a></li>
-                               <li><a href="selogout">Log Out</a></li>
+                            <li><a href="logout">Log out</a></li>   
                         </ul>
 
                     <a href="#" class="burger light me-auto float-end mt-1 site-menu-toggle js-menu-toggle d-inline-block d-lg-none" data-toggle="collapse" data-target="#main-navbar">

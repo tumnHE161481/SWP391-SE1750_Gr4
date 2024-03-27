@@ -11,16 +11,23 @@ import Models.User;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import jakarta.servlet.http.Part;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.text.SimpleDateFormat;
 
 /**
  *
  * @author ASUS
  */
+@MultipartConfig
 public class SeEditProfile extends HttpServlet {
 
     /**
@@ -101,19 +108,76 @@ public class SeEditProfile extends HttpServlet {
         String userBirth = request.getParameter("birth");
         String userAddress = request.getParameter("address");
         String userPhone = request.getParameter("phone");
-        String userAvatar = request.getParameter("avatar");
+       
         HttpSession session = request.getSession();
         Account a = (Account) session.getAttribute("user");
 
+        // Get the file part from the request
+        Part filePart = request.getPart("img");
+
+        // check img file
+        if (filePart.getSize() > 0 && !isImageFile(filePart)) {
+            request.setAttribute("error", "Please input file image");
+            request.getRequestDispatcher(
+                    "/view/pages/mentee/mentee_profile.jsp"
+            ).forward(request, response);
+            return;
+        }
+// Get the filename
+        String fileName = getSubmittedFileName(filePart);
+        String filePath = null;
+
+        if (fileName.length() > 0) {
+            String uploadDirPath = getServletContext().getRealPath("") + File.separator + "img";
+            File uploadDir = new File(uploadDirPath);
+
+            if (!uploadDir.exists()) {
+                if (!uploadDir.mkdirs()) {
+                    throw new IOException("Failed to create directory: " + uploadDir.getAbsolutePath());
+                }
+            }
+
+            // Construct the file path relative to the web application's directory
+            filePath = "./img/" + fileName;
+
+            try ( InputStream input = filePart.getInputStream();  OutputStream output = new FileOutputStream(uploadDirPath + File.separator + fileName)) {
+                int read;
+                byte[] buffer = new byte[1024];
+                while ((read = input.read(buffer)) != -1) {
+                    output.write(buffer, 0, read);
+                }
+            } catch (IOException e) {
+                e.printStackTrace(); // Handle the exception properly, log it, or rethrow it
+            }
+        }
+
+        filePath = filePath.replace("\\\\", "\\");
+        System.out.println("file path: " + filePath);
         int sid = a.getUserID();
 
         DAO dao = new DAO();
-        if (dao.updateProfile(userName, userGender, userBirth, userAddress, userPhone, userAvatar, a.getUserID())) {
+        if (dao.updateProfile(userName, userGender, userBirth, userAddress, userPhone, filePath, a.getUserID())) {
             System.out.println("update thanh cong");
         } else {
             System.out.println("update fail");
         }
         response.sendRedirect("seprofile");
+    }
+
+    private String getSubmittedFileName(Part part) {
+        String header = part.getHeader("content-disposition");
+        String[] elements = header.split(";");
+        for (String element : elements) {
+            if (element.trim().startsWith("filename")) {
+                return element.substring(element.indexOf('=') + 1).trim().replace("\"", "");
+            }
+        }
+        return "";
+    }
+
+    private boolean isImageFile(Part part) {
+        String contentType = part.getContentType();
+        return contentType != null && contentType.startsWith("image");
     }
 
     /**

@@ -153,16 +153,18 @@
             <div class="container">
                 <div class="menu-bg-wrap">
                     <div class="site-navigation">
-                        <a href="sehome" class="logo m-0 float-start">Green Room</a>
+                        <a href="renterhome" class="logo m-0 float-start">Green Room</a>
 
-                       
+
                         <ul class="js-clone-nav d-none d-lg-inline-block text-start site-menu float-end">
-                            <li class="active"><a href="renterhome">Home</a></li>
-                            <li class="active"><a href="renterhome">Room</a></li>
+
+                            <li><a href="renterhome">Home</a></li>
+                            <li><a href="">Room</a></li>
                             <li><a href="bill-list">Payment</a></li>
-                            <li><a href="renterhome">Customer</a></li>
-                            <li><a href="renterhome">Guide</a></li>
-                            <li><a href="renterhome">News</a></li>
+                            <li><a href="request">Send Request</a></li>
+                            <li><a href="">Guideline&Rule</a></li>
+
+                            <li><a href="logout">Log out</a></li>     
                         </ul>
 
                         <a href="#" class="burger light me-auto float-end mt-1 site-menu-toggle js-menu-toggle d-inline-block d-lg-none" data-toggle="collapse" data-target="#main-navbar">
@@ -225,7 +227,7 @@
                                     </blockquote>
                                     <p class="text-black-50">
                                         <a href="newsdetail?nid=${n.newID}" class="learn-more">Read more</a>
-                    
+
                                     </p>
                                 </div>
                             </div>
@@ -233,7 +235,7 @@
 
 
                     </div>
-                    
+
                 </div>
 
             </div>
@@ -316,7 +318,7 @@
             <!-- /.container -->
         </div>
         <!-- /.site-footer -->
-        
+
 
         <!-- Preloader -->
         <div id="overlayer"></div>

@@ -58,7 +58,7 @@ public class LoginController extends HttpServlet {
                     case 3: response.sendRedirect(request.getContextPath() + "/ownerhome");
                         break;
                     case 4:
-                        response.sendRedirect(request.getContextPath() + "/managerenter");
+                        response.sendRedirect(request.getContextPath() + "/manageaccount");
                         break;
                     default:
                         request.setAttribute("message", "Login failed"); // or handle other roles as needed

@@ -13,25 +13,23 @@ public class RoomDetailSe {
     private int roomID;
     private String roomNumber;
     private String roomImg;
-    private String roomSize;
-    private int roomFloor;
-    private String itemName;
-    private String itemImg;
-    private int quantity;
-
+    private String userName;
+    private String userGender;
+    private String userBirth;
+    private int CGRScore;
 
     public RoomDetailSe() {
     }
+    
 
-    public RoomDetailSe(int roomID, String roomNumber, String roomImg, String roomSize, int roomFloor, String itemName, String itemImg, int quantity) {
+    public RoomDetailSe(int roomID, String roomNumber, String roomImg, String userName, String userGender, String userBirth, int CGRScore) {
         this.roomID = roomID;
         this.roomNumber = roomNumber;
         this.roomImg = roomImg;
-        this.roomSize = roomSize;
-        this.roomFloor = roomFloor;
-        this.itemName = itemName;
-        this.itemImg = itemImg;
-        this.quantity = quantity;
+        this.userName = userName;
+        this.userGender = userGender;
+        this.userBirth = userBirth;
+        this.CGRScore = CGRScore;
     }
 
     public int getRoomID() {
@@ -58,50 +56,44 @@ public class RoomDetailSe {
         this.roomImg = roomImg;
     }
 
-    public String getRoomSize() {
-        return roomSize;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setRoomSize(String roomSize) {
-        this.roomSize = roomSize;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
-    public int getRoomFloor() {
-        return roomFloor;
+    public String getUserGender() {
+        return userGender;
     }
 
-    public void setRoomFloor(int roomFloor) {
-        this.roomFloor = roomFloor;
+    public void setUserGender(String userGender) {
+        this.userGender = userGender;
     }
 
-    public String getItemName() {
-        return itemName;
+    public String getUserBirth() {
+        return userBirth;
     }
 
-    public void setItemName(String itemName) {
-        this.itemName = itemName;
+    public void setUserBirth(String userBirth) {
+        this.userBirth = userBirth;
     }
 
-    public String getItemImg() {
-        return itemImg;
+    public int getCGRScore() {
+        return CGRScore;
     }
 
-    public void setItemImg(String itemImg) {
-        this.itemImg = itemImg;
-    }
-
-    public int getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
+    public void setCGRScore(int CGRScore) {
+        this.CGRScore = CGRScore;
     }
 
     @Override
     public String toString() {
-        return "RoomDetailSe{" + "roomID=" + roomID + ", roomNumber=" + roomNumber + ", roomImg=" + roomImg + ", roomSize=" + roomSize + ", roomFloor=" + roomFloor + ", itemName=" + itemName + ", itemImg=" + itemImg + ", quantity=" + quantity + '}';
+        return "RoomDetailSe{" + "roomID=" + roomID + ", roomNumber=" + roomNumber + ", roomImg=" + roomImg + ", userName=" + userName + ", userGender=" + userGender + ", userBirth=" + userBirth + ", CGRScore=" + CGRScore + '}';
     }
 
+
+  
    
 }

@@ -53,6 +53,7 @@ public class SeDetailRoomControl extends HttpServlet {
         if (a != null) {
             String id = request.getParameter("pid");
             DAO dao = new DAO();
+            System.out.println("hi");
             RoomDetailSe p = dao.getRoomById(id);
             request.setAttribute("detail", p);
             int sid = a.getUserID();

@@ -56,7 +56,7 @@
         <link rel="stylesheet" href="<%=request.getContextPath()%>/css/aos.css">
         <link rel="stylesheet" href="<%=request.getContextPath()%>/css/style.css">  
 
-        <title>Property &mdash; Free Bootstrap 5 Website Template by Untree.co</title>
+        <title></title>
         <link rel="icon" href="home-guest/favicon.png">
         <style>
             /*table*/
@@ -264,7 +264,7 @@
             <div class="container">
                 <div class="menu-bg-wrap">
                     <div class="site-navigation">
-                        <a href="Homepage.html" class="logo m-0 float-start">Property</a>
+                        <a href="renterhome" class="logo m-0 float-start">GreenRoom</a>
 
                          <ul class="js-clone-nav d-none d-lg-inline-block text-start site-menu float-end">
                             <li class="active"><a href="renterhome">Home</a></li>

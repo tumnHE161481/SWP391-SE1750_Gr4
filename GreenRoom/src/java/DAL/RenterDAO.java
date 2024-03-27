@@ -26,6 +26,74 @@ import java.util.logging.Logger;
  */
 public class RenterDAO extends MyDAO {
 
+    public List<Renter> getRenterList(int id) {
+        List<Renter> list = new ArrayList<>();
+        String sql = "SELECT * FROM Renter\n"
+                + "    WHERE userID = ?";
+        try {
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, id);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                Renter renter = new Renter(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getBoolean(4), rs.getBoolean(5), rs.getInt(6), rs.getDouble(7));
+                list.add(renter);
+            }
+        } catch (SQLException e) {
+            System.out.println("Fail: " + e.getMessage());
+        }
+        return list;
+    }
+
+    //Get Renter Update status
+    public boolean updateRenter(int userID, int roomID, boolean newRenterStatus, boolean newRenterHaveRoom) {
+        String sql = "UPDATE [renter] SET roomID = ?, renterStatus = ?, renterHaveRoom = ? WHERE userID = ?";
+        try {
+            ps = con.prepareStatement(sql);
+            if (roomID == 0) {
+                ps.setObject(1, null);
+            } else {
+                ps.setInt(1, roomID);
+            }
+            ps.setBoolean(2, newRenterStatus);
+            ps.setBoolean(3, newRenterHaveRoom);
+            ps.setInt(4, userID);
+
+            int rowsAffected = ps.executeUpdate();
+            return rowsAffected > 0; // Neu co row tra ve, return true
+
+        } catch (SQLException e) {
+            System.out.println("Fail: " + e.getMessage());
+            return false;
+        }
+    }
+
+    public Renter addNewRenterByUserID(int userID, int roomID, boolean renterStatus, boolean renterHaveRoom, int CGRScore, double balance) {
+        String sql = "INSERT INTO [GreenRoom].[dbo].[renter] ( [userID], [roomID], [renterStatus], [renterHaveRoom], [CGRScore], [balance])\n"
+                + "VALUES\n"
+                + "    (?, ?, ?, ? , ? , ? , ?)";
+
+        try {
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, userID);
+            ps.setInt(2, roomID);
+            ps.setBoolean(3, renterStatus);
+            ps.setBoolean(4, renterHaveRoom);
+            ps.setInt(5, CGRScore);
+            ps.setDouble(6, balance);
+            int rowsAffected = ps.executeUpdate();
+
+            if (rowsAffected > 0) {
+                System.out.println("Request inserted successfully.");
+            } else {
+                System.out.println("Failed to insert request.");
+            }
+
+        } catch (SQLException e) {
+            System.out.println("Fail: " + e.getMessage());
+        }
+        return null;
+    }
+
     //User detail by account and password
     public List<User> getRenterDetailByAccountAndPassword(String account_input, String password_input) {
         List<User> list = new ArrayList<>();

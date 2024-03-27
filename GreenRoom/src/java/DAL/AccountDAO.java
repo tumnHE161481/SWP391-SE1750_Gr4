@@ -20,7 +20,7 @@ import Models.User;
  */
 public class AccountDAO extends MyDAO {
 
-    //Table - Account
+    //Table - account
     /*
     1.userID - int
     2.userMail - String
@@ -101,49 +101,7 @@ public class AccountDAO extends MyDAO {
         return 0;
     }
 
-    public List<Account> manageAccount() {
-        List<Account> list = new ArrayList<>();
-        String sql = "SELECT a.userID,\n"
-                + "       a.userMail,\n"
-                + "       a.userPassword,\n"
-                + "       a.userRole,\n"
-                + "       u.userName,\n"
-                + "       u.userGender,\n"
-                + "       u.userBirth,\n"
-                + "       u.userAddress,\n"
-                + "       u.userPhone,\n"
-                + "       u.userAvatar\n"
-                + "FROM Account a\n"
-                + "INNER JOIN [User] u ON a.userID = u.userID\n"
-                + "WHERE a.userRole != 4;";
-
-        try {
-            ps = con.prepareStatement(sql);
-            rs = ps.executeQuery();
-            while (rs.next()) {
-                User user = new User(rs.getInt(1), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9), rs.getString(10));
-                Account account = new Account(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), user);
-                list.add(account);
-            }
-        } catch (SQLException e) {
-            System.out.println("Fail: " + e.getMessage());
-        } finally {
-            try {
-                if (rs != null) {
-                    rs.close();
-                }
-                if (ps != null) {
-                    ps.close();
-                }
-            } catch (SQLException e) {
-                System.out.println("Error closing resources: " + e.getMessage());
-            }
-        }
-        return list;
-    }
-    
-    
-     public List<Account> getAllRole() {
+    public List<Account> getAllRole() {
         List<Account> list = new ArrayList<>();
         String sql = "SELECT DISTINCT userRole FROM Account;";
         try {
@@ -157,22 +115,35 @@ public class AccountDAO extends MyDAO {
             System.out.println("Fail: " + e.getMessage());
         }
         return list;
-     }
+    }
 
-    public static void main(String[] args) {
-        AccountDAO dao = new AccountDAO();
-//        int role = dao.getUserRole("maitu@gmail.com", "12345678");
-//        System.out.println("Role: " + role);
+    //List Account by userRole (Security)
+    public void deleteAccountByID(int userID) {
+        String sql = "DELETE FROM account WHERE userID = ?; "
+                + "DELETE FROM [user] WHERE userID = ?";
 
-        List<Account> list = dao.manageAccount();
-        for (Account account : list) {
-            System.out.println("ID: " + account.getUserID());
-            System.out.println("Img: " + account.getUser().getUserAvatar());
-            System.out.println("Name: " + account.getUser().getUserName());
-            System.out.println("Mail: " + account.getUserMail());
-            System.out.println("Role: " + account.getUserRole());
+        try {
+            ps = con.prepareStatement(sql);
+            if (userID == 0) {
+                ps.setObject(1, null);
+            } else {
+                ps.setInt(1, userID);
+                ps.setInt(2, userID);
+            }
+
+            int rowsAffected = ps.executeUpdate();
+            if (rowsAffected > 0) {
+                System.out.println("Data for user with userID " + userID + " deleted successfully.");
+            } else {
+                System.out.println("Failed to delete data for user with userID " + userID);
+            }
+
+        } catch (SQLException e) {
+            System.out.println("Fail: " + e.getMessage());
         }
     }
+
+
 
     /////////////////////Hung dog code
     public Account LoginAccount(String email, String password) {
@@ -259,6 +230,36 @@ public class AccountDAO extends MyDAO {
             Logger.getLogger(AccountDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
+    }
+
+    public boolean updateUserRole(int userID, int userRole) {
+    String sql = "UPDATE account\n"
+            + "SET userRole = ?\n"
+            + "WHERE userID = ?;";
+    try {
+        ps = con.prepareStatement(sql);
+        ps.setInt(1, userRole);
+        ps.setInt(2, userID);
+        int rowsAffected = ps.executeUpdate();
+        if (rowsAffected > 0) {
+            System.out.println("User role updated successfully.");
+            return true;
+        } else {
+            System.out.println("No user found with the specified ID.");
+            return false;
+        }
+    } catch (SQLException e) {
+        System.out.println("Failed to update user role: " + e.getMessage());
+        return false;
+    }
+}
+
+    
+    public static void main(String[] args) {
+        AccountDAO dao = new AccountDAO();
+//        dao.deleteAccountByID(30);
+        boolean success = dao.updateUserRole(1, 1);
+        System.out.println(success);
     }
 
 }

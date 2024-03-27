@@ -38,23 +38,28 @@
             <div id="editEmployeeModal">
                 <div class="modal-dialog">
                     <div class="modal-content">
-                        <form action="seeditprofile" method="post">
+                        <form action="seeditprofile" method="post" enctype="multipart/form-data">
                             <input type="hidden" value="${back}" name="back">
                             <div class="modal-header">						
                                 <h4 class="modal-title"></h4>
-                              <a href="${back}" >
-                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true" >&times;</button>
-                                        </a> 
+                                <a href="${back}" >
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true" >&times;</button>
+                                </a> 
                             </div>
+
                             <div class="modal-body">					
                                 <div class="form-group">
                                     <label>ID</label>
                                     <input value="${account.userID}" name="id" type="text" class="form-control" readonly required>
                                 </div>
-                                 <div class="form-group">
-                                    <label>Avatar</label>
-                                    <input value="${account.user.userAvatar}" name="avatar" type="text" class="form-control" required>
+                                <div class="form-group">
+                                    <label>Photo</label> <br/>
+                                    <!-- Button to trigger file input -->
+                                    <button type="button" onclick="document.getElementById('image').click()" class="btn btn-primary">Choose File</button>
+                                    <!-- Hidden file input -->
+                                    <input id="image" type="file" class="hidden"  name="img" onchange="getImgUrl(event)">
                                 </div>
+
                                 <div class="form-group">
                                     <label>Name</label>
                                     <input value="${account.user.userName}" name="name" type="text" class="form-control" required>
@@ -64,7 +69,7 @@
                                     <input value="${account.user.userGender}" name="gender" type="text" class="form-control" readonly required>
                                 </div>
 
-                               <div class="form-group">
+                                <div class="form-group">
                                     <label>Birth</label>
                                     <input value="${account.user.userBirth}" name="birth" type="text" class="form-control" readonly required>
                                 </div>
@@ -76,7 +81,7 @@
                                     <label>Address</label>
                                     <textarea name="address" class="form-control" required>${account.user.userAddress}</textarea>
                                 </div>
-                               
+
                             </div>
                             <div class="modal-footer">
                                 <input type="submit" class="btn btn-success" value="Edit">
@@ -87,7 +92,21 @@
             </div>
 
         </div>
+        <script>
+            function getImgUrl(e) {
+                const input = e.target;
+                const previewImg = document.getElementById('previewImg');
+                if (input.files && input.files[0]) {
+                    const reader = new FileReader();
 
+                    reader.onload = function (e) {
+                        previewImg.src = e.target.result;
+                    };
+
+                    reader.readAsDataURL(input.files[0]);
+                }
+            }
+        </script>
 
         <script src="js/manager.js" type="text/javascript"></script>
     </body>
